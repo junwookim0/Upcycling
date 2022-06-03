@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+//🍎 Review를 작성하는 페이지
+
 const ReviewWrite = ({addReview}) => {
     const formRef = useRef();
     const reviewCategoryRef = useRef();

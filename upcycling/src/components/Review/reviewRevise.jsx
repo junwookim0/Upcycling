@@ -1,5 +1,8 @@
 import React from 'react';
 
+//🍎 Review를 수정하는 페이지
+
+
 const ReviewRevise = () => {
     return (
         <section>
@@ -24,6 +27,8 @@ const ReviewRevise = () => {
                     accept='image/*'
                     name='file'
                 />
+                <button >수정</button>
+                <button >삭제</button>
         </section>
     );
 };
