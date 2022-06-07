@@ -1,6 +1,6 @@
-import Logo from "../../components/context/logoimage/firstpagelogo"
-import Login from "../../components/context/login/Login";
-import Intro from "../../components/context/Intro/Intro";
+import Logo from "../../components/logoimage/firstpagelogo"
+import Login from "../../components/login/Login";
+import Intro from "../../components/Intro/Intro";
 
 const FirstMain = () => {
     return (

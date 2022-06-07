@@ -1,4 +1,4 @@
-import Nav from '../components/context/Nav/Nav';
+import Nav from '../components/Nav/Nav';
 
 const HomePage = () => {
     return (

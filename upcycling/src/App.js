@@ -1,12 +1,12 @@
 import './App.css';
 import { Route, Routes } from "react-router-dom";
-import Intro from './components/context/Intro/Intro';
-import Event from './components/context/Event';
+import Intro from './components/Intro/Intro';
+import Event from './components/Event';
 import Home from './page/HomePage';
 import FirstMain from './page/FirstMain/FirstMain';
-import Reviewlist from './components/Review/Reviewlist';
-import Reviewdetail from './components/Review/Reviewdetail';
-import ReviewWrite from './components/Review/ReviewWrite';
+import Reviewlist from './components/Review/reviewItem';
+import Reviewdetail from './components/Review/reviewDetail';
+import ReviewWrite from './components/Review/reviewWrite';
 import NotFound from './page/NotFound';
 
 
