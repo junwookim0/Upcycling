@@ -1,16 +1,20 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './CSS/reviewDetail.module.css'
+
 
 //🍎 reviewPage에서 item의 이미지를 클릭했을 때 이동하는 컴포넌트
 //Reivew의 전체적인 내용을 출력
 
-const ReviewDetail = () => {
+const ReviewDetail = ({deleteReview}) => {
     const location = useLocation();
+    const navigation = useNavigate();
     const reviewState = location.state.review;
 
-    //console.log(reviewState)
-
+    const goRevise = (review) =>{
+        navigation(`/review/revise/${review.id}`, {state : {review}})
+    }
+    
     return (
         <section>
             <div className={styles.header}> 
@@ -43,9 +47,18 @@ const ReviewDetail = () => {
             </div>
 
             <hr />
-            <p>❤</p>
-            <p>💌</p>
-            <textarea name="comment" id="" cols="30" rows="10"></textarea>
+            <div className={styles.icon_container}>
+                <div className={styles.icon_container_left}>
+                    <p className={styles.heart}>👍</p>
+                    <p className={styles.comment}>💌</p>
+                </div>
+                <div className={styles.icon_container_right}>
+                    <button onClick={()=>goRevise(reviewState)}>수정</button>
+                    <button onClick={()=>deleteReview(reviewState)}>삭제</button>
+                </div>
+            </div>
+
+            <textarea className={styles.comment_write} name="comment" id="" cols="30" rows="10"></textarea>
         </section>
     );
 };

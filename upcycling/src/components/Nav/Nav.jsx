@@ -17,12 +17,12 @@ const Nav = () => {
             <header style={{ background: "lightgray", padding: 16 }}>
                 <nav>
                     <ul>
-                        <li><a>index</a></li>
-                        <li><a>event</a></li>
-                        <li><a>리뷰</a></li>
-                        <li><a>거래</a></li>
+                        <li>index</li>
+                        <li>event</li>
+                        <li>리뷰</li>
+                        <li>거래</li>
                             {/* 클릭했을 때 홈으로 이동 */}
-                            <li><a class="mainLogo" onClick={goHome}>로고</a></li>
+                            <li onClick={goHome}>로고</li>
                         
                             {/* 팝업 */}
                             <li>마이페이지</li>

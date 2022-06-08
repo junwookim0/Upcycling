@@ -36,10 +36,41 @@ section {
 .container {
     height: 500px;
     margin-left: 2rem;
-    background-color: blueviolet;
+    background-color: lightgrey;
 }
 
 .description {
     height: 20rem;
     overflow-y: scroll;
 }
+
+.icon_container {
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+}
+
+.icon_container_left {
+    display: flex;
+
+}
+
+.icon_container_right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.icon_container_right > button {
+    margin-right: 1rem;
+}
+
+.heart {
+    margin-right: 1rem;
+}
+
+.comment_write {
+    width: 70%;
+    height: 4rem;
+}
+
