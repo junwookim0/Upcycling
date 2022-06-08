@@ -1,4 +1,4 @@
-import { auth } from '../../../firebase';
+import { auth } from '../../firebase';
 import { GoogleAuthProvider, signInWithPopup,
             FacebookAuthProvider
 } from 'firebase/auth';

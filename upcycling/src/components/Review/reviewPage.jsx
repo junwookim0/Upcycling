@@ -6,7 +6,8 @@ import styles from './CSS/reviewPage.module.css'
 
 const ReviewPage = ({reviews}) => {
 
-    const navigate = useNavigate()
+    const navigator = useNavigate()
+    
     return (
         <section className={styles.reviewPage}>
             <h1>Reviews</h1>
@@ -17,7 +18,7 @@ const ReviewPage = ({reviews}) => {
                 </div>
                 <button className={styles.button_write}
                         onClick={()=>{
-                                navigate('/reviews/write')
+                            navigator('/reviews/write')
                         }}>글쓰기
                 </button>
             </div>
