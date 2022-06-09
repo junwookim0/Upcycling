@@ -26,6 +26,27 @@ function App() {
         reviewHashtags : ['#자전거', '#친환경', '#업사이클링'],
         profileIMG : 'https://image.shutterstock.com/image-vector/default-avatar-profile-icon-social-260nw-1677509740.jpg',
         reviewCategory : '말머리1',
+        comments : [
+          {
+            id : 1,
+            userName : 'green1',
+            comment : '👍!!!',
+            date : '2022.06.09'
+          },
+          {
+            id : 2,
+            userName : 'green1',
+            comment : '💕',
+            date : '2022.06.09'
+          },
+          {
+            id : 3,
+            userName : 'green1',
+            comment : '😊!!!',
+            date : '2022.06.09'
+          }
+        ],
+        likes : ['호두','꾸꾸']
     },
     { 
         id : 2,
@@ -36,6 +57,27 @@ function App() {
         reviewHashtags : ['#자전거', '#친환경', '#업사이클링'],
         profileIMG : 'https://image.shutterstock.com/image-vector/default-avatar-profile-icon-social-260nw-1677509740.jpg',
         reviewCategory : '말머리2',
+        comments : [
+          {
+            id : 1,
+            userName : 'green1',
+            comment : '👍!!!',
+            date : '2022.06.09'
+          },
+          {
+            id : 2,
+            userName : 'green1',
+            comment : '💕',
+            date : '2022.06.09'
+          },
+          {
+            id : 3,
+            userName : 'green1',
+            comment : '😊!!!',
+            date : '2022.06.09'
+          }
+        ],
+        likes : ['호두','꾸꾸']
     },
     { 
         id : 3,
@@ -46,6 +88,27 @@ function App() {
         reviewHashtags : ['#자전거', '#친환경', '#업사이클링'],
         profileIMG : 'https://image.shutterstock.com/image-vector/default-avatar-profile-icon-social-260nw-1677509740.jpg',
         reviewCategory : '말머리3',
+        comments : [
+          {
+            id : 1,
+            userName : 'green1',
+            comment : '👍!!!',
+            date : '2022.06.09'
+          },
+          {
+            id : 2,
+            userName : 'green1',
+            comment : '💕',
+            date : '2022.06.09'
+          },
+          {
+            id : 3,
+            userName : 'green1',
+            comment : '😊!!!',
+            date : '2022.06.09'
+          }
+        ],
+        likes : ['호두','꾸꾸']
     },
 ]);
 
@@ -57,7 +120,7 @@ const createReview = review => {
 }
 
 
-//🍎지은 : update Review
+//🍎지은 : update Review, Comment
 const updateReview =  (updatedReview)=> {
   
   const newReviews = reviews.map((review) => {
@@ -82,8 +145,30 @@ const deleteReview = (deletedItem) => {
   }
 }
 
+//🍎지은 : AddComment
+const addComment = (updatedReview) => {
+  const newReviews = reviews.map((review) => {
+    if(review.id !== updatedReview.id) {
+      return review
+    } else {
+      return updatedReview
+    }
+  }) 
+  setReviews(newReviews)
+}
 
-
+//🍎지은 : likes
+const clickLike = (updatedReview) => {
+  const newReviews = reviews.map((review) => {
+    if(review.id !== updatedReview.id) {
+      return review
+    } else {
+      return updatedReview
+    }
+  }) 
+  console.log(newReviews)
+  setReviews(newReviews)
+}
 
   return (
     <div className="App">
@@ -94,9 +179,9 @@ const deleteReview = (deletedItem) => {
           <Route path="/event" element={<Event />}></Route>
 
           <Route path='/reviews'  element={<ReviewPage reviews={reviews} />}/>
-          <Route path='/reviews/:id' element={<ReviewDetail deleteReview={deleteReview}/>}/>
+          <Route path='/reviews/:id' element={<ReviewDetail clickLike={clickLike} reviews={reviews} addComment={addComment} deleteReview={deleteReview}/>}/>
           <Route path='/reviews/write' element={<ReviewWrite addReview={createReview}/>}/>
-          <Route path='/review/revise/:id' element={<ReviewRevise  reviews={reviews} updateReview={updateReview} />}/>
+          <Route path='/review/revise/:id' element={<ReviewRevise  updateReview={updateReview} />}/>
           
           <Route path="/not-found" element={<NotFound />}></Route>
         </Routes>
