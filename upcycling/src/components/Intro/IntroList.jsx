@@ -55,7 +55,7 @@ const IntroList = () => {
                         <div className="feature ipsSpacer_bottom_double ipsGrid ipsGrid_collapsePhone">
                             <div className="featured-image-container ipsGrid_span5 gs_reveal gs_reveal_fromLeft">
                                 <div className="card">
-                                    <img width="479" src="https://picsum.photos/479/479?index=1" alt="img1"/>
+                                    <img width="479" src="../../images/Category003.jpg" alt="img1"/>
                                 </div>
                             </div>
                             <div className="ipsGrid_span7 ipsType_left">
@@ -70,14 +70,14 @@ const IntroList = () => {
                         </div>
                         <div className="featured-image-container ipsGrid_span5 gs_reveal gs_reveal_fromRight">
                             <div className="card">
-                                <img width="479" src="https://picsum.photos/479/479?index=2" alt="img2"/>
+                                <img width="479" src="../../images/222.PNG" alt="img2"/>
                             </div>
                         </div>
                     </div>
                     <div className="feature ipsSpacer_bottom_double ipsGrid ipsGrid_collapsePhone">
                         <div className="featured-image-container ipsGrid_span5 gs_reveal gs_reveal_fromLeft">
                             <div className="card">
-                                <img width="479" src="https://picsum.photos/479/479?index=3" alt="img3"/>
+                                <img width="479" src="../../images/산업.jpg" alt="img3"/>
                             </div>
                         </div>
                         <div className="ipsGrid_span7 ipsType_left">
@@ -88,7 +88,7 @@ const IntroList = () => {
                     </div>
                     <div className="feature ipsSpacer_bottom_double ipsGrid ipsGrid_collapsePhone">
                         <div className="ipsGrid_span7 ipsType_right">
-                            <h2 className="heading_large gs_reveal">의류</h2>
+                            <h2 className="heading_large gs_reveal">의류</h2> 
                             <p className="gs_reveal">디자이너들은 산업 섬유 폐기물과 기존 의류를 모두 새로운 패션을 만드는 기본 재료로 사용하기 시작했다. 업사이클링은 소비 이전 또는 소비 이후 폐기물을 사용하거나 둘의 조합을 사용하는 것으로 알려져 있다. 소비 이전 폐기물은 공장에서 패턴을 도려내고 남은 원단 잔해와 같이 만들어진다. 소비 이후 폐기물은 기증받은 옷과 같이 주인에게 더 이상 유용하지 않을 때 완성된 제품을 말한다.
                             종종, 사람들은 사고, 사용하고, 버리는 것에 만족하는 선형 경제를 실행한다. 이 시스템은 수백만 킬로그램의 섬유 폐기물이 버려지는 데 기여한다. 생산되는 대부분의 섬유는 재활용이 가능하지만, 미국에서만 약 85%가 토지 매각으로 귀결된다. 지속 가능한 삶을 살기 위해서는 패스트패션에 의해 장려되는 "버리는" 태도와는 반대되는 의복 선택이 필요하다. 새활용(upcycling)은 이것을 도와 줄 수 있는데, 그것은 그것이 더 순환적인 경제 모델을 실행에 옮기기 때문이다. 
                             순환 경제(Circular Economy)는 리소스를 최대한 오래 사용하여 사용 중에 최대한 많은 가치를 창출한 다음, 사용이 끝나면 복원하고 용도 변경하는 것을 말한다.
@@ -96,7 +96,7 @@ const IntroList = () => {
                         </div>
                         <div className="featured-image-container ipsGrid_span5 gs_reveal gs_reveal_fromRight">
                             <div className="card">
-                                <img width="479" src="https://picsum.photos/479/479?index=4" alt="img4"/>
+                                <img width="479" src="../../images/의류.jpg" alt="img4"/>
                             </div>
                         </div>
                     </div>

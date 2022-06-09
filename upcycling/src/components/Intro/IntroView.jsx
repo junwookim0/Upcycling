@@ -37,7 +37,7 @@ const IntroView = () => {
             </header>
             <section className="container hero">
                 <div className="hero__inner">
-                    <div className="hero__images"><img class="hero__image" src="https://images.unsplash.com/photo-1508781197106-d8c535dcf276?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE0NTg5fQ" alt='img1'/></div>
+                    <div className="hero__images"><img class="hero__image" src="../../images//background1.jpg" alt='img1'/></div>
                     <div className="hero__content">
                         <div className="hero__headline"><span className='u'>UPCYCLING!</span></div>
                     </div>
