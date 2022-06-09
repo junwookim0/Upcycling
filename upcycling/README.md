@@ -1,7 +1,7 @@
 ### `npm install`
 ### `npm install firebase`
+### `npm install gsap`
 ### `npm i swiper`
- `
 
 ### `npm start`
 

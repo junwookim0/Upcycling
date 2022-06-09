@@ -4,7 +4,9 @@ import './post.css';
 
 
 const EventIntro = () => {
-    
+    const postClick = () =>{
+        
+    }
     return (
         <div>
             <Nav/>
