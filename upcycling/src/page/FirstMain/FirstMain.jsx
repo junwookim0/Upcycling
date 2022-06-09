@@ -1,11 +1,11 @@
-import Logo from "../../components/logoimage/firstpagelogo"
 import Login from "../../components/login/Login";
-import Intro from "../../components/Intro/Intro";
+import Intro from "../../components/Intro/IntroList";
+import IntroView from "../../components/Intro/IntroView";
 
 const FirstMain = () => {
     return (
         <div>
-            <Logo/>
+            <IntroView/>
             <Login/>
             <Intro/>
         </div>

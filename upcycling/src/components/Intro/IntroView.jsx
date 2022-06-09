@@ -1,0 +1,52 @@
+// Intro view
+import { useEffect } from 'react';
+import './IntroView.css';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
+const IntroView = () => {
+    useEffect(()=> {
+        gsap.to(".hero", {
+            scrollTrigger: {
+            trigger: ".hero",
+            scrub: true,
+            pin: true,
+            start: "center center",
+            end: "bottom -100%",
+            toggleClass: "active",
+            ease: "power2"
+            }
+        });
+        
+        gsap.to(".hero__image", {
+            scrollTrigger: {
+            trigger: ".hero",
+            scrub: 0.5,
+            start: "top bottom",
+            end: "bottom -300%",
+            ease: "power2"
+            },
+            y: "-30%"
+        });
+    })
+    return (
+        <div>
+            <header className="container">
+                <h2 className="container__headline"> Upgrade + Recycling</h2>
+            </header>
+            <section className="container hero">
+                <div className="hero__inner">
+                    <div className="hero__images"><img class="hero__image" src="https://images.unsplash.com/photo-1508781197106-d8c535dcf276?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE0NTg5fQ" alt='img1'/></div>
+                    <div className="hero__content">
+                        <div className="hero__headline"><span className='u'>UPCYCLING!</span></div>
+                    </div>
+                </div>
+            </section>
+            <footer className="container">
+                <h2 className="container__headline">Upcycling do it yourself.</h2>
+            </footer>
+        </div>
+    );
+};
+export default IntroView;

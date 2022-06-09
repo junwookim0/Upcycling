@@ -1,5 +1,5 @@
 // 소개 페이지
-import './Intro.css';
+import './IntroList.css';
 import Nav from '../Nav/Nav';
 import { useEffect } from 'react';
 import { gsap } from "gsap";
@@ -33,7 +33,7 @@ function animateFrom(elem, direction) {
         gsap.set(elem, {autoAlpha: 0});
     }
     
-const Intro = () => {
+const IntroList = () => {
     useEffect(()=>{
             gsap.utils.toArray(".gs_reveal").forEach(function(elem) {
             hide(elem); 
@@ -105,4 +105,4 @@ const Intro = () => {
         </div>
     );
 };
-export default Intro;
+export default IntroList;

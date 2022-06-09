@@ -1,6 +1,6 @@
 // 이벤트 소개 페이지
 import Nav from '../Nav/Nav';
-import './post.css';
+import './EventIntro.css';
 
 
 const EventIntro = () => {
