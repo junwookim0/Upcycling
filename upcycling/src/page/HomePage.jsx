@@ -1,8 +1,12 @@
 import Nav from '../components/Nav/Nav';
+import Carousel from '../components/banner/Carousel';
 
 const HomePage = () => {
     return (
-        <Nav/>
+        <div>
+            <Nav/>
+            <Carousel/>
+        </div>
     )
 };
 

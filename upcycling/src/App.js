@@ -1,18 +1,13 @@
 import './App.css';
-import { useState } from 'react';
-import { Route, Routes, useNavigate } from "react-router-dom";
-import Intro from './components/Intro/Intro';
-import Event from './components/Event';
+import { Route, Routes } from "react-router-dom";
+import IntroList from './components/Intro/IntroList';
 import Home from './page/HomePage';
 import FirstMain from './page/FirstMain/FirstMain';
-
-import ReviewDetail from './components/Review/reviewDetail';
-import ReviewPage from './components/Review/reviewPage';
-import ReviewRevise from './components/Review/reviewRevise';
-import ReviewWrite from './components/Review/reviewWrite';
-
+import EventIntro from './components/Intro/EventIntro';
+import Reviewlist from './components/Review/Reviewlist';
+import Reviewdetail from './components/Review/Reviewdetail';
+import ReviewWrite from './components/Review/ReviewWrite';
 import NotFound from './page/NotFound';
-
 
 function App() {
 
@@ -175,16 +170,16 @@ const clickLike = (updatedReview) => {
         <Routes>
           <Route path="/" element={<FirstMain/>}></Route>
           <Route path="/Home" element={<Home />}></Route>
-          <Route path="/intro" element={<Intro />}></Route>
-          <Route path="/event" element={<Event />}></Route>
-
+          <Route path="/intro" element={<IntroList />}></Route>
+          <Route path="/event" element={<EventIntro />}></Route>
           <Route path='/reviews'  element={<ReviewPage reviews={reviews} />}/>
           <Route path='/reviews/:id' element={<ReviewDetail clickLike={clickLike} reviews={reviews} addComment={addComment} deleteReview={deleteReview}/>}/>
           <Route path='/reviews/write' element={<ReviewWrite addReview={createReview}/>}/>
           <Route path='/review/revise/:id' element={<ReviewRevise  updateReview={updateReview} />}/>
-          
           <Route path="/not-found" element={<NotFound />}></Route>
         </Routes>
+        
+        <footer>푸터</footer>
     </div>
   );
 }
