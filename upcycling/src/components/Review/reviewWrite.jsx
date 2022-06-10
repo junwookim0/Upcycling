@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from './CSS/reviewWrite.module.css'
 
 //🍎 Review를 작성하는 페이지
 
@@ -31,37 +32,44 @@ const ReviewWrite = ({addReview}) => {
         navigate('/reviews');
     }
 
-
-
-    
-
     return (
-        <form ref={formRef}>
-            <select ref={reviewCategoryRef} name="reviewCategory" id="">
-                <option value="">말머리1</option>
-                <option value="">말머리2</option>
-                <option value="">말머리3</option>
-            </select>
-                <label htmlFor="reviewTitle">
-                    <input ref={reviewTitleRef} name='reviewTitle' type="text" placeholder='제목' />
-                </label>
-                <br/>
-                <label htmlFor="reviewHashtags">
-                    <input ref={reviewHashtagsRef} name='reviewHashtags' type="text" placeholder='해시태그' />
-                </label>
+            <form className={styles.form} ref={formRef}>
+                <select ref={reviewCategoryRef} name="reviewCategory" id="">
+                    <option value="">말머리1</option>
+                    <option value="">말머리2</option>
+                    <option value="">말머리3</option>
+                </select>
                 
-                <br/>
-                <textarea ref={reviewDescriptionRef} name="" id="" cols="30" rows="10"></textarea>
-                <br/>
-                <input 
-                    ref={reviewIMGRef}
-                    type="file"
-                    accept='image/*'
-                    name='reviewIMG'
-                />
+                    <label htmlFor="reviewTitle">
+                        <input ref={reviewTitleRef} name='reviewTitle' type="text" placeholder='제목' />
+                    </label>
+                    <br/>
+                    <label htmlFor="reviewHashtags">
+                        <input ref={reviewHashtagsRef} name='reviewHashtags' type="text" placeholder='해시태그' />
+                    </label>
+                    
+                    <br/>
+                    <textarea 
+                        ref={reviewDescriptionRef} 
+                        name="" 
+                        id="" 
+                        cols="30" 
+                        rows="10"
+                        className={styles.reviewDescription}
+                        >
 
-                <button onClick={onSubmit}>작성완료</button>
-        </form>
+                    </textarea>
+                    <br/>
+                    <input 
+                        ref={reviewIMGRef}
+                        type="file"
+                        accept='image/*'
+                        name='reviewIMG'
+                    />
+                    <br/>
+                    <button onClick={onSubmit}>작성완료</button>
+            </form>
+        
     );
 };
 

@@ -16,6 +16,10 @@ const ReviewItem = ({review}) => {
             />
             <h3>{review.reviewTitle}</h3>
             <p>{review.nickname}</p>
+            <div>
+                <span>👍</span>
+                <span>{review.likes.length}</span>
+            </div>
         </section>
     );
 };
