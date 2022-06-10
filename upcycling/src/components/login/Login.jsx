@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 function Login() {
 
     const [userData, setUserData] = useState(null);
-    const navgator = useNavigate();
+    const navigate = useNavigate();
 
     function handleGoogleLogin() {
         const gprovider = new GoogleAuthProvider(); // provider를 구글로 설정
@@ -16,7 +16,7 @@ function Login() {
         .then((data) => {
             setUserData(data.user); // user data 설정
             console.log(data) // console로 들어온 데이터 표시
-            navgator("/Home");
+            navigate("/Home");
         })
         .catch((err) => {
             console.log(err);
@@ -27,7 +27,7 @@ function Login() {
         signInWithPopup(auth, fprovider) // popup을 이용한 signup
         .then((data) => {
             setUserData(data.user); // user data 설정
-            navgator("/Home");
+            navigate("/Home");
             console.log(data) // console로 들어온 데이터 표시
         })
         .catch((err) => {

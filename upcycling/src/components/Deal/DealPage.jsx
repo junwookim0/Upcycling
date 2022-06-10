@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DealItem from "./DealItem";
-
+import Nav from "../Nav/Nav";
 import styles from './CSS/dealPage.module.css';
 
 const DealPage = ({deals}) => {
@@ -15,29 +15,32 @@ const DealPage = ({deals}) => {
     };
 
     return (
-        <section className={styles.dealPage}>
-            <h1>Deals</h1>
-            
-            <div className={styles.header}>
-                <div className={styles.search}>
-                    <input type="text" />
-                    <button>Search</button>
+        <div>
+            <Nav/>
+            <section className={styles.dealPage}>
+                <h1>Deals</h1>
+                
+                <div className={styles.header}>
+                    <div className={styles.search}>
+                        <input type="text" />
+                        <button>Search</button>
+                    </div>
+                    <button
+                    className={styles.button_write}
+                    onClick={onClick}>글 작성</button>
                 </div>
-                <button
-                className={styles.button_write}
-                onClick={onClick}>글 작성</button>
-            </div>
 
-            <ul className={styles.list}>
-                {
-                    deals.map(deal => (
-                        <li key={deal.createdAt}>
-                            <DealItem deal={deal} />
-                        </li>
-                    ))
-                }
-            </ul>
-        </section>
+                <ul className={styles.list}>
+                    {
+                        deals.map(deal => (
+                            <li key={deal.createdAt}>
+                                <DealItem deal={deal} />
+                            </li>
+                        ))
+                    }
+                </ul>
+            </section>
+        </div>
     );
 };
 
