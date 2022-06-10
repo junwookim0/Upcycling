@@ -20,4 +20,5 @@
 .navbar_menu li {
     padding: 8px 12px;
     font-size: 25px;
+    text-decoration: none;
 }

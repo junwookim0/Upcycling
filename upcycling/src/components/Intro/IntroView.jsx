@@ -33,11 +33,13 @@ const IntroView = () => {
     return (
         <div>
             <header className="container">
-                <h2 className="container__headline"> Upgrade + Recycling</h2>
+                <h2 className="container__headline"> 
+                <p className='animate__animated animate__fadeInDownBig'>Upgrade + Recycling</p>
+                </h2>
             </header>
             <section className="container hero">
                 <div className="hero__inner">
-                    <div className="hero__images"><img class="hero__image" src="../../images//background1.jpg" alt='img1'/></div>
+                    <div className="hero__images"><img class="hero__image" src="../../images/background1.jpg" alt='img1'/></div>
                     <div className="hero__content">
                         <div className="hero__headline"><span className='u'>UPCYCLING!</span></div>
                     </div>

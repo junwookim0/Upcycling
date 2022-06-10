@@ -4,12 +4,12 @@
 }
 
 body {
-  
   font-family: "IBM Plex Sans", sans-serif;
 }
 .u {
   color: white;
 }
+
 .container {
   display: flex;
   align-items: center;

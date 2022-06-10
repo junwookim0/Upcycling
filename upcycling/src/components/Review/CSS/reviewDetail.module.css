@@ -3,6 +3,7 @@ section {
     width: 100%;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 2rem;
 }
 
 .header {
@@ -69,8 +70,38 @@ section {
     margin-right: 1rem;
 }
 
-.comment_write {
+
+
+/*comments CSS*/
+.comments_container {
+    margin: 1rem 0;
     width: 70%;
+    height: auto;
+    border: 1px solid aquamarine;
+}
+
+
+.comments_user {
+    padding-right: 1rem;
+}
+
+.comments_date {
+    color: darkgray;
+}
+
+
+.comment_form {
+    display: flex;
+    width: 70%;
+    margin:auto;
+}
+
+.comment_write {
+    width: 40rem;
     height: 4rem;
 }
 
+
+.comments_text {
+    padding-left: 1rem;
+}
