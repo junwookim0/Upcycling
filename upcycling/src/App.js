@@ -8,9 +8,19 @@ import ReviewWrite from './components/Review/reviewWrite';
 import ReviewPage from './components/Review/reviewPage';
 import ReviewDetail from './components/Review/reviewDetail';
 import ReviewRevise from './components/Review/reviewRevise';
+/* 🥑 박선주 import 시작 */
+import DealWrite from './components/Deal/DealWrite';
+import DealPage from './components/Deal/DealPage';
+import DealDetail from './components/Deal/DealDetail';
+import DealRevise from './components/Deal/DealRevise';
+/* 🥑 박선주 import 끝 */
 import NotFound from './page/NotFound';
 import {useNavigate} from 'react-router-dom';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+
+import { firestore } from './firebase';
+import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
+
 
 function App() {
 
@@ -167,6 +177,27 @@ const clickLike = (updatedReview) => {
   console.log(newReviews)
   setReviews(newReviews)
 }
+  const [deals, setDeals] = useState([]);
+
+  // 🥑 렌더링 시 콜백 함수 실행
+  useEffect(() => {
+    // dbDeals 콜렉션 레퍼런스 가져옴
+    // 생성 일자 내림차순(최근 순서)으로 정렬
+    const dq = query(
+      collection(firestore, "dbDeals"),
+      orderBy("createdAt", "desc")
+    );
+    // 수정, 삭제 실시간 반영
+    // snapshot -> 각각의 docs에 접근하기 위해서 사용
+    onSnapshot(dq, (snapshot) => {
+      const dealArray = snapshot.docs.map(doc => ({
+      // 각각의 객체에 고유 id를 만들어 할당
+        id: doc.id, ...doc.data()
+      }));
+      // 거래글 객체 리스트를 setDeals에 할당
+        setDeals(dealArray);
+      })
+  }, []);
 
   return (
     <div className="App">
@@ -179,6 +210,12 @@ const clickLike = (updatedReview) => {
           <Route path='/reviews/:id' element={<ReviewDetail clickLike={clickLike} reviews={reviews} addComment={addComment} deleteReview={deleteReview}/>}/>
           <Route path='/reviews/write' element={<ReviewWrite addReview={createReview}/>}/>
           <Route path='/review/revise/:id' element={<ReviewRevise  updateReview={updateReview} />}/>
+          {/* 🥑 박선주 route 시작 */}
+          <Route path='/deals' element={<DealPage deals={deals}/>} />
+          <Route path='/deals/:createdAt' element={<DealDetail />} />
+          <Route path='/deals/write' element={<DealWrite />} />
+          <Route path='/deals/revise/:id' element={<DealRevise />} />
+          {/* 🥑 박선주 route 끝 */}
           <Route path="/not-found" element={<NotFound />}></Route>
         </Routes>
         

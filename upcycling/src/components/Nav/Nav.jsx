@@ -22,6 +22,9 @@ const Nav = () => {
     const goReview = () => {
         navigate("/reviews");
     };
+    const goDeals = () => {
+        navigate("/deals");
+    };
 
     return (
         <div>
@@ -34,7 +37,7 @@ const Nav = () => {
                         <li onClick={goIntro}>소개</li>
                         <li onClick={goEvent}>이벤트</li>
                         <li onClick={goReview}>리뷰</li>
-                        <li>거래</li>
+                        <li onClick={goDeals}>거래</li>
                     </ul>
                     <ul class="navbar_img">
                         <li>마이페이지</li>
