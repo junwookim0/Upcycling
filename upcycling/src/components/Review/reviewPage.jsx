@@ -1,28 +1,40 @@
 import { useNavigate } from 'react-router-dom';
 import ReviewItem from './reviewItem';
+import styles from './CSS/reviewPage.module.css'
+import Nav from "../Nav/Nav";
+//🍎전체 Review를 보여주는 페이지
 
 const ReviewPage = ({reviews}) => {
 
-    const navigate = useNavigate()
+    const navigator = useNavigate()
+    
     return (
-        <section>
-            <h1>중고거래 인기매물</h1>
-            <input type="text" />
-            <button>search</button> <br/>
-            <button 
-                onClick={()=>{
-                    navigate('/reviews/write')
-                }}
-            >글쓰기</button>
-            <ul>
-                {
-                    reviews.map(review => (
-                    <li key={review.id}>
-                        <ReviewItem review={review}/>
-                    </li>))
-                }
-            </ul>
-        </section>
+        <div>
+            <Nav/>
+            <section className={styles.reviewPage}>
+                <h1>Reviews</h1>
+                <div className={styles.header}>
+                    <div className={styles.search}>
+                        <input type="text" />
+                        <button>search</button> 
+                    </div>
+                    <button className={styles.button_write}
+                            onClick={()=>{
+                                navigator('/reviews/write')
+                            }}>글쓰기
+                    </button>
+                </div>
+
+                <ul className={styles.list}>
+                    {
+                        reviews.map(review => (
+                        <li key={review.id}>
+                            <ReviewItem review={review}/>
+                        </li>))
+                    }
+                </ul>
+            </section>
+        </div>
     );
 };
 

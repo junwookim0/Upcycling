@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css } from "style-components";
+import styled, { css } from "styled-components";
 import { Component } from "react";
 import CategoryBanner from "../banner/CategoryBanner";
 class MyLike extends Component {

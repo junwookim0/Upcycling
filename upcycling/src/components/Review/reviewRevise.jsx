@@ -1,6 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import styles from './CSS/reviewRevise.module.css'
 
-const ReviewRevise = () => {
+//🍎 Review를 수정하는 페이지
+
+
+const ReviewRevise = ({updateReview}) => {
+    const location = useLocation();
+    
+
+    const review = location.state.review
+    const [changedReview, setChangedReview] = useState({});
+
+    const onChange = event => {
+        if(event.currentTarget == null) {
+            return;
+        }
+        event.preventDefault();
+        setChangedReview( {
+            ...review,
+            [event.currentTarget.name] : event.currentTarget.value
+        });
+    };
+
+
+    const SubmitReview = () => {
+        //console.log(changedReview);
+        updateReview(changedReview)
+    }
+
     return (
         <section>
             <select name="" id="">
@@ -9,21 +37,39 @@ const ReviewRevise = () => {
                 <option value="">말머리3</option>
             </select>
                 <label htmlFor="reviewTitle">
-                    <input name='reviewTitle' type="text" placeholder='제목' />
+                    <input 
+                        name='reviewTitle' 
+                        type="text" 
+                        defaultValue={review?review.reviewTitle:''} 
+                        onChange={onChange}
+                    />
                 </label>
                 <br/>
                 <label htmlFor="reviewHashtags">
-                    <input name='reviewHashtags' type="text" placeholder='해시태그' />
+                    <input 
+                        name='reviewHashtags' 
+                        type="text" 
+                        defaultValue={review?review.reviewHashtags:''}
+                        onChange={onChange}
+                    />
                 </label>
                 
                 <br/>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <textarea 
+                    className={styles.reviewDescription}
+                    name="reviewTitle" 
+                    defaultValue={review?review.reviewDescription:''}
+                    onChange={onChange}
+                ></textarea>
                 <br/>
                 <input 
                     type="file"
                     accept='image/*'
                     name='file'
+                    
                 />
+                <button onClick={SubmitReview}>수정</button>
+                
         </section>
     );
 };
