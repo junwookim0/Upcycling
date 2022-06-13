@@ -1,11 +1,24 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useState , useEffect} from "react";
 import './Nav.css';
-// $router.push()
-
 //nav바 
 
 const Nav = () => {
-    
+    //scroll시 nav바 변경 
+    const [scrolled, setScrolled] = useState(false);
+    useEffect(()=>{
+        const handleScroll = ()=>{
+            if(!scrolled && window.scrollY >30){
+                setScrolled(true);
+            }else if(scrolled && window.scrollY <=30){
+                setScrolled(false);
+            }
+        };
+        window.addEventListener('scroll',handleScroll);
+        return()=>{
+            window.removeEventListener('scroll', handleScroll);
+        };
+    },[scrolled]);
     // useNavigate를 사용하여 원하는 주소로 이동할수 있다.
     const navigate = useNavigate();
     
@@ -28,7 +41,7 @@ const Nav = () => {
 
     return (
         <div>
-            <header>
+            <header  className={scrolled ? 'fix-container scrolled' : 'fix-container'}>
                 <nav className="navbar">
                     <div className="navbar_logo" onClick={goHome}>
                         <span className="logo_text">: UPTOWN</span>
@@ -39,7 +52,7 @@ const Nav = () => {
                         <li onClick={goReview}>리뷰</li>
                         <li onClick={goDeals}>거래</li>
                     </ul>
-                    <ul class="navbar_img">
+                    <ul class="navbar_toggleBtn">
                         <li>마이페이지</li>
                         <li>로그인</li>
                         
@@ -47,10 +60,6 @@ const Nav = () => {
                 </nav>
             </header>
 
-            <main>
-                <Outlet></Outlet>
-            </main>
-        
     </div>
     );
 };

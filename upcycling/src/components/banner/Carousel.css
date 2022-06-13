@@ -71,3 +71,7 @@ body {
   float: left;
   margin-left: 30px;
 }
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  color: black;
+}

@@ -1,7 +1,5 @@
 /* Styles from the GreenSock website */
-body {
-    font-weight: 300;
-  }
+
   .ipsType_right {
     text-align: right;
   }
@@ -73,7 +71,7 @@ body {
   }
   
   .header-section {
-    margin: 200px auto;
+    margin: 200px;
   }
   
   .gs_reveal {

@@ -1,6 +1,6 @@
 import { auth } from '../../firebase';
 import { GoogleAuthProvider, signInWithPopup,
-            FacebookAuthProvider
+            FacebookAuthProvider,signOut
 } from 'firebase/auth';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
@@ -34,6 +34,14 @@ function Login() {
             console.log(err);
         });
     }
+    function Logout() {
+        signOut(auth).then(() => {
+            setUserData(null);
+            navigate("/");
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
 
     return (
         <div className="App">
@@ -41,10 +49,10 @@ function Login() {
             
         <button onClick={handleGoogleLogin}>구글 Login</button>
         <p>
-        {userData ? userData.displayName : null}
+            {userData ? userData.displayName : null}
         </p>
         <p>
-        {userData ? userData.email : null}
+            {userData ? userData.email : null}
         </p>
         <p>
             {userData ? <img src={userData.photoURL} alt="userphoto"/>  : null}
@@ -52,7 +60,7 @@ function Login() {
 
         
         <button onClick={handleFacebookLogin}>facebook Login</button>
-        
+        <button onClick={Logout}>Logout</button>
         </header>
         </div>
     );

@@ -4,6 +4,7 @@ import './EventIntro.css';
 
 
 const EventIntro = () => {
+    
     return (
         <div>
             <Nav/>
