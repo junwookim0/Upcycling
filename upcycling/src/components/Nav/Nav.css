@@ -23,13 +23,14 @@
     align-items: center;
     background-color: white;
     cursor: pointer;
+    list-style: none;
 }
 .navbar_logo {
     font-weight: bold;
 }
 .logo_text{
     font-family: 'Joan', serif;
-    font-size: 35px;
+    font-size: 34px;
 
 }
 .navbar_menu {
@@ -37,14 +38,51 @@
     display: flex;
 }
 .navbar_menu li {
-    padding: 8px 12px;
+    padding: 8px 10px;
     font-size: 25px;
 }
-.navbar_toggleBtn{
+.navbar_property{
     list-style: none;
     display: flex;
 }
-.navbar_toggleBtn li{
-    padding: 8px 12px;
+.navbar_property li{
+    padding: 8px 10px;
     font-size: 15px;
+}
+.Hamburger{
+    display: none;
+}
+@media screen and (max-width: 1260px) {
+    .navbar_property{
+        display: none;
+    }
+}
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+    .navbar_menu {
+        align-items: center;
+        display: none;
+    }
+    .navbar_menu li{
+        width: 100%;
+        text-align: center;
+        font-size: 21px;
+        
+    }
+    .navbar_property{
+        justify-content: center;
+    }
+    .Hamburger{
+        position: absolute;
+        right: 30px;
+        top: 24%;
+        display: block;
+    }
+    .navbar_menu.active,
+    .navbar_property.active{
+        display: flex;
+    }
 }
