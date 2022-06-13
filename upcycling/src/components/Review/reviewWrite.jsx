@@ -1,10 +1,11 @@
 import React, { useRef } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './CSS/reviewWrite.module.css'
 
 //🍎 Review를 작성하는 페이지
 
-const ReviewWrite = ({addReview}) => {
+const ReviewWrite = ({createAndUpdateReview , userId}) => {
     const formRef = useRef();
     const reviewCategoryRef = useRef();
     const reviewTitleRef = useRef();
@@ -12,6 +13,8 @@ const ReviewWrite = ({addReview}) => {
     const reviewDescriptionRef = useRef();
     const reviewIMGRef = useRef();
 
+    const [user] = useState(userId)
+    // console.log(userId)
     const navigate = useNavigate();
 
     const onSubmit = event => {
@@ -19,7 +22,7 @@ const ReviewWrite = ({addReview}) => {
 
         const review = {
             id :Date.now(),
-            nickname : 'GREEN 관리자',
+            nickname : user,
             profileIMG : 'https://image.shutterstock.com/image-vector/default-avatar-profile-icon-social-260nw-1677509740.jpg',
             reviewIMG : 'https://dnvefa72aowie.cloudfront.net/origin/article/202206/aab8f307bc7c31a2a6016cd1cec6f585cae06bfe99398f8fe26de5633f85a980.webp?q=82&s=300x300&t=crop',
             reviewTitle : reviewTitleRef.current.value,
@@ -28,7 +31,7 @@ const ReviewWrite = ({addReview}) => {
             reviewCategory : reviewCategoryRef.current.value,
         }; 
         formRef.current.reset();
-        addReview(review)
+        createAndUpdateReview(review)
         navigate('/reviews');
     }
 
