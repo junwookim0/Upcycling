@@ -1,5 +1,6 @@
 import './App.css';
 import { Route, Routes } from "react-router-dom";
+import styled, { css } from "style-components";
 import MyReview from './components/MyPage/MyReview';
 import MyLike from './components/MyPage/MyLike';
 import MySale from './components/MyPage/MySale';
@@ -11,6 +12,7 @@ import Home from './components/Home/HomePage';
 import FirstMain from './components/Home/FirstMain';
 import Reviewlist from './components/Home/Reviewlist';
 import Reviewdetail from './components/Home/Reviewdetail';
+import ReviewWrite from './components/Review/reviewWrite';
 
 function App() {
   return (

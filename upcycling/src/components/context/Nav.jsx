@@ -1,6 +1,8 @@
 import { Outlet, useNavigate } from "react-router-dom";
 // $router.push()
 
+import styled, { css } from "styled-components";
+
 //nav바 
 
 const Nav = () => {
@@ -14,21 +16,24 @@ const Nav = () => {
 
     return (
         <div>
-        <header style={{ background: "lightgray", padding: 16 }}>
-        <nav>
-            <ul>
-                <li><a>index</a></li>
+        <header style={{ marginBottom: 10 }}>
+        <nav className="Navbar">
+            <ul className="Nav_item">
+                <li class=""><a>index</a></li>
                 <li><a>event</a></li>
                 
                 <li><a>리뷰</a></li>
                 <li><a>거래</a></li>
-
+            </ul>
+            <ul>
                 {/* 클릭했을 때 홈으로 이동 */}
-                <li><a class="mainLogo" onClick={goHome}>로고</a></li>
-            
+                <li><a className="mainLogo" onClick={goHome}>로고</a></li>
+            </ul>
+            <ul> 
                 {/* 팝업 */}
                 <li>마이페이지</li>
             </ul>
+            
         </nav>
         </header>
 

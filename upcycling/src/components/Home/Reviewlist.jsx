@@ -2,6 +2,7 @@
 import { Link, Outlet, NavLink } from "react-router-dom";
 
 const Reviewlist = () => {
+    const numlist = [1,2,3]
     
     return (
         <div>
