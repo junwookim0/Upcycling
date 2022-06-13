@@ -2,17 +2,24 @@
 
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { doc, deleteDoc } from "firebase/firestore";
+import { doc, deleteDoc, setDoc, collection } from "firebase/firestore";
 
 import { firestore } from "../../firebase";
 
 import styles from './CSS/dealDetail.module.css'
 
+import CommentWrite from "./CommentWrite";
+
 const DealDetail = () => {
+    /* 유저 정보, 작성 날짜, 작성한 댓글 firestroe에 저장 */
+    const [dComments, setdComments] = useState('');
+
     const location = useLocation();
     const navigate = useNavigate();
     const dealState = location.state.deal;
 
+    /* 사용 함수 */
+    // 글 삭제
     const onDeleteClick = async () => {
         const ok = window.confirm("정말 이 게시글을 삭제하시겠습니까?");
             if (ok) {
@@ -23,7 +30,8 @@ const DealDetail = () => {
                     navigate('/deals');
                 }
             };
-
+    
+    // 글 수정
     const onReviseClick = (deal) => {
         navigate(`/deals/revise/${deal.createdAt}`, {state: {deal}})
     }
@@ -69,6 +77,10 @@ const DealDetail = () => {
                     <button onClick={() => onReviseClick(dealState)}>수정</button>
                     <button onClick={onDeleteClick}>삭제</button>
                 </div>
+            </div>
+            
+            <div>
+                <CommentWrite />
             </div>
             
         </section>

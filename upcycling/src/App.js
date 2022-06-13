@@ -177,30 +177,33 @@ const clickLike = (updatedReview) => {
   console.log(newReviews)
   setReviews(newReviews)
 }
-  const [deals, setDeals] = useState([]);
 
-  // 🥑 렌더링 시 콜백 함수 실행
-  useEffect(() => {
-    // dbDeals 콜렉션 레퍼런스 가져옴
-    // 생성 일자 내림차순(최근 순서)으로 정렬
-    const dq = query(
-      collection(firestore, "dbDeals"),
-      orderBy("createdAt", "desc")
-    );
-    // 수정, 삭제 실시간 반영
-    // snapshot -> 각각의 docs에 접근하기 위해서 사용
-    onSnapshot(dq, (snapshot) => {
-      const dealArray = snapshot.docs.map(doc => ({
-      // 각각의 객체에 고유 id를 만들어 할당
-        id: doc.id, ...doc.data()
-      }));
-      // 거래글 객체 리스트를 setDeals에 할당
-        setDeals(dealArray);
-      })
-  }, []);
+//
+const [deals, setDeals] = useState([]);
 
-  return (
-    <div className="App">
+// 🥑 렌더링 시 콜백 함수 실행
+useEffect(() => {
+  // dbDeals 콜렉션 레퍼런스 가져옴
+  // 생성 일자 내림차순(최근 순서)으로 정렬
+  const dq = query(
+    collection(firestore, "dbDeals"),
+    orderBy("createdAt", "desc")
+  );
+  
+  // 수정, 삭제 실시간 반영
+  // snapshot -> 각각의 docs에 접근하기 위해서 사용
+  onSnapshot(dq, (snapshot) => {
+    const dealArray = snapshot.docs.map(doc => ({
+    // 각각의 객체에 고유 id를 만들어 할당
+      id: doc.id, ...doc.data()
+    }));
+    // 거래글 객체 리스트를 setDeals에 할당
+      setDeals(dealArray);
+    })
+}, []);
+
+return (
+  <div className="App">
         <Routes>
           <Route path="/" element={<FirstMain/>}></Route>
           <Route path="/Home" element={<Home />}></Route>
