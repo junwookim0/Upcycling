@@ -10,11 +10,11 @@ const HomePage = ({getUserId}) => {
     const locationData = location?.state;
     const [userId, setUserId] = useState(locationData.id)
 
-    console.log(locationData.id)
+    // console.log(locationData.id)
 
     useEffect(()=>{
-        setUserId(locationData.uid)
-        getUserId(locationData.uid)
+        setUserId(locationData.id)
+        getUserId(locationData.id)
     },[userId])
     
     console.log(userId)
