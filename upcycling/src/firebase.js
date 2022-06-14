@@ -5,6 +5,7 @@ import { getFirestore } from "firebase/firestore"
 
 
 const firebaseConfig = {
+
     apiKey: "AIzaSyAZwe8-JumYMCPZE6NCHS7QRplQ1VQhCa8",
     authDomain: "login-97034.firebaseapp.com",
     databaseURL: "https://login-97034-default-rtdb.firebaseio.com",

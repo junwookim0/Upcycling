@@ -127,6 +127,7 @@ const clickLike = (updatedReview) => {
 
   return (
     <div className="App">
+
         <Routes>
           <Route path="/" element={<FirstMain/>}></Route>
           <Route path="/Home" element={<Home getUserId={getUserId}/>}></Route>
