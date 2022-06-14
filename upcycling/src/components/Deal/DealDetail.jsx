@@ -45,7 +45,7 @@ const DealDetail = () => {
             <div className={styles.content}>
                 <p>이미지</p>
                 <div className={styles.container}>
-                    <select name="" id="">
+                    <select Classname="" id="">
                         <option value="">숨기기</option>
                         <option value="">신고하기</option>
                         <option value="">삭제</option>

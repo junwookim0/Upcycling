@@ -48,7 +48,10 @@ const Nav = () => {
         navigate("/event");
     };
     const goReview = () => {
-        navigate("/reviewlist");
+        navigate("/reviews");
+    };
+    const goDeal = () => {
+        navigate("/deals");
     };
 
     return (
@@ -62,7 +65,7 @@ const Nav = () => {
                         <li onClick={goIntro}>Information</li>
                         <li onClick={goEvent}>Event</li>
                         <li onClick={goReview}>Review</li>
-                        <li>Sale</li>
+                        <li onClick={goDeal}>Sale</li>
                     </ul>
                     <ul className="navbar_property">
                         <li>MyPage</li>

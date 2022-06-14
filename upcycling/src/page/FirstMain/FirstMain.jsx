@@ -5,6 +5,7 @@ import IntroView from "../../components/Intro/IntroView";
 const FirstMain = () => {
     return (
         <div>
+            
             <IntroView/>
             <Login/>
             <FirstpageIntro/>
