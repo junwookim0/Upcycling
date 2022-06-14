@@ -7,7 +7,7 @@ import styles from './CSS/reviewItem.module.css'
 const ReviewItem = ({review}) => {
     const navigate = useNavigate()
 
-    console.log(review)
+    // console.log(review)
 
     return (
         <section className={styles.container}>

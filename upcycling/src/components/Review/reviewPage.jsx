@@ -11,7 +11,7 @@ const ReviewPage = ({reviews}) => {
     const navigator = useNavigate()
     const [onReviews] = useState(Object.values(reviews))
 
-    console.log(onReviews)
+    // console.log(reviews)
 
     return (
         <section className={styles.reviewPage}>
