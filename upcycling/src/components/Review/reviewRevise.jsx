@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './CSS/reviewRevise.module.css'
 
 //🍎 Review를 수정하는 페이지
 
 
-const ReviewRevise = ({updateReview}) => {
+const ReviewRevise = ({createAndUpdateReview}) => {
     const location = useLocation();
-    
+    const navigate = useNavigate()
 
     const review = location.state.review
     const [changedReview, setChangedReview] = useState({});
 
+    console.log(review)
     const onChange = event => {
         if(event.currentTarget == null) {
             return;
@@ -26,7 +27,8 @@ const ReviewRevise = ({updateReview}) => {
 
     const SubmitReview = () => {
         //console.log(changedReview);
-        updateReview(changedReview)
+        createAndUpdateReview(changedReview)
+        navigate('/reviews')
     }
 
     return (

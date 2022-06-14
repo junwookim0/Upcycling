@@ -5,13 +5,17 @@ import App from './App';
 import { BrowserRouter } from "react-router-dom";
 import ScrollToTop from "./ScrollRestoration";
 
+
+import ReviewRepository from './Service/review_repository'
+
+
+const reviewRepository = new ReviewRepository();
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
     <BrowserRouter>
       <ScrollToTop/>
-        <App />
+      <App reviewRepository={reviewRepository} />
     </BrowserRouter>
-  </React.StrictMode>
 );
 

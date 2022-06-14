@@ -1,4 +1,3 @@
-
 import { useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './CSS/reviewDetail.module.css'
@@ -14,9 +13,10 @@ const ReviewDetail = ({deleteReview, addComment, clickLike}) => {
     const [text, setText] = useState('')
 
 
-
     const goRevise = (review) =>{
+        console.log(review.id)
         navigation(`/review/revise/${review.id}`, {state : {review}})
+        
     }
 
     const textareaRef = useRef()
@@ -71,6 +71,7 @@ const ReviewDetail = ({deleteReview, addComment, clickLike}) => {
         clickLike(review)
     }
 
+
     return (
         <section >
             <div className={styles.header}> 
@@ -116,7 +117,7 @@ const ReviewDetail = ({deleteReview, addComment, clickLike}) => {
                     <button onClick={()=>deleteReview(reviewState)}>삭제</button>
                 </div>
             </div>
-            <div className={styles.comments_container}>
+            {/* <div className={styles.comments_container}>
                 {
                     reviewState.comments.map((item)=> (
                     <div key={item.id} className={styles.comments_item}>
@@ -130,7 +131,7 @@ const ReviewDetail = ({deleteReview, addComment, clickLike}) => {
             <form className={styles.comment_form} ref={textareaRef}>
                 <textarea  onChange={onChange} className={styles.comment_write} name="comment" id="" cols="30" rows="10"></textarea>
                 <button onClick={onSubmit}>Comment Add</button>
-            </form>
+            </form> */}
         </section>
     );
 };
