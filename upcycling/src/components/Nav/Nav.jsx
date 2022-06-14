@@ -1,11 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useState , useEffect} from "react";
-import './Nav.css';
+import Hamburger from 'hamburger-react'
+import './Nav.css'
 //nav바 
 
 const Nav = () => {
-    //scroll시 nav바 변경 
     const [scrolled, setScrolled] = useState(false);
+    const [isOpen, setOpen] = useState(false)
+    //scroll 30 기준으로 trun fasle 
     useEffect(()=>{
         const handleScroll = ()=>{
             if(!scrolled && window.scrollY >30){
@@ -19,6 +21,19 @@ const Nav = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     },[scrolled]);
+    useEffect(()=>{
+        const clickb = ()=>{
+            if(!isOpen){
+                setOpen(true);
+            }else if(isOpen){
+                setOpen(false);
+            }
+        };
+        window.addEventListener('click',clickb);
+        return()=>{
+            window.removeEventListener('click', clickb);
+        };
+    },[isOpen]);
     // useNavigate를 사용하여 원하는 주소로 이동할수 있다.
     const navigate = useNavigate();
     
@@ -33,33 +48,31 @@ const Nav = () => {
         navigate("/event");
     };
     const goReview = () => {
-        navigate("/reviews");
-    };
-    const goDeals = () => {
-        navigate("/deals");
+        navigate("/reviewlist");
     };
 
     return (
         <div>
-            <header  className={scrolled ? 'fix-container scrolled' : 'fix-container'}>
+            <header className={scrolled ? 'fix-container scrolled' : 'fix-container'}>
                 <nav className="navbar">
                     <div className="navbar_logo" onClick={goHome}>
                         <span className="logo_text">: UPTOWN</span>
                     </div>
-                    <ul className="navbar_menu">
-                        <li onClick={goIntro}>소개</li>
-                        <li onClick={goEvent}>이벤트</li>
-                        <li onClick={goReview}>리뷰</li>
-                        <li onClick={goDeals}>거래</li>
+                    <ul className={isOpen ? 'navbar_menu active' : 'navbar_menu'}>
+                        <li onClick={goIntro}>Information</li>
+                        <li onClick={goEvent}>Event</li>
+                        <li onClick={goReview}>Review</li>
+                        <li>Sale</li>
                     </ul>
-                    <ul class="navbar_toggleBtn">
-                        <li>마이페이지</li>
-                        <li>로그인</li>
-                        
+                    <ul className="navbar_property">
+                        <li>MyPage</li>
+                        <li>Logout</li>
                     </ul>
+                    <div className="Hamburger">
+                        <Hamburger toggled={isOpen} toggle={setOpen} />
+                    </div>
                 </nav>
             </header>
-
     </div>
     );
 };
