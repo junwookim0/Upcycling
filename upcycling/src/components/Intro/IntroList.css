@@ -39,6 +39,36 @@
   }
 
   
+/*인트로 3단*/
+  
+  .cInnerContent_3{
+    background-color: gray;
+    padding: 20px;
+    text-align: center;
+    color: white;
+  }
+
+  .cInnerContent_31{
+   
+    display:flex;
+  }
+
+  .cInnerContent_list{
+    list-style-type: none;
+    color: white;
+    padding: 25px;
+    width: 25%;
+  }
+
+/*인트로 4단*/
+  .cInnerContent_4{
+    display: flex;
+    padding:50px;
+    margin: 50px;
+    
+
+  }
+
 
 
   .point{
@@ -126,7 +156,3 @@
     font-size: medium;
   }
 
-/*인트로 3단*/
-.cInnerContent_3{
-  background-color: antiquewhite;
-}
