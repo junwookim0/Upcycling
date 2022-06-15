@@ -23,7 +23,7 @@ import { firestore } from './firebase';
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 
 
-function App({reviewRepository, commentRepository}) {
+function App({reviewRepository, commentRepository, imageUploader}) {
 
   //🍎 /home으로부터 받아온 user의 uid값
   const [userId, setUserId] = useState(null)
@@ -125,7 +125,7 @@ const clickLike = (updatedReview) => {
           {/* 🍎윤지은 router */}
           <Route path='/reviews'  element={<ReviewPage reviews={reviews} />}/>
           <Route path='/reviews/:id' element={<ReviewDetail clickLike={clickLike} userId={userId} reviews={reviews}  createAndUpdateComment={createAndUpdateComment} deleteReview={deleteReview} deleteComment={deleteComment}/>}/>
-          <Route path='/reviews/write' element={<ReviewWrite userId={userId} createAndUpdateReview={createAndUpdateReview}/>}/>
+          <Route path='/reviews/write' element={<ReviewWrite imageUploader={imageUploader} userId={userId} createAndUpdateReview={createAndUpdateReview}/>}/>
           <Route path='/review/revise/:id' element={<ReviewRevise userId={userId}  createAndUpdateReview={createAndUpdateReview} />}/>
 
           {/* 🥑 박선주 route 시작 */}
