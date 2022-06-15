@@ -63,8 +63,6 @@ const DealRevise = () => {
         };
     };
 
-
-
     const onClearAttatchment = () => setAttachment('');
 
     return (
