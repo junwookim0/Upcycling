@@ -7,6 +7,8 @@ import styles from './CSS/reviewItem.module.css'
 const ReviewItem = ({review}) => {
     const navigate = useNavigate()
 
+    // console.log(review)
+
     return (
         <section className={styles.container}>
             <img src={review.reviewIMG} alt="review"
@@ -18,7 +20,7 @@ const ReviewItem = ({review}) => {
             <p>{review.nickname}</p>
             <div>
                 <span>👍</span>
-                <span>{review.likes.length}</span>
+                {/* <p>{review.likes.length}</p> */}
             </div>
         </section>
     );

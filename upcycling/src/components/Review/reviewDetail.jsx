@@ -1,4 +1,4 @@
-
+import { useEffect } from 'react';
 import { useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './CSS/reviewDetail.module.css'
@@ -7,16 +7,25 @@ import styles from './CSS/reviewDetail.module.css'
 //🍎 reviewPage에서 item의 이미지를 클릭했을 때 이동하는 컴포넌트
 //Reivew의 전체적인 내용을 출력
 
-const ReviewDetail = ({deleteReview, addComment, clickLike}) => {
+const ReviewDetail = ({deleteReview, reviews, createAndUpdateComment, clickLike, userId, deleteComment}) => {
     const location = useLocation();
     const navigation = useNavigate();
     const [reviewState, setReviewState] = useState(location.state.review)
+    const [user] = useState(userId)
     const [text, setText] = useState('')
 
+    //🍎firebase에 저장된 코멘트 받아오기
+    const [comments] = useState(Object.values(reviews[reviewState.id].comment));
+
+    useEffect(()=> {
+        
+    })
 
 
+//🍎Reivew수정하기
     const goRevise = (review) =>{
         navigation(`/review/revise/${review.id}`, {state : {review}})
+        
     }
 
     const textareaRef = useRef()
@@ -31,11 +40,13 @@ const ReviewDetail = ({deleteReview, addComment, clickLike}) => {
     }
 
     const newComment = {
-        id : Date.now(),
+        id : 'C' + Date.now(),
         userName : reviewState.nickname,
         comment : text || '',
         date : Date.now()
     }
+
+
 
     //🍎코멘트 ADD
     //console.log(newComment)
@@ -43,12 +54,13 @@ const ReviewDetail = ({deleteReview, addComment, clickLike}) => {
         event.preventDefault();
 
         const review = {...reviewState}
-
-        review.comments = [...review.comments,newComment]
-
-        setReviewState(review)
-        addComment(review)
+        createAndUpdateComment(newComment,review.id,user)
         textareaRef.current.reset()
+    }
+
+    //🍎Comment Delete
+    const onDeleteComment = (comment) => {
+        deleteComment(comment,reviewState.id, user)
     }
     
     //🍎like 관련 함수
@@ -118,11 +130,12 @@ const ReviewDetail = ({deleteReview, addComment, clickLike}) => {
             </div>
             <div className={styles.comments_container}>
                 {
-                    reviewState.comments.map((item)=> (
+                    comments.map((item)=> (
                     <div key={item.id} className={styles.comments_item}>
-                        <span className={styles.comments_user}>{item.userName}</span>
-                        <span className={styles.comments_date}>{item.date}</span>
-                        <p className={styles.comments_text}>{item.comment}</p>
+                            <span className={styles.comments_user}>{item.userName}</span>
+                            <span className={styles.comments_date}>{item.date}</span>
+                            <p className={styles.comments_text}>{item.comment}</p>
+                        <button onClick={()=>onDeleteComment(item)}>삭제</button>
                     </div>
                     ))
                 }

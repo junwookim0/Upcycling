@@ -20,6 +20,7 @@ import {useState, useEffect} from 'react';
 
 import { firestore } from './firebase';
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 function App() {

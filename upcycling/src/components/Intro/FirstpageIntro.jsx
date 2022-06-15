@@ -7,6 +7,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
+
+
 function animateFrom(elem, direction) {
     direction = direction || 1;
     var x = 0,
@@ -152,7 +154,7 @@ return (
                     <h1>다시에서 우리는 아래와 같은 활동을 합니다.</h1>
                 <ul className='cInnerContent_31'>
                     <li className='cInnerContent_list'>
-                        <i class="fa-regular fa-leaf"></i>
+                    <i class="fab fa-envira"></i>
                         <h3>제목1</h3>
                         <p>내용1</p>
                     </li>
@@ -171,14 +173,16 @@ return (
                 </ul>
             </div>
             
-            {/*4단 나누기 */}
+            {/*4단 나누기 
+            그리드 3*3단으로 Review 게시물 가져오기*/}
             <div className='cInnerContent_4'>
+                <h1>Review Community</h1>
                 <h1>1</h1>
                 <h1>2</h1>
                 <h1>3</h1>
 
             </div>
-            
+            {/*인트로 종료 */}
         </div>
     </div>
     );
