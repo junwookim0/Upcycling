@@ -1,6 +1,6 @@
-/* 06-15 댓글 가져오기, 수정, 삭제 */
+/* 🥑 06-15 댓글 가져오기, 수정, 삭제 */
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { firestore } from "../../firebase";
@@ -45,7 +45,7 @@ const CommentItem = ({commentObj}) => {
 
     return (
         <section>
-            <div key={commentObj.id}>
+            <div>
                 {
                     editing ? (
                         <>
