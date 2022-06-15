@@ -5,7 +5,7 @@ import styles from './CSS/reviewWrite.module.css'
 
 //🍎 Review를 작성하는 페이지
 
-const ReviewWrite = ({createAndUpdateReview , userId}) => {
+const ReviewWrite = ({createAndUpdateReview , userId, imageUploader, onFileChange}) => {
     const formRef = useRef();
     const reviewCategoryRef = useRef();
     const reviewTitleRef = useRef();
@@ -20,6 +20,8 @@ const ReviewWrite = ({createAndUpdateReview , userId}) => {
     // console.log(userId)
     const navigate = useNavigate();
 
+    const [uploadedIMG, setUploadedIMG] = useState()
+
     const onSubmit = event => {
         event.preventDefault();
 
@@ -27,7 +29,7 @@ const ReviewWrite = ({createAndUpdateReview , userId}) => {
             id  : 'R' + Date.now(),
             nickname : 'GREEN 관리자',
             profileIMG : 'https://image.shutterstock.com/image-vector/default-avatar-profile-icon-social-260nw-1677509740.jpg',
-            reviewIMG : 'https://dnvefa72aowie.cloudfront.net/origin/article/202206/aab8f307bc7c31a2a6016cd1cec6f585cae06bfe99398f8fe26de5633f85a980.webp?q=82&s=300x300&t=crop',
+            reviewIMG : uploadedIMG,
             reviewTitle : reviewTitleRef.current.value,
             reviewDescription : reviewDescriptionRef.current.value,
             reviewHashtags : reviewHashtagsRef.current.value,
@@ -37,6 +39,15 @@ const ReviewWrite = ({createAndUpdateReview , userId}) => {
         createAndUpdateReview(review,user)
         navigate('/reviews');
     }
+
+    const onChange = async (event) => {
+        event.preventDefault();
+        // console.log(event.target.files[0]);
+        const uploaded = await imageUploader.upload(event.target.files[0]);
+            setUploadedIMG(uploaded.url)
+    }
+
+    console.log(uploadedIMG);
 
     return (
             <form className={styles.form} ref={formRef}>
@@ -71,6 +82,7 @@ const ReviewWrite = ({createAndUpdateReview , userId}) => {
                         type="file"
                         accept='image/*'
                         name='reviewIMG'
+                        onChange={onChange}
                     />
                     <br/>
                     <button onClick={onSubmit}>작성완료</button>
