@@ -1,16 +1,17 @@
 /* 🥑 거래글 작성! */
+// 06-15 사진 업로드 구현 중
 
 import React, { useState } from "react";
-import { firestore } from "../../firebase";
+import { firestore, storage } from "../../firebase";
+import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadString, getDownloadURL } from "@firebase/storage";
 import { v4 as uuidv4 } from "uuid"; // 사진 랜덤 아이디
-import { 
-    collection, addDoc } 
-    from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import DataContext from "../context/DataContext";
+import { useContext } from "react";
 
-const DealWrite = ({userObj}) => {
-
+const DealWrite = () => {
+    const data = useContext(DataContext);
     /* 작성한 제목, 카테고리, 가격, 내용 firestore에 저장 */
     const [dCategory, setDCategory] = useState(''); // 카테고리
     const [dTitle, setDTitle] = useState(''); // 제목
@@ -20,6 +21,7 @@ const DealWrite = ({userObj}) => {
     
     /* 사진은 storage */
     const [attachment, setAttachment] = useState('');
+    let DAttachmentURL = '';
 
     const navigate = useNavigate();
 
@@ -27,7 +29,17 @@ const DealWrite = ({userObj}) => {
     // submit
     const onSubmit = async(e) => {
         e.preventDefault();
-        
+
+        // 06-15 파일 존재할 때, 존재하지 않을 때 if
+        if (attachment !== '') {
+            // 1. 파일 경로 참조 만들기
+            const DAttachmentURL = ref(storage, `${data.state.user.uid}/${uuidv4()}`);
+            // 2. 파일 경로 참조에 파일 업로드
+            // 3. 참조 파일 
+        }
+        console.log(data.state.user)
+        const userItem = data.state.user[0].id
+
         // submit하면 추가할 데이터
         const dealObj = {
             category: dCategory, // 카테고리
@@ -36,11 +48,12 @@ const DealWrite = ({userObj}) => {
             price: dPrice, // 가격
             content: dContent, // 내용
             createdAt: Date.now(), // 생성날짜
-            //creatorId: userObj.uid, // 작성한 사람 uid 아니 처음엔 됐는데 왜 지금은 안 되는 거임?? ㅠ
-            //creatorName: userObj.displayName, // 생성한 사람 닉 표시
+            creatorId: userItem
+            //creatorName: userItem.displayName, // 생성한 사람 닉 표시
             //attachmentUrl
         };
 
+        console.log(dealObj)
         // dbDeals에 dealObj 형식으로 추가
         await addDoc(collection(firestore, "dbDeals"), dealObj);
 
