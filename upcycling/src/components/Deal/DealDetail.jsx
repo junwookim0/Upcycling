@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { doc, deleteDoc, setDoc, collection } from "firebase/firestore";
+import { doc, deleteDoc } from "firebase/firestore";
 
 import { firestore } from "../../firebase";
 

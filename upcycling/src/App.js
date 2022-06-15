@@ -11,10 +11,10 @@ import ReviewPage from './components/Review/reviewPage';
 import ReviewDetail from './components/Review/reviewDetail';
 import ReviewRevise from './components/Review/reviewRevise';
 /* 🥑 박선주 import 시작 */
-// import DealWrite from './components/Deal/DealWrite';
-// import DealPage from './components/Deal/DealPage';
-// import DealDetail from './components/Deal/DealDetail';
-// import DealRevise from './components/Deal/DealRevise';
+import DealWrite from './components/Deal/DealWrite';
+import DealPage from './components/Deal/DealPage';
+import DealDetail from './components/Deal/DealDetail';
+import DealRevise from './components/Deal/DealRevise';
 /* 🥑 박선주 import 끝 */
 import NotFound from './page/NotFound';
 import {useState, useEffect} from 'react';
@@ -129,10 +129,10 @@ const clickLike = (updatedReview) => {
           <Route path='/review/revise/:id' element={<ReviewRevise userId={userId}  createAndUpdateReview={createAndUpdateReview} />}/>
 
           {/* 🥑 박선주 route 시작 */}
-          {/* <Route path='/deals' element={<DealPage deals={deals}/>} />
+          <Route path='/deals' element={<DealPage deals={deals}/>} />
           <Route path='/deals/:createdAt' element={<DealDetail />} />
           <Route path='/deals/write' element={<DealWrite />} />
-          <Route path='/deals/revise/:id' element={<DealRevise />} /> */}
+          <Route path='/deals/revise/:id' element={<DealRevise />} />
           {/* 🥑 박선주 route 끝 */}
           <Route path="/not-found" element={<NotFound />}></Route>
         </Routes>
