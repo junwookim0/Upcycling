@@ -14,6 +14,7 @@ function Login() {
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
 
+
     function handleGoogleLogin() {
         const gprovider = new GoogleAuthProvider(); // provider를 구글로 설정
         signInWithPopup(auth, gprovider) // popup을 이용한 signup
@@ -55,6 +56,7 @@ function Login() {
             console.log(err);
         });
     }
+    
 
     return (
         <div className="App">
