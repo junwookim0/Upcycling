@@ -15,7 +15,11 @@
     float:left;
     position: relative;
     left:7%;
-    top:50px;
+    top:60px;
+  }
+
+  .intro01 {
+  max-height: 600px; 
   }
 
   
@@ -23,10 +27,10 @@
   .cInnerContent_1_right{
     width: 55%;
     float:right;
-    overflow: auto;
-    max-height: 600px;
-    top:20px;
+    top:10px;
+    max-width: 550px;
     
+
   }
 
 
@@ -51,6 +55,8 @@
     line-height:10px;
   }
 
+
+
   .cInnerContent_31{
    
     display:flex;
@@ -63,13 +69,19 @@
     width: 25%;
   }
 
+
+  /* 인트로 3단 아이콘*/
+  i {
+      font-size:2.2em;
+    }
+  
+
 /*인트로 4단*/
   .cInnerContent_4{
     display: table;
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
-    
 
   }
 
@@ -151,9 +163,6 @@
     max-width: 100%;
   }
   
-  i {
-    font-size:2em;
-  }
 
   .header-section {
     margin: 200px;

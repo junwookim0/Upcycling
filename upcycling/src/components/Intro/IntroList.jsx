@@ -70,7 +70,7 @@ const IntroList = () => {
                             </p>
                     </div>
                     <div className="cInnerContent_1_right">
-                        <img id="intro01"src="../../images/intro01.PNG"></img>
+                        <img className="intro01"src="../../images/intro01(수정).PNG"></img>
                     </div>
             </div>
              {/*2단 나누기 */}
@@ -150,22 +150,22 @@ const IntroList = () => {
                 <ul className='cInnerContent_31'>
                     <li className='cInnerContent_list'>
                     <i class="fab fa-envira"></i>
-                        <h3>제목1</h3>
-                        <p>내용1</p>
-                    </li>
-                    <li className='cInnerContent_list'>
-                    <i class="fas fa-exchange-alt"></i>
-                        <h3>제목2</h3>
+                        <h3>아껴쓰기</h3>
                         <p>내용1</p>
                     </li>
                     <li className='cInnerContent_list'>
                     <i class="fas fa-oil-can"></i>
-                        <h3>제목3</h3>
+                        <h3>바꿔쓰기</h3>
+                        <p>내용1</p>
+                    </li>
+                    <li className='cInnerContent_list'>
+                    <i class="fas fa-exchange-alt"></i>
+                        <h3>나눠쓰기</h3>
                         <p>내용1</p>
                     </li>
                     <li className='cInnerContent_list'>
                     <i class="fas fa-recycle"></i>
-                        <h3>제목4</h3>
+                        <h3>다시쓰기</h3>
                         <p>내용1</p>
                     </li>
                 </ul>

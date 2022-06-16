@@ -3,18 +3,13 @@
     top: 0;
     z-index: 10;
     width: 100%;
+    height: auto;
 }
 .fix-container .navbar {
     height: 120px;
+
 }
-.fix-container.scrolled {
-    box-shadow: 2px 2px 2px rgb(2, 2, 2);
-}
-.fix-container.scrolled .navbar {
-    height: 80px;
-    background-color: blanchedalmond;
-    transition: height 0.3s ease;
-}
+
 
 .navbar {
     display: flex;
@@ -29,17 +24,18 @@
     font-weight: bold;
 }
 .logo_text{
-    font-family: 'Joan', serif;
-    font-size: 34px;
+    font-family: 'LeferiPoint-WhiteObliqueA', serif;
+    font-size: 30px;
 
 }
 .navbar_menu {
     list-style: none;
     display: flex;
+    font-family: 'LeferiPoint-WhiteObliqueA';
 }
 .navbar_menu li {
-    padding: 8px 10px;
-    font-size: 25px;
+    padding: 10px 10px;
+    font-size: 20px;
 }
 .navbar_property{
     list-style: none;

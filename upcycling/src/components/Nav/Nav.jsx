@@ -56,7 +56,7 @@ const Nav = () => {
 
     return (
         <div>
-            <header className={scrolled ? 'fix-container scrolled' : 'fix-container'}>
+            <header className={scrolled ? 'fix-container' : 'fix-container'}>
                 <nav className="navbar">
                     <div className="navbar_logo" onClick={goHome}>
                         <span className="logo_text">: UPTOWN</span>

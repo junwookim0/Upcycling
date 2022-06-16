@@ -159,27 +159,27 @@ return (
                         <p>내용1</p>
                     </li>
                     <li className='cInnerContent_list'>
-                        <h3>제목1</h3>
+                    <i class="fas fa-exchange-alt"></i>
+                        <h3>제목2</h3>
                         <p>내용1</p>
                     </li>
                     <li className='cInnerContent_list'>
-                        <h3>제목1</h3>
+                    <i class="fas fa-oil-can"></i>
+                        <h3>제목3</h3>
                         <p>내용1</p>
                     </li>
                     <li className='cInnerContent_list'>
-                        <h3>제목1</h3>
+                    <i class="fas fa-recycle"></i>
+                        <h3>제목4</h3>
                         <p>내용1</p>
                     </li>
                 </ul>
             </div>
             
-            {/*4단 나누기 
-            그리드 3*3단으로 Review 게시물 가져오기*/}
+            {/*4단 나누기*/}
             <div className='cInnerContent_4'>
                 <h1>Review Community</h1>
-                <h1>1</h1>
-                <h1>2</h1>
-                <h1>3</h1>
+                {/*그리드 3*3단으로 Review 게시물 가져오기*/}
 
             </div>
             {/*인트로 종료 */}
