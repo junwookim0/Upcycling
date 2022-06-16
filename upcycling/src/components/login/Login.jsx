@@ -1,8 +1,8 @@
 import { auth } from '../../firebase';
 import { GoogleAuthProvider, signInWithPopup,
-            FacebookAuthProvider,signOut
+            FacebookAuthProvider,signOut ,onAuthStateChanged
 } from 'firebase/auth';
-import { useState } from 'react';
+import { useState ,useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
 function Login() {
@@ -44,6 +44,14 @@ function Login() {
             console.log(err);
         });
     }
+
+    useEffect(() => {
+        onAuthStateChanged(auth,(user) => {
+            if (user) {
+                setUserData(user);
+            }
+            });
+        }, [userData]);
 
     return (
         <div className="App">

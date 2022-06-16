@@ -30,6 +30,8 @@ function App({reviewRepository}) {
   const [reviews, setReviews] = useState([])
   const navigator = useNavigate();
 
+
+
   useEffect(()=>{
     setUserId(userId)
   },[userId])

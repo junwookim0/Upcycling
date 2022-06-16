@@ -21,6 +21,7 @@ const Nav = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     },[scrolled]);
+
     useEffect(()=>{
         const clickb = ()=>{
             if(!isOpen){
@@ -34,6 +35,7 @@ const Nav = () => {
             window.removeEventListener('click', clickb);
         };
     },[isOpen]);
+
     // useNavigate를 사용하여 원하는 주소로 이동할수 있다.
     const navigate = useNavigate();
     
@@ -72,8 +74,9 @@ const Nav = () => {
                         <li>Logout</li>
                     </ul>
                     <div className="Hamburger">
-                        <Hamburger toggled={isOpen} toggle={setOpen} />
+                    <Hamburger toggled={isOpen} toggle={setOpen} />
                     </div>
+                    
                 </nav>
             </header>
     </div>

@@ -1,13 +1,70 @@
-import styles from "./firstMain.module.css";
+import './styles.css';
+import SimpleLightbox from "simplelightbox/dist/simple-lightbox.esm";
 
 const firstpagelogo = () => {
+    var lightbox = new SimpleLightbox('.gallery a', { /* options */ });
+    
     return (
-        <div className={styles.ab}>
-            <h1>업사이클링</h1>
-            <div className={styles.abh}>
-                <img className={styles.Applogo} src="../images/logo-ex.png" alt="logo"></img>
+        <div id="portfolio">   
+                <div class="container-fluid">
+                    <div className='boxab'>
+                        <div className='box'>
+                            <a class="portfolio-box" href="../../images/main003.jpg" title="Project Name">
+                                <img class="img-fluid" src="../../images/main003.jpg" alt="..." />
+                                <div class="portfolio-box-caption">
+                                    <div class="project-category">Category</div>
+                                    <div class="project-name">Project Name</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div className='box'>
+                            <a class="portfolio-box" href="../../images/main003.jpg" title="Project Name">
+                                <img class="img-fluid" src="../../images/main003.jpg" alt="..." />
+                                <div class="portfolio-box-caption">
+                                    <div class="project-category">Category</div>
+                                    <div class="project-name">Project Name</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div className='box'>
+                            <a class="portfolio-box" href="../../images/main003.jpg" title="Project Name">
+                                <img class="img-fluid" src="../../images/main003.jpg" alt="..." />
+                                <div class="portfolio-box-caption">
+                                    <div class="project-category">Category</div>
+                                    <div class="project-name">Project Name</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div className='box'>
+                            <a class="portfolio-box" href="../../images/main003.jpg" title="Project Name">
+                                <img class="img-fluid" src="../../images/main003.jpg" alt="..." />
+                                <div class="portfolio-box-caption">
+                                    <div class="project-category">Category</div>
+                                    <div class="project-name">Project Name</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div className='box'>
+                            <a class="portfolio-box" href="../../images/main003.jpg" title="Project Name">
+                                <img class="img-fluid" src="../../images/main003.jpg" alt="..." />
+                                <div class="portfolio-box-caption">
+                                    <div class="project-category">Category</div>
+                                    <div class="project-name">Project Name</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div className='box'>
+                            <a class="portfolio-box" href="../../images/main003.jpg" title="Project Name">
+                                <img class="img-fluid" src="../../images/main003.jpg" alt="..." />
+                                <div class="portfolio-box-caption ">
+                                    <div class="project-category ">Category</div>
+                                    <div class="project-name">Project Name</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
     )
 };
 
