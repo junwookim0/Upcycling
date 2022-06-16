@@ -1,19 +1,18 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from 'firebase/auth';
 import { getDatabase } from "firebase/database";
-import { getFirestore } from "firebase/firestore"
-// 🥑 06-15 storage 추가
-import { getStorage } from "firebase/storage";
+import { getFirestore , collection, addDoc} from "firebase/firestore"
+import { GoogleAuthProvider, signInWithPopup,
+    FacebookAuthProvider,createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,signOut,onAuthStateChanged,getAuth
+} from 'firebase/auth';
 
 const firebaseConfig = {
-
-    apiKey: "AIzaSyAZwe8-JumYMCPZE6NCHS7QRplQ1VQhCa8",
-    databaseURL: "https://login-97034-default-rtdb.firebaseio.com",
-    authDomain: "login-97034.firebaseapp.com",
-    projectId: "login-97034",
-    storageBucket: "login-97034.appspot.com",
-    messagingSenderId: "737764108580",
-    appId: "1:737764108580:web:aaea951966d9fb3b306bb1"
+    apiKey: "AIzaSyBoX4JqMqLdCoJM7g0EiZor0VcdiqTcDwo",
+    authDomain: "fir-test-login-85c6c.firebaseapp.com",
+    projectId: "fir-test-login-85c6c",
+    storageBucket: "fir-test-login-85c6c.appspot.com",
+    messagingSenderId: "366758576094",
+    appId: "1:366758576094:web:ed6d85b8de98363efa674f"
 };
 // Initialize Firebase 
 
@@ -21,7 +20,42 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
 const firestore = getFirestore(app);
-// 🥑 06-15 storage 추가
-const storage = getStorage(app);
-// 🥑 06-15 storage 추가
-export { app , auth , db , firestore, storage};
+
+
+const signUp = async (email, password) => {
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth,email,password);
+        const user = userCredential.user;
+        await addDoc(collection(firestore, "users"), {
+            uid: user.uid,
+            email: user.email,
+        });
+        return true
+    } catch (error) {
+        return {error: error.message}
+    }
+};
+const signIn = async (email, password) => {
+    try {
+        const userCredential = await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+        const user = userCredential.user;
+        return true
+    } catch (error) {
+        return {error: error.message}
+    }
+};
+
+const SignOut = async() => {
+    try {
+        await signOut(auth)
+        return true
+    } catch (error) {
+        return false
+    }
+};
+
+export { app , auth , db , firestore ,signIn , signUp, SignOut};

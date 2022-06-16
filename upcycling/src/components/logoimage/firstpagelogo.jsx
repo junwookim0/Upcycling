@@ -1,4 +1,4 @@
-import './styles.css';
+import './firstMain.css';
 import SimpleLightbox from "simplelightbox/dist/simple-lightbox.esm";
 
 const firstpagelogo = () => {
