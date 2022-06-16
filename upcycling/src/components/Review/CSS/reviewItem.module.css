@@ -1,0 +1,12 @@
+<<<<<<< HEAD
+=======
+.container {
+    margin: 1.5rem;
+}
+
+.reviewImg {
+    width: 20rem;
+    height: 20rem;
+    object-fit: cover;
+}
+>>>>>>> 82a4e5b19b58d534325eae0ed52253f79d6f785f

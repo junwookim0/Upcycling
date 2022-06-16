@@ -21,16 +21,15 @@ const CommentWrite = () => {
     const dealState = location.state.deal;
 
     useEffect(() => {
-        const dcq = query(
-            collection(firestore, `/dbDeals/dealState.id/dComments`),
-            orderBy("createdAt", "desc")
-        );
-        onSnapshot(dcq, (snapshot) => {
-            const dCommentArray = snapshot.docs.map(doc => ({
+
+        const subColRef = collection(firestore, "dbDeals", `${dealState.id}`, "dComments");
+
+        onSnapshot(subColRef, (querySnapshot) => {
+            const commentArray = querySnapshot.docs.map(doc => ({
                 id: doc.id, ...doc.data()
             }));
-            setDComments(dCommentArray);
-        });
+            setDComments(commentArray);
+        });    
     }, []);
 
     /* 사용 함수 */
@@ -55,11 +54,6 @@ const CommentWrite = () => {
     const onChange = (e) => {
         setDComment(e.target.value);
     };
-
-    const subColRef = collection(firestore, "dbDeals", `${dealState.id}`, "dComments");
-
-    const qSnap = getDocs(subColRef)
-    console.log(qSnap.docs.map(d => ({id: d.id, ...d.data()})))
 
     return (
         <section>

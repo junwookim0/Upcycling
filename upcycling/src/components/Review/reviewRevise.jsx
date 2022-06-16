@@ -5,14 +5,15 @@ import styles from './CSS/reviewRevise.module.css'
 //🍎 Review를 수정하는 페이지
 
 
-const ReviewRevise = ({createAndUpdateReview}) => {
+const ReviewRevise = ({createAndUpdateReview ,userId}) => {
     const location = useLocation();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [user] = useState(userId)
 
     const review = location.state.review
     const [changedReview, setChangedReview] = useState({});
 
-    console.log(review)
+    console.log(user)
     const onChange = event => {
         if(event.currentTarget == null) {
             return;
@@ -27,7 +28,7 @@ const ReviewRevise = ({createAndUpdateReview}) => {
 
     const SubmitReview = () => {
         //console.log(changedReview);
-        createAndUpdateReview(changedReview)
+        createAndUpdateReview(changedReview,user)
         navigate('/reviews')
     }
 

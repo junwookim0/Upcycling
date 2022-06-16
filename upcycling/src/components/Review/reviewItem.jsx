@@ -7,11 +7,11 @@ import styles from './CSS/reviewItem.module.css'
 const ReviewItem = ({review}) => {
     const navigate = useNavigate()
 
-    console.log(review)
+
 
     return (
         <section className={styles.container}>
-            <img src={review.reviewIMG} alt="review"
+            <img className={styles.reviewImg} src={review.reviewIMG} alt="review"
                 onClick={()=>{
                     navigate(`/reviews/${review.id}`, {state : {review}})
                 }}
