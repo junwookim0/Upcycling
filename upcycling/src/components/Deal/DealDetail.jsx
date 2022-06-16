@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { doc, deleteDoc } from "firebase/firestore";
-
-import { firestore } from "../../firebase";
+import { ref, deleteObject } from "@firebase/storage";
+import { firestore, storage } from "../../firebase";
 
 import styles from './CSS/dealDetail.module.css'
 
@@ -20,13 +20,20 @@ const DealDetail = () => {
 
     /* 사용 함수 */
     // 글 삭제
+    const deserRef = ref(storage, dealState.attachmentUrl);
+
     const onDeleteClick = async () => {
         const ok = window.confirm("정말 이 게시글을 삭제하시겠습니까?");
             if (ok) {
                     //해당하는 게시글 파이어스토어에서 삭제
                     await deleteDoc(doc(firestore, `/dbDeals/${dealState.id}`));
                     // 삭제 버튼 누르면 /거래(테이블게시판)로 넘어감
-                    // 첨부파일 삭제 기능 다시 만들어야 함 ㅠ
+                    // 06-16 글 삭제할 때 하위 컬렉션(댓글), 참조파일 삭제해야 함
+                    deleteObject(deserRef).then(() => {
+                        console.log('파일 삭제 완');
+                    }).catch((err) => {
+                        console.log('파일 삭제 안 됨')
+                    })
                     navigate('/deals');
                 }
             };
@@ -53,7 +60,7 @@ const DealDetail = () => {
             <div className={styles.content}>
                 <p>이미지</p>
                 <div className={styles.container}>
-                    <select Classname="" id="">
+                    <select className="" id="">
                         <option value="">숨기기</option>
                         <option value="">신고하기</option>
                         <option value="">삭제</option>
@@ -63,6 +70,7 @@ const DealDetail = () => {
                         <h3>{dealState.title}</h3>
                         <p>{dealState.hashtag}</p>
                     </div>
+                    <img src={dealState.attachmentUrl} width="100px" height="100px" />
                     <p className={styles.description}>{dealState.content}</p>
                 </div>
             </div>
