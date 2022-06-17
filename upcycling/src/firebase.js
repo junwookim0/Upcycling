@@ -7,12 +7,14 @@ import { GoogleAuthProvider, signInWithPopup,
 } from 'firebase/auth';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBoX4JqMqLdCoJM7g0EiZor0VcdiqTcDwo",
-    authDomain: "fir-test-login-85c6c.firebaseapp.com",
-    projectId: "fir-test-login-85c6c",
-    storageBucket: "fir-test-login-85c6c.appspot.com",
-    messagingSenderId: "366758576094",
-    appId: "1:366758576094:web:ed6d85b8de98363efa674f"
+
+    apiKey: "AIzaSyAmeVNxGFJCe4nWo7zDNNa4GePbQyA93tw",
+    authDomain: "upcycling-project-ex.firebaseapp.com",
+    projectId: "upcycling-project-ex",
+    storageBucket: "upcycling-project-ex.appspot.com",
+    messagingSenderId: "763504697046",
+    appId: "1:763504697046:web:7eab09dda319dcba2b3377"
+  
 };
 // Initialize Firebase 
 

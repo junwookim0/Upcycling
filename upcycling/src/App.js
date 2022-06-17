@@ -150,7 +150,7 @@ const clickLike = (updatedReview) => {
           {/* 🥑 박선주 route 시작 */}
           <Route path='/deals' element={<DealPage deals={deals}/>} />
           <Route path='/deals/:createdAt' element={<DealDetail />} />
-          <Route path='/deals/write' element={<DealWrite />} />
+          <Route path='/deals/write' element={<DealWrite userObj={userObj}/>} />
           <Route path='/deals/revise/:id' element={<DealRevise />} />
           {/* 🥑 박선주 route 끝 */}
           <Route path="/not-found" element={<NotFound />}></Route>
