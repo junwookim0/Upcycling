@@ -8,9 +8,11 @@ import ScrollToTop from "./ScrollRestoration";
 import ReviewRepository from './Service/review_repository'
 import CommentRepository from './Service/comment_repository';
 import ImageUploader  from './Service/image_uploader'
+import LikeRepository from './Service/like_repository';
 
 const reviewRepository = new ReviewRepository();
 const commentRepository = new CommentRepository();
+const likeRepository = new LikeRepository();
 
 const imageUploader = new ImageUploader();
 
@@ -20,7 +22,9 @@ root.render(
       <ScrollToTop/>
       <App reviewRepository={reviewRepository} 
         commentRepository={commentRepository}
-        imageUploader={imageUploader}/>
+        imageUploader={imageUploader}
+        likeRepository={likeRepository}
+        />
     </BrowserRouter>
 );
 

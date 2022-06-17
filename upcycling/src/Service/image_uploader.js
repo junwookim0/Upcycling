@@ -14,21 +14,21 @@ class ImageUploader {
         return await result.json();
     }
 
-    delete(url) {
-        const formdata = new FormData();
-            formdata.append("file", url);
-            formdata.append("upload_preset", "ggmeax4i");
-        const requestOptions = {
-            method: 'DELETE',
-            body: formdata,
-            redirect: 'follow'
-        };
+//     delete(url) {
+//         const formdata = new FormData();
+//             formdata.append("file", url);
+//             formdata.append("upload_preset", "ggmeax4i");
+//         const requestOptions = {
+//             method: 'DELETE',
+//             body: formdata,
+//             redirect: 'follow'
+//         };
 
-    fetch("https://api.cloudinary.com/v1_1/dlizycik0/image/destroy", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log('Delete! 성공'))
-        .catch(error => console.log('error', error));
-    }
+//     fetch("https://api.cloudinary.com/v1_1/dlizycik0/image/destroy", requestOptions)
+//         .then(response => response.text())
+//         .then(result => console.log('Delete! 성공'))
+//         .catch(error => console.log('error', error));
+//     }
 }
 
 

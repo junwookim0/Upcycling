@@ -2,15 +2,16 @@ import { useEffect } from 'react';
 import { useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './CSS/reviewDetail.module.css'
+import Like from './like';
 
 
 //🍎 reviewPage에서 item의 이미지를 클릭했을 때 이동하는 컴포넌트
 //Reivew의 전체적인 내용을 출력
 
-const ReviewDetail = ({deleteReview, reviews, createAndUpdateComment, clickLike, userId, deleteComment}) => {
+const ReviewDetail = ({deleteReview, reviews, createAndUpdateComment, userId, deleteComment, clickLike}) => {
     const location = useLocation();
     const navigation = useNavigate();
-    const [reviewState, setReviewState] = useState(location.state.review)
+    const [reviewState] = useState(location.state.review)
     const [user] = useState(userId)
     const [text, setText] = useState('')
 
@@ -24,7 +25,7 @@ const ReviewDetail = ({deleteReview, reviews, createAndUpdateComment, clickLike,
         }else if (currentComments === undefined) {
             setComments([])
         }
-    },[reviews, currentComments])
+    },[reviews])
     
 
 //🍎Reivew수정하기
@@ -68,23 +69,6 @@ const ReviewDetail = ({deleteReview, reviews, createAndUpdateComment, clickLike,
         deleteComment(comment,reviewState.id, user)
     }
     
-    //🍎like 관련 함수
-    const onLikes = (event) => {
-        event.preventDefault();
-        const nickname = reviewState.nickname
-        const review = {...reviewState}
-
-        /*
-        리뷰의 likes를 돌면서 만약에 review.likes베열인에 닉네임이 같다면
-        return만 반환하고
-
-        만약에 닉네임이 다르다면 
-        */
-        review.likes = [...review.likes,nickname]
-
-        setReviewState(review)
-        clickLike(review)
-    }
 
     return (
         <section >
@@ -120,10 +104,7 @@ const ReviewDetail = ({deleteReview, reviews, createAndUpdateComment, clickLike,
             <hr />
             <div className={styles.icon_container}>
                 <div className={styles.icon_container_left}>
-                    <button 
-                    className={styles.heart}
-                    onClick={onLikes}
-                    >👍</button>
+                <Like review={reviewState} userId={user} clickLike={clickLike}/>
                     <button className={styles.comment}>💌</button>
                 </div>
                 <div className={styles.icon_container_right}>

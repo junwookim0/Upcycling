@@ -5,16 +5,17 @@ import { GoogleAuthProvider, signInWithPopup,
     FacebookAuthProvider,createUserWithEmailAndPassword,
     signInWithEmailAndPassword,signOut,onAuthStateChanged,getAuth
 } from 'firebase/auth';
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyAmeVNxGFJCe4nWo7zDNNa4GePbQyA93tw",
-    authDomain: "upcycling-project-ex.firebaseapp.com",
-    projectId: "upcycling-project-ex",
-    storageBucket: "upcycling-project-ex.appspot.com",
-    messagingSenderId: "763504697046",
-    appId: "1:763504697046:web:7eab09dda319dcba2b3377"
-  
+    apiKey: "AIzaSyAZwe8-JumYMCPZE6NCHS7QRplQ1VQhCa8",
+  authDomain: "login-97034.firebaseapp.com",
+  databaseURL: "https://login-97034-default-rtdb.firebaseio.com",
+  projectId: "login-97034",
+  storageBucket: "login-97034.appspot.com",
+  messagingSenderId: "737764108580",
+  appId: "1:737764108580:web:aaea951966d9fb3b306bb1"
 };
 // Initialize Firebase 
 
@@ -60,4 +61,6 @@ const SignOut = async() => {
     }
 };
 
-export { app , auth , db , firestore ,signIn , signUp, SignOut};
+const storage = getStorage(app);
+
+export { app , auth , db , firestore ,signIn , signUp, SignOut, storage};
