@@ -5,16 +5,10 @@ import { GoogleAuthProvider, signInWithPopup,
     FacebookAuthProvider,createUserWithEmailAndPassword,
     signInWithEmailAndPassword,signOut,onAuthStateChanged,getAuth
 } from 'firebase/auth';
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyAmeVNxGFJCe4nWo7zDNNa4GePbQyA93tw",
-    authDomain: "upcycling-project-ex.firebaseapp.com",
-    projectId: "upcycling-project-ex",
-    storageBucket: "upcycling-project-ex.appspot.com",
-    messagingSenderId: "763504697046",
-    appId: "1:763504697046:web:7eab09dda319dcba2b3377"
-  
 };
 // Initialize Firebase 
 
@@ -60,4 +54,6 @@ const SignOut = async() => {
     }
 };
 
-export { app , auth , db , firestore ,signIn , signUp, SignOut};
+const storage = getStorage(app);
+
+export { app , auth , db , firestore ,signIn , signUp, SignOut, storage};
