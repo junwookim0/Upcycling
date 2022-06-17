@@ -4,7 +4,6 @@ import IntroList from './components/Intro/IntroList';
 import Home from './page/HomePage';
 import FirstMain from './page/FirstMain/FirstMain';
 import EventIntro from './components/Intro/EventIntro';
-
 /*🍎 지은 import*/
 import ReviewWrite from './components/Review/reviewWrite';
 import ReviewPage from './components/Review/reviewPage';
@@ -26,8 +25,6 @@ import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 
 function App({reviewRepository, commentRepository, imageUploader, likeRepository}) {
   
-
-
   //🍎 /home으로부터 받아온 user의 uid값
   const [userId, setUserId] = useState(null)
   const [reviews, setReviews] = useState([])
@@ -35,8 +32,6 @@ function App({reviewRepository, commentRepository, imageUploader, likeRepository
 
   // 🥑 06-15 현재 로그인한 사용자 가져오기 시작 
   const [userObj, setUserObj] = useState(null);
-
-
 
   useEffect(() => {
     const auth = getAuth();
@@ -140,7 +135,7 @@ const clickLike = (userId, review) => {
           {/* 🥑 박선주 route 시작 */}
           <Route path='/deals' element={<DealPage deals={deals}/>} />
           <Route path='/deals/:createdAt' element={<DealDetail />} />
-          <Route path='/deals/write' element={<DealWrite userObj={userObj}/>} />
+          <Route path='/deals/write' element={<DealWrite />} />
           <Route path='/deals/revise/:id' element={<DealRevise />} />
           {/* 🥑 박선주 route 끝 */}
           <Route path="/not-found" element={<NotFound />}></Route>
