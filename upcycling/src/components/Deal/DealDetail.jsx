@@ -1,4 +1,8 @@
 /* 🥑 거래글 자세히! */
+// 게시글(댓글(해야 됨), 파일(했음)) 삭제, 수정(revise 페이지로 이동)
+// commentWrite 연결
+// dealLike 연결
+// 댓글 개수 세기 해야 됨
 
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -9,6 +13,7 @@ import { firestore, storage } from "../../firebase";
 import styles from './CSS/dealDetail.module.css'
 
 import CommentWrite from "./CommentWrite";
+import DealLike from "./DealLike";
 
 const DealDetail = () => {
     /* 유저 정보, 작성 날짜, 작성한 댓글 firestroe에 저장 */
@@ -78,7 +83,8 @@ const DealDetail = () => {
             <hr />
             <div className={styles.icon_container}>
                 <div className={styles.icon_container_left}>
-                    <p className={styles.heart}>🧡좋아요온클릭</p>
+                    {/* 좋아요 */}
+                    <DealLike />
                     <p className={styles.comment}>💌댓글개수</p>
                 </div>
                 <div className={styles.icon_container_right}>
@@ -86,7 +92,7 @@ const DealDetail = () => {
                     <button onClick={onDeleteClick}>삭제</button>
                 </div>
             </div>
-            
+            {/* 댓글 작성 */}
             <div>
                 <CommentWrite />
             </div>

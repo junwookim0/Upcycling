@@ -1,8 +1,6 @@
 import './firstMain.css';
-import SimpleLightbox from "simplelightbox/dist/simple-lightbox.esm";
 
 const firstpagelogo = () => {
-    var lightbox = new SimpleLightbox('.gallery a', { /* options */ });
     
     return (
         <div id="portfolio">   

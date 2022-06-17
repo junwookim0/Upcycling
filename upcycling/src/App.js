@@ -4,8 +4,6 @@ import IntroList from './components/Intro/IntroList';
 import Home from './page/HomePage';
 import FirstMain from './page/FirstMain/FirstMain';
 import EventIntro from './components/Intro/EventIntro';
-import DataContext, { DataProvider } from "./components/context/DataContext";
-import { useContext } from 'react';
 /*🍎 지은 import*/
 import ReviewWrite from './components/Review/reviewWrite';
 import ReviewPage from './components/Review/reviewPage';
@@ -27,37 +25,10 @@ import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 
 function App({reviewRepository, commentRepository, imageUploader}) {
   
-
-
   //🍎 /home으로부터 받아온 user의 uid값
   const [userId, setUserId] = useState(null)
   const [reviews, setReviews] = useState([])
   const navigator = useNavigate();
-
-
-    // const getUserId = (userId) => {
-    //   setUserId(userId)
-    //   console.log(userId)
-    // }
-
-  // 🥑 06-15 현재 로그인한 사용자 가져오기 시작 
-  // const [userObj, setUserObj] = useState(null);
-
-
-
-  useEffect(() => {
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUserId(user.uid)
-      }
-    });
-  }, [userId])
-  // 🥑 06-15 현재 로그인한 사용자 가져오기 끝
-  // 지은 씨가 위에 세팅하신 걸로 해봤는데 
-  // 자꾸 (제 거에서) 오류 떠서 임의로 코드 새로 했습니다 ㅠ.ㅠ
-
-
 
 //🍎firebase에 저장된 review받아오기
 useEffect(()=> {
@@ -140,7 +111,6 @@ const clickLike = (updatedReview) => {
 
   return (
     <div className="App">
-      <DataProvider>
         <Routes>
           <Route path="/" element={<FirstMain/>}></Route>
           <Route path="/Home" element={<Home/>}></Route>
@@ -156,12 +126,11 @@ const clickLike = (updatedReview) => {
           {/* 🥑 박선주 route 시작 */}
           <Route path='/deals' element={<DealPage deals={deals}/>} />
           <Route path='/deals/:createdAt' element={<DealDetail />} />
-          <Route path='/deals/write' element={<DealWrite userObj={userObj}/>} />
+          <Route path='/deals/write' element={<DealWrite />} />
           <Route path='/deals/revise/:id' element={<DealRevise />} />
           {/* 🥑 박선주 route 끝 */}
           <Route path="/not-found" element={<NotFound />}></Route>
         </Routes>
-      </DataProvider>
         <footer>푸터</footer>
     </div>
   );
