@@ -15,12 +15,17 @@ const ReviewDetail = ({deleteReview, reviews, createAndUpdateComment, clickLike,
     const [text, setText] = useState('')
 
     //🍎firebase에 저장된 코멘트 받아오기
-    const [comments] = useState(Object.values(reviews[reviewState.id].comment));
+    let currentComments = Object.hasOwn(reviews[reviewState.id],"comment") ?Object.values(reviews[reviewState.id]["comment"]) : undefined
+    const [comments,setComments] = useState([])
 
     useEffect(()=> {
-        
-    })
-
+        if(currentComments !== null) {
+            setComments(currentComments)
+        }else if (currentComments === undefined) {
+            setComments([])
+        }
+    },[reviews, currentComments])
+    
 
 //🍎Reivew수정하기
     const goRevise = (review) =>{
@@ -75,8 +80,6 @@ const ReviewDetail = ({deleteReview, reviews, createAndUpdateComment, clickLike,
 
         만약에 닉네임이 다르다면 
         */
-       
-
         review.likes = [...review.likes,nickname]
 
         setReviewState(review)
@@ -129,15 +132,17 @@ const ReviewDetail = ({deleteReview, reviews, createAndUpdateComment, clickLike,
                 </div>
             </div>
             <div className={styles.comments_container}>
-                {
-                    comments.map((item)=> (
-                    <div key={item.id} className={styles.comments_item}>
-                            <span className={styles.comments_user}>{item.userName}</span>
-                            <span className={styles.comments_date}>{item.date}</span>
-                            <p className={styles.comments_text}>{item.comment}</p>
-                        <button onClick={()=>onDeleteComment(item)}>삭제</button>
-                    </div>
+                { comments && (
+                        comments.map((item)=> (
+                            <div key={item.id} className={styles.comments_item}>
+                                    <span className={styles.comments_user}>{item.userName}</span>
+                                    <span className={styles.comments_date}>{item.date}</span>
+                                    <p className={styles.comments_text}>{item.comment}</p>
+                                <button onClick={()=>onDeleteComment(item)}>삭제</button>
+                            </div>)
                     ))
+                    
+                    
                 }
             </div>
             <form className={styles.comment_form} ref={textareaRef}>

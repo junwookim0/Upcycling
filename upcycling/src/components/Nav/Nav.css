@@ -3,13 +3,18 @@
     top: 0;
     z-index: 10;
     width: 100%;
-    height: auto;
 }
 .fix-container .navbar {
     height: 120px;
-
 }
-
+.fix-container.scrolled {
+    box-shadow: 2px 2px 2px rgb(2, 2, 2);
+}
+.fix-container.scrolled .navbar {
+    height: 80px;
+    background-color: blanchedalmond;
+    transition: height 0.3s ease;
+}
 
 .navbar {
     display: flex;
@@ -24,18 +29,17 @@
     font-weight: bold;
 }
 .logo_text{
-    font-family: 'LeferiPoint-WhiteObliqueA', serif;
-    font-size: 30px;
+    font-family: 'Joan', serif;
+    font-size: 34px;
 
 }
 .navbar_menu {
     list-style: none;
     display: flex;
-    font-family: 'LeferiPoint-WhiteObliqueA';
 }
 .navbar_menu li {
-    padding: 10px 10px;
-    font-size: 20px;
+    padding: 8px 10px;
+    font-size: 25px;
 }
 .navbar_property{
     list-style: none;
@@ -71,11 +75,12 @@
     .navbar_property{
         justify-content: center;
     }
-    .Hamburger{
+        .Hamburger{
         position: absolute;
         right: 30px;
         top: 24%;
         display: block;
+        border: solid black;
     }
     .navbar_menu.active,
     .navbar_property.active{

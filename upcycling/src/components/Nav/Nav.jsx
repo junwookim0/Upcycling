@@ -1,4 +1,4 @@
-import {  useNavigate } from "react-router-dom";
+import {  useNavigate ,Outlet } from "react-router-dom";
 import { useState , useEffect} from "react";
 import Hamburger from 'hamburger-react'
 import './Nav.css'
@@ -56,7 +56,7 @@ const Nav = () => {
 
     return (
         <div>
-            <header className={scrolled ? 'fix-container' : 'fix-container'}>
+            <header className={scrolled ? 'fix-container scrolled' : 'fix-container'}>
                 <nav className="navbar">
                     <div className="navbar_logo" onClick={goHome}>
                         <span className="logo_text">: UPTOWN</span>
@@ -67,15 +67,32 @@ const Nav = () => {
                         <li onClick={goReview}>Review</li>
                         <li onClick={goDeal}>Sale</li>
                     </ul>
-                    <ul className="navbar_property">
-                        <li>MyPage</li>
-                        <li>Logout</li>
+                    <ul className={isOpen ? 'navbar_property active' : 'navbar_property'}>
+                        <li>
+                            <a href="#">MyPage</a>
+                            <ul className="drop_1">
+                                <li><a href="#">내 리뷰</a></li>
+                                <li><a href="#">내 판매글</a></li>
+                                <li><a href="#">내 좋아요</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Login</a>
+                            <ul class="drop_1">
+                                <li><a href="#">구글 로그인</a></li>
+                                <li><a href="#">페이스북 로그인</a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <div className="Hamburger">
-                        <Hamburger toggled={isOpen} toggle={setOpen} />
+                        <Hamburger toggled={isOpen} toggle={setOpen}/>
                     </div>
+                
                 </nav>
             </header>
+            <main>
+                <Outlet></Outlet>
+            </main>
     </div>
     );
 };

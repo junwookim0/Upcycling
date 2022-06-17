@@ -15,8 +15,9 @@ const DealItem = ({deal}) => {
 
     return (
         <div>
-            <p
-            onClick={onClick}>여기 이미지!</p>
+            <img
+            src={deal.attachmentUrl}
+            onClick={onClick} />
             <h3>{deal.title}</h3>
             <p>{deal.price}</p>
             <p>작성자</p>

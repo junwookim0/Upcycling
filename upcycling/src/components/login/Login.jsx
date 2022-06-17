@@ -1,24 +1,28 @@
 import { auth } from '../../firebase';
 import { GoogleAuthProvider, signInWithPopup,
-            FacebookAuthProvider,signOut
+            FacebookAuthProvider,signOut,onAuthStateChanged
 } from 'firebase/auth';
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 import { useNavigate } from "react-router-dom";
+import './Login.css'
+
 
 function Login() {
-
-    const [userData, setUserData] = useState(null);
+    
+    const [user, setUser] = useState(null);
     const navigate = useNavigate();
+
 
     function handleGoogleLogin() {
         const gprovider = new GoogleAuthProvider(); // provider를 구글로 설정
         signInWithPopup(auth, gprovider) // popup을 이용한 signup
         .then((data) => {
-            setUserData(data.user); // user data 설정
-            //🍎지은 : 콘솔창에 이중으로 떠서 잠시막아놓을게요!!
-            //console.log(data.user) // console로 들어온 데이터 표시
-            navigate("/Home",{state : { id : data.user.uid}});
-            console.log(data.user)
+            setUser(data.user); // user data 설정
+    
+            navigate("/home");
+            console.log(data.user.displayName);
+            console.log(data.user.email);
+    
         })
         .catch((err) => {
             console.log(err);
@@ -28,7 +32,7 @@ function Login() {
         const fprovider =new FacebookAuthProvider();
         signInWithPopup(auth, fprovider) // popup을 이용한 signup
         .then((data) => {
-            setUserData(data.user); // user data 설정
+            setUser(data.user); // user data 설정
             navigate("/Home");
             console.log(data) // console로 들어온 데이터 표시
         })
@@ -36,33 +40,52 @@ function Login() {
             console.log(err);
         });
     }
+    function SignIn() {
+            navigate("/SignIn");
+        };
+
+    function SignUp() {
+        navigate("/SignUp");
+    };
+
     function Logout() {
         signOut(auth).then(() => {
-            setUserData(null);
+            setUser(null);
             navigate("/");
         }).catch((err) => {
             console.log(err);
         });
     }
+    
 
+    useEffect(() => {
+        onAuthStateChanged(auth,(user) => {
+            if (user) {
+                setUser(user);
+            }
+            });
+        }, [user]);
+        
     return (
         <div className="App">
-        <header className="App-header">
+        <header className="Login_Container">
             
-        <button onClick={handleGoogleLogin}>구글 Login</button>
+        <button className="googleLogin" onClick={handleGoogleLogin}>구글 Login</button>
         <p>
-            {userData ? userData.displayName : null}
+            {user ? user.displayName : null}
         </p>
         <p>
-            {userData ? userData.email : null}
+            {user ? user.email : null}
         </p>
         <p>
-            {userData ? <img src={userData.photoURL} alt="userphoto"/>  : null}
+            {user ? <img src={user.photoURL} alt="userphoto"/>  : null}
         </p>
 
         
-        <button onClick={handleFacebookLogin}>facebook Login</button>
-        <button onClick={Logout}>Logout</button>
+        <button className="FacebookLogin" onClick={handleFacebookLogin}>facebook Login</button>
+        <button className="Logout" onClick={Logout}>Logout</button>
+        <button onClick={SignIn}>로그인</button>
+        <button onClick={SignUp}>회원가입</button>
         </header>
         </div>
     );
