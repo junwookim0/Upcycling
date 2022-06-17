@@ -23,12 +23,27 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { firestore } from './firebase';
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 
-function App({reviewRepository, commentRepository, imageUploader}) {
+function App({reviewRepository, commentRepository, imageUploader, likeRepository}) {
   
   //🍎 /home으로부터 받아온 user의 uid값
   const [userId, setUserId] = useState(null)
   const [reviews, setReviews] = useState([])
   const navigator = useNavigate();
+
+  // 🥑 06-15 현재 로그인한 사용자 가져오기 시작 
+  const [userObj, setUserObj] = useState(null);
+
+  useEffect(() => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserId(user.uid)
+      }
+    });
+  }, [userId])
+  // 🥑 06-15 현재 로그인한 사용자 가져오기 끝
+
+
 
 //🍎firebase에 저장된 review받아오기
 useEffect(()=> {
@@ -76,16 +91,10 @@ const createAndUpdateComment = (comment,reviewId,userId) => {
   commentRepository.saveComment(userId,reviewId, comment);
 }
 
-//🍎지은 : likes
-const clickLike = (updatedReview) => {
-  const newReviews = reviews.map((review) => {
-    if(review.id !== updatedReview.id) {
-      return review
-    } else {
-      return updatedReview
-    }
-  }) 
-  setReviews(newReviews)
+//🍎지은 : likes누르는 기능()
+const clickLike = (userId, review) => {
+  likeRepository.saveLike(userId, review)
+  console.log('like앱으로 넘김')
 }
 
   const [deals, setDeals] = useState([]);
@@ -121,7 +130,7 @@ const clickLike = (updatedReview) => {
           <Route path='/reviews'  element={<ReviewPage reviews={reviews} />}/>
           <Route path='/reviews/:id' element={<ReviewDetail clickLike={clickLike} userId={userId} reviews={reviews}  createAndUpdateComment={createAndUpdateComment} deleteReview={deleteReview} deleteComment={deleteComment}/>}/>
           <Route path='/reviews/write' element={<ReviewWrite imageUploader={imageUploader} userId={userId} createAndUpdateReview={createAndUpdateReview}/>}/>
-          <Route path='/review/revise/:id' element={<ReviewRevise userId={userId}  createAndUpdateReview={createAndUpdateReview} />}/>
+          <Route path='/review/revise/:id' element={<ReviewRevise userId={userId}  imageUploader={imageUploader} createAndUpdateReview={createAndUpdateReview} />}/>
 
           {/* 🥑 박선주 route 시작 */}
           <Route path='/deals' element={<DealPage deals={deals}/>} />

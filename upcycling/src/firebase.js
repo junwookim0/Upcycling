@@ -9,6 +9,13 @@ import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
 
+    //파이어베이스 인증키랑 지울게요! -지은-
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: ""
 };
 // Initialize Firebase 
 
