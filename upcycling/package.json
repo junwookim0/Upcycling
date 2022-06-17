@@ -14,6 +14,8 @@
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "simple-lightbox": "^2.1.0",
+    "simplelightbox": "^2.10.3",
     "swiper": "^8.2.2",
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"

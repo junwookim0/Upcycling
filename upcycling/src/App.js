@@ -33,7 +33,7 @@ function App({reviewRepository, commentRepository, imageUploader}) {
   const [userId, setUserId] = useState(null)
   const [reviews, setReviews] = useState([])
   const navigator = useNavigate();
-  
+
 
     const getUserId = (userId) => {
       setUserId(userId)

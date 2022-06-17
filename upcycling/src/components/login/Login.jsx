@@ -1,16 +1,14 @@
 import { auth } from '../../firebase';
 import { GoogleAuthProvider, signInWithPopup,
-            FacebookAuthProvider,signOut
+            FacebookAuthProvider,signOut,onAuthStateChanged
 } from 'firebase/auth';
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 import { useNavigate } from "react-router-dom";
 import './Login.css'
-import { useContext } from "react";
-import DataContext from "../context/DataContext";
+
 
 function Login() {
-    const data1 = useContext(DataContext);
-
+    
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
 
@@ -19,17 +17,11 @@ function Login() {
         signInWithPopup(auth, gprovider) // popup을 이용한 signup
         .then((data) => {
             setUser(data.user); // user data 설정
-            const Comment = {
-                id: data.user.uid,
-                displayName: data.user.displayName,
-                email: data.user.email,
-                photoURL: data.user.photoURL
-            }
+    
             navigate("/home");
             console.log(data.user.displayName);
             console.log(data.user.email);
-            data1.action.setUser([...data1.state.user , Comment])
-            console.log(data1.state.user)
+    
         })
         .catch((err) => {
             console.log(err);
@@ -47,6 +39,14 @@ function Login() {
             console.log(err);
         });
     }
+    function SignIn() {
+            navigate("/SignIn");
+        };
+
+    function SignUp() {
+        navigate("/SignUp");
+    };
+
     function Logout() {
         signOut(auth).then(() => {
             setUser(null);
@@ -56,6 +56,14 @@ function Login() {
         });
     }
 
+    useEffect(() => {
+        onAuthStateChanged(auth,(user) => {
+            if (user) {
+                setUser(user);
+            }
+            });
+        }, [user]);
+        
     return (
         <div className="App">
         <header className="Login_Container">
@@ -74,6 +82,8 @@ function Login() {
         
         <button className="FacebookLogin" onClick={handleFacebookLogin}>facebook Login</button>
         <button className="Logout" onClick={Logout}>Logout</button>
+        <button onClick={SignIn}>로그인</button>
+        <button onClick={SignUp}>회원가입</button>
         </header>
         </div>
     );
