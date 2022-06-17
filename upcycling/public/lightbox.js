@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', event => {
+/*window.addEventListener('DOMContentLoaded', event => {
 
     // Activate SimpleLightbox plugin for portfolio items
     new SimpleLightbox({
@@ -6,3 +6,4 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+*/

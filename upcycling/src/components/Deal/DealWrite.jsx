@@ -1,17 +1,14 @@
 /* 🥑 거래글 작성! */
 // 06-15 사진 업로드 구현 중
-
 import React, { useState } from "react";
 import { firestore, storage } from "../../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadString, getDownloadURL } from "@firebase/storage";
 import { v4 as uuidv4 } from "uuid"; // 사진 랜덤 아이디
 import { useNavigate } from "react-router-dom";
-import DataContext from "../context/DataContext";
-import { useContext } from "react";
+import { useEffect } from "react";
 
-const DealWrite = () => {
-    const data = useContext(DataContext);
+const DealWrite = ({userObj}) => {
     /* 작성한 제목, 카테고리, 가격, 내용 firestore에 저장 */
     const [dCategory, setDCategory] = useState(''); // 카테고리
     const [dTitle, setDTitle] = useState(''); // 제목
@@ -21,7 +18,6 @@ const DealWrite = () => {
     
     /* 사진은 storage */
     const [attachment, setAttachment] = useState('');
-    let DAttachmentURL = '';
 
     const navigate = useNavigate();
 
@@ -30,15 +26,16 @@ const DealWrite = () => {
     const onSubmit = async(e) => {
         e.preventDefault();
 
-        // 06-15 파일 존재할 때, 존재하지 않을 때 if
-        if (attachment !== '') {
-            // 1. 파일 경로 참조 만들기
-            const DAttachmentURL = ref(storage, `${data.state.user.uid}/${uuidv4()}`);
-            // 2. 파일 경로 참조에 파일 업로드
-            // 3. 참조 파일 
-        }
-        console.log(data.state.user)
-        const userItem = data.state.user[0].id
+        let attachmentUrl = '';
+        if(attachment !== '') {
+            // 참조 경로 생성
+            const attachmentRef = ref(storage, `images/${uuidv4()}`); // 사용자 아이디 들어오면 중간에 넣을 거
+            // 참조 경로로 파일 업로드
+            // uploadiString 써야지 똑바로 들어감
+            const response = await uploadString(attachmentRef, attachment, "data_url");
+            console.log(response)
+            attachmentUrl = await getDownloadURL(response.ref);    
+        };
 
         // submit하면 추가할 데이터
         const dealObj = {
@@ -48,13 +45,11 @@ const DealWrite = () => {
             price: dPrice, // 가격
             content: dContent, // 내용
             createdAt: Date.now(), // 생성날짜
-            creatorId: userItem
-            //creatorName: userItem.displayName, // 생성한 사람 닉 표시
-            //attachmentUrl
+            //creatorId: userObj.id,
+            //creatorName: userObj.displayName, // 생성한 사람 닉 표시
+            attachmentUrl
         };
 
-        console.log(dealObj)
-        // dbDeals에 dealObj 형식으로 추가
         await addDoc(collection(firestore, "dbDeals"), dealObj);
 
         // state를 비워서 form 비우기
@@ -88,7 +83,7 @@ const DealWrite = () => {
 
     const onFileChange = (e) => {
         const {target: {files}} = e;
-        // 한 번에 한 개의 파일 입력하도록 했는데 여러 장 가능하게끔 수정해야 함
+        // 06-16 한 번에 한 개의 파일 입력하도록 했는데 여러 장 가능하게끔 수정,,, 어케 함
         const theFile = files[0];
         // 파일 이름 읽기
         const reader = new FileReader();
@@ -96,7 +91,7 @@ const DealWrite = () => {
             const {currentTarget: {result}} = finishedEvent;
             setAttachment(result);
         };
-        reader.readAsDataURL(theFile);
+        reader.readAsDataURL(theFile); // 데이터 인코딩
     };
 
     // 이미지 첨부 취소
