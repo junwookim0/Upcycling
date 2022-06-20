@@ -144,7 +144,7 @@ const IntroList = () => {
                         </div>
                     </div>
                 </div>
-             
+            
             </div>
 
             {/*3단 나누기*/}
