@@ -35,7 +35,9 @@ const ReviewPage = ({reviews}) => {
             <ul className={styles.list}>
                 {
                     onReviews.map(review => (
-                    <li key={review.id}>
+                    <li key={review.id}
+                    className={styles.list_item}
+                    >
                         <ReviewItem review={review}/>
                     </li>))
                 }

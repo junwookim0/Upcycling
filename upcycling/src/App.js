@@ -27,7 +27,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { firestore } from './firebase';
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 
-function App({reviewRepository, commentRepository, imageUploader}) {
+function App({reviewRepository, commentRepository, imageUploader, likeRepository}) {
   
   //🍎 /home으로부터 받아온 user의 uid값
   const [userId, setUserId] = useState(null)
@@ -42,6 +42,15 @@ useEffect(()=> {
   return () => stopSync();
 },[userId, reviewRepository])
 
+//🍎지은 쓰고있는 userId지우지마세요~!!
+useEffect(() => {
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setUserId(user.uid)
+    }
+  });
+}, [userId])
 
 
 //🍎지은 : create & update review 
@@ -76,20 +85,18 @@ const deleteComment = (comment,reviewId,userId) => {
 
 //🍎지은 : create Comment 
 const createAndUpdateComment = (comment,reviewId,userId) => {
-  // setReviews([...reviews, review]);
   commentRepository.saveComment(userId,reviewId, comment);
 }
 
-//🍎지은 : likes
-const clickLike = (updatedReview) => {
-  const newReviews = reviews.map((review) => {
-    if(review.id !== updatedReview.id) {
-      return review
-    } else {
-      return updatedReview
-    }
-  }) 
-  setReviews(newReviews)
+//🍎지은 : 좋아요 누르기
+const clickLike = (userId, review) => {
+  likeRepository.saveLike(userId, review)
+  console.log('app 좋아요 성공')
+}
+
+//🍎지은 : 좋아요 삭제 로직
+const removeLike = (userId,review) => {
+  likeRepository.removeLike(userId, review)
 }
 
   const [deals, setDeals] = useState([]);
@@ -128,7 +135,7 @@ const clickLike = (updatedReview) => {
           
           {/* 🍎윤지은 router */}
           <Route path='/reviews'  element={<ReviewPage reviews={reviews} />}/>
-          <Route path='/reviews/:id' element={<ReviewDetail clickLike={clickLike} userId={userId} reviews={reviews}  createAndUpdateComment={createAndUpdateComment} deleteReview={deleteReview} deleteComment={deleteComment}/>}/>
+          <Route path='/reviews/:id' element={<ReviewDetail reviewRepository={reviewRepository} clickLike={clickLike} removeLike={removeLike} userId={userId} reviews={reviews}  createAndUpdateComment={createAndUpdateComment} deleteReview={deleteReview} deleteComment={deleteComment}/>}/>
           <Route path='/reviews/write' element={<ReviewWrite imageUploader={imageUploader} userId={userId} createAndUpdateReview={createAndUpdateReview}/>}/>
           <Route path='/review/revise/:id' element={<ReviewRevise userId={userId}  createAndUpdateReview={createAndUpdateReview} />}/>
 
