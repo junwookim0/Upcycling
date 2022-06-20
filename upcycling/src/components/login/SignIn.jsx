@@ -1,20 +1,21 @@
 import { useState } from "react";
 import { signIn , signInWithGoogle, signInWithFacebook} from "../../firebase";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Navigate} from "react-router-dom";
 
 const Login = () => {
+
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
         const [error, seterror] = useState("");
         const navigate = useNavigate();
-        
+
         const handleGoolge = () => {
             signInWithGoogle();
-            navigate("/home");
+            <Navigate replace to="/home"/>
         };
         const handleFacebook = () => {
             signInWithFacebook();
-            navigate("/home");
+            
         };
 
         const handleSubmit = async (e) => {
@@ -26,6 +27,7 @@ const Login = () => {
             alert("환영합니다");
             navigate("/home");
         };
+        
         return (
             <div>
                 {error ? <div>{error}</div> : null}
@@ -50,5 +52,6 @@ const Login = () => {
                 <button onClick={handleFacebook}>페이스북 로그인</button>
             </div>
         );
+        
 };
 export default Login;

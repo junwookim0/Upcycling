@@ -1,9 +1,7 @@
 /*인트로 1단*/
   .cInnerContent_1{
-    
     width: 100%;
     height:650px;
-
     letter-spacing:3px;
     line-height:22px;
     font-size:2ex;
@@ -174,4 +172,7 @@
     will-change: transform, opacity;
     font-size: medium;
   }
-
+.introVideo{
+  width: 100%;
+  opacity: 0.8;
+}

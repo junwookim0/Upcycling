@@ -15,7 +15,7 @@ const DealLike = () => {
                 <div>
                     <span 
                     onClick={toggleLike}
-                    class="material-icons">
+                    className="material-icons">
                         favorite
                     </span>
                 </div>
@@ -23,7 +23,7 @@ const DealLike = () => {
                 <div>
                     <span 
                     onClick={toggleLike}
-                    class="material-icons">
+                    className="material-icons">
                         favorite_border
                     </span>
                 </div>

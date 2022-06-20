@@ -40,7 +40,7 @@ const IntroView = () => {
             </header>
             <section className="container hero">
                 <div className="hero__inner">
-                    <div className="hero__images"><img class="hero__image" src="../../images/background1.jpg" alt='img1'/></div>
+                    <div className="hero__images"><img className="hero__image" src="../../images/background1.jpg" alt='img1'/></div>
                     <div className="hero__content" id='hero__content'>
                         <div className="hero__headline"><span className='u'>WELCOME!</span></div>
                     </div>

@@ -1,6 +1,6 @@
 import { auth } from '../../firebase';
-import { signOut,onAuthStateChanged } from 'firebase/auth';
-import { useState ,useEffect} from 'react';
+import { signOut } from 'firebase/auth';
+import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import './Login.css'
 
@@ -27,15 +27,6 @@ function Login() {
             console.log(err);
         });
     }
-    
-
-    useEffect(() => {
-        onAuthStateChanged(auth,(user) => {
-            if (user) {
-                setUser(user);
-            }
-            });
-        }, [user]);
         
     return (
         <div className="App">
@@ -52,6 +43,10 @@ function Login() {
         </p>
 
         
+
+
+        <button className="Logout" onClick={Logout}>Logout</button>
+
         <button onClick={SignIn}>로그인</button>
         <button onClick={SignUp}>회원가입</button>
         </header>

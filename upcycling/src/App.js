@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate , Navigate} from "react-router-dom";
 import IntroList from './components/Intro/IntroList';
 import Home from './page/HomePage';
 import FirstMain from './page/FirstMain/FirstMain';
@@ -7,12 +7,14 @@ import EventIntro from './components/Intro/EventIntro';
 import SignIn from './components/login/SignIn';
 import Profile from './components/login/Profile';
 import SignUp from './components/login/SignUp';
-
+import { useContext } from "react";
+import AuthContext from "./components/context/AuthContext";
 /*🍎 지은 import*/
 import ReviewWrite from './components/Review/reviewWrite';
 import ReviewPage from './components/Review/reviewPage';
 import ReviewDetail from './components/Review/reviewDetail';
 import ReviewRevise from './components/Review/reviewRevise';
+
 /* 🥑 박선주 import 시작 */
 import DealWrite from './components/Deal/DealWrite';
 import DealPage from './components/Deal/DealPage';
@@ -111,17 +113,16 @@ const clickLike = (updatedReview) => {
         setDeals(dealArray);
       })
   }, []);
+  const { user } = useContext(AuthContext);
 
   return (
     <div className="App">
-
-    
         <Routes>
-          <Route path="/" element={<FirstMain/>}></Route>
+          <Route path="/" element={!user ?<FirstMain/> : <Home/>}></Route>
+          <Route path="/Home" element={<Home/>}></Route>
           <Route path="/Profile" element={< Profile/>}></Route>
           <Route path="/SignIn" element={<SignIn/>}></Route>
           <Route path="/SignUp" element={<SignUp/>}></Route>
-          <Route path="/Home" element={<Home/>}></Route>
           <Route path="/intro" element={<IntroList />}></Route>
           <Route path="/event" element={<EventIntro />}></Route>
           

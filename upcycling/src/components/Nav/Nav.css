@@ -7,12 +7,11 @@
 .fix-container .navbar {
     height: 120px;
 }
-.fix-container.scrolled {
-    box-shadow: 2px 2px 2px rgb(2, 2, 2);
-}
+
 .fix-container.scrolled .navbar {
-    height: 80px;
-    background-color: blanchedalmond;
+    height: 100px;
+    background-color: white;
+    color: black;
     transition: height 0.3s ease;
 }
 
@@ -21,9 +20,10 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    background-color: white;
+    background-color:transparent;
     cursor: pointer;
     list-style: none;
+    color: white;
 }
 .navbar_logo {
     font-weight: bold;
