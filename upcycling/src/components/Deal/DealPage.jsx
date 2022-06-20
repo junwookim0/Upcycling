@@ -1,6 +1,6 @@
 /* 🥑 deal 게시판 목록 */
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import DealItem from "./DealItem";
 import Nav from "../Nav/Nav";
@@ -16,7 +16,7 @@ const DealPage = ({deals}) => {
 
     return (
         <div>
-            <Nav/>
+            <Nav />
             <section className={styles.dealPage}>
                 <h1>Deals</h1>
                 

@@ -41,7 +41,6 @@ function Login() {
         <div className="App">
         <header className="Login_Container">
             
-        <button className="googleLogin" onClick={handleGoogleLogin}>구글 Login</button>
         <p>
             {user ? user.displayName : null}
         </p>
@@ -53,8 +52,6 @@ function Login() {
         </p>
 
         
-        <button className="FacebookLogin" onClick={handleFacebookLogin}>facebook Login</button>
-        <button className="Logout" onClick={Logout}>Logout</button>
         <button onClick={SignIn}>로그인</button>
         <button onClick={SignUp}>회원가입</button>
         </header>

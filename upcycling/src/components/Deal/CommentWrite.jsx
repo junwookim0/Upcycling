@@ -1,9 +1,10 @@
 /* 🥑 댓글 작성 */
+// 06-20 사용자 정보
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import AuthContext from "../context/AuthContext";
 import { useLocation } from "react-router-dom";
-import { doc, setDoc, collection, getDocs,
-        onSnapshot, query, orderBy } from "firebase/firestore";
+import { doc, setDoc, collection, onSnapshot } from "firebase/firestore";
 
 import { firestore } from "../../firebase";
 
@@ -12,6 +13,9 @@ import styles from './CSS/dealDetail.module.css'
 import CommentItem from './CommentItem';
 
 const CommentWrite = () => {
+    /* 사용자 정보 */
+    const { user } = useContext(AuthContext);
+
     /* 유저 정보, 작성 날짜, 작성한 댓글 firestroe에 저장 */
     const [dComment, setDComment] = useState('');
     /* fitestore에 저장한 댓글 가져오기 */
@@ -40,9 +44,9 @@ const CommentWrite = () => {
         //submit하면 추가할 데이터
         const commentObj = {
             content: dComment, // 댓글
-            //creatorId: userObj.uid,
-            //creatorName: userObj.displayName, // 생성한 사람 닉 표시
-            createdAt: Date.now()
+            creatorId: user.uid,
+            creatorName: user.displayName, // 생성한 사람 닉 표시
+            createdAt: Date.now(),
         };
 
         // Date.now()를 기준으로 댓글 문서 생성
