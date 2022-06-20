@@ -56,8 +56,8 @@ const ReviewWrite = ({createAndUpdateReview , userId, imageUploader}) => {
     }
 
 
-    console.log(userId)
-    console.log(uploadedIMG);
+    // console.log(userId)
+    // console.log(uploadedIMG);
 
     //⭐글쓰기 항목이 다 있을 때만 버튼이 활성화 될 수있도록
     const canSave = Boolean(reviewTitleRef)  && Boolean(reviewDescriptionRef) && Boolean(uploadedIMG)
@@ -89,6 +89,7 @@ const ReviewWrite = ({createAndUpdateReview , userId, imageUploader}) => {
 
                     </textarea>
                     <br/>
+                    { uploadedIMG && (<img src={uploadedIMG} alt='이미지' style={{width: '50px', height: '50px'}} />)}
                     <input 
                         ref={reviewIMGRef}
                         type="file"

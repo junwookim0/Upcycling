@@ -1,23 +1,13 @@
 /* 🥑 거래글 작성! */
-<<<<<<< HEAD
-// 06-15 사진 업로드 구현 중
-=======
 
->>>>>>> 3b4cfa4754891df9edeefd177a46621cbdc79bc5
 import React, { useState } from "react";
 import { firestore, storage } from "../../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadString, getDownloadURL } from "@firebase/storage";
 import { v4 as uuidv4 } from "uuid"; // 사진 랜덤 아이디
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD
-import { useEffect } from "react";
-
-const DealWrite = ({userObj}) => {
-=======
 
 const DealWrite = () => {
->>>>>>> 3b4cfa4754891df9edeefd177a46621cbdc79bc5
     /* 작성한 제목, 카테고리, 가격, 내용 firestore에 저장 */
     const [dCategory, setDCategory] = useState(''); // 카테고리
     const [dTitle, setDTitle] = useState(''); // 제목
@@ -60,11 +50,7 @@ const DealWrite = () => {
             createdAt: Date.now(), // 생성날짜
             //creatorId: userObj.id,
             //creatorName: userObj.displayName, // 생성한 사람 닉 표시
-<<<<<<< HEAD
-            attachmentUrl
-=======
             attachmentUrl: attachmentUrl
->>>>>>> 3b4cfa4754891df9edeefd177a46621cbdc79bc5
         };
 
         await addDoc(collection(firestore, "dbDeals"), dealObj);

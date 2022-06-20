@@ -1,5 +1,7 @@
+
 .container {
     margin: 1.5rem;
+    
 }
 
 .reviewImg {
@@ -7,4 +9,3 @@
     height: 20rem;
     object-fit: cover;
 }
-

@@ -9,13 +9,13 @@ import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
 
+    //파이어베이스 인증키랑 지울게요! -지은-
     apiKey: "",
     authDomain: "",
     projectId: "",
     storageBucket: "",
     messagingSenderId: "",
     appId: ""
-
 };
 // Initialize Firebase 
 
@@ -23,7 +23,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
 const firestore = getFirestore(app);
-const storage = getStorage(app);
+
 
 const signUp = async (email, password) => {
     try {
@@ -61,5 +61,6 @@ const SignOut = async() => {
     }
 };
 
-export { app , auth , db , firestore , storage ,signIn , signUp, SignOut};
+const storage = getStorage(app);
 
+export { app , auth , db , firestore ,signIn , signUp, SignOut, storage};
