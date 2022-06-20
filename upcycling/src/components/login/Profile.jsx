@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import AuthContext from "../Context/AuthContext";
+import AuthContext from "../context/AuthContext";
 import { useNavigate, Navigate } from "react-router-dom";
 import { SignOut } from "../../firebase";
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { signUp } from "../../firebase";
 
 const Signup = () => {
@@ -7,17 +7,37 @@ const Signup = () => {
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
     const [error, seterror] = useState("");
+    const navigate = useNavigate();
     
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (password !== password2) {
-            seterror("Passwords do not match");
+            seterror("비밀번호가 일치하지 않습니다");
         } else {
             setEmail("");
             setPassword("");
             const res = await signUp(email, password);
-            if (res.error) seterror(res.error)
+            if (res.error) {
+                switch (res.error) {
+                    case 'auth/weak-password':
+                        seterror('비밀번호는 6자리 이상이어야 합니다');
+                        break;
+                    case 'auth/invalid-email':
+                        seterror('잘못된 이메일 주소입니다');
+                        break;
+                    case 'auth/email-already-in-use':
+                        seterror('이미 가입되어 있는 계정입니다');
+                        break;
+                }
+            }
+            else {
+                navigate("/signin");
+                alert("회원가입완료");
+            }
+    
+            
         }
+        
     };
     return (
         <div>

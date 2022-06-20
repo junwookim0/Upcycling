@@ -8,7 +8,7 @@ import { GoogleAuthProvider, signInWithPopup,
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-
+    /*
     //파이어베이스 인증키랑 지울게요! -지은-
     apiKey: "",
     authDomain: "",
@@ -16,6 +16,13 @@ const firebaseConfig = {
     storageBucket: "",
     messagingSenderId: "",
     appId: ""
+    */
+    apiKey: "AIzaSyBoX4JqMqLdCoJM7g0EiZor0VcdiqTcDwo",
+    authDomain: "fir-test-login-85c6c.firebaseapp.com",
+    projectId: "fir-test-login-85c6c",
+    storageBucket: "fir-test-login-85c6c.appspot.com",
+    messagingSenderId: "366758576094",
+    appId: "1:366758576094:web:ed6d85b8de98363efa674f"
 };
 // Initialize Firebase 
 
@@ -25,7 +32,7 @@ const db = getDatabase(app);
 const firestore = getFirestore(app);
 
 //회원가입 
-const signUp = async (email, password) => {
+const signUp = async (email, password,) => {
     try {
         const userCredential = await createUserWithEmailAndPassword(auth,email,password);
         const user = userCredential.user;
@@ -34,8 +41,8 @@ const signUp = async (email, password) => {
             email: user.email,
         });
         return true
-    } catch (error) {
-        return {error: error.message}
+    } catch(error) {
+        return {error: error.code}
     }
 };
 //로그인
