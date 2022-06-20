@@ -1,6 +1,8 @@
 /* 🥑 거래글 수정! */
+// 06-20 사용자 정보
 
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import AuthContext from "../context/AuthContext";
 import { firestore, storage } from "../../firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import { ref, uploadString, getDownloadURL } from "@firebase/storage";
@@ -8,9 +10,13 @@ import { v4 as uuidv4 } from "uuid"; // 사진 랜덤 아이디
 import { useLocation, useNavigate } from "react-router-dom";
 
 const DealRevise = () => {
-    const location = useLocation();
 
-    const deal = location.state.deal
+    /* 사용자 정보 */
+    const { user } = useContext(AuthContext);
+
+    const location = useLocation();
+    const deal = location.state.deal;
+    console.log(deal)
 
     /* editing 모드인지 아닌지 */
     const [editing, setEditing] = useState(false);
@@ -24,8 +30,8 @@ const DealRevise = () => {
     const [newDPrice, setNewDPrice] = useState(deal.price);
     const [newDContent, setNewDContent] = useState(deal.content);
 
-    // 사진 업로드 관련
-    const [newAttachment, setNewAttachment] = useState(deal.attachment);
+    /* 사진은 storage */
+    const [newAttachment, setNewAttachment] = useState('');
 
     const navigate = useNavigate();
 
@@ -35,21 +41,19 @@ const DealRevise = () => {
         navigate(`/deals/${deal.createdAt}`, {state: {deal}})
     };
 
-    /* 업데이트 */ // useEffect
-    const onSubmit = async (event) => {
-        event.preventDefault();
+    /* 업데이트 */
+    const onSubmit = async (e) => {
+        e.preventDefault();
         
-        let newAttachmentUrl = '';
-        if(newAttachment !== '') {
-            // 참조 경로 생성
-            const attachmentRef = ref(storage, `images/${uuidv4()}`); // 사용자 아이디 들어오면 중간에 넣을 거
-            // 참조 경로로 파일 업로드
-            // uploadiString 써야지 똑바로 들어감
-            const response = await uploadString(attachmentRef, newAttachment, "data_url");
-            console.log(response)
-            newAttachmentUrl = await getDownloadURL(response.ref);    
-        };
+        let newAttachmentUrl = deal.attachmentUrl;
 
+        if (newAttachment !== '') {
+            const newAttachmentRef = ref(storage, `images/${user.uid}/${uuidv4()}`);
+
+            const response = await uploadString(newAttachmentRef, newAttachment, "data_url");
+            console.log(response);
+            newAttachmentUrl = await getDownloadURL(response.ref)
+        }
         // dbDeals에 업데이트
         await updateDoc(doc(firestore, `/dbDeals/${deal.id}`), {
             category: newDCategory,
@@ -61,6 +65,9 @@ const DealRevise = () => {
             content: newDContent,
             attachmentUrl: newAttachmentUrl
         });
+
+        setEditing(false);
+
         // state를 비워서 form 비우기
         setNewDCategory("");
         setNewDTitle("");
@@ -72,8 +79,6 @@ const DealRevise = () => {
 
         // state를 비워서 파일 미리보기 img src 비우기
         setNewAttachment("");
-
-        setEditing(false);
 
         navigate(`/deals/${deal.createdAt}`, {state: {deal}})
     };

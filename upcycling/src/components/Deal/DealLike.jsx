@@ -1,4 +1,4 @@
-/* 06-17 좋아요 */
+/* 🥑 06-17 좋아요 */
 // 좋아요 누른 유저 정보를 컬렉션에 담아야 하나 ?? 
 
 import { useState } from "react";
@@ -15,7 +15,7 @@ const DealLike = () => {
                 <div>
                     <span 
                     onClick={toggleLike}
-                    class="material-icons">
+                    className="material-icons">
                         favorite
                     </span>
                 </div>
@@ -23,7 +23,7 @@ const DealLike = () => {
                 <div>
                     <span 
                     onClick={toggleLike}
-                    class="material-icons">
+                    className="material-icons">
                         favorite_border
                     </span>
                 </div>

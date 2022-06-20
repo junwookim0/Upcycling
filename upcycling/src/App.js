@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate , Navigate} from "react-router-dom";
 import IntroList from './components/Intro/IntroList';
 import Home from './page/HomePage';
 import FirstMain from './page/FirstMain/FirstMain';
@@ -7,12 +7,14 @@ import EventIntro from './components/Intro/EventIntro';
 import SignIn from './components/login/SignIn';
 import Profile from './components/login/Profile';
 import SignUp from './components/login/SignUp';
-
+import { useContext } from "react";
+import AuthContext from "./components/context/AuthContext";
 /*🍎 지은 import*/
 import ReviewWrite from './components/Review/reviewWrite';
 import ReviewPage from './components/Review/reviewPage';
 import ReviewDetail from './components/Review/reviewDetail';
 import ReviewRevise from './components/Review/reviewRevise';
+
 /* 🥑 박선주 import 시작 */
 import DealWrite from './components/Deal/DealWrite';
 import DealPage from './components/Deal/DealPage';
@@ -21,8 +23,6 @@ import DealRevise from './components/Deal/DealRevise';
 /* 🥑 박선주 import 끝 */
 import NotFound from './page/NotFound';
 import {useState, useEffect} from 'react';
-// 🥑 06-15 현재 로그인한 사용자 가져오기
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 import { firestore } from './firebase';
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
@@ -99,6 +99,7 @@ const removeLike = (userId,review) => {
   likeRepository.removeLike(userId, review)
 }
 
+  /* 🥑 파이어스토어에 저장돼 있는 deals 게시글 정보 */
   const [deals, setDeals] = useState([]);
   // 🥑 렌더링 시 콜백 함수 실행
   useEffect(() => {
@@ -119,17 +120,16 @@ const removeLike = (userId,review) => {
         setDeals(dealArray);
       })
   }, []);
+  const { user } = useContext(AuthContext);
 
   return (
     <div className="App">
-
-    
         <Routes>
-          <Route path="/" element={<FirstMain/>}></Route>
+          <Route path="/" element={!user ?<FirstMain/> : <Home/>}></Route>
+          <Route path="/Home" element={<Home/>}></Route>
           <Route path="/Profile" element={< Profile/>}></Route>
           <Route path="/SignIn" element={<SignIn/>}></Route>
           <Route path="/SignUp" element={<SignUp/>}></Route>
-          <Route path="/Home" element={<Home/>}></Route>
           <Route path="/intro" element={<IntroList />}></Route>
           <Route path="/event" element={<EventIntro />}></Route>
           
@@ -141,9 +141,9 @@ const removeLike = (userId,review) => {
 
           {/* 🥑 박선주 route 시작 */}
           <Route path='/deals' element={<DealPage deals={deals}/>} />
-          <Route path='/deals/:createdAt' element={<DealDetail />} />
+          <Route path='/deals/:createdAt' element={<DealDetail deals={deals}/>} />
           <Route path='/deals/write' element={<DealWrite/>} />
-          <Route path='/deals/revise/:id' element={<DealRevise />} />
+          <Route path='/deals/revise/:createdAt' element={<DealRevise />} />
           {/* 🥑 박선주 route 끝 */}
           <Route path="/not-found" element={<NotFound />}></Route>
         </Routes>

@@ -6,24 +6,18 @@ import { GoogleAuthProvider, signInWithPopup,
     signInWithEmailAndPassword,signOut,getAuth
 } from 'firebase/auth';
 import { getStorage } from "firebase/storage";
-
 const firebaseConfig = {
-    //🍎지은 firebase
-    apiKey: "AIzaSyAZwe8-JumYMCPZE6NCHS7QRplQ1VQhCa8",
-    authDomain: "login-97034.firebaseapp.com",
-    databaseURL: "https://login-97034-default-rtdb.firebaseio.com",
-    projectId: "login-97034",
-    storageBucket: "login-97034.appspot.com",
-    messagingSenderId: "737764108580",
-    appId: "1:737764108580:web:aaea951966d9fb3b306bb1"
-   
-    // 준우 firebase
-    // apiKey: "AIzaSyBoX4JqMqLdCoJM7g0EiZor0VcdiqTcDwo",
-    // authDomain: "fir-test-login-85c6c.firebaseapp.com",
-    // projectId: "fir-test-login-85c6c",
-    // storageBucket: "fir-test-login-85c6c.appspot.com",
-    // messagingSenderId: "366758576094",
-    // appId: "1:366758576094:web:ed6d85b8de98363efa674f"
+
+    /*
+    //파이어베이스 인증키랑 지울게요! -지은-
+
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: ""
+    */
 };
 // Initialize Firebase 
 
@@ -69,6 +63,7 @@ const signInWithGoogle = () => signInWithPopup(auth, gprovider);
 const fprovider = new FacebookAuthProvider();
     fprovider.setCustomParameters({'display': 'popup'});
     const signInWithFacebook = () => signInWithPopup(auth, fprovider);
+
 const SignOut = async() => {
     try {
         await signOut(auth)

@@ -1,10 +1,15 @@
 import {  useNavigate ,Outlet } from "react-router-dom";
 import { useState , useEffect} from "react";
+import { SignOut } from "../../firebase";
+import { useContext} from "react";
+import AuthContext from "../context/AuthContext";
+
 import Hamburger from 'hamburger-react'
 import './Nav.css'
 //nav바 
 
 const Nav = () => {
+    const { user } = useContext(AuthContext);
     const [scrolled, setScrolled] = useState(false);
     const [isOpen, setOpen] = useState(false)
     //scroll 30 기준으로 trun fasle 
@@ -53,7 +58,14 @@ const Nav = () => {
     const goDeal = () => {
         navigate("/deals");
     };
-
+    const myProfile = () => {
+        navigate("/profile");
+    }
+    const handleLogout = async () => {
+        await SignOut();
+        alert("로그아웃");
+        navigate("/");
+    };
     return (
         <div>
             <header className={scrolled ? 'fix-container scrolled' : 'fix-container'}>
@@ -69,20 +81,12 @@ const Nav = () => {
                     </ul>
                     <ul className={isOpen ? 'navbar_property active' : 'navbar_property'}>
                         <li>
-                            <a href="#">MyPage</a>
+                            MyPage
                             <ul className="drop_1">
-                                <li><a href="#">내 리뷰</a></li>
-                                <li><a href="#">내 판매글</a></li>
-                                <li><a href="#">내 좋아요</a></li>
+                                <li onClick={myProfile}>{user.displayName}님의 정보</li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="#">Login</a>
-                            <ul class="drop_1">
-                                <li><a href="#">구글 로그인</a></li>
-                                <li><a href="#">페이스북 로그인</a></li>
-                            </ul>
-                        </li>
+                        <li onClick={handleLogout}>Logout</li>
                     </ul>
                     <div className="Hamburger">
                         <Hamburger toggled={isOpen} toggle={setOpen}/>
