@@ -53,6 +53,9 @@ const Nav = () => {
     const goDeal = () => {
         navigate("/deals");
     };
+    const myProfile = () => {
+        navigate("/profile");
+    }
 
     return (
         <div>
@@ -71,9 +74,7 @@ const Nav = () => {
                         <li>
                             <a href="#">MyPage</a>
                             <ul className="drop_1">
-                                <li><a href="#">내 리뷰</a></li>
-                                <li><a href="#">내 판매글</a></li>
-                                <li><a href="#">내 좋아요</a></li>
+                                <li onClick={myProfile}>내 정보</li>
                             </ul>
                         </li>
                         <li>
