@@ -43,7 +43,10 @@ function Login() {
         </p>
 
         
+
+
         <button className="Logout" onClick={Logout}>Logout</button>
+
         <button onClick={SignIn}>로그인</button>
         <button onClick={SignUp}>회원가입</button>
         </header>

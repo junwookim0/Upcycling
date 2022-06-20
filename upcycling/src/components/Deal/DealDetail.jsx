@@ -3,8 +3,10 @@
 // commentWrite 연결
 // dealLike 연결
 // 댓글 개수 세기 해야 됨
+// 06-20 로그인 된 사람 = 작성자일 경우에만 삭제, 수정 버튼 보이도록
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import AuthContext from "../context/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { doc, deleteDoc } from "firebase/firestore";
 import { ref, deleteObject } from "@firebase/storage";
@@ -16,8 +18,8 @@ import CommentWrite from "./CommentWrite";
 import DealLike from "./DealLike";
 
 const DealDetail = () => {
-    /* 유저 정보, 작성 날짜, 작성한 댓글 firestroe에 저장 */
-    const [dComments, setdComments] = useState('');
+    /* 사용자 정보 */
+    const { user } = useContext(AuthContext);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -31,9 +33,10 @@ const DealDetail = () => {
         const ok = window.confirm("정말 이 게시글을 삭제하시겠습니까?");
             if (ok) {
                     //해당하는 게시글 파이어스토어에서 삭제
+                    await deleteDoc(doc(firestore, `/dbDeals/${dealState.id}/dComments/*`));
+
                     await deleteDoc(doc(firestore, `/dbDeals/${dealState.id}`));
                     // 삭제 버튼 누르면 /거래(테이블게시판)로 넘어감
-                    // 06-16 글 삭제할 때 하위 컬렉션(댓글), 참조파일 삭제해야 함
                     deleteObject(deserRef).then(() => {
                         console.log('파일 삭제 완');
                     }).catch((err) => {
@@ -53,7 +56,7 @@ const DealDetail = () => {
             <div className={styles.header}>
                 <div className={styles.userInfo}>
                     <p>프로필 이미지</p>
-                    <h3>닉네임</h3>
+                    <h3>{dealState.creatorName}</h3>
                 </div>
 
                 <div className={styles.searchInput}>
@@ -87,10 +90,17 @@ const DealDetail = () => {
                     <DealLike />
                     <p className={styles.comment}>💌댓글개수</p>
                 </div>
-                <div className={styles.icon_container_right}>
-                    <button onClick={() => onReviseClick(dealState)}>수정</button>
-                    <button onClick={onDeleteClick}>삭제</button>
-                </div>
+                {
+                    dealState.creatorId == user.uid ? (
+                        <div className={styles.icon_container_right}>
+                            <button onClick={() => onReviseClick(dealState)}>수정</button>
+                            <button onClick={onDeleteClick}>삭제</button>
+                        </div>    
+                    ) : (
+                        <>
+                        </>
+                    )
+                }
             </div>
             {/* 댓글 작성 */}
             <div>

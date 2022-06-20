@@ -23,8 +23,6 @@ import DealRevise from './components/Deal/DealRevise';
 /* 🥑 박선주 import 끝 */
 import NotFound from './page/NotFound';
 import {useState, useEffect} from 'react';
-// 🥑 06-15 현재 로그인한 사용자 가져오기
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 import { firestore } from './firebase';
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
@@ -94,6 +92,7 @@ const clickLike = (updatedReview) => {
   setReviews(newReviews)
 }
 
+  /* 🥑 파이어스토어에 저장돼 있는 deals 게시글 정보 */
   const [deals, setDeals] = useState([]);
   // 🥑 렌더링 시 콜백 함수 실행
   useEffect(() => {
@@ -135,9 +134,9 @@ const clickLike = (updatedReview) => {
 
           {/* 🥑 박선주 route 시작 */}
           <Route path='/deals' element={<DealPage deals={deals}/>} />
-          <Route path='/deals/:createdAt' element={<DealDetail />} />
+          <Route path='/deals/:createdAt' element={<DealDetail deals={deals}/>} />
           <Route path='/deals/write' element={<DealWrite/>} />
-          <Route path='/deals/revise/:id' element={<DealRevise />} />
+          <Route path='/deals/revise/:createdAt' element={<DealRevise />} />
           {/* 🥑 박선주 route 끝 */}
           <Route path="/not-found" element={<NotFound />}></Route>
         </Routes>

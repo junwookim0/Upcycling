@@ -1,13 +1,17 @@
 /* 🥑 06-15 댓글 가져오기, 수정, 삭제 */
+// 06-20 사용자 정보
+// 작성자 아이디 = 현재 아이디 같을 때 삭제 수정 버튼 보임
 
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import AuthContext from "../context/AuthContext";
 import { useLocation } from "react-router-dom";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { firestore } from "../../firebase";
 
-import styles from './CSS/dealDetail.module.css'
+const CommentItem = ({ commentObj }) => {
+    /* 사용자 정보 */
+    const { user } = useContext(AuthContext);
 
-const CommentItem = ({commentObj}) => {
     // editing 모드인지 아닌지
     const [editing, setEditing] = useState(false);
     // 업데이트
@@ -59,11 +63,19 @@ const CommentItem = ({commentObj}) => {
                         </>
                     ) : (
                         <>
-                            <span>user name</span>
-                            <span>date</span>
+                            <span>{user.creatorName}</span>
+                            <span>작성날짜 어케함</span>
                             <p>{commentObj.content}</p>
-                            <button onClick={onDeleteClick}>삭제</button>
-                            <button onClick={toggleEditing}>수정</button>
+                            {
+                                commentObj.creatorId == user.uid ? (
+                                    <>
+                                        <button onClick={onDeleteClick}>삭제</button>
+                                        <button onClick={toggleEditing}>수정</button>
+                                    </>
+                                ) : (
+                                    <></>
+                                )
+                            }
                         </>
                     )
                 }

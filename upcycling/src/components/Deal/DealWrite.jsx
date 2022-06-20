@@ -1,6 +1,8 @@
 /* 🥑 거래글 작성! */
+// 06-20 사용자 정보
 
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import AuthContext from "../context/AuthContext";
 import { firestore, storage } from "../../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadString, getDownloadURL } from "@firebase/storage";
@@ -8,6 +10,10 @@ import { v4 as uuidv4 } from "uuid"; // 사진 랜덤 아이디
 import { useNavigate } from "react-router-dom";
 
 const DealWrite = () => {
+
+    /* 사용자 정보 */
+    const { user } = useContext(AuthContext);
+
     /* 작성한 제목, 카테고리, 가격, 내용 firestore에 저장 */
     const [dCategory, setDCategory] = useState(''); // 카테고리
     const [dTitle, setDTitle] = useState(''); // 제목
@@ -24,17 +30,17 @@ const DealWrite = () => {
 
     /* 사용 함수 */
     // submit
-    const onSubmit = async(e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
 
         let attachmentUrl = '';
-        if(attachment !== '') {
+        if (attachment !== '') {
             // 참조 경로 생성
-            const attachmentRef = ref(storage, `images/${uuidv4()}`); // 사용자 아이디 들어오면 중간에 넣을 거
+            const attachmentRef = ref(storage, `images/${user.uid}/${uuidv4()}`); // 사용자 아이디 들어오면 중간에 넣을 거
             // 참조 경로로 파일 업로드
             // uploadiString 써야지 똑바로 들어감
             const response = await uploadString(attachmentRef, attachment, "data_url");
-            console.log(response)
+            console.log(response);
             attachmentUrl = await getDownloadURL(response.ref);    
         };
 
@@ -48,8 +54,8 @@ const DealWrite = () => {
             price: dPrice, // 가격
             content: dContent, // 내용
             createdAt: Date.now(), // 생성날짜
-            //creatorId: userObj.id,
-            //creatorName: userObj.displayName, // 생성한 사람 닉 표시
+            creatorId: user.uid,
+            creatorName: user.displayName, // 생성한 사람 닉 표시
             attachmentUrl: attachmentUrl
         };
 
