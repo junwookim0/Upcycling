@@ -16,4 +16,10 @@
 .list {
     display: flex;
     list-style: none;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.list_item {
+    
 }

@@ -34,17 +34,29 @@ const ReviewPage = ({reviews}) => {
                             }}>글쓰기
                     </button>
                 </div>
+                <button className={styles.button_write}
+                        onClick={()=>{
+                            navigator('/reviews/write')
+                        }}>글쓰기
+                </button>
+            </div>
 
-                <ul className={styles.list}>
-                    {
-                        onReviews.map(review => (
-                        <li key={review.id}>
-                            <ReviewItem review={review}/>
-                        </li>))
-                    }
-                </ul>
-            </section>
+            <ul className={styles.list}>
+                {
+                    onReviews.map(review => (
+                    <li key={review.id}
+                    className={styles.list_item}
+                    >
+                        <ReviewItem review={review}/>
+                    </li>))
+                }
+            </ul>
+        </section>
+
+
+                
         </div>
+
     );
 };
 

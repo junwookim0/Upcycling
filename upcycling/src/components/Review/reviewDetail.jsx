@@ -8,18 +8,20 @@ import Like from './like';
 //🍎 reviewPage에서 item의 이미지를 클릭했을 때 이동하는 컴포넌트
 //Reivew의 전체적인 내용을 출력
 
-const ReviewDetail = ({deleteReview, reviews, createAndUpdateComment, userId, deleteComment, clickLike}) => {
+const ReviewDetail = ({ deleteReview, reviewRepository, reviews, createAndUpdateComment, userId, deleteComment, clickLike, removeLike}) => {
     const location = useLocation();
     const navigation = useNavigate();
     const [reviewState] = useState(location.state.review)
     const [user] = useState(userId)
     const [text, setText] = useState('')
 
+
     //🍎firebase에 저장된 코멘트 받아오기
-    let currentComments = Object.hasOwn(reviews[reviewState.id],"comment") ?Object.values(reviews[reviewState.id]["comment"]) : undefined
+    
     const [comments,setComments] = useState([])
 
     useEffect(()=> {
+        let currentComments = Object.hasOwn(reviews[reviewState.id],"comment") ?Object.values(reviews[reviewState.id]["comment"]) : undefined
         if(currentComments !== null) {
             setComments(currentComments)
         }else if (currentComments === undefined) {
@@ -27,7 +29,7 @@ const ReviewDetail = ({deleteReview, reviews, createAndUpdateComment, userId, de
         }
     },[reviews])
     
-
+    
 //🍎Reivew수정하기
     const goRevise = (review) =>{
         navigation(`/review/revise/${review.id}`, {state : {review}})
@@ -104,7 +106,7 @@ const ReviewDetail = ({deleteReview, reviews, createAndUpdateComment, userId, de
             <hr />
             <div className={styles.icon_container}>
                 <div className={styles.icon_container_left}>
-                <Like review={reviewState} userId={user} clickLike={clickLike}/>
+                <Like reviewRepository={reviewRepository} review={reviewState} userId={user} clickLike={clickLike} removeLike={removeLike}/>
                     <button className={styles.comment}>💌</button>
                 </div>
                 <div className={styles.icon_container_right}>

@@ -7,7 +7,11 @@ import styles from './CSS/reviewItem.module.css'
 const ReviewItem = ({review}) => {
     const navigate = useNavigate()
 
+    if(review.likes !==undefined) {
 
+        console.log(Object.keys(review.likes))
+    }
+    
 
     return (
         <section className={styles.container}>
@@ -20,6 +24,8 @@ const ReviewItem = ({review}) => {
             <p>{review.nickname}</p>
             <div>
                 <span>👍</span>
+                {/* {Object.keys(review.likes)===undefined? (<p>0</p>):
+                (<p>ㅠㅠ</p>)} */}
                 {/* <p>{review.likes.length}</p> */}
             </div>
         </section>
