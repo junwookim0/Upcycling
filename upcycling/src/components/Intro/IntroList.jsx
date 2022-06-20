@@ -149,22 +149,22 @@ const IntroList = () => {
                     <h1>다시에서 우리는 아래와 같은 활동을 합니다.</h1>
                 <ul className='cInnerContent_31'>
                     <li className='cInnerContent_list'>
-                    <i class="fab fa-envira"></i>
+                    <i className="fab fa-envira"></i>
                         <h3>아껴쓰기</h3>
                         <p>내용1</p>
                     </li>
                     <li className='cInnerContent_list'>
-                    <i class="fas fa-oil-can"></i>
+                    <i className="fas fa-oil-can"></i>
                         <h3>바꿔쓰기</h3>
                         <p>내용1</p>
                     </li>
                     <li className='cInnerContent_list'>
-                    <i class="fas fa-exchange-alt"></i>
+                    <i className="fas fa-exchange-alt"></i>
                         <h3>나눠쓰기</h3>
                         <p>내용1</p>
                     </li>
                     <li className='cInnerContent_list'>
-                    <i class="fas fa-recycle"></i>
+                    <i className="fas fa-recycle"></i>
                         <h3>다시쓰기</h3>
                         <p>내용1</p>
                     </li>

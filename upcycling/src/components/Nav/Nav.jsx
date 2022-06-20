@@ -79,7 +79,7 @@ const Nav = () => {
                         </li>
                         <li>
                             <a href="#">Login</a>
-                            <ul class="drop_1">
+                            <ul className="drop_1">
                                 <li><a href="#">구글 로그인</a></li>
                                 <li><a href="#">페이스북 로그인</a></li>
                             </ul>
