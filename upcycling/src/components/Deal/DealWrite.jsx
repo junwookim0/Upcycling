@@ -1,18 +1,29 @@
 /* 🥑 거래글 작성! */
+<<<<<<< HEAD
 // 06-15 사진 업로드 구현 중
+=======
+
+>>>>>>> 3b4cfa4754891df9edeefd177a46621cbdc79bc5
 import React, { useState } from "react";
 import { firestore, storage } from "../../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadString, getDownloadURL } from "@firebase/storage";
 import { v4 as uuidv4 } from "uuid"; // 사진 랜덤 아이디
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import { useEffect } from "react";
 
 const DealWrite = ({userObj}) => {
+=======
+
+const DealWrite = () => {
+>>>>>>> 3b4cfa4754891df9edeefd177a46621cbdc79bc5
     /* 작성한 제목, 카테고리, 가격, 내용 firestore에 저장 */
     const [dCategory, setDCategory] = useState(''); // 카테고리
     const [dTitle, setDTitle] = useState(''); // 제목
-    const [dHashtag, setDHashtag] = useState(''); // 해시태그
+    const [dHashtag1, setDHashtag1] = useState(''); // 해시태그
+    const [dHashtag2, setDHashtag2] = useState(''); // 해시태그
+    const [dHashtag3, setDHashtag3] = useState(''); // 해시태그
     const [dPrice, setDPrice] = useState(''); // 가격
     const [dContent, setDContent] = useState(''); // 내용
     
@@ -41,13 +52,19 @@ const DealWrite = ({userObj}) => {
         const dealObj = {
             category: dCategory, // 카테고리
             title: dTitle, // 제목 
-            hashtag: dHashtag,
+            hashtag1: dHashtag1,
+            hashtag2: dHashtag2,
+            hashtag3: dHashtag3,
             price: dPrice, // 가격
             content: dContent, // 내용
             createdAt: Date.now(), // 생성날짜
             //creatorId: userObj.id,
             //creatorName: userObj.displayName, // 생성한 사람 닉 표시
+<<<<<<< HEAD
             attachmentUrl
+=======
+            attachmentUrl: attachmentUrl
+>>>>>>> 3b4cfa4754891df9edeefd177a46621cbdc79bc5
         };
 
         await addDoc(collection(firestore, "dbDeals"), dealObj);
@@ -55,7 +72,9 @@ const DealWrite = ({userObj}) => {
         // state를 비워서 form 비우기
         setDCategory("");
         setDTitle("");
-        setDHashtag("");
+        setDHashtag1("");
+        setDHashtag2("");
+        setDHashtag3("");
         setDPrice("");
         setDContent("");
 
@@ -72,9 +91,13 @@ const DealWrite = ({userObj}) => {
             setDCategory(value);
         } else if(name === 'title') {
             setDTitle(value);
-        } else if(name === 'hashtag') {
-            setDHashtag(value);
-        } else if(name === 'price') {
+        } else if(name === 'hashtag1') {
+            setDHashtag1(value);
+        } else if(name === 'hashtag2') {
+            setDHashtag2(value);
+        }else if(name === 'hashtag3') {
+            setDHashtag3(value);
+        }else if(name === 'price') {
             setDPrice(value);
         } else if(name === 'content') {
             setDContent(value);
@@ -121,12 +144,30 @@ const DealWrite = ({userObj}) => {
                 type="text" 
                 maxLength={80} /> <br />
 
-                {/* 해시태그 작성 */}
+                {/* 해시태그1 작성 */}
                 <label>해시태그</label>
                 <input
-                name="hashtag"
+                name="hashtag1"
                 onChange={onChange}
-                value={dHashtag}
+                value={dHashtag1}
+                type="text" 
+                maxLength={80} /> <br />
+                
+                {/* 해시태그2 작성 */}
+                <label>해시태그</label>
+                <input
+                name="hashtag2"
+                onChange={onChange}
+                value={dHashtag2}
+                type="text" 
+                maxLength={80} /> <br />
+
+                {/* 해시태그3 작성 */}
+                <label>해시태그</label>
+                <input
+                name="hashtag3"
+                onChange={onChange}
+                value={dHashtag3}
                 type="text" 
                 maxLength={80} /> <br />
 
@@ -163,7 +204,7 @@ const DealWrite = ({userObj}) => {
                         width="50px" height="50px" />
 
                         <button
-                        onClick={onClearAttatchment}>Clear</button>
+                        onClick={onClearAttatchment}>첨부 파일 삭제</button>
                     </div>
                 )}
             </form>

@@ -3,6 +3,8 @@ import './firstMain.css';
 
 const firstpagelogo = () => {
    // var lightbox = new SimpleLightbox('.gallery a', { /* options */ });
+
+
     
     return (
         <div id="portfolio">   
