@@ -7,6 +7,7 @@ const Signup = () => {
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
     const [error, seterror] = useState("");
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (password !== password2) {
