@@ -50,6 +50,9 @@ const IntroList = () => {
     return (
     <div>
         <Nav/>
+            <video autoPlay muted loop className="introVideo">
+                <source src="../../video/file.mp4" type="video/mp4"/>
+            </video>
         <div className="cInnerContent">
             {/*1단 나누기 */}
             <div className="cInnerContent_1">
