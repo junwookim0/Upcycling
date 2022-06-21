@@ -75,7 +75,7 @@ const Nav = () => {
                     </div>
                     <ul className={isOpen ? 'navbar_menu active' : 'navbar_menu'}>
                         <li onClick={goHome}>Home</li>
-                        <li onClick={goContents}>contents</li>
+                        <li onClick={goContents}>Contents</li>
                         <li onClick={goEvent}>Event</li>
                         <li onClick={goReview}>Review</li>
                         <li onClick={goDeal}>Sale</li>
