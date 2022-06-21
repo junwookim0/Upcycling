@@ -36,13 +36,9 @@ const ReviewPage = ({reviews}) => {
                             }}>글쓰기
                     </button>
                 </div>
-                <button className={styles.button_write}
-                        onClick={()=>{
-                            navigator('/reviews/write')
-                        }}>글쓰기
-                </button>
+               
 
-            <ul className={styles.list}>
+              <ul className={styles.list}>
                 {
                     onReviews.map(review => (
                     <li key={review.id}
@@ -51,10 +47,9 @@ const ReviewPage = ({reviews}) => {
                         <ReviewItem review={review}/>
                     </li>))
                 }
-            </ul>
+              </ul>
             </section>
         </div>
-
     );
 };
 

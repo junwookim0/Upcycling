@@ -29,52 +29,6 @@ const DealWrite = () => {
     const navigate = useNavigate();
 
     /* 사용 함수 */
-    // submit
-    const onSubmit = async (e) => {
-        e.preventDefault();
-
-        let attachmentUrl = '';
-        if (attachment !== '') {
-            // 참조 경로 생성
-            const attachmentRef = ref(storage, `images/${user.uid}/${uuidv4()}`); // 사용자 아이디 들어오면 중간에 넣을 거
-            // 참조 경로로 파일 업로드
-            // uploadiString 써야지 똑바로 들어감
-            const response = await uploadString(attachmentRef, attachment, "data_url");
-            console.log(response);
-            attachmentUrl = await getDownloadURL(response.ref);    
-        };
-
-        // submit하면 추가할 데이터
-        const dealObj = {
-            category: dCategory, // 카테고리
-            title: dTitle, // 제목 
-            hashtag1: dHashtag1,
-            hashtag2: dHashtag2,
-            hashtag3: dHashtag3,
-            price: dPrice, // 가격
-            content: dContent, // 내용
-            createdAt: Date.now(), // 생성날짜
-            creatorId: user.uid,
-            creatorName: user.displayName, // 생성한 사람 닉 표시
-            attachmentUrl: attachmentUrl
-        };
-
-        await addDoc(collection(firestore, "dbDeals"), dealObj);
-
-        // state를 비워서 form 비우기
-        setDCategory("");
-        setDTitle("");
-        setDHashtag1("");
-        setDHashtag2("");
-        setDHashtag3("");
-        setDPrice("");
-        setDContent("");
-
-        // state를 비워서 파일 미리보기 img src 비우기
-        setAttachment("");
-
-        navigate('/deals', {dealObj})
-    }; // 파이어베이스 저장 완
 
     const onChange = (e) => {
         const {target: {name, value}} = e;
@@ -98,7 +52,6 @@ const DealWrite = () => {
 
     const onFileChange = (e) => {
         const {target: {files}} = e;
-        // 06-16 한 번에 한 개의 파일 입력하도록 했는데 여러 장 가능하게끔 수정,,, 어케 함
         const theFile = files[0];
         // 파일 이름 읽기
         const reader = new FileReader();
@@ -112,6 +65,57 @@ const DealWrite = () => {
     // 이미지 첨부 취소
     const onClearAttatchment = () => setAttachment('');
 
+    // submit
+    const onSubmit = async (e) => {
+        e.preventDefault();
+    
+        let attachmentUrl = '';
+        if (attachment !== '') {
+            // 참조 경로 생성
+            const attachmentRef = ref(storage, `images/${user.uid}/${uuidv4()}`); // 사용자 아이디 들어오면 중간에 넣을 거
+            // 참조 경로로 파일 업로드
+            // uploadiString 써야지 똑바로 들어감
+            const response = await uploadString(attachmentRef, attachment, "data_url");
+            console.log(response);
+            attachmentUrl = await getDownloadURL(response.ref);    
+        };
+    
+        // submit하면 추가할 데이터
+        const dealObj = {
+            category: dCategory, // 카테고리
+            title: dTitle, // 제목 
+            hashtag1: dHashtag1,
+            hashtag2: dHashtag2,
+            hashtag3: dHashtag3,
+            price: dPrice, // 가격
+            content: dContent, // 내용
+            createdAt: Date.now(), // 생성날짜
+            creatorId: user.uid,
+            creatorName: user.displayName, // 생성한 사람 닉 표시
+            attachmentUrl: attachmentUrl,
+            // 06-21 좋아요
+            likeCount: 0,
+            likeUser: []
+        };
+    
+        await addDoc(collection(firestore, "dbDeals"), dealObj);
+    
+        // state를 비워서 form 비우기
+        setDCategory("");
+        setDTitle("");
+        setDHashtag1("");
+        setDHashtag2("");
+        setDHashtag3("");
+        setDPrice("");
+        setDContent("");
+    
+        // state를 비워서 파일 미리보기 img src 비우기
+        setAttachment("");
+    
+        navigate('/deals', {dealObj})
+    }; // 파이어베이스 저장 완
+    
+
     return (
         <div>
             <form
@@ -119,12 +123,12 @@ const DealWrite = () => {
                 {/* 카테고리 작성 */}
                 <label>카테고리</label>
                 <select>
-                    <option name="category" value={dCategory}>의류</option>
-                    <option name="category" value={dCategory}>잡화</option>
-                    <option name="category" value={dCategory}>뷰티/미용</option>
-                    <option name="category" value={dCategory}>반려동물</option>
-                    <option name="category" value={dCategory}>교육/체험 키트</option>
-                    <option name="category" value={dCategory}>기타 중고물품</option>
+                    <option name="category" value="clothes" onChange={onChange}>의류</option>
+                    <option name="category" value="goods" onChange={onChange}>잡화</option>
+                    <option name="category" value="beuty" onChange={onChange}>뷰티/미용</option>
+                    <option name="category" value="pet" onChange={onChange}>반려동물</option>
+                    <option name="category" value="education" onChange={onChange}>교육/체험 키트</option>
+                    <option name="category" value="etc" onChange={onChange}>기타 중고물품</option>
                 </select> <br />
 
                 {/* 제목 작성 */}
