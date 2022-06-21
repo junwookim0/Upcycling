@@ -1,7 +1,7 @@
 import './App.css';
 import { Route, Routes, useNavigate , Navigate} from "react-router-dom";
-import IntroList from './components/Intro/IntroList';
-import Home from './page/HomePage';
+import Home from './components/Intro/IntroList';
+import Contents from './page/Contents';
 import FirstMain from './page/FirstMain/FirstMain';
 import EventIntro from './components/Intro/EventIntro';
 import SignIn from './components/login/SignIn';
@@ -41,10 +41,10 @@ useEffect(()=> {
   })
   return () => stopSync();
 },[userId, reviewRepository])
-
+/*
 //🍎지은 쓰고있는 userId지우지마세요~!!
 // 선주 저 오류 떠서 잠깐 주석처리 해놨어용 !!! 
-/* useEffect(() => {
+ useEffect(() => {
   const auth = getAuth();
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -127,11 +127,11 @@ const removeLike = (userId,review) => {
     <div className="App">
         <Routes>
           <Route path="/" element={!user ?<FirstMain/> : <Home/>}></Route>
-          <Route path="/Home" element={<Home/>}></Route>
+          <Route path="/home" element={<Home />}></Route>
+          <Route path="/contents" element={<Contents/>}></Route>
           <Route path="/Profile" element={< Profile/>}></Route>
           <Route path="/SignIn" element={<SignIn/>}></Route>
           <Route path="/SignUp" element={<SignUp/>}></Route>
-          <Route path="/intro" element={<IntroList />}></Route>
           <Route path="/event" element={<EventIntro />}></Route>
           
           {/* 🍎윤지은 router */}

@@ -80,7 +80,6 @@
         right: 30px;
         top: 24%;
         display: block;
-        border: solid black;
     }
     .navbar_menu.active,
     .navbar_property.active{

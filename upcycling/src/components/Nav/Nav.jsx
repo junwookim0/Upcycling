@@ -46,8 +46,8 @@ const Nav = () => {
     const goHome = () => {
         navigate("/home");
     };
-    const goIntro = () => {
-        navigate("/intro");
+    const goContents = () => {
+        navigate("/contents");
     };
     const goEvent = () => {
         navigate("/event");
@@ -74,7 +74,8 @@ const Nav = () => {
                         <span className="logo_text">: UPTOWN</span>
                     </div>
                     <ul className={isOpen ? 'navbar_menu active' : 'navbar_menu'}>
-                        <li onClick={goIntro}>Information</li>
+                        <li onClick={goHome}>Home</li>
+                        <li onClick={goContents}>Contents</li>
                         <li onClick={goEvent}>Event</li>
                         <li onClick={goReview}>Review</li>
                         <li onClick={goDeal}>Sale</li>
@@ -91,7 +92,6 @@ const Nav = () => {
                     <div className="Hamburger">
                         <Hamburger toggled={isOpen} toggle={setOpen}/>
                     </div>
-                
                 </nav>
             </header>
             <main>
@@ -100,5 +100,4 @@ const Nav = () => {
     </div>
     );
 };
-
 export default Nav;
