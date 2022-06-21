@@ -8,8 +8,6 @@ import { useNavigate } from "react-router-dom";
 const DealItem = ({deal}) => {
     /* 사용자 정보 */
     const { user } = useContext(AuthContext);
-
-    // title 누르면 게시글 내용 볼 수 있도록
     const navigate = useNavigate();
 
     // dealDetail로 이동
@@ -24,7 +22,15 @@ const DealItem = ({deal}) => {
             src={deal.attachmentUrl}
             onClick={onClick} />
             <h3>{deal.title}</h3>
-            <p>{deal.price}</p>
+            {/* 작성자가 가격 입력했으면 작성된 가격 뜸
+                작성자가 가격 입력 안 했으면 나눔🧡 뜸 */}
+            {
+                deal.price == '' ? (
+                    <p>나눔🧡</p>
+                ) : (
+                    <p>{deal.price}원</p>
+                )
+            }
             <p>{user.displayName}</p>
         </div>
     );

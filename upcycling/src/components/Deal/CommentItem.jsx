@@ -63,7 +63,7 @@ const CommentItem = ({ commentObj }) => {
                         </>
                     ) : (
                         <>
-                            <span>{user.creatorName}</span>
+                            <span>{commentObj.creatorName}</span>
                             <span>작성날짜 어케함</span>
                             <p>{commentObj.content}</p>
                             {

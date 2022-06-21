@@ -43,7 +43,8 @@ useEffect(()=> {
 },[userId, reviewRepository])
 
 //🍎지은 쓰고있는 userId지우지마세요~!!
-useEffect(() => {
+// 선주 저 오류 떠서 잠깐 주석처리 해놨어용 !!! 
+/* useEffect(() => {
   const auth = getAuth();
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -51,7 +52,7 @@ useEffect(() => {
     }
   });
 }, [userId])
-
+*/
 
 //🍎지은 : create & update review 
 const createAndUpdateReview = (review,userId) => {
