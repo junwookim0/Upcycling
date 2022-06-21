@@ -39,7 +39,6 @@ const ReviewPage = ({reviews}) => {
                             navigator('/reviews/write')
                         }}>글쓰기
                 </button>
-            </div>
 
             <ul className={styles.list}>
                 {
@@ -51,10 +50,7 @@ const ReviewPage = ({reviews}) => {
                     </li>))
                 }
             </ul>
-        </section>
-
-
-                
+            </section>
         </div>
 
     );
