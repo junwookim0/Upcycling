@@ -50,9 +50,15 @@ const IntroList = () => {
     return (
     <div>
         <Nav/>
+        <div className='video_box'>
             <video autoPlay muted loop className="introVideo">
                 <source src="../../video/file.mp4" type="video/mp4"/>
             </video>
+            <div className='video_text'>
+                <h2 className='video_text_h2'>Hello! We are UPTOWN</h2>
+                <h3>업사이클링을 실천하는 여러분의 이야기를 들려주세요!</h3>
+            </div>
+        </div>
         <div className="cInnerContent">
             {/*1단 나누기 */}
             <div className="cInnerContent_1">
@@ -73,7 +79,7 @@ const IntroList = () => {
                             </p>
                     </div>
                     <div className="cInnerContent_1_right">
-                        <img className="intro01"src="../../images/intro01(수정).PNG"></img>
+                        <img className="intro01"src="../../images/intro01(수정).PNG" alt='intro01'></img>
                     </div>
             </div>
              {/*2단 나누기 */}
