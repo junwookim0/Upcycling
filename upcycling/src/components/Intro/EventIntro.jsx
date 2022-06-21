@@ -4,16 +4,14 @@ import {useState} from 'react';
 import Nav from '../Nav/Nav';
 import './EventIntro.css';
 import {NavLink} from "react-router-dom";
-
+import SubMainBanner from '../banner/SubMainBannerEvent';
 
 const EventIntro = () => {
-   
-    
-
 
     return (
         <div>
             <Nav/>
+            <SubMainBanner/>
             <div className="post">
                 
                 <h1>Upcycling EVENT</h1>

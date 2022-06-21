@@ -4,6 +4,7 @@ import styles from './CSS/reviewPage.module.css'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Nav from '../Nav/Nav';
+import SubMainBanner from '../banner/SubMainBannerReviews';
 
 
 //🍎전체 Review를 보여주는 페이지
@@ -21,6 +22,7 @@ const ReviewPage = ({reviews}) => {
     return (
         <div>
             <Nav/>
+            <SubMainBanner/>
             <section className={styles.reviewPage}>
                 <h1>Reviews</h1>
                 <div className={styles.header}>

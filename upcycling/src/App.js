@@ -1,7 +1,7 @@
 import './App.css';
 import { Route, Routes, useNavigate , Navigate} from "react-router-dom";
 import Home from './components/Intro/IntroList';
-import Contents from './page/HomePage';
+import Contents from './page/Contents';
 import FirstMain from './page/FirstMain/FirstMain';
 import EventIntro from './components/Intro/EventIntro';
 import SignIn from './components/login/SignIn';
