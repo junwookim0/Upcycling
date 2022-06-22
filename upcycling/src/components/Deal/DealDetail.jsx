@@ -32,9 +32,6 @@ const DealDetail = () => {
     const onDeleteClick = async () => {
         const ok = window.confirm("정말 이 게시글을 삭제하시겠습니까?");
             if (ok) {
-                    //해당하는 게시글 파이어스토어에서 삭제
-                    await deleteDoc(doc(firestore, `/dbDeals/${dealState.id}/dComments/*`));
-
                     await deleteDoc(doc(firestore, `/dbDeals/${dealState.id}`));
                     // 삭제 버튼 누르면 /거래(테이블게시판)로 넘어감
                     deleteObject(deserRef).then(() => {
@@ -66,7 +63,6 @@ const DealDetail = () => {
             </div>
 
             <div className={styles.content}>
-                <p>이미지</p>
                 <div className={styles.container}>
                     <select className="" id="">
                         <option value="">숨기기</option>
@@ -87,7 +83,8 @@ const DealDetail = () => {
             <div className={styles.icon_container}>
                 <div className={styles.icon_container_left}>
                     {/* 좋아요 */}
-                    <DealLike />
+                    <DealLike 
+                    dealState={dealState} />
                     <p className={styles.comment}>💌댓글개수</p>
                 </div>
                 {
