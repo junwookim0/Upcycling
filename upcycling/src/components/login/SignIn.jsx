@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { signIn , signInWithGoogle, signInWithFacebook} from "../../firebase";
-import { useNavigate , Navigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import './SignIn.css';
 
-const Login = () => {
+const SignIn = () => {
 
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
@@ -11,12 +12,15 @@ const Login = () => {
 
         const handleGoolge = () => {
             signInWithGoogle();
-            <Navigate replace to="/home"/>
+            navigate("/home");
         };
         const handleFacebook = () => {
             signInWithFacebook();
-            
+            navigate("/home");
         };
+        const goSignUp = () => {
+            navigate("/signup");
+        }
 
         const handleSubmit = async (e) => {
             e.preventDefault();
@@ -29,29 +33,43 @@ const Login = () => {
         };
         
         return (
-            <div>
-                {error ? <div>{error}</div> : null}
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        name="email"
-                        value={email}
-                        placeholder="Your Email"
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        value={password}
-                        placeholder="Your Password"
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <input type="submit" value="submit" />
-                </form>
-                <button onClick={handleGoolge}>구글 로그인</button>
-                <button onClick={handleFacebook}>페이스북 로그인</button>
+            <div className="signin_box">
+                <div className="div_signin">
+                    {error ? <div>{error}</div> : null}
+                    <form onSubmit={handleSubmit} className="input_signin">
+                        <h1>로그인</h1>
+                        <input
+                            className="signin_id"
+                            type="text"
+                            name="email"
+                            value={email}
+                            placeholder="Your Email"
+                            required
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <input
+                            className="signin_password"
+                            type="password"
+                            name="password"
+                            value={password}
+                            placeholder="Your Password"
+                            required
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <div className="social-btns">
+                            <input className="signin_submit" type="submit" value="UPTOWN 로그인" />
+                            <input className="signin_button" type="button" value="회원가입" onClick={goSignUp} />
+                        </div>
+                        
+                    </form>
+                    <div className="social-btns">
+                        <button className="google" onClick={handleGoolge}><i className="fab fa-google fa-lg"></i></button>
+                        <button className="facebook" onClick={handleFacebook}><i className="fab fa-facebook-f fa-lg"></i></button>
+                        <button className="github" onClick={handleFacebook}><i className="fab fa-github fa-lg"></i></button>
+                    </div>
+                </div>
             </div>
         );
         
 };
-export default Login;
+export default SignIn;

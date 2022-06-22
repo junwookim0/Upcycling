@@ -1,55 +1,41 @@
-import { auth } from '../../firebase';
-import { signOut } from 'firebase/auth';
-import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useState , useEffect} from "react";
+
 import './Login.css'
 
 
 function Login() {
     
-    const [user, setUser] = useState(null);
     const navigate = useNavigate();
+    const [scrolled, setScrolled] = useState(false);
 
-
+    useEffect(()=>{
+        const handleScroll = ()=>{
+            if(!scrolled && window.scrollY >30){
+                setScrolled(true);
+            }else if(scrolled && window.scrollY <=30){
+                setScrolled(false);
+            }
+        };
+        window.addEventListener('scroll',handleScroll);
+        return()=>{
+            window.removeEventListener('scroll', handleScroll);
+        };
+    },[scrolled]);
     function SignIn() {
             navigate("/SignIn");
         };
 
-    function SignUp() {
-        navigate("/SignUp");
-    };
-
-    function Logout() {
-        signOut(auth).then(() => {
-            setUser(null);
-            navigate("/");
-        }).catch((err) => {
-            console.log(err);
-        });
-    }
-        
     return (
-        <div className="App">
-        <header className="Login_Container">
-            
-        <p>
-            {user ? user.displayName : null}
-        </p>
-        <p>
-            {user ? user.email : null}
-        </p>
-        <p>
-            {user ? <img src={user.photoURL} alt="userphoto"/>  : null}
-        </p>
-
-        
-
-
-        <button className="Logout" onClick={Logout}>Logout</button>
-
-        <button onClick={SignIn}>로그인</button>
-        <button onClick={SignUp}>회원가입</button>
-        </header>
+        <div className={scrolled ? 'first_nav_div scrolled' : 'first_nav_div'}>
+            <header className="first_nav__Container"> 
+                <div className="first_nav__logo">
+                    <span className="first_nav_text">: UPTOWN</span>
+                </div>
+                <div className="first_nav_loginbtn">
+                    <button onClick={SignIn}>로그인</button>
+                </div>
+            </header>
         </div>
     );
 }

@@ -28,7 +28,7 @@ import { firestore } from './firebase';
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 
 function App({reviewRepository, commentRepository, imageUploader, likeRepository}) {
-  
+  const { user } = useContext(AuthContext);
   //🍎 /home으로부터 받아온 user의 uid값
   const [userId, setUserId] = useState(null)
   const [reviews, setReviews] = useState([])
@@ -121,13 +121,13 @@ const removeLike = (userId,review) => {
         setDeals(dealArray);
       })
   }, []);
-  const { user } = useContext(AuthContext);
+  
 
   return (
     <div className="App">
         <Routes>
           <Route path="/" element={!user ?<FirstMain/> : <Home/>}></Route>
-          <Route path="/home" element={<Home />}></Route>
+          <Route path="/home" element={user ? <Home />: <SignIn/>}></Route>
           <Route path="/contents" element={<Contents/>}></Route>
           <Route path="/Profile" element={< Profile/>}></Route>
           <Route path="/SignIn" element={<SignIn/>}></Route>

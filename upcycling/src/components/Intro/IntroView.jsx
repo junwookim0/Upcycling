@@ -34,7 +34,7 @@ const IntroView = () => {
         <div>
             <header className="container">
                 <h2 className="container__headline"> 
-                <p>Upgrade + Recycling</p>
+                <div>Upgrade + Recycling</div>
                 <a href='#hero__content'>클릭</a>
                 </h2>
             </header>

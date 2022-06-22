@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import { signUp } from "../../firebase";
+import './signup.css';
 
 const Signup = () => {
     const [email, setEmail] = useState("");
@@ -28,6 +29,7 @@ const Signup = () => {
                     case 'auth/email-already-in-use':
                         seterror('이미 가입되어 있는 계정입니다');
                         break;
+                        default:
                 }
             }
             else {
@@ -40,40 +42,40 @@ const Signup = () => {
         
     };
     return (
-        <div>
-            <h2>Sign Up</h2>
-            <div>
-                {error ? <div>{error}</div> : null}
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="email"
-                        name="email"
-                        value={email}
-                        placeholder="Your Email"
-                        required
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        value={password}
-                        placeholder="Your Password"
-                        required
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <input
-                        type="password"
-                        name="password2"
-                        value={password2}
-                        placeholder="Your Password"
-                        required
-                        onChange={(e) => setPassword2(e.target.value)}
-                    />
-                    <button type="submit">Submit</button>
-                </form>
-                <p>already registered? <Link to="/login">Login</Link></p>
+        <div className="signup_box">
+            <div className="div_signup">
+                    {error ? <div>{error}</div> : null}
+                    <form onSubmit={handleSubmit} className="input_signup">
+                    <h1>Sign Up</h1>
+                        <input
+                            type="email"
+                            name="email"
+                            value={email}
+                            placeholder="Your Email"
+                            required
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <input
+                            type="password"
+                            name="password"
+                            value={password}
+                            placeholder="Your Password"
+                            required
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <input
+                            type="password"
+                            name="password2"
+                            value={password2}
+                            placeholder="Your Reconfirm Password"
+                            required
+                            onChange={(e) => setPassword2(e.target.value)}
+                        />
+                        <input className="signin_submit" type="submit" value="회원가입"></input>
+                    </form>
+                    <p className="login-link">already registered? <Link to="/signin">Login</Link></p>
             </div>
         </div>
     );
-    };
+};
 export default Signup;

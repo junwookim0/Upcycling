@@ -1,16 +1,40 @@
-.Login_Container {
-    display: grid;
+.first_nav_div{
+    background-color:transparent;
+    list-style: none;
+    color: white;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    width: 100%;
 }
-.Login_Container Button{
-    width: 250px;
-    height: 50px;
+.first_nav_div.scrolled .first_nav__Container {
+    color: black;
+    transition: height 0.3s ease;
 }
-.googleLogin{
-    
+.first_nav_div.scrolled .first_nav__Container button{
+    color: black;
+    transition: height 0.3s ease;
 }
-.FacebookLogin{
-    
+.first_nav__Container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 28px;
+    margin-left: 35px;
+    margin-right: 35px;
 }
-.Logout{
-    
+.first_nav_loginbtn button{
+    width: 82px;
+    height: 35px;
+    background-color: transparent;
+    font-size: 19px;
+    font-weight: bold;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.first_nav_text{
+    font-weight: bold;
+    font-size: 34px;
 }
