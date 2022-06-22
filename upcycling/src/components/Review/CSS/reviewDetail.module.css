@@ -105,3 +105,8 @@ section {
 .comments_text {
     padding-left: 1rem;
 }
+
+.hashtags {
+    margin-left: 1rem;
+    color: blue;
+}

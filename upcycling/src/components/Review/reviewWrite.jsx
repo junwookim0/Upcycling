@@ -1,27 +1,27 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './CSS/reviewWrite.module.css'
 
+import { useContext } from "react";
+import AuthContext from "../context/AuthContext";
+
+
 //🍎 Review를 작성하는 페이지
 
-const ReviewWrite = ({createAndUpdateReview , userId, imageUploader}) => {
+const ReviewWrite = ({createAndUpdateReview , imageUploader}) => {
     const formRef = useRef();
-    const reviewCategoryRef = useRef();
     const reviewTitleRef = useRef();
-    const reviewHashtagsRef = useRef();
     const reviewDescriptionRef = useRef();
     const reviewIMGRef = useRef();
-    const [user, setUser] = useState(userId)
 
-    useEffect(()=>{
-        setUser(userId)
-    },[userId])
+    const reviewHashtagsRef1 = useRef();
+    const reviewHashtagsRef2 = useRef();
+    const reviewHashtagsRef3 = useRef();
+    
+    const { user } = useContext(AuthContext);
+    const userId = user.uid
 
-    //🍎user의 uid를 user에 저장함 -> 이후에 user가 닉넴이랑 userPhoto받아오게하기
-    //일단은 GREEN 관리자로 사용할것!
-    // const [user] = useState(userId)
-    console.log(user)
     const navigate = useNavigate();
 
     const [uploadedIMG, setUploadedIMG] = useState()
@@ -37,11 +37,10 @@ const ReviewWrite = ({createAndUpdateReview , userId, imageUploader}) => {
             reviewIMG : uploadedIMG,
             reviewTitle : reviewTitleRef.current.value,
             reviewDescription : reviewDescriptionRef.current.value,
-            reviewHashtags : reviewHashtagsRef.current.value,
-            reviewCategory : reviewCategoryRef.current.value,
+            reviewHashtags : [reviewHashtagsRef1.current.value,reviewHashtagsRef2.current.value,reviewHashtagsRef3.current.value,]
         }; 
         formRef.current.reset();
-        createAndUpdateReview(review, user)
+        createAndUpdateReview(review, userId)
         navigate('/reviews');
     }
 
@@ -55,28 +54,20 @@ const ReviewWrite = ({createAndUpdateReview , userId, imageUploader}) => {
         console.log('이미지로딩')
     }
 
-
-    // console.log(userId)
-    // console.log(uploadedIMG);
-
     //⭐글쓰기 항목이 다 있을 때만 버튼이 활성화 될 수있도록
     const canSave = Boolean(reviewTitleRef)  && Boolean(reviewDescriptionRef) && Boolean(uploadedIMG)
     return (
             <form className={styles.form} ref={formRef}>
-                <select ref={reviewCategoryRef} name="reviewCategory" id="">
-                    <option value="">말머리1</option>
-                    <option value="">말머리2</option>
-                    <option value="">말머리3</option>
-                </select>
                 
-                    <label htmlFor="reviewTitle">
-                        <input ref={reviewTitleRef} name='reviewTitle' type="text" placeholder='제목' />
-                    </label>
+                
+                    <label htmlFor="reviewTitle">Title : </label>
+                    <input ref={reviewTitleRef} id='reviewTitle' name='reviewTitle' type="text" placeholder='제목' />
                     <br/>
-                    <label htmlFor="reviewHashtags">
-                        <input ref={reviewHashtagsRef} name='reviewHashtags' type="text" placeholder='해시태그' />
-                    </label>
-                    
+                    <label htmlFor="reviewHashtags">Hashtag : </label>
+                        <input ref={reviewHashtagsRef1} name='reviewHashtags' type="text" placeholder='해시태그' />
+                        <input ref={reviewHashtagsRef2} name='reviewHashtags' type="text" placeholder='해시태그' />
+                        <input ref={reviewHashtagsRef3} name='reviewHashtags' type="text" placeholder='해시태그' />
+
                     <br/>
                     <textarea 
                         ref={reviewDescriptionRef} 

@@ -5,18 +5,20 @@ import styles from './CSS/reviewRevise.module.css'
 
 //🍎 Review를 수정하는 페이지
 
+import { useContext } from "react";
+import AuthContext from "../context/AuthContext";
 
-const ReviewRevise = ({createAndUpdateReview ,userId, imageUploader}) => {
+const ReviewRevise = ({createAndUpdateReview , imageUploader}) => {
     const location = useLocation();
     const navigate = useNavigate();
-    const [user] = useState(userId)
+    const { user } = useContext(AuthContext);
+    const userId = user.uid
 
     const review = location.state.review
     const [changedReview, setChangedReview] = useState({});
     const [uploadedIMG, setUploadedIMG] = useState(review.reviewIMG)
     const [inputButton, setInputButton] = useState(false)
 
-    const [updateTItle, setUpdateTitle] =useState()
 
     useEffect(()=>{
         setUploadedIMG(uploadedIMG)
@@ -36,13 +38,15 @@ const ReviewRevise = ({createAndUpdateReview ,userId, imageUploader}) => {
 
 
 
-    const imgOnChange = async (event) => {
+    const  imgOnChange = async (event) => {
         event.preventDefault();
-        // console.log(event.target.files[0]);
+        
         setInputButton(true)
+        console.log(event.target.files[0]);
         const uploaded = await imageUploader.upload(event.target.files[0]);
-            setUploadedIMG(uploaded.url)
+        setUploadedIMG(uploaded.url)
         setInputButton(false)
+
         console.log(uploaded.url)
         console.log('이미지로딩')
         setChangedReview( {
@@ -51,11 +55,10 @@ const ReviewRevise = ({createAndUpdateReview ,userId, imageUploader}) => {
         });
     }
 
-
     const SubmitReview = () => {
-        //console.log(changedReview);
-        createAndUpdateReview(changedReview,user)
+        createAndUpdateReview(changedReview,userId)
         navigate('/reviews')
+        
     }
 
     return (

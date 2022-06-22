@@ -6,18 +6,62 @@ import { useEffect } from 'react';
 import Nav from '../Nav/Nav';
 import SubMainBanner from '../banner/SubMainBannerReviews';
 
+import { useContext } from "react";
+import AuthContext from "../context/AuthContext";
+import Search from './Search';
+
 
 //🍎전체 Review를 보여주는 페이지
 
-const ReviewPage = ({reviews}) => {
+const ReviewPage = ({reviewRepository}) => {
+    const [reviews, setReviews] = useState([])
+    const { user } = useContext(AuthContext);
+    const userId = user.uid
+
+    const [keyword, setKeyword] = useState('')
+
+    //🍎firebase에 저장된 review받아오기
+    useEffect(()=> {
+        const stopSync =  reviewRepository.syncReviews(reviews => {
+            setReviews(reviews);
+        })
+        return () => stopSync();
+    },[userId, reviewRepository])
 
     const navigator = useNavigate()
     const [onReviews,setOnReviews] = useState(Object.values(reviews))
 
+    const [reviewsHashTags, setReviewsHashTags] = useState([])
 
     useEffect(()=> {
         setOnReviews(Object.values(reviews))
     },[reviews])
+
+//🍎해시태그 검색
+const onSearch = (text)=> {
+    setKeyword(text)
+    setReviewsHashTags(onReviews.map(review=>review.reviewHashtags))
+    let hashTagArray = onReviews.map(review=>review.reviewHashtags)
+    let array = (hashTagArray.map(hash => hash))
+    // let filterd = array.filter(item => item===keyword)
+    console.log(keyword)
+    console.log(array)
+    console.log(array.flat().map(item => {
+        if(item === keyword) {
+            console.log(item)
+        }
+    }))
+}
+
+// useEffect(()=> {
+//     setReviewsHashTags(onReviews.map(review=>review.reviewHashtags))
+//     let hashTagArray = onReviews.map(review=>review.reviewHashtags)
+//     let array = (hashTagArray.map(hash => hash))
+//     let filterd = array.filter(item => item===keyword)
+//     console.log(filterd)
+
+// },[onReviews,keyword])
+
 
     return (
         <div>
@@ -27,8 +71,7 @@ const ReviewPage = ({reviews}) => {
                 <h1>Reviews</h1>
                 <div className={styles.header}>
                     <div className={styles.search}>
-                        <input type="text" />
-                        <button>search</button> 
+                        <Search onSearch={onSearch}/>
                     </div>
                     <button className={styles.button_write}
                             onClick={()=>{
@@ -36,9 +79,8 @@ const ReviewPage = ({reviews}) => {
                             }}>글쓰기
                     </button>
                 </div>
-               
 
-              <ul className={styles.list}>
+            <ul className={styles.list}>
                 {
                     onReviews.map(review => (
                     <li key={review.id}
@@ -47,7 +89,7 @@ const ReviewPage = ({reviews}) => {
                         <ReviewItem review={review}/>
                     </li>))
                 }
-              </ul>
+            </ul>
             </section>
         </div>
     );

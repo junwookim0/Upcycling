@@ -4,31 +4,64 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './CSS/reviewDetail.module.css'
 import Like from './like';
 
+import { useContext } from "react";
+import AuthContext from "../context/AuthContext";
 
 //🍎 reviewPage에서 item의 이미지를 클릭했을 때 이동하는 컴포넌트
 //Reivew의 전체적인 내용을 출력
 
-const ReviewDetail = ({ deleteReview, reviewRepository, reviews, createAndUpdateComment, userId, deleteComment, clickLike, removeLike}) => {
+const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, deleteComment, clickLike, removeLike}) => {
     const location = useLocation();
     const navigation = useNavigate();
+    const { user } = useContext(AuthContext);
+    const userId = user.uid
+
+    //코멘트 관련 useState
+    const [text, setText] = useState('')    
+
+    //현재 review관련 useState
+    const [reviewId] = useState(location.state.review.id)
     const [reviewState] = useState(location.state.review)
-    const [user] = useState(userId)
-    const [text, setText] = useState('')
+    const [reviews, setReviews] = useState([])
+
+
+    //🍎firebase에 저장된 review받아오기
+    useEffect(()=> {
+    const stopSync =  reviewRepository.syncReviews(reviews => {
+        setReviews(reviews);
+    })
+    return () => stopSync();
+    },[userId, reviewRepository])
 
 
     //🍎firebase에 저장된 코멘트 받아오기
-    
+    const [currentReview, setCurrentReview] = useState()
     const [comments,setComments] = useState([])
 
+
+    //🍎현재 review를 담는 useEffect
     useEffect(()=> {
-        let currentComments = Object.hasOwn(reviews[reviewState.id],"comment") ?Object.values(reviews[reviewState.id]["comment"]) : undefined
-        if(currentComments !== null) {
-            setComments(currentComments)
-        }else if (currentComments === undefined) {
-            setComments([])
-        }
-    },[reviews])
+        let reviewArray = Object.entries(reviews)
+        reviewArray.map(item => {
+            if(item[0]===reviewId) {
+                setCurrentReview(item)
+            }
+            return console.log('ㅇㅇ')
+        })
+    },[reviews,reviewId])
+
     
+    
+    //🍎현재 comment담는 useEffect
+    useEffect(()=>{
+        if(currentReview !== undefined) {
+            if(currentReview[1].comment !== undefined) {
+                let commentArray = Object.values(currentReview[1].comment)
+            setComments(commentArray)
+            }
+            
+        }
+    },[reviews,currentReview])
     
 //🍎Reivew수정하기
     const goRevise = (review) =>{
@@ -62,13 +95,13 @@ const ReviewDetail = ({ deleteReview, reviewRepository, reviews, createAndUpdate
         event.preventDefault();
 
         const review = {...reviewState}
-        createAndUpdateComment(newComment,review.id,user)
+        createAndUpdateComment(newComment,review.id,userId)
         textareaRef.current.reset()
     }
 
     //🍎Comment Delete
     const onDeleteComment = (comment) => {
-        deleteComment(comment,reviewState.id, user)
+        deleteComment(comment,reviewState.id, userId)
     }
     
 
@@ -95,8 +128,10 @@ const ReviewDetail = ({ deleteReview, reviewRepository, reviews, createAndUpdate
                         <option value="">수정</option>
                     </select>
                     <div className={styles.title}>
-                        <h3>{reviewState.reviewTitle}</h3>
-                        <p>{reviewState.reviewHashtags}</p>
+                        <h3>{reviewState.reviewTitle}</h3> <br/>
+                        {reviewState.reviewHashtags[0] && <span className={styles.hashtags}># {reviewState.reviewHashtags[0]}</span> }
+                        {reviewState.reviewHashtags[1] && <span className={styles.hashtags}># {reviewState.reviewHashtags[1]}</span> }
+                        {reviewState.reviewHashtags[2] && <span className={styles.hashtags}># {reviewState.reviewHashtags[2]}</span> }
                     </div>
                     <p className={styles.description}>{reviewState.reviewDescription}</p>
                 </div>

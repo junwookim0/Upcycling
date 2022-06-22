@@ -28,35 +28,28 @@ import { firestore } from './firebase';
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 
 function App({reviewRepository, commentRepository, imageUploader, likeRepository}) {
+
+  
   const { user } = useContext(AuthContext);
-  //🍎 /home으로부터 받아온 user의 uid값
-  const [userId, setUserId] = useState(null)
+  const userId = user.uid
+
   const [reviews, setReviews] = useState([])
+
   const navigator = useNavigate();
 
-//🍎firebase에 저장된 review받아오기
-useEffect(()=> {
-  const stopSync =  reviewRepository.syncReviews(reviews => {
-    setReviews(reviews);
-  })
-  return () => stopSync();
-},[userId, reviewRepository])
-/*
-//🍎지은 쓰고있는 userId지우지마세요~!!
-// 선주 저 오류 떠서 잠깐 주석처리 해놨어용 !!! 
- useEffect(() => {
-  const auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setUserId(user.uid)
-    }
-  });
-}, [userId])
-*/
+//   const [reviews, setReviews] = useState([])
+
+// //🍎firebase에 저장된 review받아오기
+// useEffect(()=> {
+//   const stopSync =  reviewRepository.syncReviews(reviews => {
+//     setReviews(reviews);
+//   })
+//   return () => stopSync();
+// },[userId, reviewRepository])
+
 
 //🍎지은 : create & update review 
 const createAndUpdateReview = (review,userId) => {
-  // setReviews([...reviews, review]);
   reviewRepository.saveReview(userId, review);
 }
 
@@ -135,10 +128,10 @@ const removeLike = (userId,review) => {
           <Route path="/event" element={<EventIntro />}></Route>
           
           {/* 🍎윤지은 router */}
-          <Route path='/reviews'  element={<ReviewPage reviews={reviews} />}/>
-          <Route path='/reviews/:id' element={<ReviewDetail reviewRepository={reviewRepository} clickLike={clickLike} removeLike={removeLike} userId={userId} reviews={reviews}  createAndUpdateComment={createAndUpdateComment} deleteReview={deleteReview} deleteComment={deleteComment}/>}/>
-          <Route path='/reviews/write' element={<ReviewWrite imageUploader={imageUploader} userId={userId} createAndUpdateReview={createAndUpdateReview}/>}/>
-          <Route path='/review/revise/:id' element={<ReviewRevise userId={userId}  createAndUpdateReview={createAndUpdateReview} />}/>
+          <Route path='/reviews'  element={<ReviewPage reviewRepository={reviewRepository}/>}/>
+          <Route path='/reviews/:id' element={<ReviewDetail reviewRepository={reviewRepository} clickLike={clickLike} removeLike={removeLike} createAndUpdateComment={createAndUpdateComment} deleteReview={deleteReview} deleteComment={deleteComment}/>}/>
+          <Route path='/reviews/write' element={<ReviewWrite imageUploader={imageUploader} createAndUpdateReview={createAndUpdateReview}/>}/>
+          <Route path='/review/revise/:id' element={<ReviewRevise imageUploader={imageUploader} createAndUpdateReview={createAndUpdateReview} />}/>
 
           {/* 🥑 박선주 route 시작 */}
           <Route path='/deals' element={<DealPage deals={deals}/>} />

@@ -3,17 +3,24 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import styles from './CSS/like.modules.css'
 
-function Like({reviewRepository, review, userId, clickLike,removeLike}) {
+import { useContext } from "react";
+import AuthContext from "../context/AuthContext";
+
+
+function Like({reviewRepository, review, clickLike, removeLike}) {
 
         const [reviews, setReviews] = useState([])
         const [currentReview, setCurrentReview] = useState([])
         const [likeState, setLikeState] =useState('🤍')
 
+        const { user } = useContext(AuthContext);
+        const userId = user.uid
+
         let currentReviewId = review.id
 
         // console.log(currentReview)
         useEffect(()=> {
-            const stopSync =  reviewRepository.syncReviews(reviews => {
+            const stopSync = reviewRepository.syncReviews(reviews => {
             setReviews(reviews);
         })
             return () => stopSync();
