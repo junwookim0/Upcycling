@@ -16,7 +16,7 @@ const SignIn = () => {
         };
         const handleFacebook = () => {
             signInWithFacebook();
-            
+            navigate("/home");
         };
         const goSignUp = () => {
             navigate("/signup");

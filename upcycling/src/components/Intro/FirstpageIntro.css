@@ -1,0 +1,56 @@
+.first_page_title{
+    margin-top: 50px;
+    text-align: center; 
+    height: 140px;
+}
+/*second*/
+.first_page_secondbox{
+    height: 326px;
+    border: solid black;
+}
+.first_intro_img{
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 400px;
+    float: left;
+}
+.first_intro_card{
+    margin-top: 25px;
+    font-size: 22px;
+    float: right;
+    
+}
+/*third*/
+.first_page_thirdbox{
+    height: 326px;
+    border: solid black;
+}
+.first_intro_img{
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 400px;
+    float: left;
+}
+.first_intro_card{
+    margin-top: 25px;
+    font-size: 22px;
+    float: right;
+    
+}
+/*fourthbox*/
+.first_page_fourthbox{
+    height: 326px;
+    border: solid black;
+}
+.first_intro_img{
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 400px;
+    float: left;
+}
+.first_intro_card{
+    margin-top: 25px;
+    font-size: 22px;
+    float: right;
+    
+}
