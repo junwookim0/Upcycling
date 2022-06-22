@@ -28,6 +28,7 @@ const Signup = () => {
                     case 'auth/email-already-in-use':
                         seterror('이미 가입되어 있는 계정입니다');
                         break;
+                        default:
                 }
             }
             else {
@@ -71,7 +72,7 @@ const Signup = () => {
                     />
                     <button type="submit">Submit</button>
                 </form>
-                <p>already registered? <Link to="/login">Login</Link></p>
+                <p>already registered? <Link to="/signin">Login</Link></p>
             </div>
         </div>
     );
