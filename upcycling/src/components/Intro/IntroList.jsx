@@ -52,11 +52,12 @@ const IntroList = () => {
         <Nav/>
         <div className='video_box'>
             <video autoPlay muted loop className="introVideo">
-                <source src="../../video/file.mp4" type="video/mp4"/>
+                <source src="../../video/file_home.mp4" type="video/mp4"/>
             </video>
             <div className='video_text'>
-                <h2 className='video_text_h2'>Hello! We are UPTOWN</h2>
-                <h3>업사이클링을 실천하는 여러분의 이야기를 들려주세요!</h3>
+                <h2 className='video_text_h2'>We are UPTOWN!</h2>
+                <h3>업사이클링 아이디어와 방법</h3>
+                <h3>여러분의 이야기를 들려주세요</h3>
             </div>
         </div>
         <div className="cInnerContent">

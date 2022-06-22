@@ -28,9 +28,13 @@ import { firestore } from './firebase';
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 
 function App({reviewRepository, commentRepository, imageUploader, likeRepository}) {
+
   
   const { user } = useContext(AuthContext);
   const userId = user.uid
+
+  const [reviews, setReviews] = useState([])
+
   const navigator = useNavigate();
 
 //   const [reviews, setReviews] = useState([])
