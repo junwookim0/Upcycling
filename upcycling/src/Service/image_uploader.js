@@ -3,6 +3,7 @@ class ImageUploader {
     //사용자가 파일을 업로드 -> 서버에 url을 업로드 하고 -> 그 결과값을 return
     async upload(file) {
         const data = new FormData();
+        console.log(file)
         data.append("file", file);
         data.append("upload_preset", "ggmeax4i");
         const result =await fetch('https://api.cloudinary.com/v1_1/dlizycik0/image/upload', 
@@ -11,7 +12,7 @@ class ImageUploader {
             body: data,
         }
         );
-        return await result.json();
+        return result.json();
     }
 
 //     delete(url) {
