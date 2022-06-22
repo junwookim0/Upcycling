@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { signIn , signInWithGoogle, signInWithFacebook} from "../../firebase";
-import { useNavigate , Navigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import './SignIn.css';
 
 const SignIn = () => {
@@ -12,7 +12,7 @@ const SignIn = () => {
 
         const handleGoolge = () => {
             signInWithGoogle();
-            <Navigate replace to="/home"/>
+            navigate("/home");
         };
         const handleFacebook = () => {
             signInWithFacebook();
@@ -63,9 +63,9 @@ const SignIn = () => {
                         
                     </form>
                     <div className="social-btns">
-                        <button className="google" onClick={handleGoolge}><i class="fab fa-google fa-lg"></i></button>
-                        <button className="facebook" onClick={handleFacebook}><i class="fab fa-facebook-f fa-lg"></i></button>
-                        <button className="github" onClick={handleFacebook}><i class="fab fa-github fa-lg"></i></button>
+                        <button className="google" onClick={handleGoolge}><i className="fab fa-google fa-lg"></i></button>
+                        <button className="facebook" onClick={handleFacebook}><i className="fab fa-facebook-f fa-lg"></i></button>
+                        <button className="github" onClick={handleFacebook}><i className="fab fa-github fa-lg"></i></button>
                     </div>
                 </div>
             </div>

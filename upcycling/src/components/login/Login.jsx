@@ -1,15 +1,10 @@
-import { auth } from '../../firebase';
-import { signOut } from 'firebase/auth';
-import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import './Login.css'
 
 
 function Login() {
     
-    const [user, setUser] = useState(null);
     const navigate = useNavigate();
-
 
     function SignIn() {
             navigate("/SignIn");
@@ -19,37 +14,12 @@ function Login() {
         navigate("/SignUp");
     };
 
-    function Logout() {
-        signOut(auth).then(() => {
-            setUser(null);
-            navigate("/");
-        }).catch((err) => {
-            console.log(err);
-        });
-    }
-        
     return (
         <div className="App">
-        <header className="Login_Container">
-            
-        <p>
-            {user ? user.displayName : null}
-        </p>
-        <p>
-            {user ? user.email : null}
-        </p>
-        <p>
-            {user ? <img src={user.photoURL} alt="userphoto"/>  : null}
-        </p>
-
-        
-
-
-        <button className="Logout" onClick={Logout}>Logout</button>
-
-        <button onClick={SignIn}>로그인</button>
-        <button onClick={SignUp}>회원가입</button>
-        </header>
+            <header className="Login_Container"> 
+                <button onClick={SignIn}>로그인</button>
+                <button onClick={SignUp}>회원가입</button>
+            </header>
         </div>
     );
 }
