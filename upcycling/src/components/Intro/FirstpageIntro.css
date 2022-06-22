@@ -3,52 +3,52 @@
     text-align: center; 
     height: 140px;
 }
+/*first*/
+.first_page_firstbox{
+    height: 326px;
+    border: solid black;
+}
+.first_intro_img{
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 400px;
+    float: left;
+}
+.first_intro_card{
+    margin-top: 25px;
+    font-size: 22px;
+    float: right;
+    
+}
 /*second*/
 .first_page_secondbox{
     height: 326px;
     border: solid black;
 }
-.first_intro_img{
+.second_intro_img{
+    margin-top: 25px;
+    width: 400px;
+    float: right;
+}
+.second_intro_card{
     margin-top: 20px;
     margin-left: 20px;
-    width: 400px;
-    float: left;
-}
-.first_intro_card{
-    margin-top: 25px;
     font-size: 22px;
-    float: right;
+    float: left;
     
 }
-/*third*/
+/*thirdbox*/
 .first_page_thirdbox{
     height: 326px;
     border: solid black;
 }
-.first_intro_img{
+.third_intro_img{
     margin-top: 20px;
     margin-left: 20px;
     width: 400px;
     float: left;
 }
-.first_intro_card{
-    margin-top: 25px;
-    font-size: 22px;
-    float: right;
-    
-}
-/*fourthbox*/
-.first_page_fourthbox{
-    height: 326px;
-    border: solid black;
-}
-.first_intro_img{
-    margin-top: 20px;
-    margin-left: 20px;
-    width: 400px;
-    float: left;
-}
-.first_intro_card{
+.third_intro_card{
     margin-top: 25px;
     font-size: 22px;
     float: right;
