@@ -5,10 +5,10 @@
 // 댓글 개수 세기 해야 됨
 // 06-20 로그인 된 사람 = 작성자일 경우에만 삭제, 수정 버튼 보이도록
 
-import React, { useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
-import { doc, deleteDoc, getDoc } from "firebase/firestore";
+import { doc, deleteDoc } from "firebase/firestore";
 import { ref, deleteObject } from "@firebase/storage";
 import { firestore, storage } from "../../firebase";
 
@@ -16,7 +16,6 @@ import styles from './CSS/dealDetail.module.css'
 
 import CommentWrite from "./CommentWrite";
 import DealLike from "./DealLike";
-import { async } from "@firebase/util";
 
 const DealDetail = () => {
     /* 사용자 정보 */
@@ -27,17 +26,6 @@ const DealDetail = () => {
     const dealState = location.state.deal;
 
     /* 사용 함수 */
-    // 문서 가져
-    const returnDoc = async() => {
-        const docSnap = await getDoc(doc(firestore, `/dbDeals/${dealState.id}`));
-        if(docSnap.exists) {
-            console.log (docSnap.data())
-        } else(
-            console.log('err')
-        )
-
-    }
-
     // 글 삭제
     const deserRef = ref(storage, dealState.attachmentUrl);
 
@@ -63,9 +51,8 @@ const DealDetail = () => {
     return (
         <section>
             <div className={styles.header}>
-                <button onClick={returnDoc}>zz</button>
                 <div className={styles.userInfo}>
-                    <p>프로필 이미지</p>
+                    <p>photo profile</p>
                     <h3>{dealState.creatorName}</h3>
                 </div>
 
@@ -76,6 +63,7 @@ const DealDetail = () => {
             </div>
 
             <div className={styles.content}>
+            <img src={dealState.attachmentUrl} alt="deal" />
                 <div className={styles.container}>
                     <select className="" id="">
                         <option value="">숨기기</option>
@@ -83,11 +71,21 @@ const DealDetail = () => {
                         <option value="">삭제</option>
                         <option value="">수정</option>
                     </select>
+                    
+                    {/* 정보 */}
                     <div className={styles.title}>
                         <h3>{dealState.title}</h3>
-                        <p>{dealState.hashtag}</p>
+                        {dealState.hashtag1&& <span>#{dealState.hashtag1} </span>}
+                        {dealState.hashtag2&& <span>#{dealState.hashtag2} </span>}
+                        {dealState.hashtag3&& <span>#{dealState.hashtag3} </span>}
+                        {
+                            dealState.price == '' ? (
+                                <p>나눔🧡</p>
+                            ) : (
+                                <p>{dealState.price}원</p>
+                            )
+                        }
                     </div>
-                    <img src={dealState.attachmentUrl} width="100px" height="100px" />
                     <p className={styles.description}>{dealState.content}</p>
                 </div>
             </div>
@@ -97,6 +95,7 @@ const DealDetail = () => {
                 <div className={styles.icon_container_left}>
                     {/* 좋아요 */}
                     <DealLike 
+                    isMyLike={dealState.likeUser.includes(user.uid)}
                     dealState={dealState} />
                     <p className={styles.comment}>💌댓글개수</p>
                 </div>
@@ -113,7 +112,7 @@ const DealDetail = () => {
                 }
             </div>
             {/* 댓글 작성 */}
-            <div>
+            <div className={styles.comments_container}>
                 <CommentWrite />
             </div>
             

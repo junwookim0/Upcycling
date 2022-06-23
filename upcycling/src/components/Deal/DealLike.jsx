@@ -6,15 +6,18 @@ import AuthContext from "../context/AuthContext";
 import { firestore } from "../../firebase";
 import { doc, updateDoc, increment, arrayUnion, arrayRemove } from "firebase/firestore";
 
-const DealLike = ({dealState}) => {
+const DealLike = ({dealState, isMyLike}) => {
 
     /* 사용자 정보 */
     const { user } = useContext(AuthContext);
-    
-    const isMyLike = dealState.likeUser.includes(`${user.uid}`);
 
     // like 버튼이 눌렸는지 안 눌렸는지
-    const [likeAction, setLikeAction] = useState(isMyLike); // 기본적으로 안 눌려져 있는 상태
+    const [likeAction, setLikeAction] = useState(isMyLike);
+
+    useEffect(() => {
+        console.log(isMyLike);
+        isMyLike ? setLikeAction(true) : setLikeAction(false)
+    }, [setLikeAction])
 
     /* 사용 함수 */
     const toggleLike = async () => {
@@ -32,35 +35,33 @@ const DealLike = ({dealState}) => {
                 likeUser: arrayRemove(`${user.uid}`)
             });
             setLikeAction(false);
-        };
-        
+            window.alert('좋아요를 취소하셨습니다.')
+        };        
     };
 
-    
+
     return(
-            likeAction ? (
-                <div>
-                    <button 
-                    onClick={toggleLike}
-                    className="material-icons">
-                        favorite
-                    </button>
-                    <span>
-                        {dealState.likeCount}
-                    </span>
-                </div>
-            ) : (
-                <div>
-                    <button 
-                    onClick={toggleLike}
-                    className="material-icons">
-                        favorite_border
-                    </button>
-                    <span>
-                        {dealState.likeCount}
-                    </span>
-                </div>
-            ) 
+        likeAction ? (
+            <>
+                <span
+                onClick={toggleLike}>
+                    💖
+                </span>
+                <span>
+                    {dealState.likeCount}
+                </span>
+            </>
+        ) : (
+            <>
+                <span
+                onClick={toggleLike}>
+                    🤍
+                </span>
+                <span>
+                    {dealState.likeCount}
+                </span>
+            </>
+        )
     );
 };
 

@@ -22,7 +22,6 @@ const DealRevise = () => {
     const [editing, setEditing] = useState(false);
 
     /* 업데이트 */
-    const [newDCategory, setNewDCategory] = useState(deal.category);
     const [newDTitle, setNewDTitle] = useState(deal.title);
     const [newDHashtag1, setNewHashtag1] = useState(deal.hashtag1);
     const [newDHashtag2, setNewHashtag2] = useState(deal.hashtag2);
@@ -56,7 +55,6 @@ const DealRevise = () => {
         }
         // dbDeals에 업데이트
         await updateDoc(doc(firestore, `/dbDeals/${deal.id}`), {
-            category: newDCategory,
             title: newDTitle,
             hashtag1: newDHashtag1,
             hashtag2: newDHashtag2,
@@ -69,7 +67,6 @@ const DealRevise = () => {
         setEditing(false);
 
         // state를 비워서 form 비우기
-        setNewDCategory("");
         setNewDTitle("");
         setNewHashtag1("");
         setNewHashtag2("");
@@ -80,15 +77,13 @@ const DealRevise = () => {
         // state를 비워서 파일 미리보기 img src 비우기
         setNewAttachment("");
 
-        navigate(`/deals/${deal.createdAt}`, {state: {deal}})
+        navigate('/deals')
     };
 
     const onChange = (e) => {
         const {target: {name, value}} = e;
         
-        if(name === 'category') {
-            setNewDCategory(value);
-        } else if(name === 'title') {
+        if(name === 'title') {
             setNewDTitle(value);
         } else if(name === 'hashtag1') {
             setNewHashtag1(value);
@@ -122,17 +117,6 @@ const DealRevise = () => {
         <section>
             <form
             onSubmit={onSubmit}>
-                {/* 카테고리 작성 */}
-                <label>카테고리</label>
-                <select>
-                    <option name="category" value={newDCategory}>의류</option>
-                    <option name="category" value={newDCategory}>잡화</option>
-                    <option name="category" value={newDCategory}>뷰티/미용</option>
-                    <option name="category" value={newDCategory}>반려동물</option>
-                    <option name="category" value={newDCategory}>교육/체험 키트</option>
-                    <option name="category" value={newDCategory}>기타 중고물품</option>
-                </select> <br />
-
                 {/* 제목 작성 */}
                 <label>제목</label>
                 <input

@@ -31,7 +31,7 @@ function App({reviewRepository, commentRepository, imageUploader, likeRepository
 
   
   const { user } = useContext(AuthContext);
-  const userId = user.uid
+  const userId = user ? user.uid : null
 
   const [reviews, setReviews] = useState([])
 
@@ -119,9 +119,8 @@ const removeLike = (userId,review) => {
   return (
     <div className="App">
         <Routes>
-          <Route path="/" element={!user ?<FirstMain/> : <Home/>}></Route>
-          <Route path="/home" element={user ? <Home />: <SignIn/>}></Route>
-          <Route path="/contents" element={<Contents/>}></Route>
+        <Route path="/" element={!user?<FirstMain/> : <Home/>}></Route>
+          <Route path="/home" element={user ? <Home /> :<SignIn/> }></Route>          <Route path="/contents" element={<Contents/>}></Route>
           <Route path="/Profile" element={< Profile/>}></Route>
           <Route path="/SignIn" element={<SignIn/>}></Route>
           <Route path="/SignUp" element={<SignUp/>}></Route>

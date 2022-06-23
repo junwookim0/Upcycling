@@ -4,6 +4,7 @@
 import React, { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import DealLike from "./DealLike";
 
 const DealItem = ({deal}) => {
     /* 사용자 정보 */
@@ -32,6 +33,7 @@ const DealItem = ({deal}) => {
                 )
             }
             <p>{user.displayName}</p>
+
         </div>
     );
 };
