@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { signIn , signInWithGoogle, signInWithFacebook} from "../../firebase";
+import { signIn , signInWithGoogle, signInWithFacebook ,signInWithGithub} from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import './SignIn.css';
 
@@ -18,6 +18,10 @@ const SignIn = () => {
             signInWithFacebook();
             navigate("/home");
         };
+        const handleGithub = () => {
+            signInWithGithub();
+            navigate("/home")
+        }
         const goSignUp = () => {
             navigate("/signup");
         }
@@ -65,7 +69,7 @@ const SignIn = () => {
                     <div className="social-btns">
                         <button className="google" onClick={handleGoolge}><i className="fab fa-google fa-lg"></i></button>
                         <button className="facebook" onClick={handleFacebook}><i className="fab fa-facebook-f fa-lg"></i></button>
-                        <button className="github" onClick={handleFacebook}><i className="fab fa-github fa-lg"></i></button>
+                        <button className="github" onClick={handleGithub}><i className="fab fa-github fa-lg"></i></button>
                     </div>
                 </div>
             </div>

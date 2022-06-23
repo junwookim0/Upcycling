@@ -3,7 +3,7 @@ import { getDatabase } from "firebase/database";
 import { getFirestore , collection, addDoc} from "firebase/firestore"
 import { GoogleAuthProvider, signInWithPopup,
     FacebookAuthProvider,createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,signOut,getAuth
+    signInWithEmailAndPassword,signOut,getAuth,GithubAuthProvider
 } from 'firebase/auth';
 import { getStorage } from "firebase/storage";
 const firebaseConfig = {
@@ -70,6 +70,11 @@ const signInWithGoogle = () => signInWithPopup(auth, gprovider);
 const fprovider = new FacebookAuthProvider();
     fprovider.setCustomParameters({'display': 'popup'});
     const signInWithFacebook = () => signInWithPopup(auth, fprovider);
+//github 로그인
+const gitprovider = new GithubAuthProvider();
+    gitprovider.setCustomParameters({'display': 'popup'});
+    const signInWithGithub = () => signInWithPopup(auth, gitprovider);
+
 
 const SignOut = async() => {
     try {
@@ -84,4 +89,4 @@ const storage = getStorage(app);
 
 export { app , auth , db , 
     firestore ,storage, signIn , signUp, SignOut,
-    signInWithGoogle, signInWithFacebook };
+    signInWithGoogle, signInWithFacebook ,signInWithGithub};
