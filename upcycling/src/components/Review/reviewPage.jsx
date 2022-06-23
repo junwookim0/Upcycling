@@ -22,8 +22,6 @@ const ReviewPage = ({reviewRepository}) => {
     const dispatch = useDispatch();
     const keyword = useSelector((state)=>state.search.keyword);
 
-
-
     const [reviews, setReviews] = useState([])
     const [onReviews,setOnReviews] = useState([])
 
@@ -42,15 +40,11 @@ const ReviewPage = ({reviewRepository}) => {
         return () => stopSync();
     },[userId, reviewRepository])
 
-    
-    
-    
-    //🍎
+
+    //🍎받아온 reviews를 value값만 가져오기
     useEffect(()=> {
         setOnReviews(Object.values(reviews))
     },[reviews])
-
-    //🍎해시태그 검색후 다시 돌아올때 
 
     //🍎해시태그 검색
 const onSearch = (text)=> {

@@ -22,9 +22,6 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     //현재 review관련 useState
     const [reviewId] = useState(location.state.review.id)
     const [reviewState] = useState(location.state.review)
-
-    //⭐검색하고 받아온 키워드
-    const [keyword] = useState(location.state.keyword)
     const [reviews, setReviews] = useState([])
 
 
@@ -109,13 +106,6 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     }
 
 
-    //🍎뒤로가기버튼
-    const goback = () => {
-        navigation(-1);
-    }
-
-    keyword && console.log(keyword)
-
     return (
         <section >
             <div className={styles.header}> 
@@ -126,8 +116,6 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
                 <div className={styles.searchInput}>
                     <input type="text" />
                     <button>Search</button>
-                    <button onClick={goback}>뒤로가기</button>
-                    
                 </div>
             </div>
             
