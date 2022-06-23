@@ -66,7 +66,7 @@ const Nav = () => {
         alert("로그아웃");
         navigate("/");
     };
-    console.log(user)
+
     return (
         <div>
             <header className={scrolled ? 'fix-container scrolled' : 'fix-container'}>

@@ -22,7 +22,11 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     //현재 review관련 useState
     const [reviewId] = useState(location.state.review.id)
     const [reviewState] = useState(location.state.review)
+
+    //⭐검색하고 받아온 키워드
+    const [keyword] = useState(location.state.keyword)
     const [reviews, setReviews] = useState([])
+
 
 
     //🍎firebase에 저장된 review받아오기
@@ -39,14 +43,14 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     const [comments,setComments] = useState([])
 
 
-    //🍎현재 review를 담는 useEffect
+    //🍎현재 review를 담는 useEffect ->코드가 이상..?
     useEffect(()=> {
         let reviewArray = Object.entries(reviews)
         reviewArray.map(item => {
             if(item[0]===reviewId) {
                 setCurrentReview(item)
             }
-            return console.log('ㅇㅇ')
+            return setCurrentReview(item)
         })
     },[reviews,reviewId])
 
@@ -103,7 +107,14 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     const onDeleteComment = (comment) => {
         deleteComment(comment,reviewState.id, userId)
     }
-    
+
+
+    //🍎뒤로가기버튼
+    const goback = () => {
+        navigation(-1);
+    }
+
+    keyword && console.log(keyword)
 
     return (
         <section >
@@ -115,6 +126,8 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
                 <div className={styles.searchInput}>
                     <input type="text" />
                     <button>Search</button>
+                    <button onClick={goback}>뒤로가기</button>
+                    
                 </div>
             </div>
             
