@@ -5,10 +5,10 @@
 // 댓글 개수 세기 해야 됨
 // 06-20 로그인 된 사람 = 작성자일 경우에만 삭제, 수정 버튼 보이도록
 
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
-import { doc, deleteDoc } from "firebase/firestore";
+import { doc, deleteDoc, getDoc } from "firebase/firestore";
 import { ref, deleteObject } from "@firebase/storage";
 import { firestore, storage } from "../../firebase";
 
@@ -16,6 +16,7 @@ import styles from './CSS/dealDetail.module.css'
 
 import CommentWrite from "./CommentWrite";
 import DealLike from "./DealLike";
+import { async } from "@firebase/util";
 
 const DealDetail = () => {
     /* 사용자 정보 */
@@ -26,10 +27,21 @@ const DealDetail = () => {
     const dealState = location.state.deal;
 
     /* 사용 함수 */
+    // 문서 가져
+    const returnDoc = async() => {
+        const docSnap = await getDoc(doc(firestore, `/dbDeals/${dealState.id}`));
+        if(docSnap.exists) {
+            console.log (docSnap.data())
+        } else(
+            console.log('err')
+        )
+
+    }
+
     // 글 삭제
     const deserRef = ref(storage, dealState.attachmentUrl);
 
-    const onDeleteClick = async () => {
+    const onDeleteClick = async() => {
         const ok = window.confirm("정말 이 게시글을 삭제하시겠습니까?");
             if (ok) {
                     await deleteDoc(doc(firestore, `/dbDeals/${dealState.id}`));
@@ -51,6 +63,7 @@ const DealDetail = () => {
     return (
         <section>
             <div className={styles.header}>
+                <button onClick={returnDoc}>zz</button>
                 <div className={styles.userInfo}>
                     <p>프로필 이미지</p>
                     <h3>{dealState.creatorName}</h3>

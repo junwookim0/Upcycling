@@ -1,4 +1,6 @@
 import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './CSS/reviewItem.module.css'
 
@@ -7,11 +9,18 @@ import styles from './CSS/reviewItem.module.css'
 const ReviewItem = ({review}) => {
     const navigate = useNavigate()
 
-    if(review.likes !==undefined) {
+    const [likeAmount, setLikeAmout] =useState('')
 
-        console.log(Object.keys(review.likes))
-    }
-    
+    useEffect(()=>{
+        if(review.likes === undefined) {
+            return setLikeAmout('0')
+        } else if ((review.likes !==undefined)) {
+            let amount = Object.keys(review.likes)
+            setLikeAmout(amount.length);
+        }   
+    })
+
+
 
     return (
         <section className={styles.container}>
@@ -24,9 +33,7 @@ const ReviewItem = ({review}) => {
             <p>{review.nickname}</p>
             <div>
                 <span>👍</span>
-                {/* {Object.keys(review.likes)===undefined? (<p>0</p>):
-                (<p>ㅠㅠ</p>)} */}
-                {/* <p>{review.likes.length}</p> */}
+                <p>{likeAmount}</p>
             </div>
         </section>
     );
