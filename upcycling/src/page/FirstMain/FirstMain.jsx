@@ -19,7 +19,7 @@ const FirstMain = () => {
                     <source src="../../video/file.mp4" type="video/mp4"/>
                 </video>
                 <div className="signupBtn_div">
-                    <button className="signupB tn" onClick={SignUp}>시작하기 Click!</button>
+                    <button className="signupBtn" onClick={SignUp}>시작하기 Click!</button>
                 </div>
                 <div className='video_text_main'>
                     <h2 className='video_text_main_h2'>업사이클링(up-cycling)</h2>
