@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { SignOut } from "../../firebase";
 import Nav from '../Nav/Nav';
 import SubMainBanner from "../banner/SubMainBannerMypage"
-import Carousel_mypage from "../banner/Carousel_mypage";
+import CarouselMypage from "../banner/CarouselMypage";
 const Mypage = () => {
     const { user } = useContext(AuthContext);
     
@@ -30,12 +30,10 @@ const Mypage = () => {
             <div>
                 <Nav/>
                 <SubMainBanner/>
-                <Carousel_mypage/>
-                <h1>{user.displayName ? user.displayName : 'github유저'? user.reloadUserInfo.screenName : "손님"}님의 페이지</h1> 
+                <h1>{user.displayName ? user.displayName : user.reloadUserInfo.screenName ? user.reloadUserInfo.screenName : "손님"}님의 페이지</h1> 
                 <button onClick={handleLogout}>Logout</button>
-                <div></div>
-                <div></div>
-                <div></div>
+                <CarouselMypage/>
+                
 
             </div>
         )
