@@ -3,7 +3,9 @@ import FirstpageIntro from "../../components/Intro/FirstpageIntro";
 import "./firstMain.css"
 import { useNavigate } from "react-router-dom";
 
+
 const FirstMain = () => {
+
     const navigate = useNavigate();
     function SignUp() {
         navigate("/SignUp");
@@ -14,10 +16,10 @@ const FirstMain = () => {
             <Login/>
             <div className='video_box_main'>
                 <video autoPlay muted loop className="introVideo_main">
-                    <source src="../../video/file.mp4" type="video/mp4"/>
+                    <source src="../../video/file.mp4" type="video/mpy4"/>
                 </video>
                 <div className="signupBtn_div">
-                    <button className="signupBtn" onClick={SignUp}>시작하기 Click!</button>
+                    <button className="signupB tn" onClick={SignUp}>시작하기 Click!</button>
                 </div>
                 <div className='video_text_main'>
                     <h2 className='video_text_main_h2'>업사이클링(up-cycling)</h2>

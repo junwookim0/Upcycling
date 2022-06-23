@@ -18,7 +18,7 @@ const SignIn = () => {
             signInWithFacebook();
             navigate("/home");
         };
-       /* const handleGithub = () => {
+        /* const handleGithub = () => {
             signInWithGithub();
             navigate("/home")
         }*/
