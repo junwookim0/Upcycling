@@ -16,7 +16,7 @@ const FirstMain = () => {
             <Login/>
             <div className='video_box_main'>
                 <video autoPlay muted loop className="introVideo_main">
-                    <source src="../../video/file.mp4" type="video/mpy4"/>
+                    <source src="../../video/file.mp4" type="video/mp4"/>
                 </video>
                 <div className="signupBtn_div">
                     <button className="signupB tn" onClick={SignUp}>시작하기 Click!</button>

@@ -66,7 +66,7 @@ const Nav = () => {
         alert("로그아웃");
         navigate("/");
     };
-    console.log(user)
+    console.log(user);
     return (
         <div>
             <header className={scrolled ? 'fix-container scrolled' : 'fix-container'}>
@@ -85,7 +85,7 @@ const Nav = () => {
                         <li>
                             MyPage
                             <ul className="drop_1">
-                                <li onClick={myProfile}>{user? user.displayName : ''}님의 정보</li>
+                                <li onClick={myProfile}>{user ? (user.displayName ?  'a' : user.reloadUserInfo.screenName) : 'b'}님의 정보</li>
                             </ul>
                         </li>
                         <li onClick={handleLogout}>Logout</li>
