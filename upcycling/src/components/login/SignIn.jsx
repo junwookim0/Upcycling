@@ -60,10 +60,8 @@ const SignIn = () => {
                             required
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        <div className="social-btns">
-                            <input className="signin_submit" type="submit" value="UPTOWN 로그인" />
-                            <input className="signin_button" type="button" value="회원가입" onClick={goSignUp} />
-                        </div>
+                        <input className="signin_submit" type="submit" value="UPTOWN 로그인" />
+                        <input className="signin_button" type="button" value="회원가입" onClick={goSignUp} />
                         
                     </form>
                     <div className="social-btns">

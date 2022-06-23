@@ -142,7 +142,7 @@ const removeLike = (userId,review) => {
           <Route path="/not-found" element={<NotFound />}></Route>
         </Routes>
 
-        <footer>푸터</footer>
+        <footer>Copyright ⓒ uptown All rights reserved</footer>
     </div>
   );
 }

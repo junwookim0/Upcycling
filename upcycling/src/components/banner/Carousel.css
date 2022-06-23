@@ -29,6 +29,12 @@
   height: 100%;
   object-fit: cover;
 }
+.swiper-slide img:hover {
+  transform: scale(1.1);
+  transition: transform 250ms linear;
+  cursor: pointer;
+}
+
 
 .swiper {
   width: 100%;

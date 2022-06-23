@@ -1,15 +1,13 @@
 import {  useNavigate ,Outlet } from "react-router-dom";
 import { useState , useEffect} from "react";
 import { SignOut } from "../../firebase";
-import { useContext} from "react";
-import AuthContext from "../context/AuthContext";
 
 import Hamburger from 'hamburger-react'
 import './Nav.css'
 //nav바 
 
 const Nav = () => {
-    const { user } = useContext(AuthContext);
+    
     const [scrolled, setScrolled] = useState(false);
     const [isOpen, setOpen] = useState(false)
     //scroll 30 기준으로 trun fasle 
@@ -38,6 +36,7 @@ const Nav = () => {
             window.removeEventListener('scroll', handleScrollham);
         };
     },[scrolled]);
+
     useEffect(()=>{
         const clickb = ()=>{
             if(!isOpen){

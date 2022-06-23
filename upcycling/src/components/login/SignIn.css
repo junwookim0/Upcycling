@@ -8,7 +8,7 @@
     width: 550px;
     height: 600px;
     background-image: url("../../../public/images/topImage2.jpg");
-    background: op;
+    opacity: 0.9;
     border-radius: 15px;
 }
 /*social-btn*/
@@ -88,11 +88,10 @@
     cursor: pointer;
 }
 /*input button*/
-.signin_button{
-    cursor: pointer;
-}
+.signin_button,
 .signin_submit{
     cursor: pointer;
+    font-weight: bold;
 }
 /*input form*/
 .input_signin {
