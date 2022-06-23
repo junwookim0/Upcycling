@@ -3,7 +3,9 @@ import FirstpageIntro from "../../components/Intro/FirstpageIntro";
 import "./firstMain.css"
 import { useNavigate } from "react-router-dom";
 
+
 const FirstMain = () => {
+
     const navigate = useNavigate();
     function SignUp() {
         navigate("/SignUp");

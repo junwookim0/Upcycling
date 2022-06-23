@@ -7,17 +7,15 @@ import { GoogleAuthProvider, signInWithPopup,
 } from 'firebase/auth';
 import { getStorage } from "firebase/storage";
 const firebaseConfig = {
-
+    /*
     //파이어베이스 인증키랑 지울게요! -지은-
-
-  apiKey: "AIzaSyAmeVNxGFJCe4nWo7zDNNa4GePbQyA93tw",
-  authDomain: "upcycling-project-ex.firebaseapp.com",
-  databaseURL: "https://upcycling-project-ex-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "upcycling-project-ex",
-  storageBucket: "upcycling-project-ex.appspot.com",
-  messagingSenderId: "763504697046",
-  appId: "1:763504697046:web:7eab09dda319dcba2b3377"
-
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: "",
+    */
 };
 // Initialize Firebase 
 
@@ -83,3 +81,4 @@ const storage = getStorage(app);
 export { app , auth , db , 
     firestore ,storage, signIn , signUp, SignOut,
     signInWithGoogle, signInWithFacebook ,signInWithGithub};
+    

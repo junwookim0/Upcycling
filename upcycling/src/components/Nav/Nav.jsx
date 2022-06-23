@@ -17,6 +17,7 @@ const Nav = () => {
         const handleScroll = ()=>{
             if(!scrolled && window.scrollY >30){
                 setScrolled(true);
+                setOpen(false);
             }else if(scrolled && window.scrollY <=30){
                 setScrolled(false);
             }
@@ -24,6 +25,17 @@ const Nav = () => {
         window.addEventListener('scroll',handleScroll);
         return()=>{
             window.removeEventListener('scroll', handleScroll);
+        };
+    },[scrolled]);
+    useEffect(()=>{
+        const handleScrollham = ()=>{
+            if(!scrolled || window.scrollY >30){
+                setOpen(false);
+            }
+        };
+        window.addEventListener('scroll',handleScrollham);
+        return()=>{
+            window.removeEventListener('scroll', handleScrollham);
         };
     },[scrolled]);
     useEffect(()=>{
@@ -58,8 +70,8 @@ const Nav = () => {
     const goDeal = () => {
         navigate("/deals");
     };
-    const myProfile = () => {
-        navigate("/profile");
+    const goMypage = () => {
+        navigate("/mypage");
     }
     const handleLogout = async () => {
         await SignOut();
@@ -81,11 +93,8 @@ const Nav = () => {
                         <li onClick={goDeal}>Sale</li>
                     </ul>
                     <ul className={isOpen ? 'navbar_property active' : 'navbar_property'}>
-                        <li>
+                        <li  onClick={goMypage}>
                             MyPage
-                            <ul className="drop_1">
-                                <li onClick={myProfile}>{user.displayName}님의 정보</li>
-                            </ul>
                         </li>
                         <li onClick={handleLogout}>Logout</li>
                     </ul>

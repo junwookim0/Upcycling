@@ -2,9 +2,10 @@ import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { SignOut } from "../../firebase";
-
-
-const Profile = () => {
+import Nav from '../Nav/Nav';
+import SubMainBanner from "../banner/SubMainBannerMypage"
+import Carousel_mypage from "../banner/Carousel_mypage";
+const Mypage = () => {
     const { user } = useContext(AuthContext);
     
     const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Profile = () => {
         alert("로그아웃");
         navigate("/");
     };
-    console.log(user);
+    
     if(!user){
         return (
             <div>
@@ -27,12 +28,19 @@ const Profile = () => {
     }else {
         return(
             <div>
-                <h1>{user.displayName} 님 Profile</h1> 
+                <Nav/>
+                <SubMainBanner/>
+                <Carousel_mypage/>
+                <h1>{user.displayName ? user.displayName : 'github유저'? user.reloadUserInfo.screenName : "손님"}님의 페이지</h1> 
                 <button onClick={handleLogout}>Logout</button>
+                <div></div>
+                <div></div>
+                <div></div>
+
             </div>
         )
     }
     
     
 };
-export default Profile;
+export default Mypage;

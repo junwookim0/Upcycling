@@ -48,6 +48,7 @@
 .navbar_property li{
     padding: 8px 10px;
     font-size: 15px;
+    list-style: none;
 }
 .Hamburger{
     display: none;
@@ -56,8 +57,28 @@
     .navbar_property{
         display: none;
     }
+    .navbar_property.active{
+        display: inline-block;
+        position: fixed;
+        top: 10%;
+        right: 2%;
+    }
+    .Hamburger{
+        position: absolute;
+        right: 30px;
+        top: 24%;
+        display: block;
+    }
+    .navbar_menu {
+        position: fixed;
+        left: 30%;
+    }
+    .navbar_logo{
+        position: fixed;
+        left: 5%;
+    }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 808px) {
     .navbar {
         flex-direction: column;
         align-items: center;
@@ -75,14 +96,25 @@
     .navbar_property{
         justify-content: center;
     }
-        .Hamburger{
+    .Hamburger{
         position: absolute;
         right: 30px;
         top: 24%;
         display: block;
     }
-    .navbar_menu.active,
+    .navbar_logo{
+        position: fixed;
+        left: 5%;
+    }
+    .navbar_menu.active{
+        display:flex;
+        position: relative;
+        margin-top: 110px;
+        left: 1%;
+    }
     .navbar_property.active{
-        display: flex;
+        display:flex;
+        position: fixed;
+        margin-top: 60px;
     }
 }
