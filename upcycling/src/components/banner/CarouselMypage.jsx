@@ -10,18 +10,20 @@ import "./Carousel.css";
 // import required modules
 import {EffectCoverflow, Pagination, Navigation , Autoplay} from "swiper";
 
-const Carousel = () => {
+const Carousel_mypage = () => {
     const [setSwiperRef] = useState(null);
+
     return (
         <>
-        <h2 className="Carousel_text">인기글</h2>
+        <h2 className="Carousel_text">내 리뷰</h2>
         <Swiper
+            effect={"coverflow"}
             onSwiper={setSwiperRef}
             slidesPerView={3}
             centeredSlides={true}
             spaceBetween={30}
             pagination={{
-                type: "fraction",
+            type: "fraction",
             }}
             autoplay={{
                 delay: 3500,
@@ -31,12 +33,12 @@ const Carousel = () => {
             modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
             className="mySwiper"
         >
-            <SwiperSlide><img src="../../images/frontImg1.jpg" alt="notice_board_img"/></SwiperSlide>
+            <SwiperSlide>Slide 1</SwiperSlide>
             <SwiperSlide>Slide 2</SwiperSlide>
             <SwiperSlide>Slide 3</SwiperSlide>
             <SwiperSlide>Slide 4</SwiperSlide>
         </Swiper>
-        <h2 className="Carousel_text">내가 좋아요 누른 사람들</h2>
+        <h2 className="Carousel_text">내 판매글</h2>
         <Swiper
             onSwiper={setSwiperRef}
             slidesPerView={3}
@@ -59,7 +61,7 @@ const Carousel = () => {
             <SwiperSlide>Slide 3</SwiperSlide>
             <SwiperSlide>Slide 4</SwiperSlide>
         </Swiper>
-        <h2 className="Carousel_text">신규글</h2>
+        <h2 className="Carousel_text">좋아요</h2>
         <Swiper
             onSwiper={setSwiperRef}
             slidesPerView={3}
@@ -87,4 +89,4 @@ const Carousel = () => {
     );
 }
 
-export default Carousel;
+export default Carousel_mypage;

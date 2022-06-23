@@ -3,20 +3,19 @@ import { getDatabase } from "firebase/database";
 import { getFirestore , collection, addDoc} from "firebase/firestore"
 import { GoogleAuthProvider, signInWithPopup,
     FacebookAuthProvider,createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,signOut,getAuth,/*GithubAuthProvider*/
+    signInWithEmailAndPassword,signOut,getAuth,GithubAuthProvider
 } from 'firebase/auth';
 import { getStorage } from "firebase/storage";
 const firebaseConfig = {
-    
+    /*
     //파이어베이스 인증키랑 지울게요! -지은-
-    apiKey: "AIzaSyAZwe8-JumYMCPZE6NCHS7QRplQ1VQhCa8",
-    authDomain: "login-97034.firebaseapp.com",
-    databaseURL: "https://login-97034-default-rtdb.firebaseio.com",
-    projectId: "login-97034",
-    storageBucket: "login-97034.appspot.com",
-    messagingSenderId: "737764108580",
-    appId: "1:737764108580:web:aaea951966d9fb3b306bb1"
-    
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: "",
+    */
 };
 // Initialize Firebase 
 
@@ -63,10 +62,10 @@ const fprovider = new FacebookAuthProvider();
     fprovider.setCustomParameters({'display': 'popup'});
     const signInWithFacebook = () => signInWithPopup(auth, fprovider);
 //github 로그인
-/*const gitprovider = new GithubAuthProvider();
+const gitprovider = new GithubAuthProvider();
     gitprovider.setCustomParameters({'display': 'popup'});
     const signInWithGithub = () => signInWithPopup(auth, gitprovider);
-*/
+
 
 const SignOut = async() => {
     try {
@@ -81,5 +80,5 @@ const storage = getStorage(app);
 
 export { app , auth , db , 
     firestore ,storage, signIn , signUp, SignOut,
-    signInWithGoogle, signInWithFacebook ,/*signInWithGithub*/};
+    signInWithGoogle, signInWithFacebook ,signInWithGithub};
     

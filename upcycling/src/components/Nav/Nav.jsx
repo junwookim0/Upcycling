@@ -1,15 +1,13 @@
 import {  useNavigate ,Outlet } from "react-router-dom";
 import { useState , useEffect} from "react";
 import { SignOut } from "../../firebase";
-import { useContext} from "react";
-import AuthContext from "../context/AuthContext";
 
 import Hamburger from 'hamburger-react'
 import './Nav.css'
 //nav바 
 
 const Nav = () => {
-    const { user } = useContext(AuthContext);
+    
     const [scrolled, setScrolled] = useState(false);
     const [isOpen, setOpen] = useState(false)
     //scroll 30 기준으로 trun fasle 
@@ -17,6 +15,7 @@ const Nav = () => {
         const handleScroll = ()=>{
             if(!scrolled && window.scrollY >30){
                 setScrolled(true);
+                setOpen(false);
             }else if(scrolled && window.scrollY <=30){
                 setScrolled(false);
             }
@@ -26,6 +25,18 @@ const Nav = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     },[scrolled]);
+    useEffect(()=>{
+        const handleScrollham = ()=>{
+            if(!scrolled || window.scrollY >30){
+                setOpen(false);
+            }
+        };
+        window.addEventListener('scroll',handleScrollham);
+        return()=>{
+            window.removeEventListener('scroll', handleScrollham);
+        };
+    },[scrolled]);
+
     useEffect(()=>{
         const clickb = ()=>{
             if(!isOpen){
@@ -58,8 +69,8 @@ const Nav = () => {
     const goDeal = () => {
         navigate("/deals");
     };
-    const myProfile = () => {
-        navigate("/profile");
+    const goMypage = () => {
+        navigate("/mypage");
     }
     const handleLogout = async () => {
         await SignOut();
@@ -82,11 +93,8 @@ const Nav = () => {
                         <li onClick={goDeal}>Sale</li>
                     </ul>
                     <ul className={isOpen ? 'navbar_property active' : 'navbar_property'}>
-                        <li>
+                        <li  onClick={goMypage}>
                             MyPage
-                            <ul className="drop_1">
-                                <li onClick={myProfile}>{user? user.displayName : ''}님의 정보</li>
-                            </ul>
                         </li>
                         <li onClick={handleLogout}>Logout</li>
                     </ul>
