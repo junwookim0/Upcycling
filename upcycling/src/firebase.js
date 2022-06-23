@@ -3,7 +3,7 @@ import { getDatabase } from "firebase/database";
 import { getFirestore , collection, addDoc} from "firebase/firestore"
 import { GoogleAuthProvider, signInWithPopup,
     FacebookAuthProvider,createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,signOut,getAuth,GithubAuthProvider
+    signInWithEmailAndPassword,signOut,getAuth,/*GithubAuthProvider*/
 } from 'firebase/auth';
 import { getStorage } from "firebase/storage";
 const firebaseConfig = {
@@ -17,7 +17,12 @@ const firebaseConfig = {
     messagingSenderId: "",
     appId: ""
     */
-
+    apiKey: "AIzaSyBoX4JqMqLdCoJM7g0EiZor0VcdiqTcDwo",
+    authDomain: "fir-test-login-85c6c.firebaseapp.com",
+    projectId: "fir-test-login-85c6c",
+    storageBucket: "fir-test-login-85c6c.appspot.com",
+    messagingSenderId: "366758576094",
+    appId: "1:366758576094:web:ed6d85b8de98363efa674f"
 };
 // Initialize Firebase 
 
@@ -64,10 +69,10 @@ const fprovider = new FacebookAuthProvider();
     fprovider.setCustomParameters({'display': 'popup'});
     const signInWithFacebook = () => signInWithPopup(auth, fprovider);
 //github 로그인
-const gitprovider = new GithubAuthProvider();
+/*const gitprovider = new GithubAuthProvider();
     gitprovider.setCustomParameters({'display': 'popup'});
     const signInWithGithub = () => signInWithPopup(auth, gitprovider);
-
+*/
 
 const SignOut = async() => {
     try {
@@ -82,4 +87,5 @@ const storage = getStorage(app);
 
 export { app , auth , db , 
     firestore ,storage, signIn , signUp, SignOut,
-    signInWithGoogle, signInWithFacebook ,signInWithGithub};
+    signInWithGoogle, signInWithFacebook ,/*signInWithGithub*/};
+    

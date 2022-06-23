@@ -28,9 +28,9 @@ import { firestore } from './firebase';
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 
 function App({reviewRepository, commentRepository, imageUploader, likeRepository}) {
-
   
   const { user } = useContext(AuthContext);
+  
   const userId = user.uid
 
   const [reviews, setReviews] = useState([])
@@ -120,7 +120,7 @@ const removeLike = (userId,review) => {
     <div className="App">
         <Routes>
           <Route path="/" element={!user ?<FirstMain/> : <Home/>}></Route>
-          <Route path="/home" element={user ? <Home />: <SignIn/>}></Route>
+          <Route path="/home" element={ <Home />}></Route>
           <Route path="/contents" element={<Contents/>}></Route>
           <Route path="/Profile" element={< Profile/>}></Route>
           <Route path="/SignIn" element={<SignIn/>}></Route>
