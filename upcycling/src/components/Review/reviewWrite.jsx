@@ -21,6 +21,9 @@ const ReviewWrite = ({createAndUpdateReview , imageUploader}) => {
     
     const { user } = useContext(AuthContext);
     const userId = user.uid
+    const userName = user.displayName;
+    const userEmail = user.email;
+    const userPhoto = user.photoURL
 
     const navigate = useNavigate();
 
@@ -32,8 +35,9 @@ const ReviewWrite = ({createAndUpdateReview , imageUploader}) => {
 
         const review = {
             id  : 'R' + Date.now(),
-            nickname : 'GREEN 관리자',
-            profileIMG : 'https://image.shutterstock.com/image-vector/default-avatar-profile-icon-social-260nw-1677509740.jpg',
+            nickname : userName,
+            email : userEmail,
+            profileIMG : userPhoto,
             reviewIMG : uploadedIMG,
             reviewTitle : reviewTitleRef.current.value,
             reviewDescription : reviewDescriptionRef.current.value,
