@@ -18,7 +18,7 @@ const Mypage = () => {
         alert("로그아웃");
         navigate("/");
     };
-    
+    console.log(user);
     if(!user){
         return (
             <div>
@@ -31,7 +31,7 @@ const Mypage = () => {
             <div>
                 <Nav/>
                 <SubMainBanner/>
-                <h1>{user.displayName ? user.displayName : user.reloadUserInfo.screenName ? user.reloadUserInfo.screenName : "손님"}님의 페이지</h1> 
+                <h1>{user.displayName ? user.displayName : user.reloadUserInfo.screenName ? user.reloadUserInfo.screenName : "이름을 정해주세요"}님의 페이지</h1> 
                 <button onClick={handleLogout}>Logout</button>
                 <CarouselMypage/>
                 

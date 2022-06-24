@@ -1,22 +1,14 @@
 // 이벤트 소개 페이지
 import Nav from '../Nav/Nav';
 import './EventIntro.css';
-import SubMainBanner from '../banner/SubMainBannerEvent';
-import Modal from '../modal/modal';
+import Modalimg from '../modal/modalimg';
 import { useState } from 'react';
-
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-
-// import required modules
-import { Pagination, Navigation } from "swiper";
+import SubMainBanner from '../banner/SubMainBannerEvent';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const EventIntro = () => {
-    const [setSwiperRef] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
     
     const openModal = () => {
@@ -25,7 +17,13 @@ const EventIntro = () => {
     const closeModal = () => {
         setModalOpen(false);
     };
-
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
     return (
         <div>
             <Nav/>
@@ -34,28 +32,26 @@ const EventIntro = () => {
                 <h1>Upcycling EVENT</h1>
                 <div>
                     <img src='../../../images/event1.PNG' className='eventpost' alt='eventIMG' onClick={openModal}/>
-                    <img src='../../../images/event2.PNG' className='eventpost' alt='eventIMG'></img>
-                    <img src='../../../images/event3.PNG' className='eventpost' alt='eventIMG'></img>
-                    <img src='../../../images/event4.PNG' className='eventpost' alt='eventIMG'></img>
+                    <img src='../../../images/event2.PNG' className='eventpost' alt='eventIMG' onClick={openModal}></img>
+                    <img src='../../../images/event3.PNG' className='eventpost' alt='eventIMG' onClick={openModal}></img>
+                    <img src='../../../images/event4.PNG' className='eventpost' alt='eventIMG' onClick={openModal}></img>
                 </div>
-                <Modal open={modalOpen} close={closeModal} header="EVENT 보기">
-                    <Swiper
-                        onSwiper={setSwiperRef}
-                        slidesPerView={3}
-                        centeredSlides={true}
-                        pagination={{
-                            type: "fraction",
-                        }}
-                        navigation={true}
-                        modules={[Pagination, Navigation]}
-                        className="mySwiper"
-                    >
-                        <SwiperSlide><img src='../../../images/event1.PNG'className='eventModal'  alt='eventIMG'/></SwiperSlide>
-                        <SwiperSlide>Slide 2</SwiperSlide>
-                        <SwiperSlide>Slide 3</SwiperSlide>
-                        <SwiperSlide>Slide 4</SwiperSlide>
-                    </Swiper>
-                </Modal>
+                <Modalimg open={modalOpen} close={closeModal} header="EVENT 보기">
+                    <Slider {...settings}>
+                        <div>
+                            <img src='../../../images/event1.PNG'className='eventModal'  alt='eventIMG'/>
+                        </div>
+                        <div>
+                            <img src='../../../images/event2.PNG' className='eventModal' alt='eventIMG'/>              
+                        </div>
+                        <div>
+                            <img src='../../../images/event3.PNG' className='eventModal' alt='eventIMG'/>
+                        </div>
+                        <div>
+                            <img src='../../../images/event4.PNG' className='eventModal' alt='eventIMG'/>
+                        </div>
+                    </Slider>
+                </Modalimg>
             </div>
 
 

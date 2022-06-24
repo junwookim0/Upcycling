@@ -83,6 +83,32 @@ const IntroList = () => {
                         <img className="intro01"src="../../images/intro01(수정).PNG" alt='intro01'></img>
                     </div>
             </div>
+                {/*3단 나누기*/}
+            <div className='cInnerContent_3'>
+                    <h1>다시에서 우리는 아래와 같은 활동을 합니다.</h1>
+                <ul className='cInnerContent_31'>
+                    <li className='cInnerContent_list'>
+                    <i className="fab fa-envira"></i>
+                        <h3>아껴쓰기</h3>
+                        <p>내용1</p>
+                    </li>
+                    <li className='cInnerContent_list'>
+                    <i className="fas fa-oil-can"></i>
+                        <h3>바꿔쓰기</h3>
+                        <p>내용1</p>
+                    </li>
+                    <li className='cInnerContent_list'>
+                    <i className="fas fa-exchange-alt"></i>
+                        <h3>나눠쓰기</h3>
+                        <p>내용1</p>
+                    </li>
+                    <li className='cInnerContent_list'>
+                    <i className="fas fa-recycle"></i>
+                        <h3>다시쓰기</h3>
+                        <p>내용1</p>
+                    </li>
+                </ul>
+            </div>
              {/*2단 나누기 */}
             <div className="cInnerContent_2">
                 <div className="cInnerContent_2header">
@@ -154,40 +180,8 @@ const IntroList = () => {
             
             </div>
 
-            {/*3단 나누기*/}
-                <div className='cInnerContent_3'>
-                    <h1>다시에서 우리는 아래와 같은 활동을 합니다.</h1>
-                <ul className='cInnerContent_31'>
-                    <li className='cInnerContent_list'>
-                    <i className="fab fa-envira"></i>
-                        <h3>아껴쓰기</h3>
-                        <p>내용1</p>
-                    </li>
-                    <li className='cInnerContent_list'>
-                    <i className="fas fa-oil-can"></i>
-                        <h3>바꿔쓰기</h3>
-                        <p>내용1</p>
-                    </li>
-                    <li className='cInnerContent_list'>
-                    <i className="fas fa-exchange-alt"></i>
-                        <h3>나눠쓰기</h3>
-                        <p>내용1</p>
-                    </li>
-                    <li className='cInnerContent_list'>
-                    <i className="fas fa-recycle"></i>
-                        <h3>다시쓰기</h3>
-                        <p>내용1</p>
-                    </li>
-                </ul>
-            </div>
-            
-            {/*4단 나누기*/}
-            <div className='cInnerContent_4'>
-                <h1>Review Community</h1>
-                {/*그리드 3*3단으로 Review 게시물 가져오기*/}
 
-            </div>
-            {/*인트로 종료 */}
+            
         </div>
     </div>
     );

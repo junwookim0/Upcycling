@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 import "./Carousel.css";
 
 // import required modules
-import {EffectCoverflow, Pagination, Navigation , Autoplay} from "swiper";
+import { Pagination, Navigation , Autoplay} from "swiper";
 
 const Carousel = () => {
     const [setSwiperRef] = useState(null);
@@ -24,11 +24,11 @@ const Carousel = () => {
                 type: "fraction",
             }}
             autoplay={{
-                delay: 3500,
+                delay: 1000,
                 disableOnInteraction: false,
             }}
             navigation={true}
-            modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
+            modules={[ Pagination, Navigation, Autoplay]}
             className="mySwiper"
         >
             <SwiperSlide><img src="../../images/frontImg1.jpg" alt="notice_board_img"/></SwiperSlide>

@@ -1,15 +1,14 @@
 import {  useNavigate ,Outlet } from "react-router-dom";
 import { useState , useEffect} from "react";
 import { SignOut } from "../../firebase";
-
 import Hamburger from 'hamburger-react'
 import './Nav.css'
-//nav바 
 
 const Nav = () => {
-    
+    const Swal = require('sweetalert2')
     const [scrolled, setScrolled] = useState(false);
     const [isOpen, setOpen] = useState(false)
+
     //scroll 30 기준으로 trun fasle 
     useEffect(()=>{
         const handleScroll = ()=>{
@@ -70,7 +69,12 @@ const Nav = () => {
     }
     const handleLogout = async () => {
         await SignOut();
-        alert("로그아웃");
+        Swal.fire({
+            icon: 'success',
+            title: '아쉬워요..',
+            text: '성공적으로 로그아웃 하셨습니다',
+            footer: '<a href="./signin">LOGIN 하러가기</a>'
+        })
         navigate("/");
     };
 

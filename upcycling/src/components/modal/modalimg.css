@@ -1,4 +1,4 @@
-.modal {
+.modalimg {
     display: none;
     position: fixed;
     top: 0;
@@ -8,12 +8,12 @@
     z-index: 99;
     background-color: rgba(0, 0, 0, 0.6);
 }
-.modal button {
+.modalimg button {
     outline: none;
     cursor: pointer;
     border: 0;
 }
-.modal > section {
+.modalimg > section {
     width: 90%;
     max-width: 850px;
     max-height: 800px;
@@ -24,13 +24,13 @@
     animation: modal-show 0.3s;
     overflow: hidden;
 }
-.modal > section > header {
+.modalimg > section > header {
     position: relative;
     left: 290px;
     padding: 16px 64px 16px 16px;
     font-weight: 700;
 }
-.modal > section > header button {
+.modalimg > section > header button {
     position: absolute;
     top: 15px;
     right: 0;
@@ -41,23 +41,23 @@
     color: #999;
     background-color: transparent;
 }
-.modal > section > main {
+.modalimg > section > main {
     padding: 16px;
     border-bottom: 1px solid #dee2e6;
     border-top: 1px solid #dee2e6;
 }
-.modal > section > footer {
+.modalimg > section > footer {
     padding: 12px 16px;
     text-align: right;
 }
-.modal > section > footer button {
+.modalimg > section > footer button {
     padding: 6px 12px;
     color: #fff;
     background-color: #6c757d;
     border-radius: 5px;
     font-size: 13px;
 }
-.modal.openModal {
+.modalimg.openModal {
     display: flex;
     align-items: center;
     /* 팝업이 열릴때 스르륵 열리는 효과 */
