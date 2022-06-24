@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './CSS/reviewDetail.module.css'
 import Like from './like';
@@ -9,6 +9,9 @@ import AuthContext from "../context/AuthContext";
 import Nav from '../Nav/Nav';
 import SubMainBannerReviews from '../banner/SubMainBannerReviews';
 import Search from './Search';
+import CommentForm from './commentForm';
+import CommentReviseForm from './commentReviseForm';
+import { useRef } from 'react';
 
 
 //🍎 reviewPage에서 item의 이미지를 클릭했을 때 이동하는 컴포넌트
@@ -20,19 +23,16 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     const { user } = useContext(AuthContext);
     //🍎user정보
     const userId = user.uid;
-    const userName = user.displayName;
-    const userEmail = user.email;
-    const userPhoto = user.photoURL
-
-
-    //코멘트 관련 useState
-    const [text, setText] = useState('')    
 
     //현재 review관련 useState
     const [reviewId] = useState(location.state.review.id)
     const [reviewState] = useState(location.state.review)
     const [reviews, setReviews] = useState([])
 
+    //🍎firebase에 저장된 코멘트 받아오기
+    const [currentReview, setCurrentReview] = useState()
+    const [comments,setComments] = useState([])
+    const [currentComment, setCurrentComment] = useState()
 
 
     //🍎firebase에 저장된 review받아오기
@@ -42,11 +42,6 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     })
     return () => stopSync();
     },[userId, reviewRepository])
-
-
-    //🍎firebase에 저장된 코멘트 받아오기
-    const [currentReview, setCurrentReview] = useState()
-    const [comments,setComments] = useState([])
 
 
     //🍎현재 review를 담는 useEffect ->코드가 이상..?
@@ -72,48 +67,37 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
         }
     },[reviews,currentReview])
     
-//🍎Reivew수정하기
+    //🍎Reivew수정하기
     const goRevise = (review) =>{
         navigation(`/review/revise/${review.id}`, {state : {review}})
-        
-    }
-
-    const textareaRef = useRef()
-
-    const onChange = (event) => {
-        if(event.currentTarget == null) {
-            return;
-        }
-        event.preventDefault();
-        setText(event.target.value)
-
-    }
-
-    const now = new Date();
-
-    const newComment = {
-        id : 'C' + Date.now(),
-        userName : userName,
-        userEmail: userEmail,
-        userPhoto : userPhoto,
-        comment : text || '',
-        date : Date.now()
     }
 
 
     //🍎코멘트 ADD
     //console.log(newComment)
-    const onSubmit = (event) => {
-        event.preventDefault();
-
+    const getComment = (newComment) => {
         const review = {...reviewState}
         createAndUpdateComment(newComment,review.id,userId)
-        textareaRef.current.reset()
     }
 
     //🍎Comment Delete
     const onDeleteComment = (comment) => {
         deleteComment(comment,reviewState.id, userId)
+    }
+
+    //🍎 elli어쩌구 버튼 누르면 menu 보이게 하기
+    const [openMenu, setOpenMenu] = useState(false)
+
+    const viewMenu = (event)=> {
+        console.log(event)
+
+    }
+    
+    //🍎comment 수정누르면 코멘트 보내기
+    
+
+    const onReviseComment = (comment) => {
+        setCurrentComment(comment)
     }
 
     
@@ -136,12 +120,6 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
                 <div className={styles.content}>
                     <img src={reviewState.reviewIMG} alt="review" />
                     <div className={styles.content_container}>
-                        {/* <select name="" id="">
-                            <option value="">숨기기</option>
-                            <option value="">신고하기</option>
-                            <option value="">삭제</option>
-                            <option value="">수정</option>
-                        </select> */}
                         <div className={styles.title}>
                             <h1>{reviewState.reviewTitle}</h1> <br/>
                             <div className={styles.tags}>
@@ -158,7 +136,7 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
                 <div className={styles.icon_container}>
                     <div className={styles.icon_container_left}>
                     <Like reviewRepository={reviewRepository} review={reviewState} userId={user} clickLike={clickLike} removeLike={removeLike}/>
-                        <button className={styles.comment_button}><i class="fa-solid fa-comment-dots"></i></button>
+                        <button className={styles.comment_button}><i className="fa-solid fa-comment-dots"></i></button>
                     </div>
                     <div className={styles.icon_container_right}>
                         <button onClick={()=>goRevise(reviewState)}>글 수정</button>
@@ -169,25 +147,37 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
                     <h2>댓글</h2>
                     <div className={styles.comments_list}>
                         { comments && (
-                                comments.map((item)=> (
-                                    <div key={item.id} className={styles.comments_item}>
-                                        <img src={item.userPhoto} alt="user" />
-                                            <span className={styles.comments_user}>{item.userName}</span>
-                                            <span>{item.userEmail}</span>
-                                            <span className={styles.comments_date}>{item.date}</span>
-                                            <p className={styles.comments_text}>{item.comment}</p>
-                                        <button onClick={()=>onDeleteComment(item)}>삭제</button>
-                                    </div>)
+                            comments.map((item)=> (
+                                <div key={item.id} className={styles.comments_item}>
+                                    <div className={styles.comment_userInfo}>
+                                    <img className={styles.comment_userPhoto} src={item.userPhoto} alt="user" />
+                                        <div className={styles.comment_boxContainer}>
+                                            <div className={styles.comment_userInfo_container}>
+                                                <span className={styles.comments_name}>{item.userName}</span>
+                                                <span className={styles.comments_email}>({item.userEmail})</span>
+                                            </div>
+                                            <button onClick={()=>viewMenu()} className={styles.comments_ellipsis}>
+                                                <i className="fa-solid fa-ellipsis-vertical"></i>
+                                            </button>
+                                            <div className={styles.comments_ellipsis_container}>
+                                                <button onClick={()=>onReviseComment(item)}>수정</button>
+                                                <button onClick={()=>onDeleteComment(item)}>삭제</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <p className={styles.comments_text}>{item.comment}</p>
+                                    <span className={styles.comments_date}>{item.date}</span>
+                                    <CommentReviseForm getComment={getComment} currentComment={currentComment}/>
+                                </div>
+                                )
                             ))
                         }
                     </div>
-
-                </div>
-                <form className={styles.comment_form} ref={textareaRef}>
-                    <textarea  onChange={onChange} className={styles.comment_write} name="comment" id="" cols="30" rows="10"></textarea>
-                    <button onClick={onSubmit}>Comment Add</button>
-                </form>
-                    </div>
+                </div>  
+                
+                <CommentForm getComment={getComment}/>
+            </div>
         </section>
     );
 };

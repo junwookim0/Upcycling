@@ -16,13 +16,13 @@ const Search = ({onSearch}) => {
 
     return (
         <div className={styles.container}>
-            <span className={styles.title}>해시태그검색</span>
+            <span className={styles.title}>해시태그로 검색 : </span>
             <input ref={inputRef} type="text" />
             <button
             onClick={onSubmit}
             className={styles.search}
             >
-                <i class="fa-solid fa-magnifying-glass"></i>
+                <i className="fa-solid fa-magnifying-glass"></i>
             </button> 
         </div>
     );
