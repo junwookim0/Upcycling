@@ -1,15 +1,14 @@
 import {  useNavigate ,Outlet } from "react-router-dom";
 import { useState , useEffect} from "react";
 import { SignOut } from "../../firebase";
-
 import Hamburger from 'hamburger-react'
 import './Nav.css'
-//nav바 
 
 const Nav = () => {
-    
+    const Swal = require('sweetalert2')
     const [scrolled, setScrolled] = useState(false);
     const [isOpen, setOpen] = useState(false)
+
     //scroll 30 기준으로 trun fasle 
     useEffect(()=>{
         const handleScroll = ()=>{
@@ -25,6 +24,7 @@ const Nav = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     },[scrolled]);
+
     useEffect(()=>{
         const handleScrollham = ()=>{
             if(!scrolled || window.scrollY >30){
@@ -37,19 +37,14 @@ const Nav = () => {
         };
     },[scrolled]);
 
-    useEffect(()=>{
-        const clickb = ()=>{
+    const clickb = ()=>{
             if(!isOpen){
                 setOpen(true);
             }else if(isOpen){
                 setOpen(false);
             }
-        };
-        window.addEventListener('click',clickb);
-        return()=>{
-            window.removeEventListener('click', clickb);
-        };
-    },[isOpen]);
+    };
+    
     // useNavigate를 사용하여 원하는 주소로 이동할수 있다.
     const navigate = useNavigate();
     
@@ -74,7 +69,12 @@ const Nav = () => {
     }
     const handleLogout = async () => {
         await SignOut();
-        alert("로그아웃");
+        Swal.fire({
+            icon: 'success',
+            title: '아쉬워요..',
+            text: '성공적으로 로그아웃 하셨습니다',
+            footer: '<a href="./signin">LOGIN 하러가기</a>'
+        })
         navigate("/");
     };
 
@@ -99,7 +99,7 @@ const Nav = () => {
                         <li onClick={handleLogout}>Logout</li>
                     </ul>
                     <div className="Hamburger">
-                        <Hamburger toggled={isOpen} toggle={setOpen}/>
+                        <Hamburger toggled={isOpen} toggle={clickb}/>
                     </div>
                 </nav>
             </header>

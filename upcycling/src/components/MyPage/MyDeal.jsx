@@ -10,33 +10,20 @@ import "./Carousel.css";
 // import required modules
 import { Pagination, Navigation , Autoplay} from "swiper";
 
-const Carousel = () => {
+import { useNavigate } from "react-router-dom";
+
+const Carousel_mypage = ({deal}) => {
+    
     const [setSwiperRef] = useState(null);
+    const navigate = useNavigate();
+
+    const onClick = () => {
+        navigate(`/deals/${deal.createdAt}`, {state: {deal}})
+    };
+
     return (
         <>
-        <h2 className="Carousel_text">인기글</h2>
-        <Swiper
-            onSwiper={setSwiperRef}
-            slidesPerView={3}
-            centeredSlides={true}
-            spaceBetween={30}
-            pagination={{
-                type: "fraction",
-            }}
-            autoplay={{
-                delay: 1000,
-                disableOnInteraction: false,
-            }}
-            navigation={true}
-            modules={[ Pagination, Navigation, Autoplay]}
-            className="mySwiper"
-        >
-            <SwiperSlide><img src="../../images/frontImg1.jpg" alt="notice_board_img"/></SwiperSlide>
-            <SwiperSlide>Slide 2</SwiperSlide>
-            <SwiperSlide>Slide 3</SwiperSlide>
-            <SwiperSlide>Slide 4</SwiperSlide>
-        </Swiper>
-        <h2 className="Carousel_text">내가 좋아요 누른 사람들</h2>
+        <h2 className="Carousel_text">내 판매글</h2>
         <Swiper
             onSwiper={setSwiperRef}
             slidesPerView={3}
@@ -59,7 +46,7 @@ const Carousel = () => {
             <SwiperSlide>Slide 3</SwiperSlide>
             <SwiperSlide>Slide 4</SwiperSlide>
         </Swiper>
-        <h2 className="Carousel_text">신규글</h2>
+        <h2 className="Carousel_text">좋아요</h2>
         <Swiper
             onSwiper={setSwiperRef}
             slidesPerView={3}
@@ -87,4 +74,4 @@ const Carousel = () => {
     );
 }
 
-export default Carousel;
+export default Carousel_mypage;

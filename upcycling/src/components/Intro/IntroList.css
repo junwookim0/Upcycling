@@ -44,22 +44,17 @@
 /*인트로 3단*/
   
   .cInnerContent_3{
-    background-color: gray;
-    padding: 20px;
+    height: 637px;
     text-align: center;
-    color: white;
     line-height:10px;
   }
-
-
-
   .cInnerContent_31{
     display:flex;
   }
 
   .cInnerContent_list{
     list-style-type: none;
-    color: white;
+
     padding: 25px;
     width: 25%;
   }
