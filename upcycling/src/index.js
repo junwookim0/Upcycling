@@ -5,6 +5,8 @@ import App from './App';
 import "./firebase";
 import { BrowserRouter } from "react-router-dom";
 import ScrollToTop from "./ScrollRestoration";
+//🍎fontAwesome추가
+import '@fortawesome/fontawesome-free/js/all.js';
 
 import ReviewRepository from './Service/review_repository'
 import CommentRepository from './Service/comment_repository';

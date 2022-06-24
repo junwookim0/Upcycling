@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
-import styles from './CSS/like.modules.css'
+import styles from './CSS/like.module.css'
 
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
@@ -43,7 +43,7 @@ function Like({reviewRepository, review, clickLike, removeLike}) {
 
                 likesArray.map(item=>{
                     if(item ===userId) {
-                        setLikeState('💖')
+                        setLikeState('❤️')
                     }
                 })
             }
@@ -51,40 +51,32 @@ function Like({reviewRepository, review, clickLike, removeLike}) {
 
         //🍎like 누르기
         const onClickLike = () => {
-            // clickLike(userId, review)
-            
+
             if(currentReview.likes === undefined) {
                 clickLike(userId, currentReview)
-                // console.log('좋아요 저장성공')
-                // console.log(review.likes)
-                setLikeState('💖')
+
+                setLikeState('❤️')
                 
             } else if (currentReview.likes !== undefined) {
                 let likesArray = Object.keys(currentReview.likes)
                 likesArray.map(item=>{
                     if(item !==userId) {
                         clickLike(userId, currentReview)
-                        // console.log('좋아요 저장')
-                        // console.log(review.likes)
-                        setLikeState('💖')
+
+                        setLikeState('❤️')
                     } else {
                         removeLike(userId, currentReview)
-                        // console.log('아이디동일 삭제하기')
-                        // console.log(review.likes)
                         setLikeState('🤍')
                     }
                 })
             }
         }
 
-
-
-
     return (
-            <button 
+            <p 
             className={styles.like}
             onClick={onClickLike}
-            >{likeState}</button>)
+            >{likeState}</p>)
 }
 
 export default Like

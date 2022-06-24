@@ -58,15 +58,14 @@ const onSearch = (text)=> {
 useEffect(()=>{
     let hasTextArray  = onReviews.filter(item=>item.reviewHashtags.includes(keyword))
     setFilteredReviews(hasTextArray)
-},[onReviews])
+},[onReviews, keyword])
 
 
     return (
-        <div>
+        <section>
             <Nav/>
             <SubMainBanner/>
-            <section className={styles.reviewPage}>
-                <h1>Reviews</h1>
+            <div className={styles.reviewPage}>
                 <div className={styles.header}>
                     <div className={styles.search}>
                         <Search onSearch={onSearch}/>
@@ -78,25 +77,25 @@ useEffect(()=>{
                     </button>
                 </div>
 
-            <ul className={styles.list}>
-                {!keyword ?
-                    (onReviews.map(review => (
-                    <li key={review.id}
-                    className={styles.list_item}
-                    >
-                        <ReviewItem  keyword={keyword} review={review}/>
-                    </li>))) : (filteredReveiws.map(review => (
-                    <li key={review.id}
-                    className={styles.list_item}
-                    >
-                        <ReviewItem keyword={keyword} review={review}/>
-                    </li>))
+                <ul className={styles.list}>
+                    {!keyword ?
+                        (onReviews.map(review => (
+                        <li key={review.id}
+                        className={styles.list_item}
+                        >
+                            <ReviewItem  keyword={keyword} review={review}/>
+                        </li>))) : (filteredReveiws.map(review => (
+                        <li key={review.id}
+                        className={styles.list_item}
+                        >
+                            <ReviewItem keyword={keyword} review={review}/>
+                        </li>))
 
-                    )
-                }
-            </ul>
-            </section>
-        </div>
+                        )
+                    }
+                </ul>
+            </div>
+        </section>
     );
 };
 
