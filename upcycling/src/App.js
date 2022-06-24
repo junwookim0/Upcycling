@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes, useNavigate , Navigate} from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from './components/Intro/IntroList';
 import Contents from './page/Contents';
 import FirstMain from './page/FirstMain/FirstMain';
@@ -106,7 +106,7 @@ const removeLike = (userId,review) => {
           <Route path="/" element={!user?<FirstMain/> : <Home/>}></Route>
           <Route path="/home" element={user ? <Home /> :<SignIn/> }></Route>
           <Route path="/contents" element={<Contents/>}></Route>
-          <Route path="/mypage" element={< Mypage/>}></Route>
+          <Route path="/mypage" element={< Mypage deals={deals}/>}></Route>
           <Route path="/signIn" element={<SignIn/>}></Route>
           <Route path="/signUp" element={<SignUp/>}></Route>
           <Route path="/event" element={<EventIntro />}></Route>
@@ -125,7 +125,7 @@ const removeLike = (userId,review) => {
           {/* 🥑 박선주 route 끝 */}
           <Route path="/not-found" element={<NotFound />}></Route>
         </Routes>
-
+        <hr></hr>
         <footer>Copyright ⓒ uptown All rights reserved</footer>
     </div>
   );
