@@ -37,19 +37,14 @@ const Nav = () => {
         };
     },[scrolled]);
 
-    useEffect(()=>{
-        const clickb = ()=>{
+    const clickb = ()=>{
             if(!isOpen){
                 setOpen(true);
             }else if(isOpen){
                 setOpen(false);
             }
-        };
-        window.addEventListener('click',clickb);
-        return()=>{
-            window.removeEventListener('click', clickb);
-        };
-    },[isOpen]);
+    };
+    
     // useNavigate를 사용하여 원하는 주소로 이동할수 있다.
     const navigate = useNavigate();
     
@@ -98,7 +93,7 @@ const Nav = () => {
                         <li onClick={handleLogout}>Logout</li>
                     </ul>
                     <div className="Hamburger">
-                        <Hamburger toggled={isOpen} toggle={setOpen}/>
+                        <Hamburger toggled={isOpen} toggle={clickb}/>
                     </div>
                 </nav>
             </header>

@@ -1,5 +1,4 @@
 /* 🥑 거래글 자세히! */
-// 게시글(댓글(해야 됨), 파일(했음)) 삭제, 수정(revise 페이지로 이동)
 // commentWrite 연결
 // dealLike 연결
 // 댓글 개수 세기 해야 됨
@@ -75,9 +74,9 @@ const DealDetail = () => {
                     {/* 정보 */}
                     <div className={styles.title}>
                         <h3>{dealState.title}</h3>
-                        {dealState.hashtag1&& <span>#{dealState.hashtag1} </span>}
-                        {dealState.hashtag2&& <span>#{dealState.hashtag2} </span>}
-                        {dealState.hashtag3&& <span>#{dealState.hashtag3} </span>}
+                        {dealState.hashtagArray[0]&& <span>#{dealState.hashtagArray[0]} </span>}
+                        {dealState.hashtagArray[1]&& <span>#{dealState.hashtagArray[1]} </span>}
+                        {dealState.hashtagArray[2]&& <span>#{dealState.hashtagArray[2]} </span>}
                         {
                             dealState.price == '' ? (
                                 <p>나눔🧡</p>

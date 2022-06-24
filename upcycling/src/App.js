@@ -30,10 +30,6 @@ import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 function App({reviewRepository, commentRepository, imageUploader, likeRepository}) {
   
   const { user } = useContext(AuthContext);
-<<<<<<< HEAD
-=======
-  
->>>>>>> 032fe9e6ef2caf3df64a898ec5ee2e71ae268663
   const userId = user ? user.uid : null
 
   const [reviews, setReviews] = useState([])
@@ -122,20 +118,12 @@ const removeLike = (userId,review) => {
   return (
     <div className="App">
         <Routes>
-<<<<<<< HEAD
         <Route path="/" element={!user?<FirstMain/> : <Home/>}></Route>
           <Route path="/home" element={user ? <Home /> :<SignIn/> }></Route>          <Route path="/contents" element={<Contents/>}></Route>
-          <Route path="/Profile" element={< Profile/>}></Route>
+          <Route path="/MyPage" element={<Mypage deals={deals} />}></Route>
           <Route path="/SignIn" element={<SignIn/>}></Route>
           <Route path="/SignUp" element={<SignUp/>}></Route>
-=======
-          <Route path="/" element={!user?<FirstMain/> : <Home/>}></Route>
-          <Route path="/home" element={user ? <Home /> :<SignIn/> }></Route>
-          <Route path="/contents" element={<Contents/>}></Route>
-          <Route path="/mypage" element={< Mypage/>}></Route>
-          <Route path="/signIn" element={<SignIn/>}></Route>
-          <Route path="/signUp" element={<SignUp/>}></Route>
->>>>>>> 032fe9e6ef2caf3df64a898ec5ee2e71ae268663
+
           <Route path="/event" element={<EventIntro />}></Route>
           
           {/* 🍎윤지은 router */}

@@ -80,9 +80,7 @@ const DealWrite = () => {
         // submit하면 추가할 데이터
         const dealObj = {
             title: dTitle, // 제목 
-            hashtag1: dHashtag1,
-            hashtag2: dHashtag2,
-            hashtag3: dHashtag3,
+            hashtagArray: [dHashtag1, dHashtag2, dHashtag3],
             price: dPrice, // 가격
             content: dContent, // 내용
             createdAt: Date.now(), // 생성날짜
