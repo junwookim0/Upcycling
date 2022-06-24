@@ -44,7 +44,6 @@ const deleteReview = (deletedItem) => {
 
   if(window.confirm("게시글을 정말 삭제 하시겠습니까?")){
     reviewRepository.removeReview(userId,deletedItem)
-    imageUploader.delete(deletedItem.reviewIMG)
     alert('게시글을 삭제했습니다.');
     navigator('/reviews')
   }
