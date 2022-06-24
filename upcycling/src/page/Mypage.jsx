@@ -1,10 +1,11 @@
 import { useContext } from "react";
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../components/context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { SignOut } from "../../firebase";
-import Nav from '../Nav/Nav';
-import SubMainBanner from "../banner/SubMainBannerMypage"
-import CarouselMypage from "../banner/CarouselMypage";
+import { SignOut } from "../firebase";
+import Nav from '../components/Nav/Nav';
+import SubMainBanner from "../components/banner/SubMainBannerMypage"
+import CarouselMypage from "../components/banner/CarouselMypage";
+
 const Mypage = () => {
     const { user } = useContext(AuthContext);
     

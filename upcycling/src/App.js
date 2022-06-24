@@ -5,7 +5,7 @@ import Contents from './page/Contents';
 import FirstMain from './page/FirstMain/FirstMain';
 import EventIntro from './components/Intro/EventIntro';
 import SignIn from './components/login/SignIn';
-import Mypage from './components/login/Mypage';
+import Mypage from './page/Mypage';
 import SignUp from './components/login/SignUp';
 import { useContext } from "react";
 import AuthContext from "./components/context/AuthContext";

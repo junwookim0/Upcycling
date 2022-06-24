@@ -5,18 +5,25 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import "../banner/Carousel.css";
+import "./Carousel.css";
 
 // import required modules
-import {EffectCoverflow, Pagination, Navigation , Autoplay} from "swiper";
+import { Pagination, Navigation , Autoplay} from "swiper";
 
-const MyReview = () => {
+import { useNavigate } from "react-router-dom";
+
+const Carousel_mypage = ({deal}) => {
     
     const [setSwiperRef] = useState(null);
+    const navigate = useNavigate();
+
+    const onClick = () => {
+        navigate(`/deals/${deal.createdAt}`, {state: {deal}})
+    };
 
     return (
         <>
-        <h2 className="Carousel_text">내 리뷰</h2>
+        <h2 className="Carousel_text">내 판매글</h2>
         <Swiper
             onSwiper={setSwiperRef}
             slidesPerView={3}
@@ -26,17 +33,18 @@ const MyReview = () => {
             type: "fraction",
             }}
             autoplay={{
-                delay: 3500,
+                delay: 3600,
                 disableOnInteraction: false,
             }}
             navigation={true}
-            modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
+            modules={[Pagination, Navigation, Autoplay]}
             className="mySwiper"
         >
-            <SwiperSlide>리뷰1</SwiperSlide>
-            <SwiperSlide>리뷰 2</SwiperSlide>
-            <SwiperSlide>리뷰 3</SwiperSlide>
-            <SwiperSlide>리뷰 4</SwiperSlide>
+            
+            <SwiperSlide>Slide 1</SwiperSlide>
+            <SwiperSlide>Slide 2</SwiperSlide>
+            <SwiperSlide>Slide 3</SwiperSlide>
+            <SwiperSlide>Slide 4</SwiperSlide>
         </Swiper>
         <h2 className="Carousel_text">좋아요</h2>
         <Swiper
@@ -55,14 +63,15 @@ const MyReview = () => {
             modules={[Pagination, Navigation, Autoplay]}
             className="mySwiper"
         >
-            <SwiperSlide>리뷰 좋아요 1</SwiperSlide>
-            <SwiperSlide>리뷰 좋아요 2</SwiperSlide>
-            <SwiperSlide>리뷰 좋아요 3</SwiperSlide>
-            <SwiperSlide>리뷰 좋아요 4</SwiperSlide>
+            
+            <SwiperSlide>Slide 1</SwiperSlide>
+            <SwiperSlide>Slide 2</SwiperSlide>
+            <SwiperSlide>Slide 3</SwiperSlide>
+            <SwiperSlide>Slide 4</SwiperSlide>
         </Swiper>
 
         </>
     );
 }
 
-export default MyReview;
+export default Carousel_mypage;

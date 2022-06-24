@@ -16,6 +16,7 @@ import styles from './CSS/dealDetail.module.css'
 
 import CommentWrite from "./CommentWrite";
 import DealLike from "./DealLike";
+
 import { async } from "@firebase/util";
 
 const DealDetail = () => {
@@ -23,8 +24,8 @@ const DealDetail = () => {
     const { user } = useContext(AuthContext);
 
     const location = useLocation();
-    const navigate = useNavigate();
     const dealState = location.state.deal;
+    const navigate = useNavigate();
 
     /* 사용 함수 */
     // 문서 가져
