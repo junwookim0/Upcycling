@@ -25,6 +25,7 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     const [reviews, setReviews] = useState([])
 
 
+
     //🍎firebase에 저장된 review받아오기
     useEffect(()=> {
     const stopSync =  reviewRepository.syncReviews(reviews => {
@@ -39,14 +40,14 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     const [comments,setComments] = useState([])
 
 
-    //🍎현재 review를 담는 useEffect
+    //🍎현재 review를 담는 useEffect ->코드가 이상..?
     useEffect(()=> {
         let reviewArray = Object.entries(reviews)
         reviewArray.map(item => {
             if(item[0]===reviewId) {
                 setCurrentReview(item)
             }
-            return console.log('ㅇㅇ')
+            return setCurrentReview(item)
         })
     },[reviews,reviewId])
 
@@ -103,7 +104,7 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     const onDeleteComment = (comment) => {
         deleteComment(comment,reviewState.id, userId)
     }
-    
+
 
     return (
         <section >

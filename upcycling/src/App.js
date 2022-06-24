@@ -30,22 +30,8 @@ import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 function App({reviewRepository, commentRepository, imageUploader, likeRepository}) {
   
   const { user } = useContext(AuthContext);
-  
   const userId = user ? user.uid : null
-
-  const [reviews, setReviews] = useState([])
-
   const navigator = useNavigate();
-
-//   const [reviews, setReviews] = useState([])
-
-// //🍎firebase에 저장된 review받아오기
-// useEffect(()=> {
-//   const stopSync =  reviewRepository.syncReviews(reviews => {
-//     setReviews(reviews);
-//   })
-//   return () => stopSync();
-// },[userId, reviewRepository])
 
 
 //🍎지은 : create & update review 
@@ -66,7 +52,6 @@ const deleteReview = (deletedItem) => {
 }
 
 
-
 //🍎지은 : delete Comment 
 const deleteComment = (comment,reviewId,userId) => {
 
@@ -75,7 +60,6 @@ const deleteComment = (comment,reviewId,userId) => {
     alert('댓글을 삭제했습니다.');
   }
 }
-
 
 //🍎지은 : create Comment 
 const createAndUpdateComment = (comment,reviewId,userId) => {

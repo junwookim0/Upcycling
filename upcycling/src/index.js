@@ -12,6 +12,9 @@ import ImageUploader  from './Service/image_uploader'
 import LikeRepository from './Service/like_repository';
 
 import { AuthProvider } from "./components/context/AuthProvider";
+import { store } from './store'
+import { Provider } from 'react-redux';
+
 
 const reviewRepository = new ReviewRepository();
 const commentRepository = new CommentRepository();
@@ -24,12 +27,14 @@ root.render(
     <BrowserRouter>
     <AuthProvider>
       <ScrollToTop/>
+      <Provider store={store}>
       <App reviewRepository={reviewRepository} 
         commentRepository={commentRepository}
         imageUploader={imageUploader}
         likeRepository={likeRepository}
-        />
-        </AuthProvider>
+      />
+      </Provider>
+    </AuthProvider>
     </BrowserRouter>
 );
 
