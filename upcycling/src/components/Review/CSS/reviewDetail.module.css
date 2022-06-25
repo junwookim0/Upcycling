@@ -51,6 +51,12 @@
     font-size: 0.9rem;
 }
 
+.container_inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 /*콘텐츠*/
 .content {
     display: flex;
@@ -78,15 +84,26 @@
     /* border: 1px solid pink; */
 }
 
+.container_title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .title {
     /* border: 1px solid yellowgreen; */
     height: 7rem;
     margin-bottom: 2rem;
 }
 
-.title > h1 {
+.reviewTitle{
     font-size: 1.8rem;
+    font-weight: bold;
     margin-bottom: 0;
+}
+
+.date {
+    color : makerGrey;
 }
 
 .tags {

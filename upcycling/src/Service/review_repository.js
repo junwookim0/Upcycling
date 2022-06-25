@@ -1,5 +1,6 @@
 import { getDatabase, onValue,off, ref, set, remove} from 'firebase/database'
 
+
 class ReviewRepository {
 
     constructor(app) {
@@ -15,6 +16,33 @@ class ReviewRepository {
         return () => off(query);
     }
 
+    syncMyReviewsById(onUpdate,userId){
+        const query = ref(this.db, `${userId}/reviews`);
+        onValue(query, (snapshot) => {
+            const value = snapshot.val();
+            value && onUpdate(value);
+        })
+        return () => off(query);
+    }
+
+    syncMyLikeById(onUpdate,userId){
+        const query = ref(this.db, `${userId}/likes`);
+        onValue(query, (snapshot) => {
+            const value = snapshot.val();
+            value && onUpdate(value);
+        })
+        return () => off(query);
+    }
+
+    syncMyCommentsById(onUpdate,userId){
+        const query = ref(this.db, `${userId}/comments`);
+        onValue(query, (snapshot) => {
+            const value = snapshot.val();
+            value && onUpdate(value);
+        })
+        return () => off(query);
+    }
+
     saveReview(userId, review){
         set(ref(this.db, `${userId}/reviews/${review.id}`), review);
         console.log(' user 저장성공!')
@@ -22,7 +50,9 @@ class ReviewRepository {
         console.log(' reviews 저장성공!')
     }
 
+    
     removeReview(userId, review) {
+        console.log(userId)
         remove(ref(this.db, `${userId}/reviews/${review.id}`));
         console.log(' user 삭제성공!')
         remove(ref(this.db, `reviews/review/${review.id}`));

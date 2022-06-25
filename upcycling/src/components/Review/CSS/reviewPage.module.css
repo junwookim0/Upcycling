@@ -8,10 +8,7 @@
     display: flex;
     margin-top: 3rem;
     justify-content: center;
-}
-
-.button_write {
-    margin-left: 3rem;
+    align-items: center;
 }
 
 

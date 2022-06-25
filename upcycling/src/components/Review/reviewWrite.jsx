@@ -6,6 +6,7 @@ import styles from './CSS/reviewWrite.module.css'
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 
+import { format } from "date-fns";
 
 //🍎 Review를 작성하는 페이지
 
@@ -30,6 +31,8 @@ const ReviewWrite = ({createAndUpdateReview , imageUploader}) => {
     const [uploadedIMG, setUploadedIMG] = useState()
     const [inputButton, setInputButton] = useState(false)
 
+    let date = new Date();
+
     const onSubmit = event => {
         event.preventDefault();
 
@@ -38,10 +41,12 @@ const ReviewWrite = ({createAndUpdateReview , imageUploader}) => {
             nickname : userName,
             email : userEmail,
             profileIMG : userPhoto,
+            userId : userId,
             reviewIMG : uploadedIMG,
             reviewTitle : reviewTitleRef.current.value,
             reviewDescription : reviewDescriptionRef.current.value,
-            reviewHashtags : [reviewHashtagsRef1.current.value,reviewHashtagsRef2.current.value,reviewHashtagsRef3.current.value,]
+            reviewHashtags : [reviewHashtagsRef1.current.value,reviewHashtagsRef2.current.value,reviewHashtagsRef3.current.value,],
+            reviewDate :  format(date, "yyyy.MM.dd HH:mm"),
         }; 
         formRef.current.reset();
         createAndUpdateReview(review, userId)

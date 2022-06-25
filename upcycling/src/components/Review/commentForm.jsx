@@ -1,12 +1,13 @@
 import React from 'react';
 import { useRef } from 'react';
 import styles from './CSS/commentForm.module.css'
+import { format } from "date-fns";
 
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { useState } from 'react';
 
-const CommentForm = ({ getComment }) => {
+const CommentForm = ({ getComment, review }) => {
     const textareaRef = useRef();
     const [text, setText] = useState('')    
 
@@ -17,6 +18,7 @@ const CommentForm = ({ getComment }) => {
     const userPhoto = user.photoURL
 
 
+    let date = new Date();
 
     const onChange = (event) => {
         if(event.currentTarget == null) {
@@ -34,6 +36,7 @@ const CommentForm = ({ getComment }) => {
         textareaRef.current.reset()
     }
 
+
     const newComment = {
         id : 'C' + Date.now(),
         userName : userName,
@@ -41,7 +44,10 @@ const CommentForm = ({ getComment }) => {
         userPhoto : userPhoto,
         comment : text || '',
         toggle : false,
-        date : Date.now()
+        date : format(date, "yyyy.MM.dd HH:mm"),
+        reviewTitle : review.reviewTitle,
+        reviewId : review.id,
+        reviewIMG : review.reviewIMG,
     }
 
     return (

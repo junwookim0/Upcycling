@@ -13,6 +13,7 @@ import Search from './Search';
 
 import { useSelector, useDispatch } from "react-redux";
 import { storeKeyword } from './searchSlice'
+import WriteButton from './writeButton';
 
 
 //🍎전체 Review를 보여주는 페이지
@@ -41,9 +42,12 @@ const ReviewPage = ({reviewRepository}) => {
     },[userId, reviewRepository])
 
 
-    //🍎받아온 reviews를 value값만 가져오기
+
+    //🍎받아온 reviews를 value값만 가져오기 - 최신순 정렬
     useEffect(()=> {
-        setOnReviews(Object.values(reviews))
+        let reviewArray = Object.values(reviews)
+        let orderedReview =  reviewArray.slice().sort((a,b) => b.reviewDate.localeCompare(a.reviewDate))
+        setOnReviews(orderedReview)
     },[reviews])
 
     //🍎해시태그 검색
@@ -67,14 +71,8 @@ useEffect(()=>{
             <SubMainBanner/>
             <div className={styles.reviewPage}>
                 <div className={styles.header}>
-                    <div className={styles.search}>
-                        <Search onSearch={onSearch}/>
-                    </div>
-                    <button className={styles.button_write}
-                            onClick={()=>{
-                                navigator('/reviews/write')
-                            }}>글쓰기
-                    </button>
+                    <Search onSearch={onSearch}/>
+                    <WriteButton/>
                 </div>
 
                 <ul className={styles.list}>
