@@ -6,7 +6,7 @@ import Nav from '../components/Nav/Nav';
 import SubMainBanner from "../components/banner/SubMainBannerMypage"
 import CarouselMypage from "../components/banner/CarouselMypage";
 
-const Mypage = () => {
+const Mypage = ({reviewRepository}) => {
     const { user } = useContext(AuthContext);
     
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ const Mypage = () => {
         alert("로그아웃");
         navigate("/");
     };
-    console.log(user);
+    // console.log(user);
     if(!user){
         return (
             <div>
@@ -33,7 +33,7 @@ const Mypage = () => {
                 <SubMainBanner/>
                 <h1>{user.displayName ? user.displayName : user.reloadUserInfo.screenName ? user.reloadUserInfo.screenName : "이름을 정해주세요"}님의 페이지</h1> 
                 <button onClick={handleLogout}>Logout</button>
-                <CarouselMypage/>
+                <CarouselMypage reviewRepository={reviewRepository}/>
                 
 
             </div>

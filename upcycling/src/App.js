@@ -105,7 +105,7 @@ const removeLike = (userId,review) => {
           <Route path="/" element={!user?<FirstMain/> : <Home/>}></Route>
           <Route path="/home" element={user ? <Home /> :<SignIn/> }></Route>
           <Route path="/contents" element={<Contents/>}></Route>
-          <Route path="/mypage" element={< Mypage deals={deals}/>}></Route>
+          <Route path="/mypage" element={< Mypage reviewRepository={reviewRepository} deals={deals}/>}></Route>
           <Route path="/signIn" element={<SignIn/>}></Route>
           <Route path="/signUp" element={<SignUp/>}></Route>
           <Route path="/event" element={<EventIntro />}></Route>

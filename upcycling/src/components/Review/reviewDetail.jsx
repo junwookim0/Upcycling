@@ -11,7 +11,8 @@ import SubMainBannerReviews from '../banner/SubMainBannerReviews';
 import Search from './Search';
 import CommentForm from './commentForm';
 import CommentReviseForm from './commentReviseForm';
-import { useRef } from 'react';
+import WriteButton from './writeButton';
+
 
 
 //🍎 reviewPage에서 item의 이미지를 클릭했을 때 이동하는 컴포넌트
@@ -44,6 +45,7 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     },[userId, reviewRepository])
 
 
+
     //🍎현재 review를 담는 useEffect ->코드가 이상..?
     useEffect(()=> {
         let reviewArray = Object.entries(reviews)
@@ -51,6 +53,7 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
             if(item[0]===reviewId) {
                 setCurrentReview(item)
             }
+            return console.log('')
         })
     },[reviews,reviewId])
 
@@ -74,7 +77,6 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
 
 
     //🍎코멘트 ADD
-    //console.log(newComment)
     const getComment = (newComment) => {
         const review = {...reviewState}
         createAndUpdateComment(newComment,review.id,userId)
@@ -86,7 +88,7 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     }
 
     //🍎 elli어쩌구 버튼 누르면 menu 보이게 하기
-    const [openMenu, setOpenMenu] = useState(false)
+    // const [openMenu, setOpenMenu] = useState(false)
 
     const viewMenu = (event)=> {
         console.log(event)
@@ -100,7 +102,6 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
         setCurrentComment(comment)
     }
 
-    
     return (
         <section >
             <Nav/>
@@ -114,14 +115,20 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
                             <p className={styles.userEmail}>({reviewState.email && reviewState.email})</p>
                         </div>
                     </div>
+                    <div className={styles.container_inner}>
                     <Search/>
+                    <WriteButton/>
+                    </div>
                 </div>
                 
                 <div className={styles.content}>
                     <img src={reviewState.reviewIMG} alt="review" />
                     <div className={styles.content_container}>
                         <div className={styles.title}>
-                            <h1>{reviewState.reviewTitle}</h1> <br/>
+                            <div className={styles.container_title}>
+                                <span className={styles.reviewTitle}>{reviewState.reviewTitle}</span> 
+                                <span className={styles.date}>{reviewState.reviewDate}</span>
+                            </div>
                             <div className={styles.tags}>
                                 {reviewState.reviewHashtags[0] && <span className={styles.hashtags}># {reviewState.reviewHashtags[0]}</span> }
                                 {reviewState.reviewHashtags[1] && <span className={styles.hashtags}># {reviewState.reviewHashtags[1]}</span> }
@@ -138,10 +145,10 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
                     <Like reviewRepository={reviewRepository} review={reviewState} userId={user} clickLike={clickLike} removeLike={removeLike}/>
                         <button className={styles.comment_button}><i className="fa-solid fa-comment-dots"></i></button>
                     </div>
-                    <div className={styles.icon_container_right}>
+                    { userId === reviewState.userId && (<div className={styles.icon_container_right}>
                         <button onClick={()=>goRevise(reviewState)}>글 수정</button>
                         <button onClick={()=>deleteReview(reviewState)}>글 삭제</button>
-                    </div>
+                    </div>)}
                 </div>
                 <div className={styles.comments_container}>
                     <h2>댓글</h2>
@@ -168,7 +175,7 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
                                     
                                     <p className={styles.comments_text}>{item.comment}</p>
                                     <span className={styles.comments_date}>{item.date}</span>
-                                    <CommentReviseForm getComment={getComment} currentComment={currentComment}/>
+                                    <CommentReviseForm review={reviewState} getComment={getComment} currentComment={currentComment}/>
                                 </div>
                                 )
                             ))
@@ -176,7 +183,7 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
                     </div>
                 </div>  
                 
-                <CommentForm getComment={getComment}/>
+                <CommentForm review={reviewState}  getComment={getComment}/>
             </div>
         </section>
     );
