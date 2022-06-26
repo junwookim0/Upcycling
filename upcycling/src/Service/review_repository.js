@@ -43,6 +43,7 @@ class ReviewRepository {
         return () => off(query);
     }
 
+
     saveReview(userId, review){
         set(ref(this.db, `${userId}/reviews/${review.id}`), review);
         console.log(' user 저장성공!')
@@ -51,12 +52,19 @@ class ReviewRepository {
     }
 
     
+    //⭐⭐⭐리뷰 삭제할때 안에있는 코멘트랑 리뷰도 같이 삭제될것!
     removeReview(userId, review) {
         console.log(userId)
         remove(ref(this.db, `${userId}/reviews/${review.id}`));
         console.log(' user 삭제성공!')
         remove(ref(this.db, `reviews/review/${review.id}`));
         console.log(' reviews 삭제성공!')
+
+        remove(ref(this.db, `${userId}/likes/${review.id}`));
+        console.log(' user like 삭제성공!')
+
+        remove(ref(this.db, `${userId}/comments/${review.id}`));
+        console.log(' user코멘트 삭제성공!')
     }
 }
 

@@ -8,7 +8,6 @@ import { GoogleAuthProvider, signInWithPopup,
 import { getStorage } from "firebase/storage";
 const firebaseConfig = {
     /*
-    //파이어베이스 인증키랑 지울게요! -지은-
     apiKey: "",
     authDomain: "",
     databaseURL: "",
@@ -24,7 +23,6 @@ const firebaseConfig = {
     storageBucket: "login-97034.appspot.com",
     messagingSenderId: "737764108580",
     appId: "1:737764108580:web:aaea951966d9fb3b306bb1"
-
 };
 // Initialize Firebase 
 

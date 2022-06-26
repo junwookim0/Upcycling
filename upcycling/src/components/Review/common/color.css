@@ -9,6 +9,9 @@
 @value makerDarkGreen: #5F7161;
 @value makerGreen: #6D8B74;
 
+@value makerBeige: #EFEAD8;
+@value makerDarkBeige: #D0C9C0;
+
 /*컴포넌트에서 사용할때 
 
 @value makerGrey,makerLightGrey from '../Review/common/color.css';
