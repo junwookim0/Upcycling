@@ -10,14 +10,15 @@ const firebaseConfig = {
 
     //파이어베이스 인증키랑 지울게요! -지은-
     /*
-    
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: ""
     */
-    apiKey: "AIzaSyBoX4JqMqLdCoJM7g0EiZor0VcdiqTcDwo",
-    authDomain: "fir-test-login-85c6c.firebaseapp.com",
-    projectId: "fir-test-login-85c6c",
-    storageBucket: "fir-test-login-85c6c.appspot.com",
-    messagingSenderId: "366758576094",
-    appId: "1:366758576094:web:ed6d85b8de98363efa674f"
+    
 };
 // Initialize Firebase 
 
@@ -85,4 +86,3 @@ const storage = getStorage(app);
 export { app , auth , db , 
     firestore ,storage, signIn , signUp, SignOut,
     signInWithGoogle, signInWithFacebook ,signInWithGithub};
-    
