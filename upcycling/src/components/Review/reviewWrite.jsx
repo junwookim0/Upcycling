@@ -7,6 +7,8 @@ import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 
 import { format } from "date-fns";
+import Nav from '../Nav/Nav';
+import SubMainBannerReviews from '../banner/SubMainBannerReviews';
 
 //🍎 Review를 작성하는 페이지
 
@@ -30,6 +32,8 @@ const ReviewWrite = ({createAndUpdateReview , imageUploader}) => {
 
     const [uploadedIMG, setUploadedIMG] = useState()
     const [inputButton, setInputButton] = useState(false)
+
+    const [name , setName] = useState('')
 
     let date = new Date();
 
@@ -58,46 +62,73 @@ const ReviewWrite = ({createAndUpdateReview , imageUploader}) => {
         // console.log(event.target.files[0]);
         setInputButton(true)
         const uploaded = await imageUploader.upload(event.target.files[0]);
-            setUploadedIMG(uploaded.url)
+        setUploadedIMG(uploaded.url)
+        setName(uploaded.original_filename)
         setInputButton(false)
         console.log('이미지로딩')
     }
 
+    //🍎버튼을 클릭하면 파일인풋이 클릭된것 처럼 보이기
+    const onButtonClick = (event) =>{
+        event.preventDefault();
+        reviewIMGRef.current.click();
+    };
+
     //⭐글쓰기 항목이 다 있을 때만 버튼이 활성화 될 수있도록
     const canSave = Boolean(reviewTitleRef)  && Boolean(reviewDescriptionRef) && Boolean(uploadedIMG)
     return (
-            <form className={styles.form} ref={formRef}>
-                
-                
-                    <label htmlFor="reviewTitle">Title : </label>
-                    <input ref={reviewTitleRef} id='reviewTitle' name='reviewTitle' type="text" placeholder='제목' />
-                    <br/>
-                    <label htmlFor="reviewHashtags">Hashtag : </label>
-                        <input ref={reviewHashtagsRef1} name='reviewHashtags' type="text" placeholder='해시태그' />
-                        <input ref={reviewHashtagsRef2} name='reviewHashtags' type="text" placeholder='해시태그' />
-                        <input ref={reviewHashtagsRef3} name='reviewHashtags' type="text" placeholder='해시태그' />
-
-                    <br/>
-                    <textarea 
-                        ref={reviewDescriptionRef} 
-                        name="" 
-                        id="" 
-                        cols="30" 
-                        rows="10"
-                        className={styles.reviewDescription}
+        <>
+        <Nav/>
+        <SubMainBannerReviews/>
+        
+            <div className={styles.reviewWrite}>
+            <div className={styles.titleBox}>
+                <h2>리뷰 글쓰기</h2>
+            </div>
+                <form className={styles.form} ref={formRef}>
+                    <input className={styles.input_title} ref={reviewTitleRef} id='reviewTitle' name='reviewTitle' type="text" placeholder='제목을 입력해 주세요' />
+                <div className={styles.second_container}>
+                    <div className={styles.input_container}>
+                        {uploadedIMG? (<img src={uploadedIMG} alt='이미지' className={styles.fileInput_img} />) : (
+                            <div className={styles.before_uploadedImg}>
+                                <p>이미지를 <br/>첨부해주세요</p>
+                                
+                            </div>
+                        )}
+                        <button 
+                            className={styles.input_button}
+                            onClick={onButtonClick}
                         >
+                        {name || <div><i className="fa-solid fa-image"></i> <span>이미지 첨부</span></div>}
+                        </button>
+                    </div>
 
-                    </textarea>
-                    <br/>
-                    { uploadedIMG && (<img src={uploadedIMG} alt='이미지' style={{width: '50px', height: '50px'}} />)}
+                    <div className={styles.hash_container}>
+                        <p>#태그를 입력해주세요 (최대 3개)</p>
+                        <div className={styles.hashtags_box}>
+                            <input className={styles.hashtags} ref={reviewHashtagsRef1} name='reviewHashtags' type="text" placeholder='해시태그 1' />
+                            <input className={styles.hashtags} ref={reviewHashtagsRef2} name='reviewHashtags' type="text" placeholder='해시태그 2' />
+                            <input className={styles.hashtags} ref={reviewHashtagsRef3} name='reviewHashtags' type="text" placeholder='해시태그 3' />
+                        </div>
+                    </div>
+                </div>
+                
+                {/* 화면상에서 안보임 */}
                     <input 
+                        className={styles.fileInput}
                         ref={reviewIMGRef}
                         type="file"
                         accept='image/*'
                         name='reviewIMG'
                         onChange={onChange}
                     />
-                    <br/>
+                <textarea 
+                    className={styles.textarea}
+                    ref={reviewDescriptionRef} 
+                    placeholder='내용을 입력하세요.'
+                    >
+                </textarea>
+
                     { inputButton &&
                         (<div className={styles.modal_container}>
                             <div className={styles.dialog__inner}>
@@ -111,13 +142,22 @@ const ReviewWrite = ({createAndUpdateReview , imageUploader}) => {
                         </div>)
                     }
 
+                <div className={styles.submit_buttons}>
                     <button 
-                    onClick={onSubmit}
-                    disabled={!canSave}
-                    >작성완료
+                        className={styles.button}
+                    >취소
                     </button>
-            </form>
-        
+                    <button 
+                        className={styles.button}
+                        onClick={onSubmit}
+                        disabled={!canSave}
+                    >완료
+                    </button>
+                </div>
+                    
+                </form>
+            </div>
+        </>
     );
 };
 

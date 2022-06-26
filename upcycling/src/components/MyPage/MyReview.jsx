@@ -56,7 +56,7 @@ const MyReview = ({reviewRepository}) => {
         let reviewArray = Object.values(myReviews)
         let orderedReview =  reviewArray.slice().sort((a,b) => b.reviewDate.localeCompare(a.reviewDate))
         setOnMyReviews(orderedReview)
-    },[myComments])
+    },[myReviews])
 
 
 
@@ -89,7 +89,7 @@ const MyReview = ({reviewRepository}) => {
         let reviewArray = Object.values(myComments)
         let orderedReview =  reviewArray.slice().sort((a,b) => b.date.localeCompare(a.date))
         setOnMyComments(orderedReview)
-    },[myLikes])
+    },[myComments])
 
     console.log(onMyComments)
 
@@ -146,7 +146,7 @@ const MyReview = ({reviewRepository}) => {
 
         </Swiper>
 
-        {onMyComments && (<CommentList onMyComments={onMyComments}/>)}
+        {/* {onMyComments && (<CommentList onMyComments={onMyComments}/>)} */}
         </>
     );
 }

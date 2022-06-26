@@ -45,7 +45,6 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     },[userId, reviewRepository])
 
 
-
     //🍎현재 review를 담는 useEffect ->코드가 이상..?
     useEffect(()=> {
         let reviewArray = Object.entries(reviews)
@@ -75,6 +74,11 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
         navigation(`/review/revise/${review.id}`, {state : {review}})
     }
 
+    //🍎Delete Review
+    const onDeleteReview = () => {
+        
+    }
+
 
     //🍎코멘트 ADD
     const getComment = (newComment) => {
@@ -96,8 +100,6 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     }
     
     //🍎comment 수정누르면 코멘트 보내기
-    
-
     const onReviseComment = (comment) => {
         setCurrentComment(comment)
     }
