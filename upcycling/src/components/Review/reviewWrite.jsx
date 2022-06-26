@@ -87,31 +87,6 @@ const ReviewWrite = ({createAndUpdateReview , imageUploader}) => {
             </div>
                 <form className={styles.form} ref={formRef}>
                     <input className={styles.input_title} ref={reviewTitleRef} id='reviewTitle' name='reviewTitle' type="text" placeholder='제목을 입력해 주세요' />
-                <div className={styles.second_container}>
-                    <div className={styles.input_container}>
-                        {uploadedIMG? (<img src={uploadedIMG} alt='이미지' className={styles.fileInput_img} />) : (
-                            <div className={styles.before_uploadedImg}>
-                                <p>이미지를 <br/>첨부해주세요</p>
-                                
-                            </div>
-                        )}
-                        <button 
-                            className={styles.input_button}
-                            onClick={onButtonClick}
-                        >
-                        {name || <div><i className="fa-solid fa-image"></i> <span>이미지 첨부</span></div>}
-                        </button>
-                    </div>
-
-                    <div className={styles.hash_container}>
-                        <p>#태그를 입력해주세요 (최대 3개)</p>
-                        <div className={styles.hashtags_box}>
-                            <input className={styles.hashtags} ref={reviewHashtagsRef1} name='reviewHashtags' type="text" placeholder='해시태그 1' />
-                            <input className={styles.hashtags} ref={reviewHashtagsRef2} name='reviewHashtags' type="text" placeholder='해시태그 2' />
-                            <input className={styles.hashtags} ref={reviewHashtagsRef3} name='reviewHashtags' type="text" placeholder='해시태그 3' />
-                        </div>
-                    </div>
-                </div>
                 
                 {/* 화면상에서 안보임 */}
                     <input 
@@ -132,7 +107,6 @@ const ReviewWrite = ({createAndUpdateReview , imageUploader}) => {
                     { inputButton &&
                         (<div className={styles.modal_container}>
                             <div className={styles.dialog__inner}>
-                                <button className={styles.buttonClose}>╳</button>
                                 <div className={styles.dialog__content}>
                                 <h3>이미지를 업로딩 중 입니다.</h3>
                                 <p>잠시만 기다려주세요.</p>
@@ -141,20 +115,48 @@ const ReviewWrite = ({createAndUpdateReview , imageUploader}) => {
                             </div>
                         </div>)
                     }
-
-                <div className={styles.submit_buttons}>
-                    <button 
-                        className={styles.button}
-                    >취소
-                    </button>
-                    <button 
-                        className={styles.button}
-                        onClick={onSubmit}
-                        disabled={!canSave}
-                    >완료
-                    </button>
-                </div>
                     
+
+                    <div className={styles.last_container}>
+                        <div className={styles.inner}>
+                            <div className={styles.input_container}>
+                                {uploadedIMG? (<img src={uploadedIMG} alt='이미지' className={styles.fileInput_img} />) : (
+                                    <div className={styles.before_uploadedImg}>
+                                        <p>이미지를 <br/>첨부해주세요</p>
+                                        
+                                    </div>
+                                )}
+                                <button 
+                                    className={styles.input_button}
+                                    onClick={onButtonClick}
+                                >
+                                {name || <div><i className="fa-solid fa-image"></i> <span>이미지 첨부</span></div>}
+                                </button>
+                            </div>
+
+                            <div className={styles.hash_container}>
+                                <p>#태그를 입력해주세요 (최대 3개)</p>
+                                <div className={styles.hashtags_box}>
+                                    <input className={styles.hashtags} ref={reviewHashtagsRef1} name='reviewHashtags' type="text" placeholder='해시태그 1' />
+                                    <input className={styles.hashtags} ref={reviewHashtagsRef2} name='reviewHashtags' type="text" placeholder='해시태그 2' />
+                                    <input className={styles.hashtags} ref={reviewHashtagsRef3} name='reviewHashtags' type="text" placeholder='해시태그 3' />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div className={styles.submit_buttons}>
+                            <button 
+                                className={styles.button}
+                            >취소
+                            </button>
+                            <button 
+                                className={styles.button}
+                                onClick={onSubmit}
+                                disabled={!canSave}
+                            >완료
+                            </button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </>
