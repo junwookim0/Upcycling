@@ -9,6 +9,7 @@ import { doc, setDoc, collection, onSnapshot } from "firebase/firestore";
 import { firestore } from "../../firebase";
 
 import styles from './CSS/dealDetail.module.css'
+import { format } from "date-fns";
 
 import CommentItem from './CommentItem';
 
@@ -36,6 +37,8 @@ const CommentWrite = () => {
         });    
     }, []);
 
+    let date = new Date();
+
     /* 사용 함수 */
     // 댓글 작성
     const onSubmit = async(e) => {
@@ -45,8 +48,10 @@ const CommentWrite = () => {
         const commentObj = {
             content: dComment, // 댓글
             creatorId: user.uid,
-            creatorName: user.displayName, // 생성한 사람 닉 표시
+            creatorName: user.displayName,
+            creatorPhoto: user.photoURL,
             createdAt: Date.now(),
+            date : format(date, "yyyy.MM.dd HH:mm"),
         };
 
         // Date.now()를 기준으로 댓글 문서 생성
