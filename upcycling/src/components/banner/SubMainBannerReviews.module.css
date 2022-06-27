@@ -13,7 +13,7 @@
     position: absolute;
     top: 0;
     width: 50%;
-    height: 445px;
+    height: 459px;
 
     background-color: #F8F3E8;
     position: relative;
@@ -21,18 +21,25 @@
     font-size: 50px;
 }
 
-.text > h1, .text > p{
+
+
+.text > h3, .text > p{
     position: relative;
     top: 150px;
     text-align: center;
 }
 
-.text > h1 {
-    font-size: 4rem;
+.text > h3 {
+    font-size: 5rem;
+    margin: 2.5rem;
 }
 
 .text >p {
     font-size: 1rem;
+}
+
+.span {
+    font-size: 2.5rem;
 }
 
 

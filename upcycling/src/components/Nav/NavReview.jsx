@@ -112,7 +112,8 @@ const Nav = () => {
             <header className={scrolled ? 'fix-container scrolled' : 'fix-container'}>
                 <nav className="navbar">
                     <div className="navbar_logo" onClick={goHome}>
-                        <span className="logo_text">: UPTOWN</span>
+                        <span 
+                        className={scrolled ? 'logo_text scrolled' : 'logo_text'}>: UPTOWN</span>
                     </div>
                     <ul className={isOpen ? 'navbar_menu active' : 'navbar_menu'}>
                         <li onClick={goHome}>Home</li>
