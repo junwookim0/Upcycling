@@ -1,5 +1,6 @@
 /* 🥑 06-17 좋아요 */
 // 06-21 dbDeals에 좋아요 수/ 좋아요 누른 유저 값 업데이트
+// 06-27 creatorId와 user.uid 같을 경우 좋아요 못 누름
 
 import React, { useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
@@ -36,11 +37,17 @@ const DealLike = ({dealState, isMyLike}) => {
     }
 
     return(
-        <>
-            <button onClick={toggleLike}>
-                {likeAction ? '💖' : '🤍'}
-            </button>
-        </>
+        user.uid != dealState.creatorId ? (
+            <>
+                <button onClick={toggleLike}>
+                    {likeAction ? '💖' : '🤍'}
+                </button>
+            </>
+        ) : (
+            <>
+                <button disabled>🤍</button>
+            </>
+        )
     );
 };
 

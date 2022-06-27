@@ -13,8 +13,7 @@ const firebaseConfig = {
     projectId: "upcycling-project-ex",
     storageBucket: "upcycling-project-ex.appspot.com",
     messagingSenderId: "763504697046",
-    appId: "1:763504697046:web:7eab09dda319dcba2b3377"
-};
+    appId: "1:763504697046:web:7eab09dda319dcba2b3377"};
 // Initialize Firebase 
 
 const app = initializeApp(firebaseConfig);

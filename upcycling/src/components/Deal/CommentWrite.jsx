@@ -48,7 +48,8 @@ const CommentWrite = () => {
         const commentObj = {
             content: dComment, // 댓글
             creatorId: user.uid,
-            creatorName: user.displayName, // 생성한 사람 닉 표시
+            creatorName: user.displayName,
+            creatorPhoto: user.photoURL,
             createdAt: Date.now(),
             date : format(date, "yyyy.MM.dd HH:mm"),
         };

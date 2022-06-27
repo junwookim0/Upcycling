@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './CommentList.module.css'
 
 const CommentList = ({onMyComments}) => {
-
     const goDetail = () => {
 
     }

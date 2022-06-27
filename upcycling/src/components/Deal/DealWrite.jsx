@@ -8,6 +8,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadString, getDownloadURL } from "@firebase/storage";
 import { v4 as uuidv4 } from "uuid"; // 사진 랜덤 아이디
 import { useNavigate } from "react-router-dom";
+import { format } from "date-fns";
 
 const DealWrite = () => {
 
@@ -77,6 +78,7 @@ const DealWrite = () => {
             attachmentUrl = await getDownloadURL(response.ref);    
         };
     
+        let date = new Date();
         // submit하면 추가할 데이터
         const dealObj = {
             title: dTitle, // 제목 
@@ -84,8 +86,10 @@ const DealWrite = () => {
             price: dPrice, // 가격
             content: dContent, // 내용
             createdAt: Date.now(), // 생성날짜
+            date : format(date, "yyyy.MM.dd HH:mm"),
             creatorId: user.uid,
-            creatorName: user.displayName, // 생성한 사람 닉 표시
+            creatorName: user.displayName,
+            creatorPhoto: user.photoURL,
             attachmentUrl: attachmentUrl,
             // 06-21 좋아요
             likeCount: 0,

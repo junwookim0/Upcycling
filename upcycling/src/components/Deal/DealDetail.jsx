@@ -4,6 +4,7 @@
 // dealLike 연결
 // 댓글 개수 세기 해야 됨
 // 06-20 로그인 된 사람 = 작성자일 경우에만 삭제, 수정 버튼 보이도록
+// 06-27 내가 쓴 글은 좋아요 클릭할 수 없게 해야 함
 
 import React, { useContext, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
@@ -22,18 +23,8 @@ const DealDetail = () => {
     const { user } = useContext(AuthContext);
 
     const location = useLocation();
-    const navigate = useNavigate();
     const dealState = location.state.deal;
-
-    // 문서 가져오기 - 근데 별 의미 없는 듯...
-    const returnDoc = async() => {
-        const docSnap = await getDoc(doc(firestore, `/dbDeals/${dealState.id}`));
-        return docSnap;
-    };
-
-    useEffect(()=> {
-        returnDoc();
-    }, [])
+    const navigate = useNavigate();
 
     // 글 삭제
     const deserRef = ref(storage, dealState.attachmentUrl);
@@ -63,14 +54,16 @@ const DealDetail = () => {
         .doc(`${dealState.id}`)
         .collection('dComments')
         .get();
-        console.log(commentCnt)
     };
+
+    // price 천 단위
+    let dealPrice = Number(dealState.price).toLocaleString('ko-KR');
 
     return (
         <section>
             <div className={styles.header}>
                 <div className={styles.userInfo}>
-                    <p>dealState.photo URL</p>
+                    <img src={dealState.creatorPhoto}/>
                     <h3>{dealState.creatorName}</h3>
                 </div>
 
@@ -100,7 +93,7 @@ const DealDetail = () => {
                             dealState.price == '' ? (
                                 <p>나눔🧡</p>
                             ) : (
-                                <p>{dealState.price}원</p>
+                                <p>{dealPrice} 원</p>
                             )
                         }
                     </div>

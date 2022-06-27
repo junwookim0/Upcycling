@@ -8,10 +8,12 @@ import styles from './CSS/dealPage.module.css';
 import SubMainBanner from "../banner/SubMainBannerDeal";
 import { useState } from "react";
 import { firestore } from "../../firebase";
-import { query, collection, getDocs, where } from "firebase/firestore";
+import { query, collection, where, onSnapshot } from "firebase/firestore";
 
 const DealPage = ({deals}) => {
-    // title 누르면 게시글 내용 볼 수 있도록
+
+    const [searchDeals, setSearchDeals] = useState([]);
+
     const navigate = useNavigate();
 
     const onClick = () => {
@@ -24,19 +26,20 @@ const DealPage = ({deals}) => {
         setKeyword(e.target.value);
     };
 
-    const [onDeals, setOnDeals] = useState(Object.values(deals))
-
     /* 해시태그 검색 */
     const onSearchClick = async () => {
         const q = query(
             collection(firestore, 'dbDeals'),
-            where('hashtagArray', '>=', keyword),
+            where('hashtagArray', 'array-contains', keyword),
         );
-        const resSnap = await getDocs(q);
-        resSnap.forEach((doc) => {
-            console.log(doc.id, "=>", doc.data());
+        
+        onSnapshot(q, (snapshot) => {
+            const searchArray = snapshot.docs.map(doc => ({
+                id: doc.id, ...doc.data()
+            }));
+            setSearchDeals(searchArray);
+            console.log(searchDeals);
         })
-        console.log('흑흑')
     };
 
     return (
@@ -45,7 +48,6 @@ const DealPage = ({deals}) => {
             <SubMainBanner/>
             <section className={styles.dealPage}>
                 <h1>Deals</h1>
-                
                 <div className={styles.header}>
                     <div className={styles.search}>
                         <input 
@@ -61,11 +63,19 @@ const DealPage = ({deals}) => {
 
                 <ul className={styles.list}>
                     {
-                        deals.map(deal => (
-                            <li key={deal.createdAt}>
-                                <DealItem deal={deal} />
-                            </li>
-                        ))
+                        !keyword ? (
+                            deals.map(deal => (
+                                <li key={deal.createdAt}>
+                                    <DealItem deal={deal} />
+                                </li>
+                            ))
+                        ) : (
+                            searchDeals.map(search => (
+                                <li key={search.createdAt}>
+                                    <DealItem deal={search} />
+                                </li>
+                            ))
+                        )
                     }
                 </ul>
             </section>

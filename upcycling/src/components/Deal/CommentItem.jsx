@@ -63,6 +63,7 @@ const CommentItem = ({ commentObj }) => {
                         </>
                     ) : (
                         <>
+                            <img src={commentObj.creatorPhoto} width="50px" />
                             <span>{commentObj.creatorName}</span>
                             <span>{commentObj.date}</span>
                             <p>{commentObj.content}</p>
