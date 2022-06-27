@@ -40,11 +40,10 @@ const createAndUpdateReview = (review,userId) => {
 }
 
 //🍎지은 : delete review 
-const deleteReview = (deletedItem) => {
+const deleteReview = (deletedItem,currentComment) => {
 
   if(window.confirm("게시글을 정말 삭제 하시겠습니까?")){
-    reviewRepository.removeReview(userId,deletedItem)
-    imageUploader.delete(deletedItem.reviewIMG)
+    reviewRepository.removeReview(userId,deletedItem,currentComment)
     alert('게시글을 삭제했습니다.');
     navigator('/reviews')
   }
@@ -106,7 +105,7 @@ const removeLike = (userId,review) => {
           <Route path="/" element={!user?<FirstMain/> : <Home/>}></Route>
           <Route path="/home" element={user ? <Home /> :<SignIn/> }></Route>
           <Route path="/contents" element={<Contents/>}></Route>
-          <Route path="/mypage" element={< Mypage deals={deals}/>}></Route>
+          <Route path="/mypage" element={< Mypage reviewRepository={reviewRepository} deals={deals}/>}></Route>
           <Route path="/signIn" element={<SignIn/>}></Route>
           <Route path="/signUp" element={<SignUp/>}></Route>
           <Route path="/event" element={<EventIntro />}></Route>

@@ -3,16 +3,16 @@
     text-align: center;
 }
 
-
+/*search input*/
 .header {
     display: flex;
+    margin-top: 3rem;
     justify-content: center;
+    align-items: center;
 }
 
-.button_write {
-    margin-left: 3rem;
-}
 
+/*review list*/
 .list {
     display: flex;
     list-style: none;
@@ -20,6 +20,3 @@
     justify-content: center;
 }
 
-.list_item {
-    
-}

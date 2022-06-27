@@ -4,9 +4,16 @@ import './EventIntro.css';
 import Modalimg from '../modal/modalimg';
 import { useState } from 'react';
 import SubMainBanner from '../banner/SubMainBannerEvent';
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/zoom";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+// import required modules
+import { Zoom, Pagination, Navigation} from "swiper";
 
 const EventIntro = () => {
     const [modalOpen, setModalOpen] = useState(false);
@@ -17,40 +24,54 @@ const EventIntro = () => {
     const closeModal = () => {
         setModalOpen(false);
     };
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
-    };
+    
     return (
         <div>
             <Nav/>
             <SubMainBanner/>
             <div className="post">
                 <h1>Upcycling EVENT</h1>
-                <div>
+                <div className='post_img'>
                     <img src='../../../images/event1.PNG' className='eventpost' alt='eventIMG' onClick={openModal}/>
                     <img src='../../../images/event2.PNG' className='eventpost' alt='eventIMG' onClick={openModal}></img>
                     <img src='../../../images/event3.PNG' className='eventpost' alt='eventIMG' onClick={openModal}></img>
                     <img src='../../../images/event4.PNG' className='eventpost' alt='eventIMG' onClick={openModal}></img>
                 </div>
                 <Modalimg open={modalOpen} close={closeModal} header="EVENT 보기">
-                    <Slider {...settings}>
-                        <div>
-                            <img src='../../../images/event1.PNG'className='eventModal'  alt='eventIMG'/>
-                        </div>
-                        <div>
-                            <img src='../../../images/event2.PNG' className='eventModal' alt='eventIMG'/>              
-                        </div>
-                        <div>
-                            <img src='../../../images/event3.PNG' className='eventModal' alt='eventIMG'/>
-                        </div>
-                        <div>
-                            <img src='../../../images/event4.PNG' className='eventModal' alt='eventIMG'/>
-                        </div>
-                    </Slider>
+                <Swiper
+                        style={{
+                        "--swiper-navigation-color": "#ccc",
+                        "--swiper-pagination-color": "#ccc",
+                        }}
+                        zoom={true}
+                        navigation={true}
+                        pagination={{
+                        clickable: true,
+                        }}
+                        modules={[Zoom, Navigation, Pagination]}
+                        className="mySwiper"
+                    >
+                        <SwiperSlide>
+                            <div className="swiper-zoom-container">
+                                <img src='../../../images/event1.PNG'className='eventModal'  alt='eventIMG'/>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div className="swiper-zoom-container">
+                                <img src='../../../images/event2.PNG' className='eventModal' alt='eventIMG'/> 
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div className="swiper-zoom-container">
+                                <img src='../../../images/event3.PNG' className='eventModal' alt='eventIMG'/>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div className="swiper-zoom-container">
+                                <img src='../../../images/event4.PNG' className='eventModal' alt='eventIMG'/>
+                            </div>
+                        </SwiperSlide>
+                    </Swiper>
                 </Modalimg>
             </div>
 

@@ -56,6 +56,21 @@
 .Hamburger{
     display: none;
 }
+/*모달창 버튼*/
+.swal2-actions button{
+    border: 0;
+    border-radius: 0.25em;
+    background: initial;
+    background-color: #92af94;
+    color: #fff;
+    font-size: 1em;
+    margin: 0.3125em;
+    padding: 0.625em 1.1em;
+    transition: box-shadow .1s;
+    box-shadow: 0 0 0 3px transparent;
+    font-weight: 500;
+}
+
 @media screen and (max-width: 1260px) {
     .navbar_property{
         display: none;

@@ -7,21 +7,29 @@
     z-index: 10;
     width: 100%;
 }
+
 .first_nav_div.scrolled .first_nav__Container {
     color: black;
+    background-color: white;
     transition: height 0.3s ease;
+    opacity: 0.7;
 }
+
 .first_nav_div.scrolled .first_nav__Container button{
     color: black;
-    transition: height 0.3s ease;
 }
-.first_nav__Container{
+
+.first_nav__Container{ 
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
-    margin-top: 28px;
-    margin-left: 35px;
-    margin-right: 35px;
+    justify-content: space-between;
+    align-items: center;
+    background-color:transparent;
+    height: 100px;
+    list-style: none;
+    color: white;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 .first_nav_loginbtn button{
     width: 82px;
