@@ -47,7 +47,7 @@ const MyReview = ({reviewRepository}) => {
     useEffect(()=> {
         const stopSync =  reviewRepository.syncMyReviewsById(reviews => {
             setMyReviews(reviews);
-        },userId)
+        }, userId)
         return () => stopSync()
     },[userId, reviewRepository])
 
@@ -91,62 +91,61 @@ const MyReview = ({reviewRepository}) => {
         setOnMyComments(orderedReview)
     },[myComments])
 
-    console.log(onMyComments)
 
     return (
         <>
         <h2 className="Carousel_text">내가 작성한 리뷰</h2>
-        <Swiper
-            onSwiper={setSwiperRef}
-            slidesPerView={3}
-            centeredSlides={false}
-            spaceBetween={30}
-            pagination={{
-            type: "fraction",
-            }}
-            autoplay={{
-                delay: 3500,
-                disableOnInteraction: false,
-            }}
-            navigation={true}
-            modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
-            className="mySwiper"
-        >
-            {
-                onMyReviews.map(review => {
-                    return <SwiperSlide key={review.id}><img onClick={()=>goDetail(review)} src={review.reviewIMG} alt="" /></SwiperSlide>
-                })
-            }
-            
-
-        </Swiper>
-
+        <div className="contents_swiper">
+            <Swiper
+                onSwiper={setSwiperRef}
+                slidesPerView={3}
+                centeredSlides={false}
+                spaceBetween={30}
+                pagination={{
+                type: "fraction",
+                }}
+                autoplay={{
+                    delay: 3500,
+                    disableOnInteraction: false,
+                }}
+                navigation={true}
+                modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
+                className="mySwiper"
+            >
+                {
+                    onMyReviews && onMyReviews.map(review => {
+                        return <SwiperSlide key={review.id}><img onClick={()=>goDetail(review)} src={review.reviewIMG} alt="" /></SwiperSlide>
+                    })
+                }
+            </Swiper>
+        </div>
         <h2 className="Carousel_text">내가 좋아요한 리뷰</h2>
-        <Swiper
-            onSwiper={setSwiperRef}
-            slidesPerView={3}
-            centeredSlides={false}
-            spaceBetween={30}
-            pagination={{
-            type: "fraction",
-            }}
-            autoplay={{
-                delay: 3500,
-                disableOnInteraction: false,
-            }}
-            navigation={true}
-            modules={[Pagination, Navigation, Autoplay]}
-            className="mySwiper"
-        >
-            {
-                onMyLikes.map(review => {
-                    return <SwiperSlide key={review.id}><img onClick={()=>goDetail(review)} src={review.reviewIMG} alt="" /></SwiperSlide>
-                })
-            }
+        <div className="contents_swiper">
+            <Swiper
+                onSwiper={setSwiperRef}
+                slidesPerView={3}
+                centeredSlides={false}
+                spaceBetween={30}
+                pagination={{
+                type: "fraction",
+                }}
+                autoplay={{
+                    delay: 3500,
+                    disableOnInteraction: false,
+                }}
+                navigation={true}
+                modules={[Pagination, Navigation, Autoplay]}
+                className="mySwiper"
+            >
+                {
+                    onMyLikes.map(review => {
+                        return <SwiperSlide key={review.id}><img onClick={()=>goDetail(review)} src={review.reviewIMG} alt="" /></SwiperSlide>
+                    })
+                }
 
-        </Swiper>
-
-        {/* {onMyComments && (<CommentList onMyComments={onMyComments}/>)} */}
+            </Swiper>
+        </div>
+        {onMyComments && (<CommentList onMyComments={onMyComments}/>)}
         </>
     );
 }

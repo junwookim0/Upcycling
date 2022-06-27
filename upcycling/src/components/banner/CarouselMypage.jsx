@@ -1,10 +1,10 @@
 import MyReview from '../MyPage/MyReview';
 
-const Carousel_mypage = () => {
+const Carousel_mypage = ({reviewRepository}) => {
 
     return (
         <div>
-            <MyReview/>
+            <MyReview reviewRepository={reviewRepository}/>
         </div>
     );
 }
