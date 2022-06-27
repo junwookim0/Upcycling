@@ -16,7 +16,7 @@ class ReviewRepository {
         return () => off(query);
     }
 
-    syncMyReviewsById(onUpdate,userId){
+    syncMyReviewsById(onUpdate, userId){
         const query = ref(this.db, `${userId}/reviews`);
         onValue(query, (snapshot) => {
             const value = snapshot.val();
@@ -60,11 +60,6 @@ class ReviewRepository {
         remove(ref(this.db, `reviews/review/${review.id}`));
         console.log(' reviews 삭제성공!')
 
-        remove(ref(this.db, `${userId}/likes/${review.id}`));
-        console.log(' user like 삭제성공!')
-
-        remove(ref(this.db, `${userId}/comments/${review.id}`));
-        console.log(' user코멘트 삭제성공!')
     }
 }
 

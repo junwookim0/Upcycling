@@ -108,9 +108,10 @@ const ReviewWrite = ({createAndUpdateReview , imageUploader}) => {
                         (<div className={styles.modal_container}>
                             <div className={styles.dialog__inner}>
                                 <div className={styles.dialog__content}>
-                                <h3>이미지를 업로딩 중 입니다.</h3>
+                                <h2>이미지를 업로딩 중 입니다.</h2>
                                 <p>잠시만 기다려주세요.</p>
                                 <p>자동으로 닫힙니다</p>
+                                <div className={styles.loading}></div>
                                 </div>  
                             </div>
                         </div>)
@@ -123,7 +124,6 @@ const ReviewWrite = ({createAndUpdateReview , imageUploader}) => {
                                 {uploadedIMG? (<img src={uploadedIMG} alt='이미지' className={styles.fileInput_img} />) : (
                                     <div className={styles.before_uploadedImg}>
                                         <p>이미지를 <br/>첨부해주세요</p>
-                                        
                                     </div>
                                 )}
                                 <button 

@@ -35,6 +35,9 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     const [comments,setComments] = useState([])
     const [currentComment, setCurrentComment] = useState()
 
+    const [show, setShow] = useState(false)
+    const [showCommentForm, setShowCommentForm] = useState(false);
+
 
     //🍎firebase에 저장된 review받아오기
     useEffect(()=> {
@@ -74,10 +77,10 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
         navigation(`/review/revise/${review.id}`, {state : {review}})
     }
 
-    //🍎Delete Review
-    const onDeleteReview = () => {
+    // //🍎Delete Review
+    // const onDeleteReview = () => {
         
-    }
+    // }
 
 
     //🍎코멘트 ADD
@@ -94,15 +97,27 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     //🍎 elli어쩌구 버튼 누르면 menu 보이게 하기
     // const [openMenu, setOpenMenu] = useState(false)
 
+<<<<<<< HEAD
     const viewMenu = () => {
         return  comments.map((item)=>{
             return <comments_list item={item}/>;
         });
+=======
+    const viewMenu = (event,index)=> {
+        setShow(!show)
+        // event.target.classList.add()
+        console.dir(event)
+>>>>>>> 30b7a8782f7ebbd1bde0809861f892048abb12dc
     }
-    
+
     //🍎comment 수정누르면 코멘트 보내기
     const onReviseComment = (comment) => {
         setCurrentComment(comment)
+    }
+
+    //🍎코멘트 작성창 클릭하면 보여주는 함수
+    const onShowCommentWriteForm = () => {
+        setShowCommentForm(!showCommentForm)
     }
 
     return (
@@ -146,7 +161,7 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
                 <div className={styles.icon_container}>
                     <div className={styles.icon_container_left}>
                     <Like reviewRepository={reviewRepository} review={reviewState} userId={user} clickLike={clickLike} removeLike={removeLike}/>
-                        <button className={styles.comment_button}><i className="fa-solid fa-comment-dots"></i></button>
+                        <button onClick={()=>onShowCommentWriteForm()} className={styles.comment_button}><i className="fa-solid fa-comment-dots"></i></button>
                     </div>
                     { userId === reviewState.userId && (<div className={styles.icon_container_right}>
                         <button onClick={()=>goRevise(reviewState)}>글 수정</button>
@@ -157,7 +172,7 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
                     <h2>댓글</h2>
                     <div className={styles.comments_list}>
                         { comments && (
-                            comments.map((item)=> (
+                            comments.map((item,index)=> (
                                 <div key={item.id} className={styles.comments_item}>
                                     <div className={styles.comment_userInfo}>
                                     <img className={styles.comment_userPhoto} src={item.userPhoto} alt="user" />
@@ -166,13 +181,17 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
                                                 <span className={styles.comments_name}>{item.userName}</span>
                                                 <span className={styles.comments_email}>({item.userEmail})</span>
                                             </div>
+<<<<<<< HEAD
                                             <button onClick={()=>viewMenu(item.id)} className={styles.comments_ellipsis}>
+=======
+                                            <button onClick={(event)=>viewMenu(event,index)} className={styles.comments_ellipsis}>
+>>>>>>> 30b7a8782f7ebbd1bde0809861f892048abb12dc
                                                 <i className="fa-solid fa-ellipsis-vertical"></i>
                                             </button>
-                                            <div className={styles.comments_ellipsis_container}>
+                                            {show && <div id={index} className={styles.comments_ellipsis_container}>
                                                 <button onClick={()=>onReviseComment(item)}>수정</button>
                                                 <button onClick={()=>onDeleteComment(item)}>삭제</button>
-                                            </div>
+                                            </div>}
                                         </div>
                                     </div>
                                     
@@ -186,7 +205,7 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
                     </div>
                 </div>  
                 
-                <CommentForm review={reviewState}  getComment={getComment}/>
+                { showCommentForm && <CommentForm review={reviewState}  getComment={getComment}/>}
             </div>
         </section>
     );
