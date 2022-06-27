@@ -16,6 +16,13 @@ const firebaseConfig = {
     messagingSenderId: "",
     appId: ""
     */
+    apiKey: "AIzaSyCdIxIK5rBwASC0U_oS3GnO8BTz2yvmD7w",
+    authDomain: "login-8cffa.firebaseapp.com",
+    projectId: "login-8cffa",
+    storageBucket: "login-8cffa.appspot.com",
+    messagingSenderId: "605811444365",
+    appId: "1:605811444365:web:403ed12cfc283c91f170c4",
+    measurementId: "G-1YJTLLX83W"
 };
 // Initialize Firebase 
 
@@ -68,6 +75,7 @@ const ProfileUpdate = async ( displayName, photoURL ) => {
 const gprovider = new GoogleAuthProvider();
     gprovider.setCustomParameters({'display': 'popup'});
     const signInWithGoogle = () => signInWithPopup(auth, gprovider);
+    
 
 //페이스북 로그인
 const fprovider = new FacebookAuthProvider();

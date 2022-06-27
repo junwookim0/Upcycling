@@ -2,19 +2,22 @@ import { useState } from "react";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { ProfileUpdate } from "../../firebase"
+import { useNavigate } from "react-router-dom";
 import "./TestProfile.css";
 const TestProfile = () => {
     const { user } = useContext(AuthContext);
     const [displayName, setDisplayName] = useState("");
     const [photoURL, setPhotoURL] = useState("");
     const [error, seterror] = useState("");
-    console.log(user);
+    const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setDisplayName("");
         setPhotoURL("");
         const res = await ProfileUpdate(displayName, photoURL);
-        alert("프로필 변경 되었습니다")
+        alert("프로필 변경 되었습니다");
+        navigate("/mypage");
         if (res.error) seterror(res.error);
         console.log(user);
     };
@@ -36,7 +39,7 @@ const TestProfile = () => {
                             name="photoURL"
                             value={photoURL}
                             placeholder="프로필 사진"
-                            required
+                            accept="image/png, image/jpeg"
                             onChange={(e) => setPhotoURL(e.target.value)}
                         />
                         <input className="profile_submit" type="submit" value="프로필변경"></input>

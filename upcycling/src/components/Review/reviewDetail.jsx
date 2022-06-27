@@ -35,7 +35,7 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     const [comments,setComments] = useState([])
     const [currentComment, setCurrentComment] = useState()
 
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(null);
     const [showCommentForm, setShowCommentForm] = useState(false);
 
 
@@ -97,10 +97,11 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     //🍎 elli어쩌구 버튼 누르면 menu 보이게 하기
     // const [openMenu, setOpenMenu] = useState(false)
 
-    const viewMenu = (event,index)=> {
-        setShow(!show)
+    const viewMenu = (index)=> {
+        setShow((prev)=>{
+            return prev === index ? null : index;
+        })
         // event.target.classList.add()
-        console.dir(event)
     }
 
     //🍎comment 수정누르면 코멘트 보내기
@@ -174,13 +175,15 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
                                                 <span className={styles.comments_name}>{item.userName}</span>
                                                 <span className={styles.comments_email}>({item.userEmail})</span>
                                             </div>
-                                            <button onClick={(event)=>viewMenu(event,index)} className={styles.comments_ellipsis}>
+                                            <button onClick={()=>viewMenu(index)} className={styles.comments_ellipsis}>
                                                 <i className="fa-solid fa-ellipsis-vertical"></i>
                                             </button>
-                                            {show && <div id={index} className={styles.comments_ellipsis_container}>
+                                            <div className={styles.comments_ellipsis_container}>
+                                                <div className={show === index ? '': 'hidden'}>
                                                 <button onClick={()=>onReviseComment(item)}>수정</button>
                                                 <button onClick={()=>onDeleteComment(item)}>삭제</button>
-                                            </div>}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     

@@ -1,0 +1,32 @@
+.profileChange_box{
+    border: solid 1px black;
+    width: 300px;
+    display: flex;
+    margin: 10px;
+}
+.userProfile_photo img{
+    width: 100px;
+    border-radius: 50%;
+}
+.userProfile_name{
+    margin-left: 10px;
+}
+.userProfile_email{
+    position: absolute;
+    left: 120px;
+    margin-top: 38px;
+}
+.profileChange_box .userProfile_logout{
+    position: absolute;
+    width: 70px;
+    height: 50px;
+    left: 120px;
+    margin-top: 70px;
+}
+.userProfile_change{
+    position: absolute;
+    left: 80px;
+    margin-top: 90px;
+    cursor: pointer;
+    padding: 10px;
+}
