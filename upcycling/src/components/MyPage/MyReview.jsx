@@ -25,6 +25,10 @@ const MyReview = ({reviewRepository}) => {
     const { user } = useContext(AuthContext);
     const userId = user.uid;
 
+    //🍎전체리뷰
+    const [reviews, setReviews] = useState([])
+    const [onReviews, setOnReviews] = useState([])
+
     //🍎review /like
     const [myReviews, setMyReviews] = useState([])
     const [myLikes, setMyLikes] = useState([])
@@ -38,10 +42,28 @@ const MyReview = ({reviewRepository}) => {
 
     //🍎게시물 이동
     const goDetail = (review) => {
-
-        console.log(review)
         navigate(`/reviews/${review.id}`, {state : {review}})
     }
+
+    
+
+    //🍎게시물 삭제유무를 확인하기위한 firebase전체 리뷰
+    useEffect(()=> {
+        const stopSync =  reviewRepository.syncReviews(reviews => {
+            setReviews(reviews);
+        })
+        return () => stopSync();
+        },[userId, reviewRepository])
+
+    useEffect(()=> {
+        let reviewArray = Object.values(reviews)
+        let orderedReview =  reviewArray.slice().sort((a,b) => b.reviewDate.localeCompare(a.reviewDate))
+        setOnReviews(orderedReview)
+    },[reviews])
+    
+
+    
+
 
     // 🍎📃firebase에 저장된 myReview받아오기(내가 작성한 리뷰)
     useEffect(()=> {
@@ -71,8 +93,7 @@ const MyReview = ({reviewRepository}) => {
     //🍎받아온 Likes를 value값만 가져오기 - 최신순 정렬
     useEffect(()=> {
         let reviewArray = Object.values(myLikes)
-        let orderedReview =  reviewArray.slice().sort((a,b) => b.reviewDate.localeCompare(a.reviewDate))
-        setOnMyLikes(orderedReview)
+        setOnMyLikes(reviewArray)
     },[myLikes])
 
 
@@ -90,6 +111,18 @@ const MyReview = ({reviewRepository}) => {
         let orderedReview =  reviewArray.slice().sort((a,b) => b.date.localeCompare(a.date))
         setOnMyComments(orderedReview)
     },[myComments])
+
+
+    //🍎👍현재 존재하는 게시물에서 내가 좋아요를 누른 리뷰
+    const filteredLikes = onMyLikes.map(like => (
+        onReviews.map(review => {
+            if(review.id === like.id) {
+                return <SwiperSlide key={review.id}><img onClick={()=>goDetail(review)} src={review.reviewIMG} alt="" /></SwiperSlide>
+            } 
+        })
+    ))
+
+    console.log(filteredLikes)
 
     return (
         <>
@@ -136,15 +169,16 @@ const MyReview = ({reviewRepository}) => {
                 modules={[Pagination, Navigation, Autoplay]}
                 className="mySwiper"
             >
-                {
+                {/* {
                     onMyLikes.map(review => {
                         return <SwiperSlide key={review.id}><img onClick={()=>goDetail(review)} src={review.reviewIMG} alt="" /></SwiperSlide>
                     })
-                }
+                } */}
+                {filteredLikes}
 
             </Swiper>
         </div>
-        {onMyComments && (<CommentList onMyComments={onMyComments}/>)}
+        {onMyComments && (<CommentList onReviews={onReviews} onMyComments={onMyComments}/>)}
         </>
     );
 }

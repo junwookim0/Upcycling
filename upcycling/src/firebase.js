@@ -3,17 +3,24 @@ import { getDatabase } from "firebase/database";
 import { getFirestore , collection, addDoc} from "firebase/firestore"
 import { GoogleAuthProvider, signInWithPopup,
     FacebookAuthProvider,createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,signOut,getAuth,GithubAuthProvider
+    signInWithEmailAndPassword,signOut,getAuth,GithubAuthProvider,updateProfile
 } from 'firebase/auth';
 import { getStorage } from "firebase/storage";
 const firebaseConfig = {
-    apiKey: "AIzaSyAmeVNxGFJCe4nWo7zDNNa4GePbQyA93tw",
-    authDomain: "upcycling-project-ex.firebaseapp.com",
-    databaseURL: "https://upcycling-project-ex-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "upcycling-project-ex",
-    storageBucket: "upcycling-project-ex.appspot.com",
-    messagingSenderId: "763504697046",
-    appId: "1:763504697046:web:7eab09dda319dcba2b3377"};
+
+
+    /*
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: ""
+    */
+   
+};
+
 // Initialize Firebase 
 
 const app = initializeApp(firebaseConfig);
@@ -50,10 +57,22 @@ const signIn = async (email, password) => {
         return {error: error.message}
     }
 };
+//프로필설정
+
+const ProfileUpdate = async ( displayName, photoURL ) => {
+    await updateProfile(auth.currentUser, {
+        displayName , photoURL
+    }).then(() => {
+        console.log("프로필 업데이트");
+    }).catch((error) => {
+        console.log(error);
+    });
+}
 //구글로그인
 const gprovider = new GoogleAuthProvider();
     gprovider.setCustomParameters({'display': 'popup'});
     const signInWithGoogle = () => signInWithPopup(auth, gprovider);
+    
 
 //페이스북 로그인
 const fprovider = new FacebookAuthProvider();
@@ -64,7 +83,6 @@ const fprovider = new FacebookAuthProvider();
 const gitprovider = new GithubAuthProvider();
     gitprovider.setCustomParameters({'display': 'popup'});
     const signInWithGithub = () => signInWithPopup(auth, gitprovider);
-
 
 const SignOut = async() => {
     try {
@@ -79,4 +97,4 @@ const storage = getStorage(app);
 
 export { app , auth , db , 
     firestore ,storage, signIn , signUp, SignOut,
-    signInWithGoogle, signInWithFacebook ,signInWithGithub};
+    signInWithGoogle, signInWithFacebook ,signInWithGithub, ProfileUpdate};
