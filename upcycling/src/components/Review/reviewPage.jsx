@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import ReviewItem from './reviewItem';
 import styles from './CSS/reviewPage.module.css'
 import { useState } from 'react';
@@ -19,7 +18,6 @@ import WriteButton from './writeButton';
 //🍎전체 Review를 보여주는 페이지
 
 const ReviewPage = ({reviewRepository}) => {
-    const navigator = useNavigate();
     const dispatch = useDispatch();
     const keyword = useSelector((state)=>state.search.keyword);
 
