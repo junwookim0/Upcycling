@@ -1,11 +1,19 @@
 import { useEffect } from 'react';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './CSS/reviewDetail.module.css'
 import Like from './like';
 
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
+import Nav from '../Nav/Nav';
+import SubMainBannerReviews from '../banner/SubMainBannerReviews';
+import Search from './Search';
+import CommentForm from './commentForm';
+import CommentReviseForm from './commentReviseForm';
+import WriteButton from './writeButton';
+
+
 
 //🍎 reviewPage에서 item의 이미지를 클릭했을 때 이동하는 컴포넌트
 //Reivew의 전체적인 내용을 출력
@@ -14,15 +22,18 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     const location = useLocation();
     const navigation = useNavigate();
     const { user } = useContext(AuthContext);
-    const userId = user.uid
-
-    //코멘트 관련 useState
-    const [text, setText] = useState('')    
+    //🍎user정보
+    const userId = user.uid;
 
     //현재 review관련 useState
     const [reviewId] = useState(location.state.review.id)
     const [reviewState] = useState(location.state.review)
     const [reviews, setReviews] = useState([])
+
+    //🍎firebase에 저장된 코멘트 받아오기
+    const [currentReview, setCurrentReview] = useState()
+    const [comments,setComments] = useState([])
+    const [currentComment, setCurrentComment] = useState()
 
 
     //🍎firebase에 저장된 review받아오기
@@ -34,19 +45,14 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     },[userId, reviewRepository])
 
 
-    //🍎firebase에 저장된 코멘트 받아오기
-    const [currentReview, setCurrentReview] = useState()
-    const [comments,setComments] = useState([])
-
-
-    //🍎현재 review를 담는 useEffect
+    //🍎현재 review를 담는 useEffect ->코드가 이상..?
     useEffect(()=> {
         let reviewArray = Object.entries(reviews)
         reviewArray.map(item => {
             if(item[0]===reviewId) {
                 setCurrentReview(item)
             }
-            return console.log('ㅇㅇ')
+            return console.log('')
         })
     },[reviews,reviewId])
 
@@ -63,110 +69,124 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
         }
     },[reviews,currentReview])
     
-//🍎Reivew수정하기
+    //🍎Reivew수정하기
     const goRevise = (review) =>{
         navigation(`/review/revise/${review.id}`, {state : {review}})
+    }
+
+    //🍎Delete Review
+    const onDeleteReview = () => {
         
     }
 
-    const textareaRef = useRef()
-
-    const onChange = (event) => {
-        if(event.currentTarget == null) {
-            return;
-        }
-        event.preventDefault();
-        setText(event.target.value)
-
-    }
-
-    const newComment = {
-        id : 'C' + Date.now(),
-        userName : reviewState.nickname,
-        comment : text || '',
-        date : Date.now()
-    }
-
-
 
     //🍎코멘트 ADD
-    //console.log(newComment)
-    const onSubmit = (event) => {
-        event.preventDefault();
-
+    const getComment = (newComment) => {
         const review = {...reviewState}
         createAndUpdateComment(newComment,review.id,userId)
-        textareaRef.current.reset()
     }
 
     //🍎Comment Delete
     const onDeleteComment = (comment) => {
         deleteComment(comment,reviewState.id, userId)
     }
+
+    //🍎 elli어쩌구 버튼 누르면 menu 보이게 하기
+    // const [openMenu, setOpenMenu] = useState(false)
+
+    const viewMenu = (event)=> {
+        console.log(event)
+
+    }
     
+    //🍎comment 수정누르면 코멘트 보내기
+    const onReviseComment = (comment) => {
+        setCurrentComment(comment)
+    }
 
     return (
         <section >
-            <div className={styles.header}> 
-                <div className={styles.userInfo}>
-                    <img src={reviewState.profileIMG} alt="profile" />
-                    <h3>{reviewState.nickname}</h3>
-                </div>
-                <div className={styles.searchInput}>
-                    <input type="text" />
-                    <button>Search</button>
-                </div>
-            </div>
-            
-            <div className={styles.content}>
-                <img src={reviewState.reviewIMG} alt="review" />
-                <div className={styles.container}>
-                    <select name="" id="">
-                        <option value="">숨기기</option>
-                        <option value="">신고하기</option>
-                        <option value="">삭제</option>
-                        <option value="">수정</option>
-                    </select>
-                    <div className={styles.title}>
-                        <h3>{reviewState.reviewTitle}</h3> <br/>
-                        {reviewState.reviewHashtags[0] && <span className={styles.hashtags}># {reviewState.reviewHashtags[0]}</span> }
-                        {reviewState.reviewHashtags[1] && <span className={styles.hashtags}># {reviewState.reviewHashtags[1]}</span> }
-                        {reviewState.reviewHashtags[2] && <span className={styles.hashtags}># {reviewState.reviewHashtags[2]}</span> }
+            <Nav/>
+            <SubMainBannerReviews/>
+            <div className={styles.container}>
+                    <div className={styles.header}> 
+                    <div className={styles.userInfo}>
+                        <img className={styles.userPhoto} src={reviewState.profileIMG} alt="profile" />
+                        <div className={styles.userInfo_innerContainer}>
+                            <h3 className={styles.useName}>{reviewState.nickname}</h3>
+                            <p className={styles.userEmail}>({reviewState.email && reviewState.email})</p>
+                        </div>
                     </div>
-                    <p className={styles.description}>{reviewState.reviewDescription}</p>
+                    <div className={styles.container_inner}>
+                    <Search/>
+                    <WriteButton/>
+                    </div>
                 </div>
                 
-            </div>
+                <div className={styles.content}>
+                    <img src={reviewState.reviewIMG} alt="review" />
+                    <div className={styles.content_container}>
+                        <div className={styles.title}>
+                            <div className={styles.container_title}>
+                                <span className={styles.reviewTitle}>{reviewState.reviewTitle}</span> 
+                                <span className={styles.date}>{reviewState.reviewDate}</span>
+                            </div>
+                            <div className={styles.tags}>
+                                {reviewState.reviewHashtags[0] && <span className={styles.hashtags}># {reviewState.reviewHashtags[0]}</span> }
+                                {reviewState.reviewHashtags[1] && <span className={styles.hashtags}># {reviewState.reviewHashtags[1]}</span> }
+                                {reviewState.reviewHashtags[2] && <span className={styles.hashtags}># {reviewState.reviewHashtags[2]}</span> }
+                            </div>
 
-            <hr />
-            <div className={styles.icon_container}>
-                <div className={styles.icon_container_left}>
-                <Like reviewRepository={reviewRepository} review={reviewState} userId={user} clickLike={clickLike} removeLike={removeLike}/>
-                    <button className={styles.comment}>💌</button>
+                        </div>
+                        <p className={styles.description}>{reviewState.reviewDescription}</p>
+                    </div>
                 </div>
-                <div className={styles.icon_container_right}>
-                    <button onClick={()=>goRevise(reviewState)}>수정</button>
-                    <button onClick={()=>deleteReview(reviewState)}>삭제</button>
+
+                <div className={styles.icon_container}>
+                    <div className={styles.icon_container_left}>
+                    <Like reviewRepository={reviewRepository} review={reviewState} userId={user} clickLike={clickLike} removeLike={removeLike}/>
+                        <button className={styles.comment_button}><i className="fa-solid fa-comment-dots"></i></button>
+                    </div>
+                    { userId === reviewState.userId && (<div className={styles.icon_container_right}>
+                        <button onClick={()=>goRevise(reviewState)}>글 수정</button>
+                        <button onClick={()=>deleteReview(reviewState)}>글 삭제</button>
+                    </div>)}
                 </div>
-            </div>
-            <div className={styles.comments_container}>
-                { comments && (
-                        comments.map((item)=> (
-                            <div key={item.id} className={styles.comments_item}>
-                                    <span className={styles.comments_user}>{item.userName}</span>
-                                    <span className={styles.comments_date}>{item.date}</span>
+                <div className={styles.comments_container}>
+                    <h2>댓글</h2>
+                    <div className={styles.comments_list}>
+                        { comments && (
+                            comments.map((item)=> (
+                                <div key={item.id} className={styles.comments_item}>
+                                    <div className={styles.comment_userInfo}>
+                                    <img className={styles.comment_userPhoto} src={item.userPhoto} alt="user" />
+                                        <div className={styles.comment_boxContainer}>
+                                            <div className={styles.comment_userInfo_container}>
+                                                <span className={styles.comments_name}>{item.userName}</span>
+                                                <span className={styles.comments_email}>({item.userEmail})</span>
+                                            </div>
+                                            <button onClick={()=>viewMenu()} className={styles.comments_ellipsis}>
+                                                <i className="fa-solid fa-ellipsis-vertical"></i>
+                                            </button>
+                                            <div className={styles.comments_ellipsis_container}>
+                                                <button onClick={()=>onReviseComment(item)}>수정</button>
+                                                <button onClick={()=>onDeleteComment(item)}>삭제</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                     <p className={styles.comments_text}>{item.comment}</p>
-                                <button onClick={()=>onDeleteComment(item)}>삭제</button>
-                            </div>)
-                    ))
-                    
-                    
-                }
+                                    <span className={styles.comments_date}>{item.date}</span>
+                                    <CommentReviseForm review={reviewState} getComment={getComment} currentComment={currentComment}/>
+                                </div>
+                                )
+                            ))
+                        }
+                    </div>
+                </div>  
+                
+                <CommentForm review={reviewState}  getComment={getComment}/>
             </div>
-            <form className={styles.comment_form} ref={textareaRef}>
-                <textarea  onChange={onChange} className={styles.comment_write} name="comment" id="" cols="30" rows="10"></textarea>
-                <button onClick={onSubmit}>Comment Add</button>
-            </form>
         </section>
     );
 };

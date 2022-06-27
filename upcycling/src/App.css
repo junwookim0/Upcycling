@@ -2,11 +2,6 @@
 html {
   scroll-behavior:smooth;
 }
-html,
-body {
-  position: relative;
-  height: 100%;
-}
 body {
   background: #eee;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -14,4 +9,14 @@ body {
   color: #000;
   margin: 0;
   padding: 0;
+}
+hr {
+  margin-top: 100px;
+}
+footer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+	height: 110px;
 }

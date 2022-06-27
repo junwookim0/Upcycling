@@ -11,14 +11,27 @@ import AuthContext from "../context/AuthContext";
 import Search from './Search';
 
 
+import { useSelector, useDispatch } from "react-redux";
+import { storeKeyword } from './searchSlice'
+import WriteButton from './writeButton';
+
+
 //🍎전체 Review를 보여주는 페이지
 
 const ReviewPage = ({reviewRepository}) => {
+    const navigator = useNavigate();
+    const dispatch = useDispatch();
+    const keyword = useSelector((state)=>state.search.keyword);
+
     const [reviews, setReviews] = useState([])
+    const [onReviews,setOnReviews] = useState([])
+
     const { user } = useContext(AuthContext);
     const userId = user.uid
 
-    const [keyword, setKeyword] = useState('')
+
+    const [filteredReveiws, setFilteredReviews] = useState([])
+
 
     //🍎firebase에 저장된 review받아오기
     useEffect(()=> {
@@ -28,70 +41,59 @@ const ReviewPage = ({reviewRepository}) => {
         return () => stopSync();
     },[userId, reviewRepository])
 
-    const navigator = useNavigate()
-    const [onReviews,setOnReviews] = useState(Object.values(reviews))
 
-    const [reviewsHashTags, setReviewsHashTags] = useState([])
 
+    //🍎받아온 reviews를 value값만 가져오기 - 최신순 정렬
     useEffect(()=> {
-        setOnReviews(Object.values(reviews))
+        let reviewArray = Object.values(reviews)
+        let orderedReview =  reviewArray.slice().sort((a,b) => b.reviewDate.localeCompare(a.reviewDate))
+        setOnReviews(orderedReview)
     },[reviews])
 
-//🍎해시태그 검색
+    //🍎해시태그 검색
 const onSearch = (text)=> {
-    setKeyword(text)
-    setReviewsHashTags(onReviews.map(review=>review.reviewHashtags))
-    let hashTagArray = onReviews.map(review=>review.reviewHashtags)
-    let array = (hashTagArray.map(hash => hash))
-    // let filterd = array.filter(item => item===keyword)
-    console.log(keyword)
-    console.log(array)
-    console.log(array.flat().map(item => {
-        if(item === keyword) {
-            console.log(item)
-        }
-    }))
+    dispatch(storeKeyword(text))
+
+    let hasTextArray  = onReviews.filter(item=>item.reviewHashtags.includes(text))
+    setFilteredReviews(hasTextArray)
+
 }
 
-// useEffect(()=> {
-//     setReviewsHashTags(onReviews.map(review=>review.reviewHashtags))
-//     let hashTagArray = onReviews.map(review=>review.reviewHashtags)
-//     let array = (hashTagArray.map(hash => hash))
-//     let filterd = array.filter(item => item===keyword)
-//     console.log(filterd)
-
-// },[onReviews,keyword])
+useEffect(()=>{
+    let hasTextArray  = onReviews.filter(item=>item.reviewHashtags.includes(keyword))
+    setFilteredReviews(hasTextArray)
+},[onReviews, keyword])
 
 
     return (
-        <div>
+        <section>
             <Nav/>
             <SubMainBanner/>
-            <section className={styles.reviewPage}>
-                <h1>Reviews</h1>
+            <div className={styles.reviewPage}>
                 <div className={styles.header}>
-                    <div className={styles.search}>
-                        <Search onSearch={onSearch}/>
-                    </div>
-                    <button className={styles.button_write}
-                            onClick={()=>{
-                                navigator('/reviews/write')
-                            }}>글쓰기
-                    </button>
+                    <Search onSearch={onSearch}/>
+                    <WriteButton/>
                 </div>
 
-            <ul className={styles.list}>
-                {
-                    onReviews.map(review => (
-                    <li key={review.id}
-                    className={styles.list_item}
-                    >
-                        <ReviewItem review={review}/>
-                    </li>))
-                }
-            </ul>
-            </section>
-        </div>
+                <ul className={styles.list}>
+                    {!keyword ?
+                        (onReviews.map(review => (
+                        <li key={review.id}
+                        className={styles.list_item}
+                        >
+                            <ReviewItem  keyword={keyword} review={review}/>
+                        </li>))) : (filteredReveiws.map(review => (
+                        <li key={review.id}
+                        className={styles.list_item}
+                        >
+                            <ReviewItem keyword={keyword} review={review}/>
+                        </li>))
+
+                        )
+                    }
+                </ul>
+            </div>
+        </section>
     );
 };
 

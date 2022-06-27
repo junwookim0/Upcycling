@@ -1,7 +1,4 @@
 // 이벤트 소개 페이지
-import Nav from '../Nav/Nav';
-import {NavLink} from "react-router-dom";
-
 const Eventdetail = () => {
 
     return (

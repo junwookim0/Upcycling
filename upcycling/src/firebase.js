@@ -23,9 +23,10 @@ const db = getDatabase(app);
 const firestore = getFirestore(app);
 
 //회원가입 
-const signUp = async (email, password,) => {
+const signUp = async (email, password) => {
     try {
-        const userCredential = await createUserWithEmailAndPassword(auth,email,password);
+        const userCredential = await createUserWithEmailAndPassword(
+            auth,email,password);
         const user = userCredential.user;
         await addDoc(collection(firestore, "users"), {
             uid: user.uid,
@@ -53,12 +54,13 @@ const signIn = async (email, password) => {
 //구글로그인
 const gprovider = new GoogleAuthProvider();
     gprovider.setCustomParameters({'display': 'popup'});
-const signInWithGoogle = () => signInWithPopup(auth, gprovider);
+    const signInWithGoogle = () => signInWithPopup(auth, gprovider);
 
 //페이스북 로그인
 const fprovider = new FacebookAuthProvider();
     fprovider.setCustomParameters({'display': 'popup'});
     const signInWithFacebook = () => signInWithPopup(auth, fprovider);
+
 //github 로그인
 const gitprovider = new GithubAuthProvider();
     gitprovider.setCustomParameters({'display': 'popup'});
@@ -79,4 +81,3 @@ const storage = getStorage(app);
 export { app , auth , db , 
     firestore ,storage, signIn , signUp, SignOut,
     signInWithGoogle, signInWithFacebook ,signInWithGithub};
-    

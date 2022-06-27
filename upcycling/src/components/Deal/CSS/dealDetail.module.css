@@ -1,18 +1,3 @@
-section {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-
-.header {
-    width: 70%;
-    justify-content:center;
-    justify-content: space-between;
-    display: flex;
-    align-items: center;
-}
 
 .userInfo {
     display: flex;
@@ -30,12 +15,11 @@ section {
 }
 
 .content > img {
-    width: 500px;
+    width: 600px;
     height: 500px;
 }
 
 .container {
-    width: 500px;
     height: 500px;
     margin-left: 2rem;
     background-color: lightgrey;
@@ -71,43 +55,8 @@ section {
     margin-right: 1rem;
 }
 
-
-
-/*comments CSS*/
-.comments_container {
-    margin: 1rem 0;
-    width: 70%;
-    height: auto;
-    border: 1px solid aquamarine;
-}
-
-
-.comments_user {
-    padding-right: 1rem;
-}
-
-.comments_date {
-    color: darkgray;
-}
-
-
-.comment_form {
-    display: flex;
-    width: 70%;
-    margin:auto;
-}
-
 .comment_write {
-    width: 40rem;
+    width: 70%;
     height: 4rem;
 }
 
-
-.comments_text {
-    padding-left: 1rem;
-}
-
-.hashtags {
-    margin-left: 1rem;
-    color: blue;
-}

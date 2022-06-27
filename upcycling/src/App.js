@@ -1,11 +1,11 @@
 import './App.css';
-import { Route, Routes, useNavigate , Navigate} from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from './components/Intro/IntroList';
 import Contents from './page/Contents';
 import FirstMain from './page/FirstMain/FirstMain';
 import EventIntro from './components/Intro/EventIntro';
 import SignIn from './components/login/SignIn';
-import Mypage from './components/login/Mypage';
+import Mypage from './page/Mypage';
 import SignUp from './components/login/SignUp';
 import { useContext } from "react";
 import AuthContext from "./components/context/AuthContext";
@@ -31,20 +31,7 @@ function App({reviewRepository, commentRepository, imageUploader, likeRepository
   
   const { user } = useContext(AuthContext);
   const userId = user ? user.uid : null
-
-  const [reviews, setReviews] = useState([])
-
   const navigator = useNavigate();
-
-//   const [reviews, setReviews] = useState([])
-
-// //🍎firebase에 저장된 review받아오기
-// useEffect(()=> {
-//   const stopSync =  reviewRepository.syncReviews(reviews => {
-//     setReviews(reviews);
-//   })
-//   return () => stopSync();
-// },[userId, reviewRepository])
 
 
 //🍎지은 : create & update review 
@@ -53,17 +40,15 @@ const createAndUpdateReview = (review,userId) => {
 }
 
 //🍎지은 : delete review 
-const deleteReview = (deletedItem) => {
+const deleteReview = (deletedItem,currentComment) => {
 
   if(window.confirm("게시글을 정말 삭제 하시겠습니까?")){
-    reviewRepository.removeReview(userId,deletedItem)
-    imageUploader.delete(deletedItem.reviewIMG)
+    reviewRepository.removeReview(userId,deletedItem,currentComment)
     alert('게시글을 삭제했습니다.');
     navigator('/reviews')
   }
   console.log(deletedItem.reviewIMG)
 }
-
 
 
 //🍎지은 : delete Comment 
@@ -74,7 +59,6 @@ const deleteComment = (comment,reviewId,userId) => {
     alert('댓글을 삭제했습니다.');
   }
 }
-
 
 //🍎지은 : create Comment 
 const createAndUpdateComment = (comment,reviewId,userId) => {
@@ -118,12 +102,12 @@ const removeLike = (userId,review) => {
   return (
     <div className="App">
         <Routes>
-        <Route path="/" element={!user?<FirstMain/> : <Home/>}></Route>
-          <Route path="/home" element={user ? <Home /> :<SignIn/> }></Route>          <Route path="/contents" element={<Contents/>}></Route>
-          <Route path="/MyPage" element={<Mypage deals={deals} />}></Route>
-          <Route path="/SignIn" element={<SignIn/>}></Route>
-          <Route path="/SignUp" element={<SignUp/>}></Route>
-
+          <Route path="/" element={!user?<FirstMain/> : <Home/>}></Route>
+          <Route path="/home" element={user ? <Home /> :<SignIn/> }></Route>
+          <Route path="/contents" element={<Contents/>}></Route>
+          <Route path="/mypage" element={< Mypage reviewRepository={reviewRepository} deals={deals}/>}></Route>
+          <Route path="/signIn" element={<SignIn/>}></Route>
+          <Route path="/signUp" element={<SignUp/>}></Route>
           <Route path="/event" element={<EventIntro />}></Route>
           
           {/* 🍎윤지은 router */}
@@ -140,7 +124,7 @@ const removeLike = (userId,review) => {
           {/* 🥑 박선주 route 끝 */}
           <Route path="/not-found" element={<NotFound />}></Route>
         </Routes>
-
+        <hr></hr>
         <footer>Copyright ⓒ uptown All rights reserved</footer>
     </div>
   );

@@ -27,15 +27,17 @@ function Login() {
         };
 
     return (
-        <div className={scrolled ? 'first_nav_div scrolled' : 'first_nav_div'}>
-            <header className="first_nav__Container"> 
-                <div className="first_nav__logo">
-                    <span className="first_nav_text">: UPTOWN</span>
-                </div>
-                <div className="first_nav_loginbtn">
-                    <button onClick={SignIn}>로그인</button>
-                </div>
-            </header>
+        <div>
+            <div className={scrolled ? 'first_nav_div scrolled' : 'first_nav_div'}>
+                <header className="first_nav__Container"> 
+                    <div className="first_nav__logo">
+                        <span className="first_nav_text">: UPTOWN</span>
+                    </div>
+                    <div className="first_nav_loginbtn">
+                        <button onClick={SignIn}>로그인</button>
+                    </div>
+                </header>
+            </div>
         </div>
     );
 }

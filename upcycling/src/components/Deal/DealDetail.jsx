@@ -1,13 +1,14 @@
 /* 🥑 거래글 자세히! */
+// 게시글(댓글(해야 됨), 파일(했음)) 삭제, 수정(revise 페이지로 이동)
 // commentWrite 연결
 // dealLike 연결
 // 댓글 개수 세기 해야 됨
 // 06-20 로그인 된 사람 = 작성자일 경우에만 삭제, 수정 버튼 보이도록
 
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
-import { doc, deleteDoc } from "firebase/firestore";
+import { doc, deleteDoc, getDoc } from "firebase/firestore";
 import { ref, deleteObject } from "@firebase/storage";
 import { firestore, storage } from "../../firebase";
 
@@ -24,7 +25,16 @@ const DealDetail = () => {
     const navigate = useNavigate();
     const dealState = location.state.deal;
 
-    /* 사용 함수 */
+    // 문서 가져오기 - 근데 별 의미 없는 듯...
+    const returnDoc = async() => {
+        const docSnap = await getDoc(doc(firestore, `/dbDeals/${dealState.id}`));
+        return docSnap;
+    };
+
+    useEffect(()=> {
+        returnDoc();
+    }, [])
+
     // 글 삭제
     const deserRef = ref(storage, dealState.attachmentUrl);
 
@@ -47,11 +57,20 @@ const DealDetail = () => {
         navigate(`/deals/revise/${deal.createdAt}`, {state: {deal}})
     }
 
+    // 댓글 개수 가져오기
+    const commentCnt = () => {
+        firestore.collection('dbDeals')
+        .doc(`${dealState.id}`)
+        .collection('dComments')
+        .get();
+        console.log(commentCnt)
+    };
+
     return (
         <section>
             <div className={styles.header}>
                 <div className={styles.userInfo}>
-                    <p>photo profile</p>
+                    <p>dealState.photo URL</p>
                     <h3>{dealState.creatorName}</h3>
                 </div>
 

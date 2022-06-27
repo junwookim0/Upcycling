@@ -9,7 +9,8 @@ const Signup = () => {
     const [password2, setPassword2] = useState("");
     const [error, seterror] = useState("");
     const navigate = useNavigate();
-    
+    const Swal = require('sweetalert2');
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (password !== password2) {
@@ -34,17 +35,18 @@ const Signup = () => {
             }
             else {
                 navigate("/signin");
-                alert("회원가입완료");
+                Swal.fire({
+                    icon: 'success',
+                    title: '환영합니다',
+                    text: '당신의 업사이클링 경험을 알려주세요!',
+                    footer: '로그인 후 이용해주세요'
+                })
             }
-    
-            
         }
-        
     };
     return (
         <div className="signup_box">
             <div className="div_signup">
-                    {error ? <div>{error}</div> : null}
                     <form onSubmit={handleSubmit} className="input_signup">
                     <h1>Sign Up</h1>
                         <input
@@ -74,6 +76,8 @@ const Signup = () => {
                         <input className="signin_submit" type="submit" value="회원가입"></input>
                     </form>
                     <p className="login-link">already registered? <Link to="/signin">Login</Link></p>
+                    {error ? 
+                    <div className="signup_error"> {error} </div> : null}
             </div>
         </div>
     );

@@ -1,15 +1,15 @@
 import {  useNavigate ,Outlet } from "react-router-dom";
 import { useState , useEffect} from "react";
 import { SignOut } from "../../firebase";
-
 import Hamburger from 'hamburger-react'
 import './Nav.css'
-//nav바 
 
 const Nav = () => {
-    
+    const Swal = require('sweetalert2');
     const [scrolled, setScrolled] = useState(false);
-    const [isOpen, setOpen] = useState(false)
+    const [isOpen, setOpen] = useState(false);
+    
+
     //scroll 30 기준으로 trun fasle 
     useEffect(()=>{
         const handleScroll = ()=>{
@@ -25,6 +25,7 @@ const Nav = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     },[scrolled]);
+
     useEffect(()=>{
         const handleScrollham = ()=>{
             if(!scrolled || window.scrollY >30){
@@ -69,9 +70,43 @@ const Nav = () => {
     }
     const handleLogout = async () => {
         await SignOut();
-        alert("로그아웃");
+        const swalButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+        swalButtons.fire({
+            icon: 'success',
+            title: '아쉬워요..',
+            text: '성공적으로 로그아웃 하셨습니다',
+            footer: '<a href="./signin">LOGIN 하러가기</a>'
+        })
         navigate("/");
     };
+    const LogoutComfirm = () => {
+        const swalButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+            swalButtons.fire({
+                title: '로그아웃 하시겠습니까?',
+                text: "로그아웃 하시면 첫페이지로 이동 합니다",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '예',
+                cancelButtonText: '아니요',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    handleLogout();
+                }
+            })
+    }
     return (
         <div>
             <header className={scrolled ? 'fix-container scrolled' : 'fix-container'}>
@@ -90,12 +125,12 @@ const Nav = () => {
                         <li  onClick={goMypage}>
                             MyPage
                         </li>
-                        <li onClick={handleLogout}>Logout</li>
+                        <li onClick={LogoutComfirm}>Logout</li>
                     </ul>
                     <div className="Hamburger">
                         <Hamburger toggled={isOpen} toggle={clickb}/>
                     </div>
-                </nav>
+                </nav> 
             </header>
             <main>
                 <Outlet></Outlet>

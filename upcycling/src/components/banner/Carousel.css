@@ -1,9 +1,10 @@
-.swiper {
+.contents_swiper .swiper {
   width: 100%;
   height: 100%;
+  margin: 20px auto;
 }
 
-.swiper-slide {
+.contents_swiper .swiper-slide {
   text-align: center;
   font-size: 18px;
   background: #fff;
@@ -22,31 +23,24 @@
   -webkit-align-items: center;
   align-items: center;
 }
-
-.swiper-slide img {
+.contents_swiper .swiper-slide img {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 399px;
+  height: 300px;
   object-fit: cover;
 }
-.swiper-slide img:hover {
+.contents_swiper .swiper-slide img:hover {
   transform: scale(1.1);
   transition: transform 250ms linear;
   cursor: pointer;
 }
 
-
-.swiper {
-  width: 100%;
-  height: 300px;
-  margin: 20px auto;
-}
-.append-buttons {
+.contents_swiper .append-buttons {
   text-align: center;
   margin-top: 20px;
 }
 
-.append-buttons button {
+.contents_swiper .append-buttons button {
   display: inline-block;
   cursor: pointer;
   border: 1px solid #007aff;
@@ -57,11 +51,11 @@
   margin: 0 10px;
   font-size: 13px;
 }
-.Carousel_text{
+.contents_swiper .Carousel_text{
   float: left;
   margin-left: 30px;
 }
-.swiper-button-next::after,
-.swiper-button-prev::after {
+.contents_swiper .swiper-button-next::after,
+.contents_swiper .swiper-button-prev::after {
   color: black;
 }

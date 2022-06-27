@@ -1,15 +1,14 @@
 /* 🥑 deal 게시판 목록 */
 
-import React, {useState} from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DealItem from "./DealItem";
 import Nav from "../Nav/Nav";
 import styles from './CSS/dealPage.module.css';
 import SubMainBanner from "../banner/SubMainBannerDeal";
-import { collection, getDocs, query, orderBy, endAt } from "firebase/firestore";
+import { useState } from "react";
 import { firestore } from "../../firebase";
-import { useEffect } from "react";
-import { startAt } from "firebase/database";
+import { query, collection, getDocs, where } from "firebase/firestore";
 
 const DealPage = ({deals}) => {
     // title 누르면 게시글 내용 볼 수 있도록
@@ -19,24 +18,26 @@ const DealPage = ({deals}) => {
         navigate('/deals/write');
     };
 
-    /* 검색 */
-    const [keyword, setKeyword] = useState('')
-    const [onDeals, setOnDeals] = useState(Object.values(deals));
-
-    useEffect(() => {
-        setOnDeals(Object.values(deals))
-    }, [deals])
+    const [keyword, setKeyword] = useState('');
 
     const onChange = (e) => {
-        setKeyword(e.target.value)
+        setKeyword(e.target.value);
     };
 
-    const onSearch = () => {
-        const dealsHashtags = [onDeals.map(deal => deal.hashtagArray)]
-        const newDealArray = [...dealsHashtags]
-        console.log(newDealArray)
-        console.log(newDealArray.indexOf(keyword))
-    } 
+    const [onDeals, setOnDeals] = useState(Object.values(deals))
+
+    /* 해시태그 검색 */
+    const onSearchClick = async () => {
+        const q = query(
+            collection(firestore, 'dbDeals'),
+            where('hashtagArray', '>=', keyword),
+        );
+        const resSnap = await getDocs(q);
+        resSnap.forEach((doc) => {
+            console.log(doc.id, "=>", doc.data());
+        })
+        console.log('흑흑')
+    };
 
     return (
         <div>
@@ -47,14 +48,15 @@ const DealPage = ({deals}) => {
                 
                 <div className={styles.header}>
                     <div className={styles.search}>
-                        <input type="text"
-                        onChange={onChange} />
-                        <button
-                        onClick={onSearch}>Search</button>
+                        <input 
+                        onChange={onChange}
+                        type="text" placeholder="관심 있는 해시태그로 검색해보세요"/>
+                        <button onClick={onSearchClick}>검색하기</button>
+                        <hr />
                     </div>
                     <button
                     className={styles.button_write}
-                    onClick={onClick}>글 작성</button>
+                    onClick={onClick}>글 작성하기</button>
                 </div>
 
                 <ul className={styles.list}>

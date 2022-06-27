@@ -64,7 +64,7 @@ const CommentItem = ({ commentObj }) => {
                     ) : (
                         <>
                             <span>{commentObj.creatorName}</span>
-                            <span>작성날짜 어케함</span>
+                            <span>{commentObj.date}</span>
                             <p>{commentObj.content}</p>
                             {
                                 commentObj.creatorId == user.uid ? (
