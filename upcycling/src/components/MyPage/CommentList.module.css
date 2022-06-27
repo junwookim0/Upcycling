@@ -12,6 +12,7 @@
 }
 
 .commentList {
+    cursor: pointer;
     display: flex;
     position: relative;
     width: 70%;

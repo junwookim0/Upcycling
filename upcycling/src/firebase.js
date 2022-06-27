@@ -16,13 +16,13 @@ const firebaseConfig = {
     messagingSenderId: "",
     appId: ""
     */
-    apiKey: "AIzaSyCdIxIK5rBwASC0U_oS3GnO8BTz2yvmD7w",
-    authDomain: "login-8cffa.firebaseapp.com",
-    projectId: "login-8cffa",
-    storageBucket: "login-8cffa.appspot.com",
-    messagingSenderId: "605811444365",
-    appId: "1:605811444365:web:403ed12cfc283c91f170c4",
-    measurementId: "G-1YJTLLX83W"
+    apiKey: "AIzaSyAZwe8-JumYMCPZE6NCHS7QRplQ1VQhCa8",
+    authDomain: "login-97034.firebaseapp.com",
+    databaseURL: "https://login-97034-default-rtdb.firebaseio.com",
+    projectId: "login-97034",
+    storageBucket: "login-97034.appspot.com",
+    messagingSenderId: "737764108580",
+    appId: "1:737764108580:web:aaea951966d9fb3b306bb1"
 };
 // Initialize Firebase 
 

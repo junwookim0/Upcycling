@@ -1,9 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import ReviewItem from './reviewItem';
 import styles from './CSS/reviewPage.module.css'
 import { useState } from 'react';
 import { useEffect } from 'react';
-import Nav from '../Nav/Nav';
+import NavReview from '../Nav/NavReview';
 import SubMainBanner from '../banner/SubMainBannerReviews';
 
 import { useContext } from "react";
@@ -19,7 +18,6 @@ import WriteButton from './writeButton';
 //🍎전체 Review를 보여주는 페이지
 
 const ReviewPage = ({reviewRepository}) => {
-    const navigator = useNavigate();
     const dispatch = useDispatch();
     const keyword = useSelector((state)=>state.search.keyword);
 
@@ -67,14 +65,13 @@ useEffect(()=>{
 
     return (
         <section>
-            <Nav/>
+            <NavReview/>
             <SubMainBanner/>
             <div className={styles.reviewPage}>
                 <div className={styles.header}>
                     <Search onSearch={onSearch}/>
                     <WriteButton/>
                 </div>
-
                 <ul className={styles.list}>
                     {!keyword ?
                         (onReviews.map(review => (

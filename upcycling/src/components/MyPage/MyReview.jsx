@@ -113,6 +113,17 @@ const MyReview = ({reviewRepository}) => {
     },[myComments])
 
 
+    //🍎👍현재 존재하는 게시물에서 내가 좋아요를 누른 리뷰
+    const filteredLikes = onMyLikes.map(like => (
+        onReviews.map(review => {
+            if(review.id === like.id) {
+                return <SwiperSlide key={review.id}><img onClick={()=>goDetail(review)} src={review.reviewIMG} alt="" /></SwiperSlide>
+            } 
+        })
+    ))
+
+    console.log(filteredLikes)
+
     return (
         <>
         <h2 className="Carousel_text">내가 작성한 리뷰</h2>
@@ -158,11 +169,12 @@ const MyReview = ({reviewRepository}) => {
                 modules={[Pagination, Navigation, Autoplay]}
                 className="mySwiper"
             >
-                {
+                {/* {
                     onMyLikes.map(review => {
                         return <SwiperSlide key={review.id}><img onClick={()=>goDetail(review)} src={review.reviewIMG} alt="" /></SwiperSlide>
                     })
-                }
+                } */}
+                {filteredLikes}
 
             </Swiper>
         </div>
