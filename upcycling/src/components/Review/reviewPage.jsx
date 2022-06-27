@@ -3,7 +3,7 @@ import ReviewItem from './reviewItem';
 import styles from './CSS/reviewPage.module.css'
 import { useState } from 'react';
 import { useEffect } from 'react';
-import Nav from '../Nav/Nav';
+import NavReview from '../Nav/NavReview';
 import SubMainBanner from '../banner/SubMainBannerReviews';
 
 import { useContext } from "react";
@@ -67,14 +67,13 @@ useEffect(()=>{
 
     return (
         <section>
-            <Nav/>
+            <NavReview/>
             <SubMainBanner/>
             <div className={styles.reviewPage}>
                 <div className={styles.header}>
                     <Search onSearch={onSearch}/>
                     <WriteButton/>
                 </div>
-
                 <ul className={styles.list}>
                     {!keyword ?
                         (onReviews.map(review => (
