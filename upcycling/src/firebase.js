@@ -3,7 +3,7 @@ import { getDatabase } from "firebase/database";
 import { getFirestore , collection, addDoc} from "firebase/firestore"
 import { GoogleAuthProvider, signInWithPopup,
     FacebookAuthProvider,createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,signOut,getAuth,GithubAuthProvider
+    signInWithEmailAndPassword,signOut,getAuth,GithubAuthProvider,updateProfile
 } from 'firebase/auth';
 import { getStorage } from "firebase/storage";
 const firebaseConfig = {
@@ -16,13 +16,13 @@ const firebaseConfig = {
     messagingSenderId: "",
     appId: ""
     */
-    apiKey: "AIzaSyAZwe8-JumYMCPZE6NCHS7QRplQ1VQhCa8",
-    authDomain: "login-97034.firebaseapp.com",
-    databaseURL: "https://login-97034-default-rtdb.firebaseio.com",
-    projectId: "login-97034",
-    storageBucket: "login-97034.appspot.com",
-    messagingSenderId: "737764108580",
-    appId: "1:737764108580:web:aaea951966d9fb3b306bb1"
+    apiKey: "AIzaSyCdIxIK5rBwASC0U_oS3GnO8BTz2yvmD7w",
+    authDomain: "login-8cffa.firebaseapp.com",
+    projectId: "login-8cffa",
+    storageBucket: "login-8cffa.appspot.com",
+    messagingSenderId: "605811444365",
+    appId: "1:605811444365:web:403ed12cfc283c91f170c4",
+    measurementId: "G-1YJTLLX83W"
 };
 // Initialize Firebase 
 
@@ -60,10 +60,22 @@ const signIn = async (email, password) => {
         return {error: error.message}
     }
 };
+//프로필설정
+
+const ProfileUpdate = async ( displayName, photoURL ) => {
+    await updateProfile(auth.currentUser, {
+        displayName , photoURL
+    }).then(() => {
+        console.log("프로필 업데이트");
+    }).catch((error) => {
+        console.log(error);
+    });
+}
 //구글로그인
 const gprovider = new GoogleAuthProvider();
     gprovider.setCustomParameters({'display': 'popup'});
     const signInWithGoogle = () => signInWithPopup(auth, gprovider);
+    
 
 //페이스북 로그인
 const fprovider = new FacebookAuthProvider();
@@ -74,7 +86,6 @@ const fprovider = new FacebookAuthProvider();
 const gitprovider = new GithubAuthProvider();
     gitprovider.setCustomParameters({'display': 'popup'});
     const signInWithGithub = () => signInWithPopup(auth, gitprovider);
-
 
 const SignOut = async() => {
     try {
@@ -89,4 +100,4 @@ const storage = getStorage(app);
 
 export { app , auth , db , 
     firestore ,storage, signIn , signUp, SignOut,
-    signInWithGoogle, signInWithFacebook ,signInWithGithub};
+    signInWithGoogle, signInWithFacebook ,signInWithGithub, ProfileUpdate};
