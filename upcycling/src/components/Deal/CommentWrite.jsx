@@ -46,6 +46,7 @@ const CommentWrite = () => {
 
         //submit하면 추가할 데이터
         const commentObj = {
+            dealTitle: dealState.title,
             content: dComment, // 댓글
             creatorId: user.uid,
             creatorName: user.displayName,
