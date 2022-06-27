@@ -8,14 +8,14 @@ import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadString, getDownloadURL } from "@firebase/storage";
 import { v4 as uuidv4 } from "uuid"; // 사진 랜덤 아이디
 import { useNavigate } from "react-router-dom";
+import { format } from "date-fns";
 
 const DealWrite = () => {
 
     /* 사용자 정보 */
     const { user } = useContext(AuthContext);
 
-    /* 작성한 제목, 카테고리, 가격, 내용 firestore에 저장 */
-    const [dCategory, setDCategory] = useState(''); // 카테고리
+    /* 작성한 제목, 가격, 내용 firestore에 저장 */
     const [dTitle, setDTitle] = useState(''); // 제목
     const [dHashtag1, setDHashtag1] = useState(''); // 해시태그
     const [dHashtag2, setDHashtag2] = useState(''); // 해시태그
@@ -33,9 +33,7 @@ const DealWrite = () => {
     const onChange = (e) => {
         const {target: {name, value}} = e;
         
-        if(name === 'category') {
-            setDCategory(value);
-        } else if(name === 'title') {
+        if(name === 'title') {
             setDTitle(value);
         } else if(name === 'hashtag1') {
             setDHashtag1(value);
@@ -80,18 +78,18 @@ const DealWrite = () => {
             attachmentUrl = await getDownloadURL(response.ref);    
         };
     
+        let date = new Date();
         // submit하면 추가할 데이터
         const dealObj = {
-            category: dCategory, // 카테고리
             title: dTitle, // 제목 
-            hashtag1: dHashtag1,
-            hashtag2: dHashtag2,
-            hashtag3: dHashtag3,
+            hashtagArray: [dHashtag1, dHashtag2, dHashtag3],
             price: dPrice, // 가격
             content: dContent, // 내용
             createdAt: Date.now(), // 생성날짜
+            date : format(date, "yyyy.MM.dd HH:mm"),
             creatorId: user.uid,
-            creatorName: user.displayName, // 생성한 사람 닉 표시
+            creatorName: user.displayName,
+            creatorPhoto: user.photoURL,
             attachmentUrl: attachmentUrl,
             // 06-21 좋아요
             likeCount: 0,
@@ -101,7 +99,6 @@ const DealWrite = () => {
         await addDoc(collection(firestore, "dbDeals"), dealObj);
     
         // state를 비워서 form 비우기
-        setDCategory("");
         setDTitle("");
         setDHashtag1("");
         setDHashtag2("");
@@ -120,17 +117,6 @@ const DealWrite = () => {
         <div>
             <form
             onSubmit={onSubmit}>
-                {/* 카테고리 작성 */}
-                <label>카테고리</label>
-                <select>
-                    <option name="category" value="clothes" onChange={onChange}>의류</option>
-                    <option name="category" value="goods" onChange={onChange}>잡화</option>
-                    <option name="category" value="beuty" onChange={onChange}>뷰티/미용</option>
-                    <option name="category" value="pet" onChange={onChange}>반려동물</option>
-                    <option name="category" value="education" onChange={onChange}>교육/체험 키트</option>
-                    <option name="category" value="etc" onChange={onChange}>기타 중고물품</option>
-                </select> <br />
-
                 {/* 제목 작성 */}
                 <label>제목</label>
                 <input

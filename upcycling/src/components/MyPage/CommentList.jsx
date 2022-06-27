@@ -2,8 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './CommentList.module.css'
 
+
 const CommentList = ({onReviews, onMyComments}) => {
     const navigate = useNavigate();
+
 
     const goDetail = (reviewId) => {
         console.log(reviewId)

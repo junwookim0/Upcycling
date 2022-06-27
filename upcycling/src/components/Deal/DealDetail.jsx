@@ -4,8 +4,9 @@
 // dealLike 연결
 // 댓글 개수 세기 해야 됨
 // 06-20 로그인 된 사람 = 작성자일 경우에만 삭제, 수정 버튼 보이도록
+// 06-27 내가 쓴 글은 좋아요 클릭할 수 없게 해야 함
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { doc, deleteDoc, getDoc } from "firebase/firestore";
@@ -17,8 +18,6 @@ import styles from './CSS/dealDetail.module.css'
 import CommentWrite from "./CommentWrite";
 import DealLike from "./DealLike";
 
-import { async } from "@firebase/util";
-
 const DealDetail = () => {
     /* 사용자 정보 */
     const { user } = useContext(AuthContext);
@@ -26,18 +25,6 @@ const DealDetail = () => {
     const location = useLocation();
     const dealState = location.state.deal;
     const navigate = useNavigate();
-
-    /* 사용 함수 */
-    // 문서 가져
-    const returnDoc = async() => {
-        const docSnap = await getDoc(doc(firestore, `/dbDeals/${dealState.id}`));
-        if(docSnap.exists) {
-            console.log (docSnap.data())
-        } else(
-            console.log('err')
-        )
-
-    }
 
     // 글 삭제
     const deserRef = ref(storage, dealState.attachmentUrl);
@@ -61,12 +48,22 @@ const DealDetail = () => {
         navigate(`/deals/revise/${deal.createdAt}`, {state: {deal}})
     }
 
+    // 댓글 개수 가져오기
+    const commentCnt = () => {
+        firestore.collection('dbDeals')
+        .doc(`${dealState.id}`)
+        .collection('dComments')
+        .get();
+    };
+
+    // price 천 단위
+    let dealPrice = Number(dealState.price).toLocaleString('ko-KR');
+
     return (
         <section>
             <div className={styles.header}>
-                <button onClick={returnDoc}>zz</button>
                 <div className={styles.userInfo}>
-                    <p>프로필 이미지</p>
+                    <img src={dealState.creatorPhoto}/>
                     <h3>{dealState.creatorName}</h3>
                 </div>
 
@@ -77,6 +74,7 @@ const DealDetail = () => {
             </div>
 
             <div className={styles.content}>
+            <img src={dealState.attachmentUrl} alt="deal" />
                 <div className={styles.container}>
                     <select className="" id="">
                         <option value="">숨기기</option>
@@ -84,11 +82,21 @@ const DealDetail = () => {
                         <option value="">삭제</option>
                         <option value="">수정</option>
                     </select>
+                    
+                    {/* 정보 */}
                     <div className={styles.title}>
                         <h3>{dealState.title}</h3>
-                        <p>{dealState.hashtag}</p>
+                        {dealState.hashtagArray[0]&& <span>#{dealState.hashtagArray[0]} </span>}
+                        {dealState.hashtagArray[1]&& <span>#{dealState.hashtagArray[1]} </span>}
+                        {dealState.hashtagArray[2]&& <span>#{dealState.hashtagArray[2]} </span>}
+                        {
+                            dealState.price == '' ? (
+                                <p>나눔🧡</p>
+                            ) : (
+                                <p>{dealPrice} 원</p>
+                            )
+                        }
                     </div>
-                    <img src={dealState.attachmentUrl} width="100px" height="100px" />
                     <p className={styles.description}>{dealState.content}</p>
                 </div>
             </div>
@@ -98,6 +106,7 @@ const DealDetail = () => {
                 <div className={styles.icon_container_left}>
                     {/* 좋아요 */}
                     <DealLike 
+                    isMyLike={dealState.likeUser.includes(user.uid)}
                     dealState={dealState} />
                     <p className={styles.comment}>💌댓글개수</p>
                 </div>
@@ -114,7 +123,7 @@ const DealDetail = () => {
                 }
             </div>
             {/* 댓글 작성 */}
-            <div>
+            <div className={styles.comments_container}>
                 <CommentWrite />
             </div>
             

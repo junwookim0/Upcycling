@@ -10,11 +10,14 @@ const DealItem = ({deal}) => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
+    // price 천 단위로 표현
+    let dealPrice = Number(deal.price).toLocaleString('ko-KR');
+    
+    /* 사용 함수 */
     // dealDetail로 이동
     const onClick = () => {
         navigate(`/deals/${deal.createdAt}`, {state: {deal}})
     };
-
     return (
         <div>
             <img
@@ -28,10 +31,12 @@ const DealItem = ({deal}) => {
                 deal.price == '' ? (
                     <p>나눔🧡</p>
                 ) : (
-                    <p>{deal.price}원</p>
+                    <p>{dealPrice}원</p>
                 )
             }
             <p>{user.displayName}</p>
+            <span>👍</span>
+            <span>{deal.likeCount}</span>
         </div>
     );
 };

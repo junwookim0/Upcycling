@@ -7,6 +7,8 @@ import { GoogleAuthProvider, signInWithPopup,
 } from 'firebase/auth';
 import { getStorage } from "firebase/storage";
 const firebaseConfig = {
+
+
     /*
     apiKey: "",
     authDomain: "",
@@ -16,14 +18,9 @@ const firebaseConfig = {
     messagingSenderId: "",
     appId: ""
     */
-    apiKey: "AIzaSyAZwe8-JumYMCPZE6NCHS7QRplQ1VQhCa8",
-    authDomain: "login-97034.firebaseapp.com",
-    databaseURL: "https://login-97034-default-rtdb.firebaseio.com",
-    projectId: "login-97034",
-    storageBucket: "login-97034.appspot.com",
-    messagingSenderId: "737764108580",
-    appId: "1:737764108580:web:aaea951966d9fb3b306bb1"
+
 };
+
 // Initialize Firebase 
 
 const app = initializeApp(firebaseConfig);
