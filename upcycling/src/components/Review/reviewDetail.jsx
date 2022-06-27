@@ -97,17 +97,10 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     //🍎 elli어쩌구 버튼 누르면 menu 보이게 하기
     // const [openMenu, setOpenMenu] = useState(false)
 
-<<<<<<< HEAD
-    const viewMenu = () => {
-        return  comments.map((item)=>{
-            return <comments_list item={item}/>;
-        });
-=======
     const viewMenu = (event,index)=> {
         setShow(!show)
         // event.target.classList.add()
         console.dir(event)
->>>>>>> 30b7a8782f7ebbd1bde0809861f892048abb12dc
     }
 
     //🍎comment 수정누르면 코멘트 보내기
@@ -181,11 +174,7 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
                                                 <span className={styles.comments_name}>{item.userName}</span>
                                                 <span className={styles.comments_email}>({item.userEmail})</span>
                                             </div>
-<<<<<<< HEAD
-                                            <button onClick={()=>viewMenu(item.id)} className={styles.comments_ellipsis}>
-=======
                                             <button onClick={(event)=>viewMenu(event,index)} className={styles.comments_ellipsis}>
->>>>>>> 30b7a8782f7ebbd1bde0809861f892048abb12dc
                                                 <i className="fa-solid fa-ellipsis-vertical"></i>
                                             </button>
                                             {show && <div id={index} className={styles.comments_ellipsis_container}>
