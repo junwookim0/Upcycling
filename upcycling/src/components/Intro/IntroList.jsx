@@ -2,6 +2,7 @@
 import './IntroList.css';
 import Nav from '../Nav/Nav';
 import SubMainBanner from "../banner/SubMainBannerContents";
+
 const IntroList = () => {
     return (
     <div className='homebody'>
