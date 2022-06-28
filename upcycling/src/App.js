@@ -1,7 +1,7 @@
 import './App.css';
 import { Route, Routes, useNavigate } from "react-router-dom";
-import Home from './components/Intro/IntroList';
-import Contents from './page/Contents';
+import About from './components/Intro/IntroList';
+import Home from './page/Home';
 import FirstMain from './page/FirstMain/FirstMain';
 import EventIntro from './components/Intro/EventIntro';
 import SignIn from './components/login/SignIn';
@@ -104,7 +104,7 @@ const removeLike = (userId,review) => {
         <Routes>
           <Route path="/" element={!user?<FirstMain/> : <Home/>}></Route>
           <Route path="/home" element={user ? <Home /> :<SignIn/> }></Route>
-          <Route path="/contents" element={<Contents/>}></Route>
+          <Route path="/about" element={<About/>}></Route>
           <Route path="/mypage" element={< Mypage reviewRepository={reviewRepository} deals={deals}/>}></Route>
           <Route path="/signIn" element={<SignIn/>}></Route>
           <Route path="/signUp" element={<SignUp/>}></Route>

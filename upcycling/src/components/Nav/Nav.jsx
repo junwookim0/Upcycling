@@ -54,7 +54,7 @@ const Nav = () => {
         navigate("/home");
     };
     const goContents = () => {
-        navigate("/contents");
+        navigate("/about");
     };
     const goEvent = () => {
         navigate("/event");
@@ -112,11 +112,12 @@ const Nav = () => {
             <header className={scrolled ? 'fix-container scrolled' : 'fix-container'}>
                 <nav className="navbar">
                     <div className="navbar_logo" onClick={goHome}>
-                        <span className="logo_text">: UPTOWN</span>
+                        <span 
+                        className={scrolled ? 'logo_text scrolled' : 'logo_text'}>: UPTOWN</span>
                     </div>
                     <ul className={isOpen ? 'navbar_menu active' : 'navbar_menu'}>
                         <li onClick={goHome}>Home</li>
-                        <li onClick={goContents}>Contents</li>
+                        <li onClick={goContents}>About</li>
                         <li onClick={goEvent}>Event</li>
                         <li onClick={goReview}>Review</li>
                         <li onClick={goDeal}>Sale</li>
@@ -129,6 +130,11 @@ const Nav = () => {
                     </ul>
                     <div className="Hamburger">
                         <Hamburger toggled={isOpen} toggle={clickb}/>
+                    </div>
+                    <div className="site_msg_bar">
+                        <div className="site_msg">
+                            UPTOWN
+                        </div>
                     </div>
                 </nav> 
             </header>

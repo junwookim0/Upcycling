@@ -1,6 +1,6 @@
 import Nav from '../components/Nav/Nav';
 import Carousel from '../components/banner/Carousel';
-import SubMainBanner from '../components/banner/SubMainBannerContents';
+import SubMainBannerHome from '../components/banner/SubMainBannerHome';
 
 import './test.css';
 
@@ -8,7 +8,7 @@ const Contents = () => {
     return (
         <div>
             <Nav/>
-            <SubMainBanner/>
+            <SubMainBannerHome/>
             <Carousel/>
         </div>
     )

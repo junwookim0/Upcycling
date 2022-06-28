@@ -1,24 +1,15 @@
 // 소개 페이지
 import './IntroList.css';
 import Nav from '../Nav/Nav';
-
+import SubMainBanner from "../banner/SubMainBannerContents";
 const IntroList = () => {
     return (
     <div className='homebody'>
         <Nav/>
-        <div className='video_box'>
-            <video autoPlay muted loop className="introVideo">
-                <source src="../../video/file_home.mp4" type="video/mp4"/>
-            </video>
-            <div className='video_text'>
-                <h2 className='video_text_h2'>We are UPTOWN!</h2>
-                <h3>업사이클링 아이디어와 방법</h3>
-                <h3>여러분의 이야기를 들려주세요</h3>
-            </div>
-        </div>
+        <SubMainBanner />
         <div className="cInnerContent">
             {/*1단 나누기 */}
-            <div className="cInnerContent_1">
+            <div className="cInnerContent_1" id='about_upcycling'>
                 <div className="cInnerContent_1_left">
                         <h1>다시 한 번, <br /></h1> 
                         <h3>지구를 되살리기 위해</h3>
@@ -66,7 +57,7 @@ const IntroList = () => {
                     </li>
                 </ul>
             </div>
-            <div className='about_page'>
+            <div className='about_page' id='about_upctown'>
                 <div className='about_page_title'>
                     <h1>UPCYCLE TOWN</h1>
                     <p>업사이클링 아이디어와 영감</p>
