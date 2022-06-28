@@ -142,7 +142,7 @@ const ReviewRevise = ({createAndUpdateReview , imageUploader}) => {
                             </div>
 
                             <div className={styles.hash_container}>
-                                <p>#태그는 수정할 수없습니다.</p>
+                                <p>#태그는 수정할 수 없습니다.</p>
                                 <div className={styles.hashtags_box}>
                                     <input disabled='true' className={styles.hashtags} defaultValue={review?review.reviewHashtags[0]:''} name='reviewHashtags' type="text" onChange={onChange} />
                                     <input disabled='true' className={styles.hashtags} defaultValue={review?review.reviewHashtags[1]:''} name='reviewHashtags' type="text" onChange={onChange} />

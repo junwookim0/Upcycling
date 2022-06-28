@@ -9,6 +9,11 @@ import { ref, uploadString, getDownloadURL } from "@firebase/storage";
 import { v4 as uuidv4 } from "uuid"; // 사진 랜덤 아이디
 import { useLocation, useNavigate } from "react-router-dom";
 
+import styles from './CSS/dealRevise.module.css';
+
+import Nav from "../Nav/Nav";
+import SubMainBannerDeal from "../banner/SubMainBannerDeal";
+
 const DealRevise = () => {
 
     /* 사용자 정보 */
@@ -22,7 +27,6 @@ const DealRevise = () => {
     const [editing, setEditing] = useState(false);
 
     /* 업데이트 */
-    const [newDCategory, setNewDCategory] = useState(deal.category);
     const [newDTitle, setNewDTitle] = useState(deal.title);
     const [newDHashtag1, setNewHashtag1] = useState(deal.hashtag1);
     const [newDHashtag2, setNewHashtag2] = useState(deal.hashtag2);
@@ -56,20 +60,18 @@ const DealRevise = () => {
         }
         // dbDeals에 업데이트
         await updateDoc(doc(firestore, `/dbDeals/${deal.id}`), {
-            category: newDCategory,
             title: newDTitle,
-            hashtag1: newDHashtag1,
-            hashtag2: newDHashtag2,
-            hashtag3: newDHashtag3,
+            hashtagArray: [newDHashtag1, newDHashtag2, newDHashtag3],
             price: newDPrice,
             content: newDContent,
+            creatorName: user.displayName,
+            creatorPhoto: user.photoURL,
             attachmentUrl: newAttachmentUrl
         });
 
         setEditing(false);
 
         // state를 비워서 form 비우기
-        setNewDCategory("");
         setNewDTitle("");
         setNewHashtag1("");
         setNewHashtag2("");
@@ -86,9 +88,7 @@ const DealRevise = () => {
     const onChange = (e) => {
         const {target: {name, value}} = e;
         
-        if(name === 'category') {
-            setNewDCategory(value);
-        } else if(name === 'title') {
+        if(name === 'title') {
             setNewDTitle(value);
         } else if(name === 'hashtag1') {
             setNewHashtag1(value);
@@ -119,97 +119,112 @@ const DealRevise = () => {
     const onClearAttatchment = () => setNewAttachment('');
 
     return (
-        <section>
+        <>
+            <Nav />
+            <SubMainBannerDeal />
+            <div className={styles.dealWrite}>
+                <div className={styles.titleBox}>
+                    <h2>마켓 게시글 수정하기</h2>
+                </div>
             <form
-            onSubmit={onSubmit}>
-                {/* 카테고리 작성 */}
-                <label>카테고리</label>
-                <select>
-                    <option name="category" value={newDCategory}>의류</option>
-                    <option name="category" value={newDCategory}>잡화</option>
-                    <option name="category" value={newDCategory}>뷰티/미용</option>
-                    <option name="category" value={newDCategory}>반려동물</option>
-                    <option name="category" value={newDCategory}>교육/체험 키트</option>
-                    <option name="category" value={newDCategory}>기타 중고물품</option>
-                </select> <br />
-
+            onSubmit={onSubmit}
+            className={styles.form}>
                 {/* 제목 작성 */}
-                <label>제목</label>
                 <input
                 name="title"
                 onChange={onChange}
                 value={newDTitle}
                 type="text" 
-                maxLength={80} /> <br />
-
-                {/* 해시태그1 작성 */}
-                <label>해시태그</label>
-                <input
-                name="hashtag1"
-                onChange={onChange}
-                value={newDHashtag1}
-                type="text" 
-                maxLength={80} /> <br />
-                
-                {/* 해시태그2 작성 */}
-                <label>해시태그</label>
-                <input
-                name="hashtag2"
-                onChange={onChange}
-                value={newDHashtag2}
-                type="text" 
-                maxLength={80} /> <br />
-
-                {/* 해시태그3 작성 */}
-                <label>해시태그</label>
-                <input
-                name="hashtag3"
-                onChange={onChange}
-                value={newDHashtag3}
-                type="text" 
-                maxLength={80} /> <br />
+                className={styles.input_title}  /> <br />
 
                 {/* 가격 작성 */}
-                <label>가격</label>
                 <input
                 name="price"
                 onChange={onChange}
                 value={newDPrice}
-                type="number" /> <br />
+                type="number"
+                placeholder="가격을 입력해 주세요"
+                className={styles.input_price} /> <br />
 
                 {/* 글 작성 */}
                 <textarea
                 name="content"
                 onChange={onChange}
                 value={newDContent}
-                cols="30" rows="10" /> <br />
+                className={styles.textarea} /> <br />
 
-                <input 
-                onChange={onFileChange}
-                type="file" 
-                accept="image/*" />
+                <div className={styles.last_container}>
+                        <div className={styles.inner}>
+                            <div className={styles.input_container}>
+                                {/* 업로드할 사진 미리 보기 */}
+                                {newAttachment != '' ? (
+                                    <div>
+                                        <img 
+                                        src={newAttachment} 
+                                        alt="업로드한 이미지"
+                                        className={styles.fileInput_img} />
+                                    </div>
+                                ) : (
+                                    <div className={styles.before_uploadedImg}>
+                                        <p>이미지를 <br />첨부해 주세요</p>
+                                    </div>
+                                )}
+                                <input 
+                                onChange={onFileChange}
+                                type="file" 
+                                accept="image/*"
+                                className={styles.input_button} />
+                            </div>
 
-                {/* 거래 업로드 */}
-                <input 
-                type="submit" 
-                value="수정" />
-                            
-                {/* 업로드할 사진 미리 보기 */}
-                {newAttachment && (
-                    <div>
-                        <img 
-                        src={newAttachment} 
-                        width="50px" height="50px" />
+                            <div className={styles.hash_container}>
+                                <p>#태그는 수정할 수 없습니다</p>
+                                <div className={styles.hashtags_box}>
+                                    {/* 해시태그1 작성 */}
+                                    <input
+                                    disabled='true'
+                                    name="hashtag1"
+                                    onChange={onChange}
+                                    value={newDHashtag1}
+                                    type="text" 
+                                    placeholder="해시태그 1"
+                                    className={styles.hashtags} /> <br />
+                                    
+                                    {/* 해시태그2 작성 */}
+                                    <input
+                                    disabled='true'
+                                    name="hashtag2"
+                                    onChange={onChange}
+                                    value={newDHashtag2}
+                                    type="text" 
+                                    placeholder="해시태그 2"
+                                    className={styles.hashtags} /> <br />
 
-                        <button
-                        onClick={onClearAttatchment}>첨부 파일 삭제</button>
-                    </div>
-                )}
+                                    {/* 해시태그3 작성 */}
+                                    <input
+                                    disabled='true'
+                                    name="hashtag3"
+                                    onChange={onChange}
+                                    value={newDHashtag3}
+                                    type="text" 
+                                    placeholder="해시태그 3"
+                                    className={styles.hashtags} /> <br />
+                                </div>
+                            </div>
+                            <div className={styles.submit_buttons}>
+                                <button 
+                                className={styles.button}
+                                onClick={toggleEditting}>취소</button>
+                                {/* 거래 업로드 */}
+                                <input 
+                                type="submit" 
+                                value="수정"
+                                className={styles.button} />
+                            </div>
+                        </div>
+                    </div>              
             </form>
-
-            <button onClick={toggleEditting}>취소</button>
-
-        </section>
+        </div>
+        </>
     );
 };
 

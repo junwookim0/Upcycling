@@ -8,7 +8,6 @@ import { useLocation } from "react-router-dom";
 import { doc, setDoc, collection, onSnapshot } from "firebase/firestore";
 import { firestore } from "../../firebase";
 import { format } from "date-fns";
-
 import CommentItem from './CommentItem';
 
 const CommentWrite = () => {
@@ -80,7 +79,8 @@ const CommentWrite = () => {
                     className={styles.button} />
                 </form>
             </div>
-            <div>
+            <div className={styles.comments_container}>
+                <h2>댓글</h2>
                 { 
                     dComments.map((dComment) => (
                         <CommentItem 
