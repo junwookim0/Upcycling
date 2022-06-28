@@ -1,20 +1,16 @@
 /* 🥑 거래글 자세히! */
-// 게시글(댓글(해야 됨), 파일(했음)) 삭제, 수정(revise 페이지로 이동)
-// commentWrite 연결
-// dealLike 연결
-// 댓글 개수 세기 해야 됨
-// 06-20 로그인 된 사람 = 작성자일 경우에만 삭제, 수정 버튼 보이도록
-// 06-27 내가 쓴 글은 좋아요 클릭할 수 없게 해야 함
 
-import React, { useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
-import { doc, deleteDoc, getDoc } from "firebase/firestore";
+import { doc, deleteDoc, query, collection, where, onSnapshot } from "firebase/firestore";
 import { ref, deleteObject } from "@firebase/storage";
 import { firestore, storage } from "../../firebase";
 
 import styles from './CSS/dealDetail.module.css'
 
+import Nav from "../Nav/Nav";
+import SubMainBnnerDeal from "../banner/SubMainBannerDeal";
 import CommentWrite from "./CommentWrite";
 import DealLike from "./DealLike";
 
@@ -48,52 +44,44 @@ const DealDetail = () => {
         navigate(`/deals/revise/${deal.createdAt}`, {state: {deal}})
     }
 
-    // 댓글 개수 가져오기
-    const commentCnt = () => {
-        firestore.collection('dbDeals')
-        .doc(`${dealState.id}`)
-        .collection('dComments')
-        .get();
-    };
-
     // price 천 단위
     let dealPrice = Number(dealState.price).toLocaleString('ko-KR');
 
     return (
         <section>
-            <div className={styles.header}>
-                <div className={styles.userInfo}>
-                    <img src={dealState.creatorPhoto}/>
-                    <h3>{dealState.creatorName}</h3>
-                </div>
-
-                <div className={styles.searchInput}>
-                    <input type="text" />
-                    <button>Search</button>
+            <Nav />
+            <SubMainBnnerDeal />
+            <div className={styles.container}>
+                <div className={styles.header}>
+                    <div className={styles.userInfo}>
+                        <img src={dealState.creatorPhoto}
+                        className={styles.userPhoto} />
+                        <div className={styles.userInfo_innerContainer}>
+                            <h3 className={styles.userName}>{dealState.creatorName}</h3>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div className={styles.content}>
-            <img src={dealState.attachmentUrl} alt="deal" />
-                <div className={styles.container}>
-                    <select className="" id="">
-                        <option value="">숨기기</option>
-                        <option value="">신고하기</option>
-                        <option value="">삭제</option>
-                        <option value="">수정</option>
-                    </select>
-                    
+            <img src={dealState.attachmentUrl} alt="마켓 카테고리 게시글의 사진입니다" />
+                <div className={styles.content_container}>                    
                     {/* 정보 */}
                     <div className={styles.title}>
-                        <h3>{dealState.title}</h3>
-                        {dealState.hashtagArray[0]&& <span>#{dealState.hashtagArray[0]} </span>}
-                        {dealState.hashtagArray[1]&& <span>#{dealState.hashtagArray[1]} </span>}
-                        {dealState.hashtagArray[2]&& <span>#{dealState.hashtagArray[2]} </span>}
+                        <div className={styles.container_title}>
+                            <span className={styles.dealTitle}>{dealState.title}</span>
+                            <span className={styles.date}>작성 날짜</span>
+                        </div>
+                        <div className={styles.tags}>
+                            {dealState.hashtagArray[0]&& <span className={styles.hashtags}># {dealState.hashtagArray[0]} </span>}
+                            {dealState.hashtagArray[1]&& <span className={styles.hashtags}># {dealState.hashtagArray[1]} </span>}
+                            {dealState.hashtagArray[2]&& <span className={styles.hashtags}># {dealState.hashtagArray[2]} </span>}
+                        </div>
                         {
                             dealState.price == '' ? (
-                                <p>나눔🧡</p>
+                                <span className={styles.price}>나눔🧡</span>
                             ) : (
-                                <p>{dealPrice} 원</p>
+                                <span className={styles.price}>&#8361; {dealPrice}</span>
                             )
                         }
                     </div>
@@ -101,14 +89,12 @@ const DealDetail = () => {
                 </div>
             </div>
 
-            <hr />
             <div className={styles.icon_container}>
                 <div className={styles.icon_container_left}>
                     {/* 좋아요 */}
                     <DealLike 
                     isMyLike={dealState.likeUser.includes(user.uid)}
                     dealState={dealState} />
-                    <p className={styles.comment}>💌댓글개수</p>
                 </div>
                 {
                     dealState.creatorId == user.uid ? (

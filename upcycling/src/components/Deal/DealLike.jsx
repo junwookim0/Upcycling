@@ -6,6 +6,7 @@ import React, { useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { firestore } from "../../firebase";
 import { doc, updateDoc, increment, arrayUnion, arrayRemove } from "firebase/firestore";
+import styles from './CSS/dealLike.module.css'
 
 const DealLike = ({dealState, isMyLike}) => {
 
@@ -40,7 +41,7 @@ const DealLike = ({dealState, isMyLike}) => {
         user.uid != dealState.creatorId ? (
             <>
                 <button onClick={toggleLike}>
-                    {likeAction ? '💖' : '🤍'}
+                    {likeAction ? '❤️' : '🤍'}
                 </button>
             </>
         ) : (
