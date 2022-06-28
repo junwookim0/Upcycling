@@ -1,14 +1,14 @@
 /* 🥑 deal 게시판 목록 */
 
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DealItem from "./DealItem";
-import Nav from "../Nav/Nav";
 import styles from './CSS/dealPage.module.css';
-import SubMainBanner from "../banner/SubMainBannerDeal";
-import { useState } from "react";
 import { firestore } from "../../firebase";
 import { query, collection, where, onSnapshot } from "firebase/firestore";
+
+import SubMainBanner from "../banner/SubMainBannerDeal";
+import Nav from "../Nav/Nav";
+import DealItem from "./DealItem";
 
 const DealPage = ({deals}) => {
 
@@ -27,7 +27,8 @@ const DealPage = ({deals}) => {
     };
 
     /* 해시태그 검색 */
-    const onSearchClick = async () => {
+    const onSearchClick = async (e) => {
+        e.preventDefault();
         const q = query(
             collection(firestore, 'dbDeals'),
             where('hashtagArray', 'array-contains', keyword),
@@ -39,7 +40,7 @@ const DealPage = ({deals}) => {
             }));
             setSearchDeals(searchArray);
             console.log(searchDeals);
-        })
+        });
     };
 
     return (
@@ -47,31 +48,40 @@ const DealPage = ({deals}) => {
             <Nav />
             <SubMainBanner/>
             <section className={styles.dealPage}>
-                <h1>Deals</h1>
                 <div className={styles.header}>
-                    <div className={styles.search}>
+                    {/* 검색 */}
+                    <div className={styles.container}>
+                        <span className={styles.title}>해시태그로 검색 : </span>
                         <input 
                         onChange={onChange}
-                        type="text" placeholder="관심 있는 해시태그로 검색해보세요"/>
-                        <button onClick={onSearchClick}>검색하기</button>
-                        <hr />
+                        type="text" />
+                        <button 
+                        onClick={onSearchClick}
+                        className={styles.search}>
+                            <i className="fa-solid fa-magnifying-glass" />
+                        </button>
                     </div>
+                    {/* 글 작성 버튼 */}
                     <button
                     className={styles.button_write}
-                    onClick={onClick}>글 작성하기</button>
+                    onClick={onClick}>
+                        글 작성하기
+                    </button>
                 </div>
 
                 <ul className={styles.list}>
                     {
                         !keyword ? (
                             deals.map(deal => (
-                                <li key={deal.createdAt}>
+                                <li key={deal.createdAt}
+                                className={styles.list_item}>
                                     <DealItem deal={deal} />
                                 </li>
                             ))
                         ) : (
                             searchDeals.map(search => (
-                                <li key={search.createdAt}>
+                                <li key={search.createdAt}
+                                className={styles.list_item}>
                                     <DealItem deal={search} />
                                 </li>
                             ))

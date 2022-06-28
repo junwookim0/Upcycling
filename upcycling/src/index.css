@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Bungee&family=Changa+One&family=Fugaz+One&family=Kanit&family=Lalezar&family=Libre+Barcode+39&family=Libre+Barcode+39+Text&family=Noto+Sans+KR:wght@300;400&family=Patua+One&family=Raleway:wght@600&family=Roboto:wght@300;400&family=Rubik+Mono+One&family=Russo+One&display=swap');
+/* 🥑 06-28 선주 deal 숫자 */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 body {
   box-sizing: border-box;
   margin: 0;
   font-family: 'Noto Sans KR', sans-serif;
-
 }
 
 code {

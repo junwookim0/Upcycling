@@ -1,9 +1,11 @@
 /* 🥑 deal 목록의 개체 */
 // 06-20 사용자 정보
+// css 완
 
 import React, { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import styles from './CSS/dealItem.module.css';
 
 const DealItem = ({deal}) => {
     /* 사용자 정보 */
@@ -19,25 +21,29 @@ const DealItem = ({deal}) => {
         navigate(`/deals/${deal.createdAt}`, {state: {deal}})
     };
     return (
-        <div>
+        <section className={styles.container}>
             <img
-            width="150px"
             src={deal.attachmentUrl}
-            onClick={onClick} />
+            onClick={onClick}
+            className={styles.dealImg} />
             <h3>{deal.title}</h3>
             {/* 작성자가 가격 입력했으면 작성된 가격 뜸
-                작성자가 가격 입력 안 했으면 나눔🧡 뜸 */}
+                작성자가 가격 입력 안 했으면 나눔💚 뜸 */}
             {
                 deal.price == '' ? (
-                    <p>나눔🧡</p>
+                    <p>나눔 💚</p>
                 ) : (
-                    <p>{dealPrice}원</p>
+                    <p>&#8361; {dealPrice}</p>
                 )
             }
-            <p>{user.displayName}</p>
-            <span>👍</span>
-            <span>{deal.likeCount}</span>
-        </div>
+            <p className={styles.name}>{deal.creatorName}</p>
+            <div className={styles.likeBox}>
+                <div className={styles.icon}>
+                    <i className="fa-solid fa-heart"></i>
+                </div>
+                <p className={styles.amount}>{deal.likeCount}</p>
+            </div>
+        </section>
     );
 };
 
