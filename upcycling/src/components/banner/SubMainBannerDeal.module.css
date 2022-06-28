@@ -3,7 +3,9 @@
     position: absolute;
     top: 0;
     right: 0;
-    background-image: url("../../../public/images/press.jpg");
+    background-image: url("../../../public/images/subbannersale.jpg");
+    background-size: 800px;
+    background-repeat: no-repeat;
     width: 50%;
     height: 500px;
     opacity: 0.6;
@@ -14,7 +16,6 @@
     top: 0;
     width: 50%;
     height: 459px;
-
     background-color: #F8F3E8;
     position: relative;
     color: #004236;
@@ -30,7 +31,7 @@
 }
 
 .text > h3 {
-    font-size: 5rem;
+    font-size: 4.5rem;
     margin: 2.5rem;
 }
 
@@ -59,6 +60,7 @@
         opacity: 1;
     }
 }
+
 @media screen and (max-width: 900px) {
     .img{
         display: none;
