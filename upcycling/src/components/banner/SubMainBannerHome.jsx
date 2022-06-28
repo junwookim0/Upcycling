@@ -1,15 +1,20 @@
 import styles from './SubMainBannerHome.module.css';
 const SubMainBannerHome = () => {
     return (
-        <div className={styles.container}>
-            <div>
-                <div className={styles.text}>
-                    <h3> <span className={styles.span}>:UpTowner </span>Home</h3>
-                    <p>업사이클링 제품을 사용하고있는 <br/>
-                    여러분의 이야기를 들려주세요!</p>
+        <div className={styles.subMainBanner_wrap}>
+            <div className={styles.subMainBanner_img}>
+                <div className={styles.subMainBanner_text}>
+                    UPTOWN
+                    <div>
+                        <p>
+                            지구를 지키는 아이디어 업사이클링  <br/>
+                            일상 속에서 작은 실천으로 가능합니다
+                        </p>
+                        <div className={styles.movediv}>
+                            <a href='/aboutupcycling'>자세히 보기</a> <br/>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className={styles.img}>
             </div>
         </div>
     )
