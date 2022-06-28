@@ -151,6 +151,9 @@ const MyReview = ({reviewRepository}) => {
                 }
             </Swiper>
         </div>
+
+
+
         <h2 className="Carousel_text">내가 좋아요한 리뷰</h2>
         <div className="contents_swiper">
             <Swiper

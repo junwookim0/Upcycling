@@ -28,6 +28,7 @@ import {useState, useEffect} from 'react';
 
 import { firestore } from './firebase';
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
+import Footer from './components/Intro/footer';
 
 function App({reviewRepository, commentRepository, imageUploader, likeRepository}) {
   const { user } = useContext(AuthContext);
@@ -126,8 +127,7 @@ const removeLike = (userId,review) => {
           {/* 🥑 박선주 route 끝 */}
           <Route path="/not-found" element={<NotFound />}></Route>
         </Routes>
-        <hr></hr>
-        <footer>Copyright ⓒ uptown All rights reserved</footer>
+        <Footer/>
     </div>
   );
 }

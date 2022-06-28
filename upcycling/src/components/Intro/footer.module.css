@@ -1,0 +1,11 @@
+@value makerWhite,makerLime, makerBeige, makerGrey,makerPink,makerLightGrey, makerDarkGreen, makerGreen from '../../components/Review/common/color.css';
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 15rem;
+    background-color: makerDarkGreen;
+    color: makerWhite;
+}
