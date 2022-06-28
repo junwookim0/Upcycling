@@ -2,7 +2,7 @@ import ReviewItem from './reviewItem';
 import styles from './CSS/reviewPage.module.css'
 import { useState } from 'react';
 import { useEffect } from 'react';
-import NavReview from '../Nav/NavReview';
+import Nav from '../Nav/Nav';
 import SubMainBanner from '../banner/SubMainBannerReviews';
 
 import { useContext } from "react";
@@ -65,7 +65,7 @@ useEffect(()=>{
 
     return (
         <section>
-            <NavReview/>
+            <Nav/>
             <SubMainBanner/>
             <div className={styles.reviewPage}>
                 <div className={styles.header}>

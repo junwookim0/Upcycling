@@ -71,23 +71,6 @@
   height: 226px;
 }
 
-/*상단 비디오*/
-.video_box{
-  position: relative;
-}
-.introVideo{
-  width: 100%;
-  opacity: 0.8;
-  display: flex;
-}
-.video_text{
-  position: absolute; top: 30%; width: 100%;
-  margin-top: -24px; 
-  text-align: center; 
-  font-size: 48px; 
-  color: #fff;
-}
-
 /* 업사이클링 대해*/
 .about_page{
   padding-top: 50px;
@@ -132,4 +115,8 @@
 .about_second_intro_card{
   font-size: 22px;
   margin-right: 25px;
+}
+
+@media screen and (max-width: 900px) {
+  
 }

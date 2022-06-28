@@ -34,7 +34,6 @@ const MyProfileChange = () => {
     const changeProfile = () => {
         navigate("/up");
     }
-    console.log(user)
     return(
         <div className="profileChange_box">
             <p className="userProfile_photo">{user.photoURL ? <img src={user.photoURL} alt="userphoto"/>  : <img src="../../../images/profile-picture.png" alt="userphoto2"/>}</p>
