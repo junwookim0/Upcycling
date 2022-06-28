@@ -1,4 +1,4 @@
-@value makerWhite,makerGrey,makerPink,makerLightGrey, makerMidGrey, makerDarkGreen, makerGreen from '../../Review/common/color.css';
+@value makerWhite,makerLime, makerDarkGreen, maekrGreen, makerGrey,makerPink,makerLightGrey, makerMidGrey, makerDarkGreen, makerGreen from '../../Review/common/color.css';
 @value fontEn from '../../Review/common/font.css';
 
 textarea:focus, input:focus{
@@ -6,7 +6,7 @@ textarea:focus, input:focus{
 }
 
 .container {
-    border: 2px solid makerLightGrey;
+    border: 4px solid makerLightGrey;
     border-radius: 10px;
     width: 100%;
     height: 12rem;
@@ -36,9 +36,19 @@ textarea:focus, input:focus{
 
 .button {
     border: none;
-    color: makerGrey;
-    background-color: transparent;
-    font-size: 1.1rem;
+    color: makerWhite;
+    background-color: makerDarkGreen;
+    padding: 0.5rem;
+    border-radius: 10px;
+    font-size: 1rem;
     font-weight: bold;
+    margin-left: 0.5rem;
     cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.button:hover {
+    color: makerDarkGreen;
+    background-color: makerLime;
 }

@@ -150,7 +150,7 @@ const ReviewWrite = ({createAndUpdateReview , imageUploader}) => {
                             >취소
                             </button>
                             <button 
-                                className={styles.button}
+                                className={styles.button_ok}
                                 onClick={onSubmit}
                                 disabled={!canSave}
                             >완료

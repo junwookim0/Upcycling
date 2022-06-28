@@ -2,6 +2,8 @@
 @value fontEn from '../../Review/common/font.css';
 
 .reviewPage {
+    margin: auto;
+    max-width: 70%;
     position: relative;
     text-align: center;
     background-color: makerWhite;
@@ -9,10 +11,10 @@
 
 /*search input*/
 .header {
-    position: relative;
     display: flex;
+    justify-content: flex-end;
+    position: relative;
     margin-top: 3rem;
-    justify-content: center;
     align-items: center;
 }
 
