@@ -14,9 +14,9 @@ import AuthContext from "../context/AuthContext";
 import { firestore } from "../../firebase";
 import { collection, onSnapshot, query, where, orderBy } from "firebase/firestore";
 
-import DCommentList from './dCommentList';
+import DCommentList from "./dCommentList";
 
-const MyDeal = () => {
+const MyDeal = ({deal}) => {
     
     const [setSwiperRef] = useState(null);
     const navigate = useNavigate();
@@ -123,7 +123,7 @@ const MyDeal = () => {
                 }
             </Swiper>
         </div>
-    <DCommentList />
+        <DCommentList />
         </>
     );
 }

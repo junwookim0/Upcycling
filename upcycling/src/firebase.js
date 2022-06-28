@@ -9,6 +9,7 @@ import { getStorage } from "firebase/storage";
 const firebaseConfig = {
 
 
+
     /*
     apiKey: "",
     authDomain: "",
@@ -18,6 +19,7 @@ const firebaseConfig = {
     messagingSenderId: "",
     appId: ""
     */
+
 };
 
 // Initialize Firebase 

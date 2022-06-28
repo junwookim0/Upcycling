@@ -2,21 +2,14 @@ import { useContext, useState, useEffect } from 'react';
 import { query, where, orderBy, onSnapshot, collectionGroup } from 'firebase/firestore';
 import { firestore } from '../../firebase';
 import AuthContext from '../context/AuthContext';
-import styles from './CommentList.module.css'
+import styles from './dCommentList.module.css'
 import { useNavigate } from "react-router-dom";
 
-
-
-const DCommentList = ({deal}) => {
+const DCommentList = (del) => {
 
     // user 정보
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
-
-    /* 사용 함수 */
-    const onClick = (deal)=> {
-        navigate(`/deals/${deal.createdAt}`,{state : {deal}})
-    }
 
     const [myDComments, setMyDComments] = useState([]);
 
@@ -35,9 +28,16 @@ const DCommentList = ({deal}) => {
         });
     }, []);
 
+    /* 사용 함수 */
+    const onClick = (deal)=> {
+        navigate(`/deals/${deal.createdAt}`,{state : {deal}})
+    }
+
     const renderDComments = myDComments.map(mydc => (
-        <section key={mydc.id} onClick={() => onClick(mydc)} className={styles.commentList}>
-            <img className={styles.img} src={mydc.creatorPhoto} alt="" />
+        <section key={mydc.id} onClick={onClick} className={styles.commentList}>
+            <div> {/* 이미지 없을 때 공간 이상해져서 추가했어요 */}
+                <img className={styles.img} src={mydc.creatorPhoto} alt="" />
+            </div>
             
             <div className={styles.comment_container}>
                 <p className={styles.comment}>{mydc.content}</p>

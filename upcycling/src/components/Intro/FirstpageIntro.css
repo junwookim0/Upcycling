@@ -7,8 +7,7 @@
 .first_page_box{
     height: 326px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    border: solid black;
 }
 .first_intro_img{
     width: 400px;

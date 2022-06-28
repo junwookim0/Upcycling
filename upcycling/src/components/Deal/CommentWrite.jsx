@@ -1,14 +1,12 @@
 /* 🥑 댓글 작성 */
 // 06-20 사용자 정보
+import styles from './CSS/commentWrite.module.css'
 
 import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { useLocation } from "react-router-dom";
 import { doc, setDoc, collection, onSnapshot } from "firebase/firestore";
-
 import { firestore } from "../../firebase";
-
-import styles from './CSS/dealDetail.module.css'
 import { format } from "date-fns";
 
 import CommentItem from './CommentItem';
@@ -53,6 +51,7 @@ const CommentWrite = () => {
             creatorPhoto: user.photoURL,
             createdAt: Date.now(),
             date : format(date, "yyyy.MM.dd HH:mm"),
+            dealAddress: dealState.createdAt
         };
 
         // Date.now()를 기준으로 댓글 문서 생성
@@ -66,13 +65,19 @@ const CommentWrite = () => {
     };
 
     return (
-        <section>
-            <div className="styles.comments_container">
-                <form onSubmit={onSubmit}>
+        <>
+            <div className={styles.container}>
+                <h3 className={styles.user}>{user.displayName}</h3>
+                <form onSubmit={onSubmit}
+                className={styles.comment_form}>
                     <textarea 
                     onChange={onChange}
-                    value={dComment} cols="80" rows="5"></textarea>
-                    <input type="submit" value="댓글 작성"/>
+                    value={dComment} 
+                    cols="30" rows="10"
+                    className={styles.textarea}></textarea>
+                    <input 
+                    type="submit" value="댓글 작성"
+                    className={styles.button} />
                 </form>
             </div>
             <div>
@@ -84,7 +89,7 @@ const CommentWrite = () => {
                     ))
                 }
             </div>
-        </section>
+        </>
     );
 
 };
