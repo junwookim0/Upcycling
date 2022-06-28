@@ -29,11 +29,14 @@ const ReviewItem = ({review, keyword}) => {
                     navigate(`/reviews/${review.id}`, {state : {review, keyword}})
                 }}
             />
-            <h3>{review.reviewTitle}</h3>
-            <p>{review.nickname}</p>
-            <div>
-                <span>👍</span>
-                <p>{likeAmount}</p>
+            <h3 className={styles.title}>{review.reviewTitle}</h3>
+            <p className={styles.name}>{review.nickname}</p>
+            <p className={styles.email}>({review.email})</p>
+            <div className={styles.likeBox}>
+                <div className={styles.icon}>
+                    <i className="fa-solid fa-heart"></i>
+                </div>
+                <p className={styles.amount}>{likeAmount}</p>
             </div>
         </section>
     );

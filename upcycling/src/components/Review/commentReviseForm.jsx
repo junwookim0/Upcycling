@@ -2,17 +2,28 @@ import React from 'react';
 import styles from './CSS/commentReviseForm.module.css'
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useRef } from 'react';
 
-const CommentReviseForm = ({ currentComment, getComment }) => {
+const CommentReviseForm = ({ reviewRepository, id,  isForm, currentComment, getComment, formState, setFormState }) => {
 
     const [changedComment, setChangedComment] = useState({}) 
     const [comment, setCommet] = useState({})
+    const textareaRef = useRef();
 
-     //🍎user정보
+    const [toggle, setToggle] = useState(isForm);
+
+    useEffect(()=>{
+        if(formState && currentComment) {
+            if(currentComment.id === id) {
+                return setToggle(true);
+            }
+        }
+    },[formState,toggle])
+
 
     useEffect(()=> {
         setCommet(currentComment)
-    },[currentComment])
+    },[currentComment,reviewRepository])
 
     const onChange = event => {
         if(event.currentTarget === null) {
@@ -26,15 +37,17 @@ const CommentReviseForm = ({ currentComment, getComment }) => {
     };
 
     //🍎props로 comment보내주기
-    const onSubmit = (event)=> {
-        event.preventDefault();
+    const onSubmit = ()=> {
         getComment(changedComment)
+        textareaRef.current.value = ''
+        setToggle(false);
+        setFormState(false)
     }
 
     //🍎창 취소
-    const onCancle = (event) =>{
-        event.preventDefault();
-
+    const onCancle = () =>{
+        setToggle(false);
+        setFormState(false)
     }
 
     const canSave = Boolean(Object.keys(changedComment).length !== 0) 
@@ -42,21 +55,25 @@ const CommentReviseForm = ({ currentComment, getComment }) => {
     return (
         <>
         {currentComment!==undefined && (
-            <div className={styles.container}>
+            <div 
+                id={id} 
+                className={toggle ? `${styles.container}`: `${styles.container_none}`}
+            >
             <h3 className={styles.user}>{currentComment.userName}<span>({currentComment.userEmail})</span></h3>
-            <form className={styles.comment_form} name='comment'>
-                <textarea 
-                value={currentComment?currentComment.comment:''} 
-                onChange={onChange} 
-                className={styles.textarea} 
-                name="comment" 
-                ></textarea>
-                <div>
-                    <button className={styles.button} onClick={()=>onCancle()} >취소</button>
-                    {canSave? (<button  className={styles.button_ok} onClick={()=>onSubmit()}>댓글 수정</button>): ''}
+                <div className={styles.comment_form} name='comment'>
+                    <textarea 
+                    onChange={onChange} 
+                    className={styles.textarea} 
+                    name="comment" 
+                    ref={textareaRef}
+                    ></textarea>
+                    <div>
+                        <button className={styles.button} onClick={()=>onCancle()} >취소</button>
+                        <button  className={styles.button_ok} onClick={()=>onSubmit()}>댓글 수정</button>
+                    </div>
                 </div>
-            </form>
-            </div>)}
+            </div>
+            )} 
         </>
     );
 };

@@ -13,6 +13,7 @@ const CommentForm = ({ getComment, review }) => {
 
 
     const { user } = useContext(AuthContext);
+    const userId = user.uid
     const userName = user.displayName;
     const userEmail = user.email;
     const userPhoto = user.photoURL
@@ -43,11 +44,13 @@ const CommentForm = ({ getComment, review }) => {
         userEmail: userEmail,
         userPhoto : userPhoto,
         comment : text || '',
-        toggle : false,
+        isToggle : false,
+        isForm : false,
         date : format(date, "yyyy.MM.dd HH:mm"),
         reviewTitle : review.reviewTitle,
         reviewId : review.id,
         reviewIMG : review.reviewIMG,
+        userId : userId,
     }
 
     return (

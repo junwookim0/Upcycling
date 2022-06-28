@@ -6,10 +6,11 @@
 @value makerGrey: #999999;
 @value makerPink: pink;
 @value makerShadow: rgba(217, 217, 217, 1);
-@value makerDarkGreen: #5F7161;
-@value makerGreen: #6D8B74;
+@value makerDarkGreen: #004236;
+@value makerGreen: #3A857E;
+@value makerLime: #D6CE4B;
 
-@value makerBeige: #EFEAD8;
+@value makerBeige: #F8F3E8;
 @value makerDarkBeige: #D0C9C0;
 
 /*컴포넌트에서 사용할때 
@@ -21,4 +22,3 @@
 @value mainGrren: #004236;
 @value mainBeige: #F8F3E8;
 @value mainLightGreen: #3A857E;
-@value mainLime:#D6CE4B;

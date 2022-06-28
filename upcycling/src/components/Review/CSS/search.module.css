@@ -1,4 +1,4 @@
-@value makerMidGrey, makerWhite,makerGrey,makerPink,makerLightGrey from '../../Review/common/color.css';
+@value makerMidGrey,makerDarkGreen, makerWhite,makerGrey,makerPink,makerLightGrey from '../../Review/common/color.css';
 @value fontEn from '../../Review/common/font.css';
 
 textarea:focus, input:focus{
@@ -31,7 +31,7 @@ textarea:focus, input:focus{
     font-size: 1.5rem;
     margin-left: 0.5rem;
     background-color: transparent;
-    color: makerGrey;
+    color: makerDarkGreen;
     cursor: pointer;
 }
 
