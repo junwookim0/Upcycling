@@ -11,9 +11,9 @@
 
 .text {
     position: absolute;
-    top: 0;
+    top: 20px;
     width: 50%;
-    height: 459px;
+    height: 440px;
 
     background-color: #F8F3E8;
     position: relative;

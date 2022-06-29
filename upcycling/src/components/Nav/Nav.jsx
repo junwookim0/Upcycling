@@ -120,7 +120,7 @@ const Nav = () => {
                         <li onClick={goContents}>About</li>
                         <li onClick={goEvent}>Event</li>
                         <li onClick={goReview}>Review</li>
-                        <li onClick={goDeal}>Sale</li>
+                        <li onClick={goDeal}>Market</li>
                     </ul>
                     <ul className={isOpen ? 'navbar_property active' : 'navbar_property'}>
                         <li  onClick={goMypage}>
@@ -133,7 +133,7 @@ const Nav = () => {
                     </div>
                     <div className="site_msg_bar">
                         <div className="site_msg">
-                            UPTOWN
+                        Upcycling Ideas With 'UPTOWN'
                         </div>
                     </div>
                 </nav> 

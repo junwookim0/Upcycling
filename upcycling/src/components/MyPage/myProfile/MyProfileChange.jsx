@@ -44,12 +44,19 @@ const MyProfileChange = () => {
     
     return(
         <div className="profileChange_box">
-            <p className="userProfile_photo">{user.photoURL ? <img src={user.photoURL} alt="userphoto"/>  : <img src="../../../images/profile-picture.png" alt="userphoto2"/>}</p>
-            <p className="userProfile_name">{user.displayName ? user.displayName : user.reloadUserInfo.screenName ? user.reloadUserInfo.screenName : `${userid.length}번째 손`}님</p> 
-            <p className="userProfile_email">{user.email ?  user.email : '이메일이 없습니다'}</p>
-            <button className="userProfile_logout" onClick={handleLogout}>Logout</button>
-            <div className="userProfile_change" onClick={openModal}>
-                <i className="fa-solid fa-gear" ></i>
+            <h3 className='mypage_title'>기본정보/수정</h3>
+            <div className='mypage_info_container'>
+                <p className="userProfile_photo">{user.photoURL ? <img src={user.photoURL} alt="userphoto"/>  : <img src="../../../images/profile-picture.png" alt="userphoto2"/>}</p>
+                <div className='mypage_info_box'>
+                    <p className="userProfile_name"><span>이&nbsp;&nbsp;&nbsp;&nbsp;름 : &nbsp;</span>{user.displayName ? user.displayName : user.reloadUserInfo.screenName ? user.reloadUserInfo.screenName : `${userid.length}번째 손`}님</p> 
+                    <p className="userProfile_email"><span>이메일 : &nbsp;</span>{user.email ? user.email : '이메일이 없습니다'}</p>
+                </div>
+            </div>
+            <div className='mypage_info_buttons'>
+                <div className="userProfile_change" onClick={openModal}>
+                    <i className="fa-solid fa-gear" ></i>
+                </div>
+                <button className="userProfile_logout" onClick={handleLogout}>Logout</button>
             </div>
             <Modalimg open={modalOpen} close={closeModal} header="프로필설정">
                 <TestProfile/>

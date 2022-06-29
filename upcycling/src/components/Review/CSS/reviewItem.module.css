@@ -33,12 +33,20 @@
     color: makerGrey;
 }
 
+.hashtags {
+    margin-top: 0.5rem;
+    color: makerDarkGreen;
+}
+.hashtags span {
+    margin-right: 0.5rem;
+}
+
 .likeBox {
 
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
 }
 
 .icon {

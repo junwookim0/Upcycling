@@ -32,6 +32,11 @@ const ReviewItem = ({review, keyword}) => {
             <h3 className={styles.title}>{review.reviewTitle}</h3>
             <p className={styles.name}>{review.nickname}</p>
             <p className={styles.email}>({review.email})</p>
+            <div className={styles.hashtags}>
+                <span>#{review.reviewHashtags[0]&& review.reviewHashtags[0]}</span>
+                <span>#{review.reviewHashtags[1]&& review.reviewHashtags[1]}</span>
+                <span>#{review.reviewHashtags[2]&& review.reviewHashtags[2]}</span>
+            </div>
             <div className={styles.likeBox}>
                 <div className={styles.icon}>
                     <i className="fa-solid fa-heart"></i>

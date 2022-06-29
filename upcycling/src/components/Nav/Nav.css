@@ -22,6 +22,12 @@
     font-size: 20px;
     text-align: center;
     margin-top: 35px;
+    transition: all 0.2s ease-in-out;
+}
+
+.site_msg:hover {
+    color: #D6CE4B;
+    text-decoration:underline;
 }
 /*nav바 스크롤시*/
 .fix-container.scrolled .navbar {

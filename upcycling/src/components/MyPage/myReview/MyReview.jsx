@@ -193,29 +193,6 @@ const MyReview = ({reviewRepository}) => {
                 modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
                 className="mySwiper"
             >
-                    {/* {
-                    onMyLikes && onMyLikes.map(review => {
-                        return <SwiperSlide key={review.id}>
-                            <section className='my_review_container'>
-                                <img className='my_review_reviewImg' src={review.reviewIMG} alt="review"
-                                    onClick={()=>{
-                                        navigate(`/reviews/${review.id}`, {state : {review}})
-                                    }}
-                                />
-                                <h3 className='my_review_title'>{review.reviewTitle}</h3>
-                                <p className='my_review_name'>{review.nickname}</p>
-                                <p className='my_review_email'>({review.email})</p>
-                                <div className='my_review_likeBox'>
-                                    <div className='my_review_icon'>
-                                        <i className="fa-solid fa-heart"></i>
-                                    </div>
-                                    <p className='my_review_amount'>{
-                                    review.likes === undefined ? (0) : (Object.keys(review.likes).length)
-                                    }</p>
-                                </div>
-                            </section>
-                        </SwiperSlide>})
-                    } */}
                     {
                     onMyLikes && onMyLikes.map(like => (
                         onReviews.map(review => {
