@@ -49,7 +49,8 @@ const CommentWrite = () => {
             creatorPhoto: user.photoURL,
             createdAt: Date.now(),
             date : format(date, "yyyy.MM.dd HH:mm"),
-            dealAddress: dealState.createdAt
+            dealAddress: dealState.createdAt,
+            attachmentUrl: dealState.attachmentUrl
         };
 
         // Date.now()를 기준으로 댓글 문서 생성

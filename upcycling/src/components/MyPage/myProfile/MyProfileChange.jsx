@@ -46,7 +46,7 @@ const MyProfileChange = () => {
         <div className="profileChange_box">
             <p className="userProfile_photo">{user.photoURL ? <img src={user.photoURL} alt="userphoto"/>  : <img src="../../../images/profile-picture.png" alt="userphoto2"/>}</p>
             <p className="userProfile_name">{user.displayName ? user.displayName : user.reloadUserInfo.screenName ? user.reloadUserInfo.screenName : `${userid.length}번째 손`}님</p> 
-            <p className="userProfile_email">{user.email ?  user.email : null}</p>
+            <p className="userProfile_email">{user.email ?  user.email : '이메일이 없습니다'}</p>
             <button className="userProfile_logout" onClick={handleLogout}>Logout</button>
             <div className="userProfile_change" onClick={openModal}>
                 <i className="fa-solid fa-gear" ></i>
