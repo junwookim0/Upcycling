@@ -1,6 +1,7 @@
 import Nav from '../components/Nav/Nav';
 import SubMainBannerHome from '../components/banner/SubMainBannerHome';
 import CarouselReview from '../components/banner/CarouselReview';
+import CarouselDealList from '../components/banner/CarouselDealList';
 
 const Home = ( {reviewRepository}) => {
 
@@ -9,6 +10,7 @@ const Home = ( {reviewRepository}) => {
             <Nav/>
             <SubMainBannerHome/>
             <CarouselReview reviewRepository={reviewRepository}/>
+            <CarouselDealList />
         </div>
     )
 };

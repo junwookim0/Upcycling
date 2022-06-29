@@ -14,9 +14,10 @@ import AuthContext from "../../context/AuthContext";
 import { firestore } from "../../../firebase";
 import { collection, onSnapshot, query, where, orderBy } from "firebase/firestore";
 
-import DCommentList from "./dCommentList";
+import DNoneDeal from "./dNoneDeal";
+import DNoneLike from "./dNoneLike";
 
-const MyDeal = ({deal}) => {
+const MyDeal = () => {
     
     const [setSwiperRef] = useState(null);
     const navigate = useNavigate();
@@ -67,63 +68,72 @@ const MyDeal = ({deal}) => {
     return (
         <>
         <h2 className="Carousel_text">내가 작성한 거래글</h2>
-        <div className="contents_swiper">
-            <Swiper
-                onSwiper={setSwiperRef}
-                slidesPerView={3}
-                centeredSlides={true}
-                spaceBetween={30}
-                pagination={{
-                type: "fraction",
-                }}
-                autoplay={{
-                    delay: 3600,
-                    disableOnInteraction: false,
-                }}
-                navigation={true}
-                modules={[Pagination, Navigation, Autoplay]}
-                className="mySwiper"
-            >
-                {myDeals.map(myd => (
-                    <SwiperSlide key={myd.createdAt}>
-                        <img 
-                        onClick={() => onClick(myd)}
-                        src={myd.attachmentUrl} alt="내 거래글 이미지" />
-                    </SwiperSlide>
-                ))
-                }
-            </Swiper>
-        </div>
+            {myDeals.length != 0 ? (
+                <div className="contents_swiper">
+                    <Swiper
+                    onSwiper={setSwiperRef}
+                    slidesPerView={3}
+                    centeredSlides={true}
+                    spaceBetween={30}
+                    pagination={{
+                    type: "fraction",
+                    }}
+                    autoplay={{
+                        delay: 3600,
+                        disableOnInteraction: false,
+                    }}
+                    navigation={true}
+                    modules={[Pagination, Navigation, Autoplay]}
+                    className="mySwiper">
+                        {myDeals.map(myd => (
+                            <SwiperSlide key={myd.createdAt}>
+                                <img 
+                                onClick={() => onClick(myd)}
+                                src={myd.attachmentUrl} alt="내 거래글 이미지" />
+                            </SwiperSlide>
+                        ))
+                        }
+                    </Swiper>
+                </div>
+            ) : (
+                <DNoneDeal />
+            )
+        }
 
         <h2 className="Carousel_text">내가 좋아요한 거래글</h2>
-        <div className="contents_swiper">
-            <Swiper
-                onSwiper={setSwiperRef}
-                slidesPerView={3}
-                centeredSlides={true}
-                spaceBetween={30}
-                pagination={{
-                type: "fraction",
-                }}
-                autoplay={{
-                    delay: 3600,
-                    disableOnInteraction: false,
-                }}
-                navigation={true}
-                modules={[Pagination, Navigation, Autoplay]}
-                className="mySwiper"
-            >
-                {myLikeDeals.map(myld => (
-                    <SwiperSlide key={myld.createdAt}>
-                        <img 
-                        onClick={() => onClick(myld)}
-                        src={myld.attachmentUrl} alt="내 거래글 이미지" />
-                    </SwiperSlide>
-                ))
-                }
-            </Swiper>
-        </div>
-        <DCommentList />
+        {
+            myLikeDeals.length != 0 ? (
+                <div className="contents_swiper">
+                    <Swiper
+                        onSwiper={setSwiperRef}
+                        slidesPerView={3}
+                        centeredSlides={true}
+                        spaceBetween={30}
+                        pagination={{
+                        type: "fraction",
+                        }}
+                        autoplay={{
+                            delay: 3600,
+                            disableOnInteraction: false,
+                        }}
+                        navigation={true}
+                        modules={[Pagination, Navigation, Autoplay]}
+                        className="mySwiper"
+                    >
+                        {myLikeDeals.map(myld => (
+                            <SwiperSlide key={myld.createdAt}>
+                                <img 
+                                onClick={() => onClick(myld)}
+                                src={myld.attachmentUrl} alt="내 거래글 이미지" />
+                            </SwiperSlide>
+                        ))
+                        }
+                    </Swiper>
+                </div>
+            ) : (
+                <DNoneLike />
+            )
+        }
         </>
     );
 }
