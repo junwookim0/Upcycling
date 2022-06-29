@@ -8,6 +8,8 @@ import { useLocation } from "react-router-dom";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { firestore } from "../../firebase";
 
+import styles from "./CSS/commentReviseForm.module.css"
+
 const CommentItem = ({ commentObj }) => {
     /* 사용자 정보 */
     const { user } = useContext(AuthContext);
@@ -48,40 +50,63 @@ const CommentItem = ({ commentObj }) => {
         };
 
     return (
-        <section>
-            <div>
-                {
-                    editing ? (
-                        <>
+        <>
+            {
+                editing ? (
+                    <div className={styles.container}>
+                        <h3 className={styles.user}>{user.displayName}</h3>
+                        <div className={styles.comment_form}>
                             <form onSubmit={onSubmit}>
                                 <textarea 
                                 onChange={onChange}
-                                value={newDComment} cols="80" rows="5"></textarea>
-                                <input type="submit" value="댓글 수정"/>
+                                value={newDComment}
+                                className={styles.textarea} />
+                                <div>
+                                    <input 
+                                    type="submit" value="댓글 수정"
+                                    className={styles.button_ok} />
+                                    <button 
+                                    onClick={toggleEditing}
+                                    className={styles.button}>취소</button>
+                                </div>
                             </form>
-                            <button onClick={toggleEditing}>취소</button>
-                        </>
-                    ) : (
-                        <>
-                            <img src={commentObj.creatorPhoto} width="50px" />
-                            <span>{commentObj.creatorName}</span>
+                        </div>
+                    </div>
+                ) : (
+                        <div className={styles.comments_item}>
+                            <div className={styles.comment_userInfo}>
+                                <img src={commentObj.creatorPhoto}
+                                alt="현재 사용자의 프로필 사진입니다"
+                                className={styles.comment_userPhoto} />
+                                <div className={styles.comment_boxContainer}>
+                                    <div className={styles.comment_userInfo_container}>
+                                        <span className={styles.comments_name}>{commentObj.creatorName}</span>
+                                    </div>
+                                </div>
+                            </div>
                             <span>{commentObj.date}</span>
                             <p>{commentObj.content}</p>
                             {
                                 commentObj.creatorId == user.uid ? (
                                     <>
-                                        <button onClick={onDeleteClick}>삭제</button>
-                                        <button onClick={toggleEditing}>수정</button>
+                                    {/* 버튼 누르면 삭제/수정 보이게 */}
+                                        <button className={styles.comments_ellipsis}>
+                                            <i className="fa-solid fa-ellipsis-vertical"></i>
+                                        </button>
+                    
+                                        <div className={styles.comments_ellipsis_container}>
+                                            <button onClick={onDeleteClick}>삭제</button>
+                                            <button onClick={toggleEditing}>수정</button>
+                                        </div>
                                     </>
                                 ) : (
                                     <></>
                                 )
                             }
-                        </>
+                        </div>
                     )
                 }
-            </div>
-        </section>
+        </>
     ); 
 };
 

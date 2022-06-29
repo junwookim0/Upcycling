@@ -1,4 +1,4 @@
-@value makerWhite,makerGrey,makerLime, makerDarkBeige,makerBeige,  makerPink,makerLightGrey, makerDarkGreen, makerGreen from '../../Review/common/color.css';
+@value makerWhite, makerGrey, makerLime, makerDarkBeige, makerBeige, makerPink, makerLightGrey, makerDarkGreen, makerGreen from '../../Review/common/color.css';
 @value fontEn from '../../Review/common/font.css';
 
 * {
@@ -61,7 +61,6 @@ textarea:focus, input:focus{
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    
 }
 
 .inner {
@@ -102,14 +101,11 @@ textarea:focus, input:focus{
     margin: 0.2rem;
 }
 
-
-
 /*파일인풋*/
 .input_container {
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .before_uploadedImg {
@@ -145,7 +141,6 @@ textarea:focus, input:focus{
     color: makerDarkGreen;
 }
 
-
 .fileInput {
     display: none;
 }
@@ -161,15 +156,12 @@ textarea:focus, input:focus{
     border-radius: 10px;
 }
 
-
-
 .fileInput_img {
     width: 150px;
     height: 150px;
     object-fit: cover;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-
 
 .submit_buttons {
     position: absolute;
@@ -196,7 +188,6 @@ textarea:focus, input:focus{
     background-color: makerLime;
     color: makerDarkGreen;
 }
-
 
 /*모달창*/
 

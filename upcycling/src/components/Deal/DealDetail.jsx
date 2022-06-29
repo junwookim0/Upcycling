@@ -79,7 +79,7 @@ const DealDetail = () => {
                         </div>
                         {
                             dealState.price == '' ? (
-                                <span className={styles.price}>나눔🧡</span>
+                                <span className={styles.price}>나눔💚</span>
                             ) : (
                                 <span className={styles.price}>&#8361; {dealPrice}</span>
                             )
