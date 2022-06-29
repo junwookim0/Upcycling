@@ -14,15 +14,19 @@
 .info_container {
     margin-top: 1rem;
     width: 60%;
-    border-top: 1px solid makerGreen;
 }
 
 
 .info {
     margin-top: 1.5rem;
+    border-bottom: 1px solid makerGreen;
+    margin-bottom: 0.5rem;
 }
 
 .info > p {
     margin: 0.2rem;
+}
 
+.copy {
+    text-align: center;
 }

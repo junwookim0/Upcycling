@@ -1,13 +1,21 @@
 import Nav from '../components/Nav/Nav';
-import Carousel from '../components/banner/Carousel';
 import SubMainBannerHome from '../components/banner/SubMainBannerHome';
+import CarouselMypage from '../components/banner/CarouselMypage';
+import CarouselReview from '../components/banner/CarouselReview';
 
-const Contents = () => {
+
+const Contents = ( {reviewRepository}) => {
+
     return (
         <div>
             <Nav/>
             <SubMainBannerHome/>
-            <Carousel/>
+
+            {/* <CarouselMypage/> */}
+
+            {/* <Carousel/> */}
+            <CarouselReview reviewRepository={reviewRepository}/>
+
         </div>
     )
 };
