@@ -1,12 +1,11 @@
-import MyReview from '../MyPage/MyReview';
 // 🥑 선주 import 
 import MyDeal from '../MyPage/MyDeal';
 
-const Carousel_mypage = ({reviewRepository, deals}) => {
+const Carousel_mypage = ({ deals}) => {
 
     return (
         <div>
-            <MyReview reviewRepository={reviewRepository} />
+            
             {/* 🥑 선주 */}
             <MyDeal deals={deals} />
         </div>

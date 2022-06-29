@@ -10,12 +10,8 @@ const Contents = ( {reviewRepository}) => {
         <div>
             <Nav/>
             <SubMainBannerHome/>
-
             <CarouselMypage/>
-
-            {/* <Carousel/> */}
             <CarouselReview reviewRepository={reviewRepository}/>
-
         </div>
     )
 };
