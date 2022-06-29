@@ -78,6 +78,11 @@ const ReviewRevise = ({createAndUpdateReview , imageUploader}) => {
         
     }
 
+    //🍎메인으로 돌아가기
+    const goReviewPage = () => {
+        navigate('/reviews')
+    }
+
     return (
         <>
         <Nav/>
@@ -153,11 +158,12 @@ const ReviewRevise = ({createAndUpdateReview , imageUploader}) => {
                         </div>
                         <div className={styles.submit_buttons}>
                             <button 
+                                onClick={()=>goReviewPage()}
                                 className={styles.button}
                             >취소
                             </button>
                             <button 
-                                className={styles.button}
+                                className={styles.button_ok}
                                 onClick={SubmitReview}
                             >수정
                             </button>
