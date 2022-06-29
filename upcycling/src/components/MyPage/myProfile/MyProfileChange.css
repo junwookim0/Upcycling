@@ -1,34 +1,44 @@
 .profileChange_box{
-    border: solid 1px black;
-    width: 300px;
+    background-color: #004236;
+    width: 100%;
+    height: 150px;
     display: flex;
-    margin: 10px;
+    align-items: center;
+    justify-content: center;
 }
 .userProfile_photo img{
-    width: 100px;
+    width: 90px;
     border-radius: 50%;
-    margin-left: 5px;
 }
 .userProfile_name{
-    margin-left: 10px;
+    position: relative;
+    bottom: 30px;
+    left: 30px;
+    font-size: 20px;
+    color: white;
 }
 .userProfile_email{
-    position: absolute;
-    left: 120px;
-    margin-top: 38px;
-    margin-left: 6px;
+    position: relative;
+    bottom: 3px;
+    right: 25px;
+    font-size: 17px;
+    color: white;
 }
 .profileChange_box .userProfile_logout{
-    position: absolute;
+    position: relative;
+    background-color: #3a857e;
+    border: 0;
     width: 70px;
-    height: 40px;
-    left: 120px;
-    margin-top: 70px;
+    height: 30px;
+    border-radius: 15px;
+    color: white;
+    top: 40px;
+    right: 205px;
 }
 .userProfile_change{
-    position: absolute;
-    left: 80px;
-    margin-top: 90px;
+    position: relative;
     cursor: pointer;
-    padding: 10px;
+    top: 40px;
+    right: 320px;
+    color: white;
 }
