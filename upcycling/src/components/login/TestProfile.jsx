@@ -19,7 +19,6 @@ const TestProfile = () => {
         alert("프로필 변경 되었습니다");
         navigate("/mypage");
         if (res.error) seterror(res.error);
-        console.log(user);
     };
     return (
         <div className="profile_box">
@@ -34,15 +33,18 @@ const TestProfile = () => {
                             required
                             onChange={(e) => setDisplayName(e.target.value)}
                         />
+                        <input className="upload-name" value={photoURL ? photoURL :'파일선택' } disabled="disabled"/>
+                        <label for="ex_file">프로필 사진 업로드</label>
                         <input
                             type="file"
+                            id="ex_file"
                             name="photoURL"
                             value={photoURL}
                             placeholder="프로필 사진"
                             accept="image/png, image/jpeg"
                             onChange={(e) => setPhotoURL(e.target.value)}
                         />
-                        <input className="profile_submit" type="submit" value="프로필변경"></input>
+                        <button className="profile_submit" type="submit" value="프로필변경">프로필변경</button>
                     </form>
                     {error ? 
                     <div className="profile_error"> {error} </div> : null}

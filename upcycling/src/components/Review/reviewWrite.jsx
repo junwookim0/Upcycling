@@ -65,7 +65,6 @@ const ReviewWrite = ({createAndUpdateReview , imageUploader}) => {
         setUploadedIMG(uploaded.url)
         setName(uploaded.original_filename)
         setInputButton(false)
-        console.log('이미지로딩')
     }
 
     //🍎버튼을 클릭하면 파일인풋이 클릭된것 처럼 보이기
@@ -73,6 +72,11 @@ const ReviewWrite = ({createAndUpdateReview , imageUploader}) => {
         event.preventDefault();
         reviewIMGRef.current.click();
     };
+
+    //🍎
+    const goReviewPage = () => {
+        navigate('/reviews')
+    }
 
     //⭐글쓰기 항목이 다 있을 때만 버튼이 활성화 될 수있도록
     const canSave = Boolean(reviewTitleRef)  && Boolean(reviewDescriptionRef) && Boolean(uploadedIMG)
@@ -146,6 +150,7 @@ const ReviewWrite = ({createAndUpdateReview , imageUploader}) => {
                         </div>
                         <div className={styles.submit_buttons}>
                             <button 
+                                onClick={()=>goReviewPage()}
                                 className={styles.button}
                             >취소
                             </button>
