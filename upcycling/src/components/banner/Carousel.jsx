@@ -12,6 +12,7 @@ import { Pagination, Navigation } from "swiper";
 
 const Carousel = () => {
     const [setSwiperRef] = useState(null);
+    
     return (
         <div>
             <div className="contents_swiper">
@@ -34,7 +35,7 @@ const Carousel = () => {
                 </Swiper>
             </div>
             <div className="contents_swiper">
-                <h2 className="Carousel_text">신규글</h2>
+                <h2 className="Carousel_text">리뷰 신규글</h2>
                 <Swiper
                     onSwiper={setSwiperRef}
                     slidesPerView={3}
@@ -54,6 +55,7 @@ const Carousel = () => {
                     <SwiperSlide><img src="../../images/frontImg1.jpg" alt="notice_board_img"/></SwiperSlide>
                 </Swiper>
             </div>
+
         </div>
     );
 }

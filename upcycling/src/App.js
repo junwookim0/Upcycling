@@ -103,7 +103,8 @@ const removeLike = (userId,review) => {
   return (
     <div className="App">
         <Routes>
-          <Route path="/" element={!user?<FirstMain/> : <Home/>}></Route>
+          {/* 🥑 06-29 선주 신규글 */}
+          <Route path="/" element={!user?<FirstMain/> : <Home deals={deals}/>}></Route>
           <Route path="/home" element={user ? <Home /> :<SignIn/> }></Route>
           <Route path="/about" element={<About/>}></Route>
           <Route path="/aboutupcycling" element={<Abup/>}></Route>

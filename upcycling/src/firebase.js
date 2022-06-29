@@ -7,11 +7,16 @@ import { GoogleAuthProvider, signInWithPopup,
 } from 'firebase/auth';
 import { getStorage } from "firebase/storage";
 const firebaseConfig = {
-
+    apiKey: "AIzaSyBg-siU5D0pRcjFzkFvco6QkhN1L_sdYMc",
+    authDomain: "upcycling-cfaac.firebaseapp.com",
+    projectId: "upcycling-cfaac",
+    storageBucket: "upcycling-cfaac.appspot.com",
+    messagingSenderId: "315903748780",
+    appId: "1:315903748780:web:860f4e1d3059a71db78d09",
+    measurementId: "G-BNTPVWJ575"
 };
 
 // Initialize Firebase 
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
