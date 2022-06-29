@@ -1,13 +1,12 @@
 import Nav from '../components/Nav/Nav';
-import Carousel from '../components/banner/Carousel';
 import SubMainBannerHome from '../components/banner/SubMainBannerHome';
-
+import CarouselMypage from '../components/banner/CarouselMypage';
 const Contents = () => {
     return (
         <div>
             <Nav/>
             <SubMainBannerHome/>
-            <Carousel/>
+            <CarouselMypage/>
         </div>
     )
 };
