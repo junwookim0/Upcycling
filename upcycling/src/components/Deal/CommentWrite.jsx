@@ -33,7 +33,6 @@ const CommentWrite = () => {
             setDComments(commentArray);
         });    
     }, []);
-
     let date = new Date();
 
     /* 사용 함수 */

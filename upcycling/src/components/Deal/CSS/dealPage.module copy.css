@@ -20,7 +20,6 @@
 
 /*deal list*/
 .list {
-    margin: auto; /* 🥑 margin auto 추가 */
     position: relative;
     display: flex;
     list-style: none;
@@ -33,12 +32,12 @@ textarea:focus, input:focus{
     outline: none;
 }
 
-/* search */
 .container {
     border: 1px solid makerGrey;
     width: 26rem;
     padding: 0.8rem;
     background-color: makerWhite;
+
 }
 
 .title {
@@ -51,6 +50,7 @@ textarea:focus, input:focus{
     width: 13rem;
     padding: 0.5rem;
     margin: 0;
+
 }
 
 .search {
@@ -86,43 +86,4 @@ textarea:focus, input:focus{
 .button_write:hover {
     background-color: makerLime;
     color: makerDarkGreen;
-}
-
-/* 데스크탑 우선 개발 */
-/* 데스크탑 최적화 css */
-@media (max-width: 768px) {
-    /* max-width 임의로 했습니다 */
-    .dealPage {
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 768px) {
-    /* max-width 임의로 했습니다 */
-    /*search input*/
-    .container {
-        width: 80%;
-    }
-}
-
-@media (max-width: 768px) {
-    /* max-width 임의로 했습니다 */
-    /*search input*/
-    .header {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        position: relative;
-        margin-top: 3rem;
-        align-items: center;
-    };
-}
-
-@media (max-width: 768px) {
-    /* 글 작성 버튼 */
-    .button_write {
-        width: 80%;
-        margin: 1.5rem;
-    };
 }

@@ -31,9 +31,9 @@ const DealItem = ({deal}) => {
                 작성자가 가격 입력 안 했으면 나눔💚 뜸 */}
             {
                 deal.price == '' ? (
-                    <p>나눔 💚</p>
+                    <h3>나눔 💚</h3>
                 ) : (
-                    <p>&#8361; {dealPrice}</p>
+                    <h3>&#8361; {dealPrice}</h3>
                 )
             }
             <p className={styles.name}>{deal.creatorName}</p>

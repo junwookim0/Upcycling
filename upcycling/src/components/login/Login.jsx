@@ -37,6 +37,11 @@ function Login() {
                         <button onClick={SignIn}>로그인</button>
                     </div>
                 </header>
+                <div className="fsite_msg_bar">
+                        <div className="fsite_msg">
+                            UPTOWN
+                        </div>
+                </div>
             </div>
         </div>
     );

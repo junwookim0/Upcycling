@@ -6,6 +6,7 @@
     background-image: url("../../../public/images/flea-market-g71c6d8602_1280.jpg");
     background-size: 800px;
     background-repeat: no-repeat;
+    background-size: cover;
     width: 50%;
     height: 500px;
     opacity: 0.6;
