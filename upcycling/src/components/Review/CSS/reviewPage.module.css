@@ -19,6 +19,12 @@
     align-items: center;
 }
 
+.result {
+    text-align: center;
+    margin-top: 2.5rem;
+    color: makerDarkGreen;
+}
+
 
 /*review list*/
 .list {

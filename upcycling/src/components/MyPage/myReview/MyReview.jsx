@@ -58,7 +58,7 @@ const MyReview = ({reviewRepository}) => {
         let reviewArray = Object.values(reviews)
         let orderedReview =  reviewArray.slice().sort((a,b) => b.reviewDate.localeCompare(a.reviewDate))
         setOnReviews(orderedReview)
-    },[reviews])
+    },[reviews,reviewRepository])
     
     // 🍎📃firebase에 저장된 myReview받아오기(내가 작성한 리뷰)
     useEffect(()=> {
@@ -73,7 +73,7 @@ const MyReview = ({reviewRepository}) => {
         let reviewArray = Object.values(myReviews)
         let orderedReview =  reviewArray.slice().sort((a,b) => b.reviewDate.localeCompare(a.reviewDate))
         setOnMyReviews(orderedReview)
-    },[myReviews])
+    },[myReviews,reviewRepository])
 
 
 
@@ -89,7 +89,7 @@ const MyReview = ({reviewRepository}) => {
     useEffect(()=> {
         let reviewArray = Object.values(myLikes)
         setOnMyLikes(reviewArray)
-    },[myLikes])
+    },[myLikes,reviewRepository])
 
 
     //🍎✏️firebase에 저장된 myComments받아오기(내가 작성한 리뷰들)
@@ -116,6 +116,8 @@ const MyReview = ({reviewRepository}) => {
     //         } 
     //     })
     // ))
+
+    //🍎좋아요 amount
 
 
     return (
@@ -157,7 +159,7 @@ const MyReview = ({reviewRepository}) => {
                                         <i className="fa-solid fa-heart"></i>
                                     </div>
                                     <p className='my_review_amount'>{
-                                    review.likes === undefined ?(0) : (Object.keys(review.likes).length)
+                                    review.likes === undefined ? (0) : (Object.keys(review.likes).length)
                                     }</p>
                                 </div>
                             </section>
@@ -192,27 +194,34 @@ const MyReview = ({reviewRepository}) => {
                 className="mySwiper"
             >
                     {
-                    onMyLikes && onMyLikes.map(review => {
-                        return <SwiperSlide key={review.id}>
-                            <section className='my_review_container'>
-                                <img className='my_review_reviewImg' src={review.reviewIMG} alt="review"
-                                    onClick={()=>{
-                                        navigate(`/reviews/${review.id}`, {state : {review}})
-                                    }}
-                                />
-                                <h3 className='my_review_title'>{review.reviewTitle}</h3>
-                                <p className='my_review_name'>{review.nickname}</p>
-                                <p className='my_review_email'>({review.email})</p>
-                                <div className='my_review_likeBox'>
-                                    <div className='my_review_icon'>
-                                        <i className="fa-solid fa-heart"></i>
-                                    </div>
-                                    <p className='my_review_amount'>{
-                                    review.likes === undefined ?(0) : (Object.keys(review.likes).length)
-                                    }</p>
-                                </div>
-                            </section>
-                        </SwiperSlide>})
+                    onMyLikes && onMyLikes.map(like => (
+                        onReviews.map(review => {
+                            if(review.id === like.id) {
+                                {
+                                    return <SwiperSlide key={review.id}>
+                                        <section className='my_review_container'>
+                                            <img className='my_review_reviewImg' src={review.reviewIMG} alt="review"
+                                                onClick={()=>{
+                                                    navigate(`/reviews/${review.id}`, {state : {review}})
+                                                }}
+                                            />
+                                            <h3 className='my_review_title'>{review.reviewTitle}</h3>
+                                            <p className='my_review_name'>{review.nickname}</p>
+                                            <p className='my_review_email'>({review.email})</p>
+                                            <div className='my_review_likeBox'>
+                                                <div className='my_review_icon'>
+                                                    <i className="fa-solid fa-heart"></i>
+                                                </div>
+                                                <p className='my_review_amount'>{
+                                                review.likes === undefined ? (0) : (Object.keys(review.likes).length)
+                                                }</p>
+                                            </div>
+                                        </section>
+                                    </SwiperSlide>
+                                }
+                            }
+                        })
+                    ))
                     }
             </Swiper>
 

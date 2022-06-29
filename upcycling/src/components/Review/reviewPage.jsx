@@ -40,7 +40,6 @@ const ReviewPage = ({reviewRepository}) => {
     },[userId, reviewRepository])
 
 
-
     //🍎받아온 reviews를 value값만 가져오기 - 최신순 정렬
     useEffect(()=> {
         let reviewArray = Object.values(reviews)
@@ -54,13 +53,17 @@ const onSearch = (text)=> {
 
     let hasTextArray  = onReviews.filter(item=>item.reviewHashtags.includes(text))
     setFilteredReviews(hasTextArray)
+    
+}
 
+const renderKeyword = (keyword) => {
+    return <h1 className={styles.result}>'{keyword}'(이)가 검색되었습니다.</h1>
 }
 
 useEffect(()=>{
     let hasTextArray  = onReviews.filter(item=>item.reviewHashtags.includes(keyword))
     setFilteredReviews(hasTextArray)
-},[onReviews, keyword])
+},[onReviews])
 
 
     return (
@@ -72,6 +75,7 @@ useEffect(()=>{
                     <Search onSearch={onSearch}/>
                     <WriteButton/>
                 </div>
+                {keyword && renderKeyword(keyword)}
                 <ul className={styles.list}>
                     {!keyword ?
                         (onReviews.map(review => (
@@ -80,13 +84,12 @@ useEffect(()=>{
                         >
                             <ReviewItem  keyword={keyword} review={review}/>
                         </li>))) : (filteredReveiws.map(review => (
-                        <li key={review.id}
+                            <li key={review.id}
                         className={styles.list_item}
-                        >
+                        >         
                             <ReviewItem keyword={keyword} review={review}/>
-                        </li>))
-
-                        )
+                        </li>
+                        )))
                     }
                 </ul>
             </div>

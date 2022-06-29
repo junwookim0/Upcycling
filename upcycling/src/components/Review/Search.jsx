@@ -8,11 +8,9 @@ const Search = ({onSearch}) => {
 
     const inputRef = useRef()
 
-    const [text, setText] = useState();
 
     const onSubmit = () => {
-        setText(inputRef.current.value)
-        onSearch(text)
+        onSearch(inputRef.current.value)
         inputRef.current.value = ''
     }
 
