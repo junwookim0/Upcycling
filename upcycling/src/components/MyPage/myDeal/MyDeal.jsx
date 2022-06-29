@@ -10,8 +10,8 @@ import "swiper/css/navigation";
 import { Pagination, Navigation , Autoplay} from "swiper";
 
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
-import { firestore } from "../../firebase";
+import AuthContext from "../../context/AuthContext";
+import { firestore } from "../../../firebase";
 import { collection, onSnapshot, query, where, orderBy } from "firebase/firestore";
 
 import DCommentList from "./dCommentList";

@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { query, where, orderBy, onSnapshot, collectionGroup } from 'firebase/firestore';
-import { firestore } from '../../firebase';
-import AuthContext from '../context/AuthContext';
+import { firestore } from '../../../firebase';
+import AuthContext from '../../context/AuthContext';
 import styles from './dCommentList.module.css'
 import { useNavigate } from "react-router-dom";
 

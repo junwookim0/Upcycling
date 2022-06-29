@@ -2,7 +2,7 @@ import Nav from '../components/Nav/Nav';
 import SubMainBannerHome from '../components/banner/SubMainBannerHome';
 import CarouselReview from '../components/banner/CarouselReview';
 
-const Contents = ( {reviewRepository}) => {
+const Home = ( {reviewRepository}) => {
 
     return (
         <div>
@@ -13,4 +13,4 @@ const Contents = ( {reviewRepository}) => {
     )
 };
 
-export default Contents;
+export default Home;

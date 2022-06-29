@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 
 
 import { useContext } from "react";
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 
 // import required modules
 import {EffectCoverflow, Pagination, Navigation , Autoplay} from "swiper";
@@ -146,8 +146,6 @@ const MyReview = ({reviewRepository}) => {
                 }
             </Swiper>
         </div>
-
-
 
         <h2 className="Carousel_text">내가 좋아요한 리뷰</h2>
         <div className="contents_swiper">
