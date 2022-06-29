@@ -1,9 +1,9 @@
 import TabcompDeal from "../MyPage/TabcompDeal";
-import SignIn from "../login/SignIn";
+import TabcompReview from '../MyPage/TabcompReview';
 import { useState } from "react";
 import "./myPageTab.css";
 
-const MyPageTab = () => {
+const MyPageTab = ({reviewRepository}) => {
 
     const [activeIndex, setActiveIndex] = useState(0);
 
@@ -29,7 +29,7 @@ const MyPageTab = () => {
                 </div>
             ),
             tabCont:(
-                    <SignIn/>
+                <TabcompReview reviewRepository={reviewRepository}/>
             )
         }
     ];

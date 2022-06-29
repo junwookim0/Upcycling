@@ -15,35 +15,35 @@ const CommentList = ({onReviews, onMyComments}) => {
             }
         })
     }
-    
-
-    const renderComments = onMyComments.map(comment => (
-        onReviews.map(review => {
-            if(review.id === comment.reviewId) {
-                return (
-                <section key={comment.id} onClick={()=>goDetail(comment.reviewId)} className={styles.commentList}>
-                    <img className={styles.img} src={comment.reviewIMG} alt="" />
-                    <div className={styles.comment_container}>
-                        <p className={styles.comment}>{comment.comment}</p>
-                        <div className={styles.commten_info}>
-                            <p className={styles.date}>{comment.date}</p>
-                            <p className={styles.reviewTitle}> 게시물 제목 : {comment.reviewTitle}</p>
-                        </div>
-                    </div>
-                </section>
-                )
-            } 
-        })
-    ))
-
     return (
         <>
         <div className={styles.titleBox}>   
             <h2 className={styles.title}>내가 작성한 댓글</h2>
         </div>
-        <p>현재 Review게시판에 존재하는 게시글의 댓글만 볼 수있습니다.</p>
-        <p>클릭하면 해당 게시글로 이동합니다.</p>
-        {renderComments}
+        {onMyComments.length !== 0? (
+                    onMyComments.map(comment => (
+                        onReviews.map(review => {
+                            if(review.id === comment.reviewId) {
+                                return (
+                                <section key={comment.id} onClick={()=>goDetail(comment.reviewId)} className={styles.commentList}>
+                                    <img className={styles.img} src={comment.reviewIMG} alt="" />
+                                    <div className={styles.comment_container}>
+                                        <p className={styles.comment}>{comment.comment}</p>
+                                        <div className={styles.commten_info}>
+                                            <p className={styles.date}>{comment.date}</p>
+                                            <p className={styles.reviewTitle}> 게시물 제목 : {comment.reviewTitle}</p>
+                                        </div>
+                                    </div>
+                                </section>
+                                )
+                            } 
+                        })
+                    ))
+                    
+                    ):(
+            <div className="contents_empty">
+            <h3>게시글에 댓글을 쓰고 함께 소통해보세요!</h3>
+        </div>)}
         </>
 
     );

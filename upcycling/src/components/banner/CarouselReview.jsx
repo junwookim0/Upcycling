@@ -27,16 +27,6 @@ const CarouselReview = ({reviewRepository}) => {
     const [reviews, setReviews] = useState([])
     const [onReviews, setOnReviews] = useState([])
 
-    //🍎review /like
-    const [myReviews, setMyReviews] = useState([])
-
-    //🍎정렬까지 완료된 리뷰들
-    const [onMyReviews,setOnMyReviews] = useState([])
-
-    //🍎게시물 이동
-    const goDetail = (review) => {
-        navigate(`/reviews/${review.id}`, {state : {review}})
-    }
 
     //🍎게시물 삭제유무를 확인하기위한 firebase전체 리뷰
     useEffect(()=> {
@@ -52,25 +42,9 @@ const CarouselReview = ({reviewRepository}) => {
         setOnReviews(orderedReview)
     },[reviews])
     
-    
+    console.log(onReviews)
 
 
-    // 🍎📃firebase에 저장된 myReview받아오기(내가 작성한 리뷰)
-    useEffect(()=> {
-        const stopSync =  reviewRepository.syncMyReviewsById(reviews => {
-            setMyReviews(reviews);
-        }, userId)
-        return () => stopSync()
-    },[userId, reviewRepository])
-
-    // //🍎받아온 reviews를 value값만 가져오기 - 최신순 정렬
-    useEffect(()=> {
-        let reviewArray = Object.values(myReviews)
-        let orderedReview =  reviewArray.slice().sort((a,b) => b.reviewDate.localeCompare(a.reviewDate))
-        setOnMyReviews(orderedReview)
-    },[myReviews])
-
-    console.log(onMyReviews)
 
     return (
         <section>

@@ -1,10 +1,24 @@
+/*콘텐츠가 없을때*/
+/*contents가 없을때*/
+.contents_empty {
+    margin-top: 0;
+    background-color: #F8F3E8;
+    margin: auto;
+    width: 70%;
+    height: 22rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .titleBox {
     border-bottom: 1px double lightgray;
     border-top: 1px solid black;
     max-width: 70%;
     margin: auto;
     margin-top: 2rem;
-    margin-bottom: 1rem;
+
 }
 
 .title {

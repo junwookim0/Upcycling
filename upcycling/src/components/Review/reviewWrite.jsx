@@ -35,6 +35,9 @@ const ReviewWrite = ({createAndUpdateReview , imageUploader}) => {
 
     const [name , setName] = useState('')
 
+   
+
+
     let date = new Date();
 
     const onSubmit = event => {
@@ -42,9 +45,9 @@ const ReviewWrite = ({createAndUpdateReview , imageUploader}) => {
 
         const review = {
             id  : 'R' + Date.now(),
-            nickname : userName,
+            nickname : user.displayName? userName: 'None',
             email : userEmail,
-            profileIMG : userPhoto,
+            profileIMG : userPhoto? userPhoto : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973461_960_720.png',
             userId : userId,
             reviewIMG : uploadedIMG,
             reviewTitle : reviewTitleRef.current.value,
