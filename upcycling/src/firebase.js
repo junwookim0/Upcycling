@@ -9,6 +9,7 @@ import { getStorage } from "firebase/storage";
 
 
 const firebaseConfig = {
+    
     apiKey: "AIzaSyBg-siU5D0pRcjFzkFvco6QkhN1L_sdYMc",
     authDomain: "upcycling-cfaac.firebaseapp.com",
     projectId: "upcycling-cfaac",
