@@ -13,3 +13,18 @@
     font-weight: bolder;
     font-size: 40px;
 }
+.first_page_intro_div button{
+    background-color: #004236;
+    border: 0;
+    color: white;
+    margin-bottom: 5px;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 12px;
+}
+.first_page_intro_div button:hover{
+    background-color: #D6CE4B;
+    color: #004236;
+}

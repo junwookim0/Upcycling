@@ -18,7 +18,6 @@ function Like({reviewRepository, review, clickLike, removeLike}) {
 
         let currentReviewId = review.id
 
-        // console.log(currentReview)
         useEffect(()=> {
             const stopSync = reviewRepository.syncReviews(reviews => {
             setReviews(reviews);
@@ -35,6 +34,8 @@ function Like({reviewRepository, review, clickLike, removeLike}) {
                 }
             })
         })
+
+        console.log(currentReview.likes)
 
         useEffect(()=>{
             setLikeState('🤍')

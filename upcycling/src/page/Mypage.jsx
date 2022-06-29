@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 import Nav from '../components/Nav/Nav';
 import SubMainBanner from "../components/banner/SubMainBannerMypage"
-import CarouselMypage from "../components/banner/CarouselMypage";
 import MyProfileChange from "../components/MyPage/myProfile/MyProfileChange";
+import MyPageTab from "../components/tab/myPageTab";
 
-const Mypage = ({reviewRepository}) => {
+const Mypage = ({ reviewRepository, deals}) => {
     const { user } = useContext(AuthContext);
     
     const navigate = useNavigate();
@@ -28,7 +28,7 @@ const Mypage = ({reviewRepository}) => {
                 <Nav/>
                 <SubMainBanner/>
                 <MyProfileChange/>
-                <CarouselMypage reviewRepository={reviewRepository}/>
+                <MyPageTab reviewRepository={reviewRepository}/>
             </div>
         )
     }

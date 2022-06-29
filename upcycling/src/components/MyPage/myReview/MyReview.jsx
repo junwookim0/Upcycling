@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 import './MyReview.css';
 
 import { useContext } from "react";
-import AuthContext from "../context/AuthContext";
+import AuthContext from '../../context/AuthContext'
 
 // import required modules
 import {EffectCoverflow, Pagination, Navigation , Autoplay} from "swiper";
@@ -109,15 +109,14 @@ const MyReview = ({reviewRepository}) => {
 
 
     //🍎👍현재 존재하는 게시물에서 내가 좋아요를 누른 리뷰
-    const filteredLikes = onMyLikes.map(like => (
-        onReviews.map(review => {
-            if(review.id === like.id) {
-                return <SwiperSlide key={review.id}><img onClick={()=>goDetail(review)} src={review.reviewIMG} alt="" /></SwiperSlide>
-            } 
-        })
-    ))
+    // const filteredLikes = onMyLikes.map(like => (
+    //     onReviews.map(review => {
+    //         if(review.id === like.id) {
+    //             return <SwiperSlide key={review.id}><img onClick={()=>goDetail(review)} src={review.reviewIMG} alt="" /></SwiperSlide>
+    //         } 
+    //     })
+    // ))
 
-    console.log(onMyReviews.length === 0)
 
     return (
         <section className="myReview">
@@ -175,7 +174,7 @@ const MyReview = ({reviewRepository}) => {
         <div className='my_review_titleBox'>   
                 <h2 className='my_review_title'>내가 '&#9829;좋아요'한 리뷰글</h2>
             </div>
-        {onMyReviews.length !== 0? (<div className="contents_swiper">
+        {onMyLikes.length !== 0? (<div className="contents_swiper">
             <Swiper
                 onSwiper={setSwiperRef}
                 slidesPerView={5}

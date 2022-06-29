@@ -15,9 +15,6 @@ const CommentList = ({onReviews, onMyComments}) => {
             }
         })
     }
-
-    console.log(onMyComments)
-
     return (
         <>
         <div className={styles.titleBox}>   
