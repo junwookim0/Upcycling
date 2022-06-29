@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import "../banner/Carousel.css";
+
 
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
@@ -45,7 +45,6 @@ const MyReview = ({reviewRepository}) => {
         navigate(`/reviews/${review.id}`, {state : {review}})
     }
 
-    
 
     //🍎게시물 삭제유무를 확인하기위한 firebase전체 리뷰
     useEffect(()=> {
@@ -61,10 +60,6 @@ const MyReview = ({reviewRepository}) => {
         setOnReviews(orderedReview)
     },[reviews])
     
-
-    
-
-
     // 🍎📃firebase에 저장된 myReview받아오기(내가 작성한 리뷰)
     useEffect(()=> {
         const stopSync =  reviewRepository.syncMyReviewsById(reviews => {

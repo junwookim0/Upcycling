@@ -33,13 +33,10 @@ const CarouselReview = ({reviewRepository}) => {
     //🍎정렬까지 완료된 리뷰들
     const [onMyReviews,setOnMyReviews] = useState([])
 
-
     //🍎게시물 이동
     const goDetail = (review) => {
         navigate(`/reviews/${review.id}`, {state : {review}})
     }
-
-    
 
     //🍎게시물 삭제유무를 확인하기위한 firebase전체 리뷰
     useEffect(()=> {

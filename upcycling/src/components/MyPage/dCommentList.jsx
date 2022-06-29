@@ -36,7 +36,7 @@ const DCommentList = (del) => {
     const renderDComments = myDComments.map(mydc => (
         <section key={mydc.id} onClick={onClick} className={styles.commentList}>
             <div> {/* 이미지 없을 때 공간 이상해져서 추가했어요 */}
-                <img className={styles.img} src={mydc.creatorPhoto} alt="" />
+                <img className={styles.img} src={mydc.attachmentUrl} alt="" />
             </div>
             
             <div className={styles.comment_container}>

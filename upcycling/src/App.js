@@ -103,7 +103,7 @@ const removeLike = (userId,review) => {
   return (
     <div className="App">
         <Routes>
-          <Route path="/" element={!user?<FirstMain/> : <Home/>}></Route>
+          <Route path="/" element={!user?<FirstMain/> : <Home reviewRepository={reviewRepository} deals={deals} />}></Route>
           <Route path="/home" element={user ? <Home reviewRepository={reviewRepository} /> :<SignIn/> }></Route>
           <Route path="/about" element={<About/>}></Route>
           <Route path="/aboutupcycling" element={<Abup/>}></Route>
@@ -116,11 +116,10 @@ const removeLike = (userId,review) => {
           <Route path='/reviews/:id' element={<ReviewDetail reviewRepository={reviewRepository} clickLike={clickLike} removeLike={removeLike} createAndUpdateComment={createAndUpdateComment} deleteReview={deleteReview} deleteComment={deleteComment}/>}/>
           <Route path='/reviews/write' element={<ReviewWrite imageUploader={imageUploader} createAndUpdateReview={createAndUpdateReview}/>}/>
           <Route path='/review/revise/:id' element={<ReviewRevise imageUploader={imageUploader} createAndUpdateReview={createAndUpdateReview} />}/>
-
           {/* 🥑 박선주 route 시작 */}
-          <Route path='/deals' element={<DealPage deals={deals}/>} />
-          <Route path='/deals/:createdAt' element={<DealDetail deals={deals}/>} />
-          <Route path='/deals/write' element={<DealWrite/>} />
+          <Route path='/deals' element={<DealPage deals={deals} />} />
+          <Route path='/deals/:createdAt' element={<DealDetail deals={deals} />} />
+          <Route path='/deals/write' element={<DealWrite />} />
           <Route path='/deals/revise/:createdAt' element={<DealRevise />} />
           {/* 🥑 박선주 route 끝 */}
           <Route path="/not-found" element={<NotFound />}></Route>
