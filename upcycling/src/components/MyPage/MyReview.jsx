@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import "../banner/Carousel.css";
+
 
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";

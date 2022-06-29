@@ -28,6 +28,7 @@ const Mypage = ({reviewRepository}) => {
                 <Nav/>
                 <SubMainBanner/>
                 <MyProfileChange/>
+                
                 <CarouselMypage reviewRepository={reviewRepository}/>
             </div>
         )
