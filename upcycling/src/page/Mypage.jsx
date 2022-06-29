@@ -29,8 +29,6 @@ const Mypage = ({reviewRepository}) => {
                 <SubMainBanner/>
                 <MyProfileChange/>
                 <CarouselMypage reviewRepository={reviewRepository}/>
-                
-
             </div>
         )
     }

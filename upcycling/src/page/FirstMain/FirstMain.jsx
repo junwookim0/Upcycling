@@ -22,6 +22,7 @@ const FirstMain = () => {
                     여러분의 업사이클링 경험과 아이디어를 공유하고<br/>
                     마켓을 통해 다양한 업사이클링 제품을 만나보세요.    
                 </h3>
+                <button onClick={SignUp}>시작하기</button>
             </div>
             <FirstpageIntro/>
         </div>

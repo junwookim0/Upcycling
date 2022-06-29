@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import "../banner/Carousel.css";
+import './MyReview.css';
 
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
@@ -45,7 +45,6 @@ const MyReview = ({reviewRepository}) => {
         navigate(`/reviews/${review.id}`, {state : {review}})
     }
 
-    
 
     //🍎게시물 삭제유무를 확인하기위한 firebase전체 리뷰
     useEffect(()=> {
@@ -61,10 +60,6 @@ const MyReview = ({reviewRepository}) => {
         setOnReviews(orderedReview)
     },[reviews])
     
-
-    
-
-
     // 🍎📃firebase에 저장된 myReview받아오기(내가 작성한 리뷰)
     useEffect(()=> {
         const stopSync =  reviewRepository.syncMyReviewsById(reviews => {
@@ -122,15 +117,17 @@ const MyReview = ({reviewRepository}) => {
         })
     ))
 
-    console.log(filteredLikes)
+    console.log(onMyReviews.length === 0)
 
     return (
-        <>
-        <h2 className="Carousel_text">내가 작성한 리뷰</h2>
-        <div className="contents_swiper">
+        <section className="myReview">
+            <div className='my_review_titleBox'>   
+                <h2 className='my_review_title'>내가 작성한 리뷰글</h2>
+            </div>
+        {onMyReviews.length !== 0? (<div className="contents_swiper">
             <Swiper
                 onSwiper={setSwiperRef}
-                slidesPerView={3}
+                slidesPerView={5}
                 centeredSlides={false}
                 spaceBetween={30}
                 pagination={{
@@ -144,21 +141,44 @@ const MyReview = ({reviewRepository}) => {
                 modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
                 className="mySwiper"
             >
-                {
+                    {
                     onMyReviews && onMyReviews.map(review => {
-                        return <SwiperSlide key={review.id}><img onClick={()=>goDetail(review)} src={review.reviewIMG} alt="" /></SwiperSlide>
-                    })
-                }
+                        return <SwiperSlide key={review.id}>
+                            <section className='my_review_container'>
+                                <img className='my_review_reviewImg' src={review.reviewIMG} alt="review"
+                                    onClick={()=>{
+                                        navigate(`/reviews/${review.id}`, {state : {review}})
+                                    }}
+                                />
+                                <h3 className='my_review_title'>{review.reviewTitle}</h3>
+                                <p className='my_review_name'>{review.nickname}</p>
+                                <p className='my_review_email'>({review.email})</p>
+                                <div className='my_review_likeBox'>
+                                    <div className='my_review_icon'>
+                                        <i className="fa-solid fa-heart"></i>
+                                    </div>
+                                    <p className='my_review_amount'>{
+                                    review.likes === undefined ?(0) : (Object.keys(review.likes).length)
+                                    }</p>
+                                </div>
+                            </section>
+                        </SwiperSlide>})
+                    }
             </Swiper>
-        </div>
 
+        </div>):(
+            <div className="contents_empty">
+            <h3>작성한 게시물이 없습니다. 지금바로 당신의 생각을 공유해주세요!</h3>
+        </div>)}
+        
 
-
-        <h2 className="Carousel_text">내가 좋아요한 리뷰</h2>
-        <div className="contents_swiper">
+        <div className='my_review_titleBox'>   
+                <h2 className='my_review_title'>내가 '&#9829;좋아요'한 리뷰글</h2>
+            </div>
+        {onMyReviews.length !== 0? (<div className="contents_swiper">
             <Swiper
                 onSwiper={setSwiperRef}
-                slidesPerView={3}
+                slidesPerView={5}
                 centeredSlides={false}
                 spaceBetween={30}
                 pagination={{
@@ -169,20 +189,40 @@ const MyReview = ({reviewRepository}) => {
                     disableOnInteraction: false,
                 }}
                 navigation={true}
-                modules={[Pagination, Navigation, Autoplay]}
+                modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
                 className="mySwiper"
             >
-                {/* {
-                    onMyLikes.map(review => {
-                        return <SwiperSlide key={review.id}><img onClick={()=>goDetail(review)} src={review.reviewIMG} alt="" /></SwiperSlide>
-                    })
-                } */}
-                {filteredLikes}
-
+                    {
+                    onMyLikes && onMyLikes.map(review => {
+                        return <SwiperSlide key={review.id}>
+                            <section className='my_review_container'>
+                                <img className='my_review_reviewImg' src={review.reviewIMG} alt="review"
+                                    onClick={()=>{
+                                        navigate(`/reviews/${review.id}`, {state : {review}})
+                                    }}
+                                />
+                                <h3 className='my_review_title'>{review.reviewTitle}</h3>
+                                <p className='my_review_name'>{review.nickname}</p>
+                                <p className='my_review_email'>({review.email})</p>
+                                <div className='my_review_likeBox'>
+                                    <div className='my_review_icon'>
+                                        <i className="fa-solid fa-heart"></i>
+                                    </div>
+                                    <p className='my_review_amount'>{
+                                    review.likes === undefined ?(0) : (Object.keys(review.likes).length)
+                                    }</p>
+                                </div>
+                            </section>
+                        </SwiperSlide>})
+                    }
             </Swiper>
-        </div>
+
+        </div>):(
+            <div className="contents_empty">
+            <h3>게시글에서 ❤를 클릭하고 마이페이지에서 보관하세요!</h3>
+        </div>)}
         {onMyComments && (<CommentList onReviews={onReviews} onMyComments={onMyComments}/>)}
-        </>
+        </section>
     );
 }
 
