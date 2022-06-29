@@ -11,7 +11,7 @@ const Contents = ( {reviewRepository}) => {
             <Nav/>
             <SubMainBannerHome/>
 
-            <CarouselMypage/>
+            {/* <CarouselMypage/> */}
 
             {/* <Carousel/> */}
             <CarouselReview reviewRepository={reviewRepository}/>
