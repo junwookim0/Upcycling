@@ -1,6 +1,5 @@
 /* 🥑 거래글 작성! */
 // 06-20 사용자 정보
-// css 파일 버튼만 수정하면 됨
 
 import React, { useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
@@ -31,11 +30,11 @@ const DealWrite = () => {
     
     /* 사진은 storage */
     const [attachment, setAttachment] = useState('');
-
+    const [inputButton, setInputButton] = useState(false)
+    const [fileName, setFileName] = useState('');
     const navigate = useNavigate();
 
     /* 사용 함수 */
-
     const onChange = (e) => {
         const {target: {name, value}} = e;
         
@@ -55,6 +54,9 @@ const DealWrite = () => {
     };
 
     const onFileChange = (e) => {
+        e.preventDefault();
+
+        setInputButton(true);
         const {target: {files}} = e;
         const theFile = files[0];
         // 파일 이름 읽기
@@ -64,10 +66,15 @@ const DealWrite = () => {
             setAttachment(result);
         };
         reader.readAsDataURL(theFile); // 데이터 인코딩
+        setInputButton(false);
+        setFileName(theFile.name);
     };
 
-    // 이미지 첨부 취소
-    const onClearAttatchment = () => setAttachment('');
+    const onButtonClick = (e) => {
+        e.preventDefault();
+        let dealIMG = document.getElementById('dealIMG');
+        dealIMG.click();
+    };
 
     // submit
     const onSubmit = async (e) => {
@@ -119,6 +126,10 @@ const DealWrite = () => {
     }; // 파이어베이스 저장 완
     
 
+    const onClick = () => {
+        navigate('/deals')
+    }
+
     return (
         <>
             <Nav />
@@ -148,6 +159,14 @@ const DealWrite = () => {
                     placeholder="가격을 입력해 주세요"
                     className={styles.input_price} /> <br />
 
+                    {/* 파일 업로드 - 안 보임 */}            
+                    <input 
+                    onChange={onFileChange}
+                    id="dealIMG"
+                    type="file" 
+                    accept="image/*"
+                    className={styles.fileInput} />
+                    
                     {/* 글 작성 */}
                     <textarea
                     name="content"
@@ -171,11 +190,12 @@ const DealWrite = () => {
                                         <p>이미지를 <br />첨부해 주세요</p>
                                     </div>
                                 )}
-                                <input 
-                                onChange={onFileChange}
-                                type="file" 
-                                accept="image/*"
-                                className={styles.input_button} />
+
+                                <button 
+                                    className={styles.input_button}
+                                    onClick={onButtonClick}>
+                                    {fileName || <div><i className="fa-solid fa-image"></i> <span>이미지 첨부</span></div>}
+                                </button>
                             </div>
 
                             <div className={styles.hash_container}>
@@ -211,13 +231,14 @@ const DealWrite = () => {
                         
                         <div className={styles.submit_buttons}>
                             <button
+                            onClick={onClick}
                             className={styles.button}>
                                 취소
                             </button>
                             {/* 게시글 업로드 */}
                             <input 
                             type="submit" 
-                            value="작성"
+                            value="완료"
                             className={styles.button_ok} />
                         </div>
                     </div>

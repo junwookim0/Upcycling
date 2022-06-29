@@ -8,6 +8,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { ref, uploadString, getDownloadURL } from "@firebase/storage";
 import { v4 as uuidv4 } from "uuid"; // 사진 랜덤 아이디
 import { useLocation, useNavigate } from "react-router-dom";
+import { format } from "date-fns";
 
 import styles from './CSS/dealRevise.module.css';
 
@@ -28,14 +29,16 @@ const DealRevise = () => {
 
     /* 업데이트 */
     const [newDTitle, setNewDTitle] = useState(deal.title);
-    const [newDHashtag1, setNewHashtag1] = useState(deal.hashtag1);
-    const [newDHashtag2, setNewHashtag2] = useState(deal.hashtag2);
-    const [newDHashtag3, setNewHashtag3] = useState(deal.hashtag3);
+    const [newDHashtag1, setNewHashtag1] = useState(deal.hashtagArray[0]);
+    const [newDHashtag2, setNewHashtag2] = useState(deal.hashtagArray[1]);
+    const [newDHashtag3, setNewHashtag3] = useState(deal.hashtagArray[2]);
     const [newDPrice, setNewDPrice] = useState(deal.price);
     const [newDContent, setNewDContent] = useState(deal.content);
 
     /* 사진은 storage */
     const [newAttachment, setNewAttachment] = useState('');
+    const [inputButton, setInputButton] = useState(false)
+    const [fileName, setFileName] = useState('');
 
     const navigate = useNavigate();
 
@@ -45,45 +48,6 @@ const DealRevise = () => {
         navigate(`/deals/${deal.createdAt}`, {state: {deal}})
     };
 
-    /* 업데이트 */
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        
-        let newAttachmentUrl = deal.attachmentUrl;
-
-        if (newAttachment !== '') {
-            const newAttachmentRef = ref(storage, `images/${user.uid}/${uuidv4()}`);
-
-            const response = await uploadString(newAttachmentRef, newAttachment, "data_url");
-            console.log(response);
-            newAttachmentUrl = await getDownloadURL(response.ref)
-        }
-        // dbDeals에 업데이트
-        await updateDoc(doc(firestore, `/dbDeals/${deal.id}`), {
-            title: newDTitle,
-            hashtagArray: [newDHashtag1, newDHashtag2, newDHashtag3],
-            price: newDPrice,
-            content: newDContent,
-            creatorName: user.displayName,
-            creatorPhoto: user.photoURL,
-            attachmentUrl: newAttachmentUrl
-        });
-
-        setEditing(false);
-
-        // state를 비워서 form 비우기
-        setNewDTitle("");
-        setNewHashtag1("");
-        setNewHashtag2("");
-        setNewHashtag3("");
-        setNewDPrice("");
-        setNewDContent("");
-
-        // state를 비워서 파일 미리보기 img src 비우기
-        setNewAttachment("");
-
-        navigate(`/deals/${deal.createdAt}`, {state: {deal}})
-    };
 
     const onChange = (e) => {
         const {target: {name, value}} = e;
@@ -105,7 +69,7 @@ const DealRevise = () => {
 
     const onFileChange = (e) => {
         const {target: {files}} = e;
-        // 06-16 한 번에 한 개의 파일 입력하도록 했는데 여러 장 가능하게끔 수정,,, 어케 함
+        setInputButton(true);
         const theFile = files[0];
         // 파일 이름 읽기
         const reader = new FileReader();
@@ -114,10 +78,60 @@ const DealRevise = () => {
             setNewAttachment(result);
         };
         reader.readAsDataURL(theFile); // 데이터 인코딩
+        setInputButton(false);
+        setFileName(theFile.name);
     };
 
-    const onClearAttatchment = () => setNewAttachment('');
+    const onButtonClick = (e) => {
+        e.preventDefault();
+        let dealIMG = document.getElementById('dealIMG');
+        dealIMG.click();
+    };
 
+    /* 업데이트 */
+    const onSubmit = async (e) => {
+        e.preventDefault();
+            
+        // 사진 변경하지 않을 경우 파일 첨부
+        let newAttachmentUrl = deal.attachmentUrl;
+        if (newAttachment !== '') {
+            const newAttachmentRef = ref(storage, `images/${user.uid}/${uuidv4()}`);
+    
+            const response = await uploadString(newAttachmentRef, newAttachment, "data_url");
+            console.log(response);
+            newAttachmentUrl = await getDownloadURL(response.ref)
+        };
+    
+        let date = new Date();
+            
+        // dbDeals에 업데이트
+        await updateDoc(doc(firestore, `/dbDeals/${deal.id}`), {
+            title: newDTitle,
+            hashtagArray: [newDHashtag1, newDHashtag2, newDHashtag3],
+            price: newDPrice,
+            content: newDContent,
+            date : format(date, "yyyy.MM.dd HH:mm"),
+            creatorName: user.displayName,
+            creatorPhoto: user.photoURL,
+            attachmentUrl: newAttachmentUrl
+        });
+    
+        setEditing(false);
+    
+        // state를 비워서 form 비우기
+        setNewDTitle("");
+        setNewHashtag1("");
+        setNewHashtag2("");
+        setNewHashtag3("");
+        setNewDPrice("");
+        setNewDContent("");
+    
+        // state를 비워서 파일 미리보기 img src 비우기
+        setNewAttachment("");
+    
+        navigate('/deals', {state: {deal}})
+    };
+    
     return (
         <>
             <Nav />
@@ -145,6 +159,14 @@ const DealRevise = () => {
                 type="number"
                 placeholder="가격을 입력해 주세요"
                 className={styles.input_price} /> <br />
+                
+                {/* 파일 업로드 - 안 보임 */}            
+                <input 
+                onChange={onFileChange}
+                id="dealIMG"
+                type="file" 
+                accept="image/*"
+                className={styles.fileInput} />
 
                 {/* 글 작성 */}
                 <textarea
@@ -166,22 +188,22 @@ const DealRevise = () => {
                                     </div>
                                 ) : (
                                     <div className={styles.before_uploadedImg}>
-                                        <p>이미지를 <br />첨부해 주세요</p>
+                                        <p>수정할 이미지를 <br />첨부해 주세요</p>
                                     </div>
                                 )}
-                                <input 
-                                onChange={onFileChange}
-                                type="file" 
-                                accept="image/*"
-                                className={styles.input_button} />
+
+                                <button 
+                                className={styles.input_button}
+                                onClick={onButtonClick}>
+                                    {fileName || <div><i className="fa-solid fa-image"></i> <span>이미지 첨부</span></div>}
+                                </button>
+
                             </div>
 
                             <div className={styles.hash_container}>
-                                <p>#태그는 수정할 수 없습니다</p>
                                 <div className={styles.hashtags_box}>
                                     {/* 해시태그1 작성 */}
                                     <input
-                                    disabled='true'
                                     name="hashtag1"
                                     onChange={onChange}
                                     value={newDHashtag1}
@@ -191,7 +213,6 @@ const DealRevise = () => {
                                     
                                     {/* 해시태그2 작성 */}
                                     <input
-                                    disabled='true'
                                     name="hashtag2"
                                     onChange={onChange}
                                     value={newDHashtag2}
@@ -201,7 +222,6 @@ const DealRevise = () => {
 
                                     {/* 해시태그3 작성 */}
                                     <input
-                                    disabled='true'
                                     name="hashtag3"
                                     onChange={onChange}
                                     value={newDHashtag3}
