@@ -7,7 +7,7 @@
 .div_profile{
     width: 550px;
     height: 600px;
-    background-image: url("../../../public/images/topImage2.jpg");
+    background-color: #eee;
     opacity: 0.9;
     border-radius: 15px;
 }
@@ -16,6 +16,15 @@
 .profile_submit{
     cursor: pointer;
     font-weight: bold;
+    background-color: #004236;
+    color: white;
+    width: 300px;
+    height: 40px;
+    font-size: 15px;
+    padding-left: 20px;
+    border: 0;
+    border-radius: 15px;
+    margin: 5px;
 }
 /*input form*/
 .input_profile {
@@ -24,7 +33,7 @@
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    color: white;
+    color: black;
 }
 .input_profile input{
     width: 300px;
@@ -34,4 +43,28 @@
     border: 0;
     border-radius: 15px;
     margin: 5px;
+    background-color: #f8f3e8;
+    border-bottom: 1px solid #004236;
+}
+.input_profile input[type="file"] {  /* 파일 필드 숨기기 */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0);
+    border: 0;
+}
+.input_profile label {
+    display: block;
+    padding: .5em .75em;
+    margin-left: 50px;
+    color: white;
+    font-size: inherit;
+    width: 300px;
+    height: 40px;
+    background-color:#004236;
+    cursor: pointer;
+    border-radius: 15px;
 }

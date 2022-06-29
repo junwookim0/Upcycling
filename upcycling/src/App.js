@@ -8,7 +8,6 @@ import EventIntro from './components/Intro/EventIntro';
 import SignIn from './components/login/SignIn';
 import Mypage from './page/Mypage';
 import SignUp from './components/login/SignUp';
-import TestProfile from './components/login/TestProfile';
 import { useContext } from "react";
 import AuthContext from "./components/context/AuthContext";
 /*🍎 지은 import*/
@@ -112,7 +111,6 @@ const removeLike = (userId,review) => {
           <Route path="/signIn" element={<SignIn/>}></Route>
           <Route path="/signUp" element={<SignUp/>}></Route>
           <Route path="/event" element={<EventIntro />}></Route>
-          <Route path="up" element={<TestProfile/>}></Route>
           {/* 🍎윤지은 router */}
           <Route path='/reviews'  element={<ReviewPage reviewRepository={reviewRepository}/>}/>
           <Route path='/reviews/:id' element={<ReviewDetail reviewRepository={reviewRepository} clickLike={clickLike} removeLike={removeLike} createAndUpdateComment={createAndUpdateComment} deleteReview={deleteReview} deleteComment={deleteComment}/>}/>

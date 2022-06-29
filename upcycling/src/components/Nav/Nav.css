@@ -21,7 +21,7 @@
 .site_msg{
     font-size: 20px;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 35px;
 }
 /*nav바 스크롤시*/
 .fix-container.scrolled .navbar {
@@ -133,7 +133,6 @@ font-family: 'Russo One', sans-serif;
     box-shadow: 0 0 0 3px transparent;
     font-weight: 500;
 }
-
 @media screen and (max-width: 1260px) {
     .fix-container.scrolled .site_msg_bar {
         transition: height 0.3s ease;

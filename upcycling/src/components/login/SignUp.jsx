@@ -46,6 +46,9 @@ const Signup = () => {
     };
     return (
         <div className="signup_box">
+            <div className="signin_box_top">
+                    <span className='logo_signin'>: UPTOWN</span>
+                </div>
             <div className="div_signup">
                     <form onSubmit={handleSubmit} className="input_signup">
                     <h1>Sign Up</h1>
@@ -73,7 +76,7 @@ const Signup = () => {
                             required
                             onChange={(e) => setPassword2(e.target.value)}
                         />
-                        <input className="signin_submit" type="submit" value="회원가입"></input>
+                        <button className="signin_submit" type="submit" value="회원가입">회원가입</button>
                     </form>
                     <p className="login-link">already registered? <Link to="/signin">Login</Link></p>
                     {error ? 

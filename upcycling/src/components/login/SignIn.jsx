@@ -38,6 +38,9 @@ const SignIn = () => {
         
         return (
             <div className="signin_box">
+                <div className="signin_box_top">
+                    <span className='logo_signin'>: UPTOWN</span>
+                </div>
                 <div className="div_signin">
                     {error ? <div>{error}</div> : null}
                     <form onSubmit={handleSubmit} className="input_signin">
@@ -60,8 +63,8 @@ const SignIn = () => {
                             required
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        <input className="signin_submit" type="submit" value="UPTOWN 로그인" />
-                        <input className="signin_button" type="button" value="회원가입" onClick={goSignUp} />
+                        <button className="signin_submit" type="submit" value="UPTOWN 로그인">UPTOWN 로그인</button>
+                        <button className="signin_button" type="button" value="회원가입" onClick={goSignUp}>회원가입</button>
                         
                     </form>
                     <div className="social-btns">
