@@ -3,16 +3,16 @@ import SubMainBannerHome from '../components/banner/SubMainBannerHome';
 import CarouselReview from '../components/banner/CarouselReview';
 import CarouselDealList from '../components/banner/CarouselDealList';
 
-const Contents = ({reviewRepository, deals}) => {
+const Home = ( {reviewRepository}) => {
 
     return (
         <div>
             <Nav/>
             <SubMainBannerHome/>
             <CarouselReview reviewRepository={reviewRepository}/>
-            <CarouselDealList deals={deals} />
+            <CarouselDealList />
         </div>
     )
 };
 
-export default Contents;
+export default Home;

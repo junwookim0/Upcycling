@@ -42,7 +42,7 @@ const CarouselDeal = ( ) => {
     return (
         <section>
             <div className="contents_swiper">
-                <h2 className="Carousel_text">신규 리뷰</h2>
+                <h2 className="Carousel_text">신규 마켓</h2>
                 <div className="contents_swiper">
                 <Swiper
                     onSwiper={setSwiperRef}

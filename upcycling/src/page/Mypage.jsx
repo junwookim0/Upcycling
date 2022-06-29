@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Nav from '../components/Nav/Nav';
 import SubMainBanner from "../components/banner/SubMainBannerMypage"
 import MyProfileChange from "../components/MyPage/myProfile/MyProfileChange";
-
-import MyDeal from "../components/MyPage/MyDeal";
+import MyDeal from "../components/MyPage/myDeal/MyDeal";
+import MyPageTab from "../components/tab/myPageTab";
 
 const Mypage = ({ deals}) => {
     const { user } = useContext(AuthContext);
@@ -29,8 +29,8 @@ const Mypage = ({ deals}) => {
                 <Nav/>
                 <SubMainBanner/>
                 <MyProfileChange/>
-                {/* 🥑 선주 */}
-                <MyDeal deals={deals} />
+                <MyPageTab/>
+                
             </div>
         )
     }
