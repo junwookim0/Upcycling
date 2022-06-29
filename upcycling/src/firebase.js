@@ -6,6 +6,11 @@ import { GoogleAuthProvider, signInWithPopup,
     signInWithEmailAndPassword,signOut,getAuth,GithubAuthProvider,updateProfile
 } from 'firebase/auth';
 import { getStorage } from "firebase/storage";
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 265505b09115d76b6b727262886ef9dbcbf19063
 const firebaseConfig = {
     apiKey: "AIzaSyBg-siU5D0pRcjFzkFvco6QkhN1L_sdYMc",
     authDomain: "upcycling-cfaac.firebaseapp.com",

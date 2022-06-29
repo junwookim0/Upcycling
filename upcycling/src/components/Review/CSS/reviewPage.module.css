@@ -3,10 +3,11 @@
 
 .reviewPage {
     margin: auto;
-    max-width: 70%;
+    max-width: 80%;
     position: relative;
     text-align: center;
     background-color: makerWhite;
+    margin-bottom: 5rem;
 }
 
 /*search input*/
