@@ -55,11 +55,11 @@ const CommentItem = ({ commentObj }) => {
                 editing ? (
                     <div className={styles.container}>
                         <h3 className={styles.user}>{user.displayName}</h3>
-                        <div className={styles.comment_form}>
                             <form onSubmit={onSubmit}>
                                 <textarea 
                                 onChange={onChange}
                                 value={newDComment}
+                                cols="30" rows="10"
                                 className={styles.textarea} />
                                 <div>
                                     <input 
@@ -70,7 +70,6 @@ const CommentItem = ({ commentObj }) => {
                                     className={styles.button}>취소</button>
                                 </div>
                             </form>
-                        </div>
                     </div>
                 ) : (
                         <div className={styles.comments_item}>
@@ -81,6 +80,7 @@ const CommentItem = ({ commentObj }) => {
                                 <div className={styles.comment_boxContainer}>
                                     <div className={styles.comment_userInfo_container}>
                                         <span className={styles.comments_name}>{commentObj.creatorName}</span>
+                                        {commentObj.creatorId == dealState.creatorId ? <span style={{color: 'gray'}}>작성자</span> : <></>}
                                     </div>
                                 </div>
                             </div>
@@ -90,14 +90,18 @@ const CommentItem = ({ commentObj }) => {
                                 commentObj.creatorId == user.uid ? (
                                     <>
                                     {/* 버튼 누르면 삭제/수정 보이게 */}
-                                        <button className={styles.comments_ellipsis}>
-                                            <i className="fa-solid fa-ellipsis-vertical"></i>
+                                    <div>
+                                        <button 
+                                        onClick={onDeleteClick}
+                                        className={styles.button}>
+                                            삭제
                                         </button>
-                    
-                                        <div className={styles.comments_ellipsis_container}>
-                                            <button onClick={onDeleteClick}>삭제</button>
-                                            <button onClick={toggleEditing}>수정</button>
-                                        </div>
+                                        <button 
+                                        onClick={toggleEditing}
+                                        className={styles.button_ok}>
+                                            수정
+                                        </button>
+                                    </div>
                                     </>
                                 ) : (
                                     <></>
