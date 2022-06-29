@@ -32,10 +32,10 @@ const EventIntro = () => {
             <div className="post">
                 <h1>Upcycling EVENT</h1>
                 <div className='post_img'>
-                    <img src='../../../images/event1.PNG' className='eventpost' alt='eventIMG' onClick={openModal}/>
-                    <img src='../../../images/event2.PNG' className='eventpost' alt='eventIMG' onClick={openModal}></img>
-                    <img src='../../../images/event3.PNG' className='eventpost' alt='eventIMG' onClick={openModal}></img>
-                    <img src='../../../images/event4.PNG' className='eventpost' alt='eventIMG' onClick={openModal}></img>
+                    <img src='../../../images/event1.PNG' className='eventpost' alt='eventIMG' onClick={openModal} />
+                    <img src='../../../images/event2.PNG' className='eventpost' alt='eventIMG' onClick={openModal} />
+                    <img src='../../../images/event3.PNG' className='eventpost' alt='eventIMG' onClick={openModal} />
+                    <img src='../../../images/event4.PNG' className='eventpost' alt='eventIMG' onClick={openModal} />
                 </div>
                 <Modalimg open={modalOpen} close={closeModal} header="EVENT 보기">
                 <Swiper

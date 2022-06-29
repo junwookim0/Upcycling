@@ -1,7 +1,7 @@
 import TabcompDeal from "../MyPage/TabcompDeal";
 import TabcompReview from '../MyPage/TabcompReview';
 import { useState } from "react";
-
+import "./myPageTab.css";
 
 const MyPageTab = ({reviewRepository}) => {
 
@@ -14,7 +14,7 @@ const MyPageTab = ({reviewRepository}) => {
     const tabContArr=[
         {
             tabTitle:(
-                <div className={activeIndex===0 ? "is-active" : ""} onClick={()=>tabClickHandler(0)}>
+                <div className={activeIndex===0 ? "is-active" : "not"} onClick={()=>tabClickHandler(0)}>
                     내가 작성한 거래글
                 </div>
             ),
@@ -24,7 +24,7 @@ const MyPageTab = ({reviewRepository}) => {
         },
         {
             tabTitle:(
-                <div className={activeIndex===1 ? "is-active" : ""} onClick={()=>tabClickHandler(1)}>
+                <div className={activeIndex===1 ? "is-active" : "not"} onClick={()=>tabClickHandler(1)}>
                     내가 작성한 리뷰글
                 </div>
             ),
@@ -37,7 +37,7 @@ const MyPageTab = ({reviewRepository}) => {
             <div>
                 <ul className="tabs is-boxed">
                     {tabContArr.map((section, index)=>{
-                            return section.tabTitle
+                            return <div key={section.index}>{section.tabTitle}</div>
                         })}
                 </ul>
                 <div>
