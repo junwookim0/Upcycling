@@ -1,4 +1,6 @@
 
+
+
 /*인트로1단*/
 .cInnerContent{
   width: 100%;
@@ -61,21 +63,24 @@
   position: relative;
   left: 70px;
   max-width: 500px;
+  z-index: 2;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 /*인트로 2단*/
 .cInnerContent_2{
+  position: relative;
+  top: 0vh;
   height: 47rem;
   text-align: center;
   line-height:10px;
-  border: solid #eee;
   color: #004236;
   background-color: #F8F3E8;
 }
 .cInnerContent_2_title{
+  padding-top:8rem;
   line-height: 50px;
   display: block;
-  margin-top: 140px;
 }
 .cInnerContent_2_title  p{
   font-size: 20px;
@@ -86,14 +91,20 @@
   font-size: 35px;
 }
 .cInnerContent_2_title span{
-  color: #92af94;
+  color:  #D6CE4B;
   font-size: 40px;
 }
 /*2단 아이콘 */
 .cInnerContent_list svg {
+  width: 50px;
+  height: 50px;
   font-size: 3em;
-  color: #004236;
+  color: #D6CE4B;
+  background-color: #004236;
+  padding: 1.3rem;
+  border-radius: 50%;
   margin-bottom: 25px;
+  margin: auto;
 }
 .cInnerContent_2_1{
   display:flex;
@@ -124,46 +135,79 @@ line-height: 1.2rem;
 
 /* 업사이클링 대해*/
 .about_page{
-  padding-top: 50px;
-  background-color: #92af94;
-  color:  #004236;
+  background-color: #004236;
+  color:  white;
+  display: flex;
+  flex-direction: column;
 }
-.about_page_title{
+/* .about_page_title{
+  background-color: #F8F3E8;
   font-size: 30px;
   text-align: center; 
-  height: 140px;
-  margin-bottom: 50px;
-}
-.about_page_title p{
-  font-size: 28px;
-}
-/*first*/
-.about_page_box{
-  height: 326px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.about_intro_img{
-  width: 400px;
-  margin-right: 25px;
-}
-.about_intro_card{
-  font-size: 22px;
+  height: 20rem;
+  width: 100%;
+  margin: auto;
 }
 
-/*second*/
-.about_second_page_box{
-  height: 326px;
+.about_logo {
+  background-color: #004236;
+  color: #D6CE4B;
+  width: 32rem;
+  margin: auto;
+  padding: 0.5rem;
+}
+
+.about_page_title p{
+  font-size: 28px;
+  font-weight: bolder;
+  margin-top: 1rem;
+  color: #D0C9C0;
+} */
+
+
+
+
+/* about page 안의 컨텐츠 */
+
+
+.about_page_box_odd, .about_page_box_even{
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row-reverse;
+  flex-direction: row;
 }
-.about_second_intro_img{
-  width: 400px;
+
+.about_page_box_odd {
+  flex-direction: row-reverse
 }
-.about_second_intro_card{
-  font-size: 22px;
-  margin-right: 25px;
+
+
+.about_intro_img{
+  width: 50%;
+  height: 42rem;
+  object-fit: cover;
+  margin: 0;
+  opacity: 0.85;
+}
+
+
+
+
+.about_intro_card{
+  text-align: center;
+  margin: auto;
+  width: 50%;
+}
+
+.about_intro_title {
+  color: #D6CE4B;
+  font-size: 3.5rem;
+  font-weight: lighter;
+  font-family: 'Black Han Sans', sans-serif;;
+}
+
+.about_intro_text {
+  width: 60%;
+  font-size: 1rem;
+  margin: auto;
+  word-break:keep-all;
+  padding: 0;
 }
