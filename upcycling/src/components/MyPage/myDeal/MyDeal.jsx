@@ -14,6 +14,8 @@ import AuthContext from "../../context/AuthContext";
 import { firestore } from "../../../firebase";
 import { collection, onSnapshot, query, where, orderBy } from "firebase/firestore";
 
+import styles from "./dCommonCSS.module.css";
+
 import DNoneDeal from "./dNoneDeal";
 import DNoneLike from "./dNoneLike";
 
@@ -66,8 +68,10 @@ const MyDeal = () => {
     }
 
     return (
-        <>
-        <h2 className="Carousel_text">내가 작성한 거래글</h2>
+        <section className={styles.myReview}>
+            <div className={styles.my_review_titleBox}>
+                <h2 className={styles.my_review_title}>내가 작성한 게시글</h2>
+            </div>
             {myDeals.length != 0 ? (
                 <div className="contents_swiper">
                     <Swiper
@@ -100,7 +104,9 @@ const MyDeal = () => {
             )
         }
 
-        <h2 className="Carousel_text">내가 좋아요한 거래글</h2>
+        <div className={styles.my_review_titleBox}>
+            <h2 className={styles.my_review_title}>내가 ❤ 누른 게시글</h2>
+        </div>
         {
             myLikeDeals.length != 0 ? (
                 <div className="contents_swiper">
@@ -134,7 +140,7 @@ const MyDeal = () => {
                 <DNoneLike />
             )
         }
-        </>
+        </section>
     );
 }
 

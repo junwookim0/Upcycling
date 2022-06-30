@@ -90,24 +90,18 @@ textarea:focus, input:focus{
 
 /* 데스크탑 우선 개발 */
 /* 데스크탑 최적화 css */
+/* 아이패드 사이즈 */
 @media (max-width: 768px) {
-    /* max-width 임의로 했습니다 */
+
     .dealPage {
         max-width: 100%;
     }
-}
 
-@media (max-width: 768px) {
-    /* max-width 임의로 했습니다 */
     /*search input*/
     .container {
         width: 80%;
     }
-}
 
-@media (max-width: 768px) {
-    /* max-width 임의로 했습니다 */
-    /*search input*/
     .header {
         width: 100%;
         display: flex;
@@ -116,13 +110,24 @@ textarea:focus, input:focus{
         position: relative;
         margin-top: 3rem;
         align-items: center;
-    };
-}
+    }
 
-@media (max-width: 768px) {
+    .title {
+        margin-right: 0;
+    }
+    
+    .search {
+        border: 0;
+        font-size: 1.5rem;
+        margin-left: 0.5rem;
+        background-color: transparent;
+        color: makerDarkGreen;
+        cursor: pointer;
+    }
+
     /* 글 작성 버튼 */
     .button_write {
         width: 80%;
         margin: 1.5rem;
-    };
+    }
 }

@@ -48,13 +48,13 @@ textarea:focus, input:focus{
     margin: 1rem 0;
     width: 100%;
     height: auto;
-    border: 1px solid aquamarine;
+    /* border: 1px solid aquamarine; */
     border-top: 1px solid makerLightGrey;
 }
 
 .comments_item {
     position: relative;
-    border: 1px solid deepskyblue;
+    /* border: 1px solid deepskyblue; */
     margin-bottom: 1rem;
 }
 
