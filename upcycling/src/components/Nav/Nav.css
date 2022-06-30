@@ -173,6 +173,10 @@
         height: 200px;
         width: 100%;
     }
+
+    .fix-container.scrolled .navbar {
+        height: 125px;
+    }
     .site_msg{
         margin-top: 126px;
         height: 100px;
@@ -192,10 +196,15 @@
     .navbar_menu li{
         width: 100%;
         text-align: center;
-        font-size: 21px;
+        font-size: 17px;
+        margin-top: 0px;
     }
     .navbar_property li{
         margin-top: -15px;
+        color: #F8F3E8;
+    }
+    .navbar_property li:hover {
+        color: #004236;
     }
     .Hamburger{
         position: absolute;
@@ -212,10 +221,13 @@
         position: relative;
         margin-top: 110px;
         left: 1%;
+
     }
     .navbar_property.active{
         display:flex;
         position: fixed;
         margin-top: 60px;
     }
+
+
 }
