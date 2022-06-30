@@ -21,18 +21,17 @@ textarea:focus, input:focus{
     font-size: 0.9rem;
     color: makerGrey;
 }
-
 .comment_form {
     display: flex;
     justify-content: center;
+    width: 100% !important;
     align-items:flex-end;
-
 }
 .textarea {
-    width: 100%;
+    width: 90%;
     height: 110px;
-    border: none;
     resize: none;
+    border: 0;
 }
 
 .button {
@@ -49,8 +48,6 @@ textarea:focus, input:focus{
     margin: auto;
     width: 80%;
     height: auto;
-    /* border: 1px solid aquamarine; */
-    border-top: 1px solid makerLightGrey;
 }
 
 .comments_item {

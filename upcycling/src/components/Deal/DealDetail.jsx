@@ -87,9 +87,8 @@ const DealDetail = () => {
                     </div>
                     <p className={styles.description}>{dealState.content}</p>
                 </div>
-            </div>
-
-            <div className={styles.icon_container}>
+                
+                <div className={styles.icon_container}>
                 <div className={styles.icon_container_left}>
                     {/* 좋아요 */}
                     <DealLike 
@@ -108,6 +107,9 @@ const DealDetail = () => {
                     )
                 }
             </div>
+            </div>
+
+
             {/* 댓글 작성 */}
             <div className={styles.comments_container}>
                 <CommentWrite />
