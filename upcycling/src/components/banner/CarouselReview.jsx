@@ -53,15 +53,23 @@ const CarouselReview = ({reviewRepository}) => {
                 <div className="contents_swiper">
                 <Swiper
                     onSwiper={setSwiperRef}
-                    slidesPerView={6}
                     centeredSlides={false}
-                    spaceBetween={30}
                     pagination={{
                     type: "fraction",
                     }}
-                    autoplay={{
-                        delay: 3500,
-                        disableOnInteraction: false,
+                    breakpoints={{
+                        768: {
+                            slidesPerView: 1,
+                            spaceBetween: 10,
+                        },
+                        1000: {
+                            slidesPerView: 3,
+                            spaceBetween: 30,
+                        },
+                        1500: {
+                            slidesPerView: 5,
+                            spaceBetween: 40,
+                        },
                     }}
                     navigation={true}
                     modules={[ Pagination, Navigation]}

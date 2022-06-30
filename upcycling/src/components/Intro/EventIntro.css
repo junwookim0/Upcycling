@@ -4,10 +4,11 @@
 .ReactGridGallery{
     display: flex;
     align-items: center;
-    margin-top: 30px;
-    margin-left: 122px;
+    justify-content: center;
+    margin: auto;
     padding-bottom: 30px;
     flex-wrap: wrap;
+    margin-top: 4rem;
 }
 
 #EventImg_size .ReactGridGallery .ReactGridGallery_tile{
