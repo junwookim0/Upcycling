@@ -43,25 +43,33 @@ const CarouselReview = ({reviewRepository}) => {
     },[reviews])
     
     console.log(onReviews)
-
-
+    
 
     return (
         <section>
             <div className="contents_swiper">
                 <h2 className="Carousel_text">신규 리뷰</h2>
                 <div className="contents_swiper">
+                    
                 <Swiper
                     onSwiper={setSwiperRef}
-                    slidesPerView={6}
                     centeredSlides={false}
-                    spaceBetween={30}
                     pagination={{
                     type: "fraction",
                     }}
-                    autoplay={{
-                        delay: 3500,
-                        disableOnInteraction: false,
+                    breakpoints={{
+                        768: {
+                            slidesPerView: 1,
+                            spaceBetween: 10,
+                        },
+                        1000: {
+                            slidesPerView: 3,
+                            spaceBetween: 30,
+                        },
+                        1500: {
+                            slidesPerView: 5,
+                            spaceBetween: 40,
+                        },
                     }}
                     navigation={true}
                     modules={[ Pagination, Navigation]}
@@ -93,7 +101,6 @@ const CarouselReview = ({reviewRepository}) => {
                     }
                 </Swiper>
                 </div>
-
                 
         </div>
 

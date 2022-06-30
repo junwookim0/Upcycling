@@ -7,7 +7,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // import required modules
-import { Pagination, Navigation , Autoplay} from "swiper";
+import { Pagination, Navigation} from "swiper";
 
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
@@ -72,18 +72,26 @@ const MyDeal = () => {
                 <div className="contents_swiper">
                     <Swiper
                     onSwiper={setSwiperRef}
-                    slidesPerView={3}
                     centeredSlides={true}
-                    spaceBetween={30}
                     pagination={{
                     type: "fraction",
                     }}
-                    autoplay={{
-                        delay: 3600,
-                        disableOnInteraction: false,
+                    breakpoints={{
+                        768: {
+                            slidesPerView: 1,
+                            spaceBetween: 10,
+                        },
+                        1000: {
+                            slidesPerView: 3,
+                            spaceBetween: 30,
+                        },
+                        1500: {
+                            slidesPerView: 5,
+                            spaceBetween: 40,
+                        },
                     }}
                     navigation={true}
-                    modules={[Pagination, Navigation, Autoplay]}
+                    modules={[Pagination, Navigation]}
                     className="mySwiper">
                         {myDeals.map(myd => (
                             <SwiperSlide key={myd.createdAt}>
@@ -106,18 +114,26 @@ const MyDeal = () => {
                 <div className="contents_swiper">
                     <Swiper
                         onSwiper={setSwiperRef}
-                        slidesPerView={3}
                         centeredSlides={true}
-                        spaceBetween={30}
                         pagination={{
                         type: "fraction",
                         }}
-                        autoplay={{
-                            delay: 3600,
-                            disableOnInteraction: false,
+                        breakpoints={{
+                            768: {
+                                slidesPerView: 1,
+                                spaceBetween: 10,
+                            },
+                            1000: {
+                                slidesPerView: 3,
+                                spaceBetween: 30,
+                            },
+                            1500: {
+                                slidesPerView: 5,
+                                spaceBetween: 40,
+                            },
                         }}
                         navigation={true}
-                        modules={[Pagination, Navigation, Autoplay]}
+                        modules={[Pagination, Navigation]}
                         className="mySwiper"
                     >
                         {myLikeDeals.map(myld => (
