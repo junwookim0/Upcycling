@@ -39,7 +39,7 @@ function Login() {
                 </header>
                 <div className="fsite_msg_bar">
                         <div className="fsite_msg">
-                            UPTOWN
+                        Upcycling Ideas With 'UPTOWN'
                         </div>
                 </div>
             </div>

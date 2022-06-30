@@ -6,7 +6,7 @@ return (
     <div>
         <div className='about_page' id='about_upctown'>
                 <div className='about_page_box_odd'>
-                    <img className='about_intro_img' src="../../images/frontImg3.jpg" alt='소개img1'></img>
+                    <img className='about_intro_img' src="../../images/ocean.jpg" alt='소개img1'></img>
                     <div className='about_intro_card'>
                         <h2 className='about_intro_title'>ABOUT UPTOWN</h2>
                         <p className='about_intro_text'>
@@ -52,7 +52,7 @@ return (
                     </div>
                 </div>
                 <div className='about_page_box_even'>
-                    <img className='about_intro_img' src="../../images/your_uptown.jpg" alt='소개img1'></img>
+                    <img className='about_intro_img' src="../../images/frontImg3.jpg" alt='소개img1'></img>
                     <div className='about_intro_card'>
                         <h2 className='about_intro_title'>YOUR UPTOWN</h2>
                         <p className='about_intro_text'>

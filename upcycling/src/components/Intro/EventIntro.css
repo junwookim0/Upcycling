@@ -26,6 +26,9 @@
     overflow: visible !important;
     /*object-fit: cover;*/
 }
+.ReactGridGallery_tile-icon-bar{
+    display: none;
+}
 
 
 @media screen and (max-width: 900px) {

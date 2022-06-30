@@ -56,4 +56,9 @@
 }
 .fsite_msg{
     padding: 10px 0;
+    font-size: 18px;
+}
+.fsite_msg:hover {
+    color: #D6CE4B;
+    text-decoration:underline;
 }
