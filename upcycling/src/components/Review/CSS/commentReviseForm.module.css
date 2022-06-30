@@ -73,3 +73,27 @@ textarea:focus, input:focus{
     color: makerDarkGreen;
     background-color: makerLime;
 }
+
+/*반응형*/
+@media screen and (max-width: 900px) {
+    .textarea {
+        margin-left: 1rem;
+    }
+
+    .buttons {
+        font-size: 0.8rem;
+        display: flex;
+        flex-direction: row;
+        width: 13rem;
+        font-weight: 400;
+    }
+
+    .button {
+        font-weight: 400;
+        font-size: 1rem;
+    }
+    .button_ok {
+        font-weight: 400;
+        font-size: 1rem;
+    }
+}

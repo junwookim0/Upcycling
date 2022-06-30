@@ -135,8 +135,7 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
                         </div>
                     </div>
                     <div className={styles.container_inner}>
-                    <Search/>
-                    <WriteButton/>
+                        <WriteButton/>
                     </div>
                 </div>
                 <div className={styles.content}>
@@ -164,8 +163,8 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
                         <button onClick={()=>onShowCommentWriteForm()} className={styles.comment_button}><i className="fa-solid fa-comment-dots"></i></button>
                     </div>
                     { userId === reviewState.userId && (<div className={styles.icon_container_right}>
-                        <button onClick={()=>goRevise(reviewState)}>글 수정</button>
-                        <button onClick={()=>deleteReview(reviewState)}>글 삭제</button>
+                        <button className={styles.buttons} onClick={()=>goRevise(reviewState)}>글 수정</button>
+                        <button className={styles.buttons} onClick={()=>deleteReview(reviewState)}>글 삭제</button>
                     </div>)}
                 </div>
                 <div className={styles.comments_container}>

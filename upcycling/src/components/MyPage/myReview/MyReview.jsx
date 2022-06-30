@@ -117,15 +117,23 @@ const MyReview = ({reviewRepository}) => {
         {onMyReviews.length !== 0? (<div className="contents_swiper">
             <Swiper
                 onSwiper={setSwiperRef}
-                slidesPerView={5}
                 centeredSlides={false}
-                spaceBetween={30}
                 pagination={{
                 type: "fraction",
                 }}
-                autoplay={{
-                    delay: 3500,
-                    disableOnInteraction: false,
+                breakpoints={{
+                    768: {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                    },
+                    1000: {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                    1500: {
+                        slidesPerView: 5,
+                        spaceBetween: 40,
+                    },
                 }}
                 navigation={true}
                 modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
@@ -168,15 +176,23 @@ const MyReview = ({reviewRepository}) => {
         {onMyLikes.length !== 0? (<div className="contents_swiper">
             <Swiper
                 onSwiper={setSwiperRef}
-                slidesPerView={5}
                 centeredSlides={false}
-                spaceBetween={30}
                 pagination={{
                 type: "fraction",
                 }}
-                autoplay={{
-                    delay: 3500,
-                    disableOnInteraction: false,
+                breakpoints={{
+                    768: {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                    },
+                    1000: {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                    1500: {
+                        slidesPerView: 5,
+                        spaceBetween: 40,
+                    },
                 }}
                 navigation={true}
                 modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}

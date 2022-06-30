@@ -67,7 +67,7 @@ const CommentReviseForm = ({ reviewRepository, id,  isForm, currentComment, getC
                     name="comment" 
                     ref={textareaRef}
                     ></textarea>
-                    <div>
+                    <div className={styles.buttons}>
                         <button className={styles.button} onClick={()=>onCancle()} >취소</button>
                         <button  className={styles.button_ok} onClick={()=>onSubmit()}>댓글 수정</button>
                     </div>

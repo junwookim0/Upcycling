@@ -39,3 +39,8 @@ textarea:focus, input:focus{
     padding: 0;
     margin: 0;
 }
+
+/*반응형*/
+@media screen and (max-width: 900px) {
+   
+}
