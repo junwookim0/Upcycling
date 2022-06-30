@@ -228,19 +228,18 @@ const DealWrite = () => {
                                 className={styles.hashtags} /> <br />
                             </div>
                         </div>
-                        
-                        <div className={styles.submit_buttons}>
-                            <button
-                            onClick={onClick}
-                            className={styles.button}>
-                                취소
-                            </button>
-                            {/* 게시글 업로드 */}
-                            <input 
-                            type="submit" 
-                            value="완료"
-                            className={styles.button_ok} />
-                        </div>
+                    </div>
+                    <div className={styles.submit_buttons}>
+                        <button
+                        onClick={onClick}
+                        className={styles.button}>
+                            취소
+                        </button>
+                        {/* 게시글 업로드 */}
+                        <input 
+                        type="submit" 
+                        value="완료"
+                        className={styles.button_ok} />
                     </div>
                 </form>
             </div>

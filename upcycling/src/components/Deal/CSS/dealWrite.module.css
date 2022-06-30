@@ -61,6 +61,7 @@ textarea:focus, input:focus{
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    margin-bottom: 10.5rem;
 }
 
 .inner {
@@ -80,7 +81,6 @@ textarea:focus, input:focus{
     padding: 0.5rem;
     align-items: center;
     margin-bottom: 0.8rem;
-    margin-left: 5rem;
 }
 
 .label {
@@ -166,7 +166,7 @@ textarea:focus, input:focus{
 .submit_buttons {
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: -3.5rem;
 }
 
 .button_ok {
@@ -189,88 +189,24 @@ textarea:focus, input:focus{
     color: makerDarkGreen;
 }
 
-/*모달창*/
-
-.modal_container {
-    text-align: center;
-    position:absolute;
-    left:28%;
-    top: 30%;
-    width: 27rem;
-    height: 23rem;
-    padding: 0;
-    border-radius: 6px;
-    background-color: makerDarkGreen;
-    animation: appear 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-}
-
-.dialog__content > h2 {
-    color: makerLime;
-    font-size: 1.7rem;
-}
-.dialog__content > p {
-    color: makerWhite;
-    font-size: 1rem;
-    margin: 0;
-}
-
-.dialog__animate-out {
-    animation: dissappear 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-}
-.dialog__inner {
-    position: absolute;
-    color: makerWhite;
-    top: 15%;
-    width: 27rem;
-    border-radius:10px;
-}
-
-.dialog__content {
-    padding: 0 55px 55px 55px;
-}
-
-/*로딩스피너*/
-.loading {
-    position: absolute;
-    top: 90%;
-    left: 40%;
-    width: 5.5em;
-    height: 5.5em;
-    border-radius: 50%;
-    border: 5px solid makerWhite;
-    border-top: 5px solid makerLime;
-    animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
+/*반응형*/
+@media (max-width: 768px) {
+    .dealWrite {
+        width: 85%;
     }
-    100% {
-        transform: rotate(360deg);
+
+    .inner {
+        flex-direction: column;
+        height: 33rem;
+        border: none;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: flex-end;
     }
-}
 
-@keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-   }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-   }
-}
+    .hash_container {
+        margin: 0;
+        margin-bottom: 1rem;
+    }
 
-
-@keyframes dissappear {
-    from {
-        opacity: 1;
-        transform: translateY(0);
-   }
-    to {
-        opacity: 0;
-        transform: translateY(20px);
-   }
 }

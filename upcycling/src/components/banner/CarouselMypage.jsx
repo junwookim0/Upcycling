@@ -7,7 +7,6 @@ const Carousel_mypage = ({reviewRepository, deals}) => {
     return (
         <div>
             <MyReview reviewRepository={reviewRepository}/>
-            {/* <MyDeal deals={deals} /> */}
         </div>
     );
 }

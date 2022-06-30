@@ -1,4 +1,4 @@
-@value makerWhite,makerGrey,makerPink,makerLightGrey, makerMidGrey, makerDarkGreen, makerGreen from '../../Review/common/color.css';
+@value makerWhite, makerLime, makerGrey, makerPink, makerLightGrey, makerMidGrey, makerDarkGreen, makerGreen from '../../Review/common/color.css';
 @value fontEn from '../../Review/common/font.css';
 
 textarea:focus, input:focus{
@@ -45,8 +45,10 @@ textarea:focus, input:focus{
 
 .comments_item {
     position: relative;
-    /* border: 1px solid deepskyblue; */
-    margin-bottom: 1rem;
+    border: 1px solid makerLightGrey;
+    border-radius: 1rem;
+    margin: 0.5rem 0.5rem 1rem 0.5rem;
+    padding: 1rem
 }
 
 .comment_userPhoto {
@@ -160,11 +162,16 @@ textarea:focus, input:focus{
     resize: none;
 }
 
+.buttonBox {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .button {
     border: none;
     color: makerGrey;
     background-color: transparent;
-    font-size: 1.1rem;
+    font-size: 0.8rem;
     font-weight: bold;
     cursor: pointer;
 }
@@ -267,7 +274,7 @@ textarea:focus, input:focus{
     border: none;
     color: makerGrey;
     background-color: transparent;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
 }
@@ -276,13 +283,11 @@ textarea:focus, input:focus{
     opacity: 0.8;
 }
 
-
-
 .button_ok {
     border: none;
     color: makerWhite;
     background-color: makerDarkGreen;
-    padding: 0.5rem;
+    padding: 0.3rem 0.5rem;
     border-radius: 10px;
     font-size: 1rem;
     font-weight: bold;

@@ -276,3 +276,25 @@ textarea:focus, input:focus{
         transform: translateY(20px);
    }
 }
+
+
+/*반응형*/
+@media screen and (max-width: 900px) {
+    .reviewWrite {
+        width: 85%;
+    }
+
+    .inner {
+        flex-direction: column;
+        height: 33rem;
+        border: none;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .hash_container {
+        margin: 0;
+        margin-bottom: 1rem;
+    }
+}

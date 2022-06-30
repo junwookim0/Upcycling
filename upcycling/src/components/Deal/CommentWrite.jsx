@@ -73,6 +73,7 @@ const CommentWrite = () => {
                     onChange={onChange}
                     value={dComment} 
                     cols="30" rows="10"
+                    placeholder='댓글을 남겨 주세요'
                     className={styles.textarea}></textarea>
                     <input 
                     type="submit" value="댓글 작성"
@@ -80,7 +81,7 @@ const CommentWrite = () => {
                 </form>
             </div>
             <div className={styles.comments_container}>
-                <h2>댓글</h2>
+                <h2 style={{marginLeft: '0.8rem'}}>댓글</h2>
                 { 
                     dComments.map((dComment) => (
                         <CommentItem 
