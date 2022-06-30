@@ -2,8 +2,8 @@ import styles from './dCommonCSS.module.css';
 
 const DNoneComment = () => {
     return (
-        <div className={styles.noDeal}>
-            <h3>아직 작성하신 댓글이 없습니다!</h3>
+        <div className={styles.contents_empty} style={{marginBottom: '7rem'}}>
+            <h3>작성한 댓글이 없습니다!</h3>
         </div>
     )
 }

@@ -84,13 +84,12 @@ const CommentItem = ({ commentObj }) => {
                                     </div>
                                 </div>
                             </div>
-                            <span>{commentObj.date}</span>
                             <p>{commentObj.content}</p>
+                            <span className={styles.comments_date}>{commentObj.date}</span>
                             {
                                 commentObj.creatorId == user.uid ? (
                                     <>
-                                    {/* 버튼 누르면 삭제/수정 보이게 */}
-                                    <div>
+                                    <div className={styles.buttonBox}>
                                         <button 
                                         onClick={onDeleteClick}
                                         className={styles.button}>

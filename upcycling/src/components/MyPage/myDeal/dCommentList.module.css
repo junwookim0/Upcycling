@@ -4,7 +4,7 @@
     max-width: 70%;
     margin: auto;
     margin-top: 2rem;
-    margin-bottom: 1rem;
+
 }
 
 .title {
@@ -28,7 +28,7 @@
     width: 150px;
     height: 150px;
     object-fit: cover;
-} /* */
+}
 
 
 .comment_container {

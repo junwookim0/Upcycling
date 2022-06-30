@@ -70,7 +70,7 @@ const DealDetail = () => {
                     <div className={styles.title}>
                         <div className={styles.container_title}>
                             <span className={styles.dealTitle}>{dealState.title}</span>
-                            <span className={styles.date}>작성 날짜</span>
+                            <span className={styles.date}>{dealState.date}</span>
                         </div>
                         <div className={styles.tags}>
                             {dealState.hashtagArray[0]&& <span className={styles.hashtags}># {dealState.hashtagArray[0]} </span>}
