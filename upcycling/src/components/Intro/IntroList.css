@@ -248,6 +248,7 @@ line-height: 1.2rem;
     display:block;
   }
   .cInnerContent_list{
-    margin-bottom: 60px;
+    margin: auto;
+    height: 310px;
   }
 }

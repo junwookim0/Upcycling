@@ -50,6 +50,7 @@ const EventIntro = () => {
             <Nav/>
             <SubMainBanner/>
             <div id='EventImg_size'>
+                <h1 className='Event_box_h1'> 진행중인 이벤트 </h1>
                 <Gallery images={IMAGES}/>
             </div>
         </div>

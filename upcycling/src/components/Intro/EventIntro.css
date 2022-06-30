@@ -1,5 +1,10 @@
 .Event_box{
-    background-color: #F8F3E8;
+    background-color: white;
+}
+.Event_box_h1{
+    padding-top: 50px;
+    color: #004236;
+    text-align: center;
 }
 .ReactGridGallery{
     display: flex;

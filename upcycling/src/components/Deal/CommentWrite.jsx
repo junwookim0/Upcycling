@@ -72,7 +72,6 @@ const CommentWrite = () => {
                     <textarea 
                     onChange={onChange}
                     value={dComment} 
-                    cols="30" rows="10"
                     placeholder='댓글을 남겨 주세요'
                     className={styles.textarea}></textarea>
                     <input 

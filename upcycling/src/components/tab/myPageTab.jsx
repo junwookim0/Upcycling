@@ -15,21 +15,21 @@ const MyPageTab = ({reviewRepository}) => {
         {
             tabTitle:(
                 <div className={activeIndex===0 ? "is-active" : "not"} onClick={()=>tabClickHandler(0)}>
-                    내가 작성한 거래글
-                </div>
-            ),
-            tabCont:(
-                    <TabcompDeal/>
-            )
-        },
-        {
-            tabTitle:(
-                <div className={activeIndex===1 ? "is-active" : "not"} onClick={()=>tabClickHandler(1)}>
                     내가 작성한 리뷰글
                 </div>
             ),
             tabCont:(
                 <TabcompReview reviewRepository={reviewRepository}/>
+            )
+        },
+        {
+            tabTitle:(
+                <div className={activeIndex===1 ? "is-active" : "not"} onClick={()=>tabClickHandler(1)}>
+                    내가 작성한 거래글
+                </div>
+            ),
+            tabCont:(
+                    <TabcompDeal/>
             )
         }
     ];
