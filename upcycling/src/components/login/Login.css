@@ -8,6 +8,7 @@
 }
 .first_nav_div.scrolled .first_nav__Container button{
     color: #D6CE4B;
+    cursor: pointer;
 }
 
 .first_nav__Container{ 

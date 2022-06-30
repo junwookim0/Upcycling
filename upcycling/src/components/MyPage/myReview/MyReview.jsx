@@ -108,17 +108,6 @@ const MyReview = ({reviewRepository}) => {
     },[myComments])
 
 
-    //🍎👍현재 존재하는 게시물에서 내가 좋아요를 누른 리뷰
-    // const filteredLikes = onMyLikes.map(like => (
-    //     onReviews.map(review => {
-    //         if(review.id === like.id) {
-    //             return <SwiperSlide key={review.id}><img onClick={()=>goDetail(review)} src={review.reviewIMG} alt="" /></SwiperSlide>
-    //         } 
-    //     })
-    // ))
-
-    //🍎좋아요 amount
-
 
     return (
         <section className="myReview">
