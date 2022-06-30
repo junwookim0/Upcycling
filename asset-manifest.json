@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a3698711.css",
+    "main.js": "/static/js/main.f099459d.js",
+    "static/media/subbannersale.jpg": "/static/media/subbannersale.d17a10fea263181fc1d8.jpg",
+    "static/media/bannerHome2.jpg": "/static/media/bannerHome2.325c538368a31549d653.jpg",
+    "static/media/frontImg2.jpg": "/static/media/frontImg2.4c95a366fd0af2dc7c70.jpg",
+    "static/media/press.jpg": "/static/media/press.74e4d748665b95d9b904.jpg",
+    "static/media/flea-market-g71c6d8602_1280.jpg": "/static/media/flea-market-g71c6d8602_1280.fbb609387d499a77d911.jpg",
+    "static/media/frontImg1.jpg": "/static/media/frontImg1.05d4d894c658cc72cc37.jpg",
+    "index.html": "/index.html",
+    "static/media/circle-chevron-right-solid.svg": "/static/media/circle-chevron-right-solid.acc9b42d048ed5fe4f73.svg",
+    "static/media/circle-chevron-left-solid.svg": "/static/media/circle-chevron-left-solid.88f38ec9e77072e4e58b.svg",
+    "main.a3698711.css.map": "/static/css/main.a3698711.css.map",
+    "main.f099459d.js.map": "/static/js/main.f099459d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a3698711.css",
+    "static/js/main.f099459d.js"
+  ]
+}
