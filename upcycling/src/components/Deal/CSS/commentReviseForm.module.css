@@ -136,8 +136,9 @@ textarea:focus, input:focus{
 .container {
     border: 2px solid makerLightGrey;
     border-radius: 10px;
-    width: 100%;
+    width: 97.5%;
     height: 12rem;
+    margin: auto;
 }
 
 .user {
@@ -157,7 +158,7 @@ textarea:focus, input:focus{
 }
 .textarea {
     width: 90%;
-    height: 110px;
+    height: 85px;
     border: none;
     resize: none;
 }
@@ -244,10 +245,6 @@ textarea:focus, input:focus{
     font-size: 1.1rem;
     font-weight: bold;
     margin: 0;
-}
-
-.comments_email {
-    color: makerGrey;
 }
 
 .comments_date {
