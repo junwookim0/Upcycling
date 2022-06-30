@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { useContext } from "react";
-import AuthContext from "../context/AuthContext";
 import { ProfileUpdate } from "../../firebase"
 import { useNavigate } from "react-router-dom";
 import "./TestProfile.css";
 const TestProfile = () => {
-    const { user } = useContext(AuthContext);
+
     const [displayName, setDisplayName] = useState("");
     const [photoURL, setPhotoURL] = useState("");
     const [error, seterror] = useState("");

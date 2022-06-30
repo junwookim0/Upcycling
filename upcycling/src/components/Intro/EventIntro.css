@@ -1,31 +1,32 @@
-.post {
-    box-sizing: border-box;
-    text-align: center;
-    margin-top: 150px;
-    justify-content: center;
+.Event_box{
+    background-color: #F8F3E8;
+}
+.ReactGridGallery{
+    display: flex;
     align-items: center;
-    font-family: 'LeferiPoint-WhiteObliqueA';
-}
-.eventpost{
-    width: 80%;
-    height: 400px;
-    object-fit: cover;
-    padding: 20px;
-}
-.eventpost:hover{
-    filter: brightness(80%);
-}
-/*모달창의서의 이미지*/
-.eventModal{
-    height: 600px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 122px;
+    flex-wrap: wrap;
 }
 
-.slick-slider{  
-    width: 700px;
-    background-color: #e9ecef;
+#EventImg_size .ReactGridGallery .ReactGridGallery_tile{
+    width: 300px;
+    height: 350px;
+    margin: 20px !important;
 }
-.slick-slide .img{
-        width: 200px;     
+#EventImg_size .ReactGridGallery .ReactGridGallery_tile .ReactGridGallery_tile-viewport {
+    overflow: visible !important;
+}
+#EventImg_size .ReactGridGallery .ReactGridGallery_tile .ReactGridGallery_tile-viewport img{
+    width: 300px;
+    height: 370px !important;
+    overflow: visible !important;
 }
 
 
+@media screen and (max-width: 900px) {
+    .ReactGridGallery{
+        margin-left: 72px;
+    }
+}
