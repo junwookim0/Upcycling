@@ -1,3 +1,4 @@
+//모달창
 import React from 'react';
 import './modalimg.css';
 

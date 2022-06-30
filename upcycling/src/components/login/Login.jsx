@@ -1,3 +1,4 @@
+//첫페이지 "/" nav 컴포넌트
 import { useNavigate } from "react-router-dom";
 import { useState , useEffect} from "react";
 

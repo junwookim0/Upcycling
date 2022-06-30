@@ -1,3 +1,4 @@
+//로그인 컴포넌트
 import { useState } from "react";
 import { signIn , signInWithGoogle, signInWithFacebook ,signInWithGithub} from "../../firebase";
 import { useNavigate } from "react-router-dom";

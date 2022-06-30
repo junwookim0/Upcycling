@@ -12,7 +12,7 @@ import ReviewRepository from './Service/review_repository'
 import CommentRepository from './Service/comment_repository';
 import ImageUploader  from './Service/image_uploader'
 import LikeRepository from './Service/like_repository';
-
+//firebase api를 App 전체에 사용하기 위함 
 import { AuthProvider } from "./components/context/AuthProvider";
 import { store } from './store'
 import { Provider } from 'react-redux';

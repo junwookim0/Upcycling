@@ -1,3 +1,4 @@
+//회원가입 컴포넌트
 import { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import { signUp } from "../../firebase";
@@ -9,6 +10,7 @@ const Signup = () => {
     const [password2, setPassword2] = useState("");
     const [error, seterror] = useState("");
     const navigate = useNavigate();
+    //swal > alert
     const Swal = require('sweetalert2');
 
     const handleSubmit = async (e) => {
@@ -18,6 +20,7 @@ const Signup = () => {
         } else {
             setEmail("");
             setPassword("");
+            //err msg 
             const res = await signUp(email, password);
             if (res.error) {
                 switch (res.error) {

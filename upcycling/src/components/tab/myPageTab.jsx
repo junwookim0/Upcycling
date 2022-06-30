@@ -1,3 +1,4 @@
+//mypage의 tab 메뉴 
 import TabcompDeal from "../MyPage/TabcompDeal";
 import TabcompReview from '../MyPage/TabcompReview';
 import { useState } from "react";

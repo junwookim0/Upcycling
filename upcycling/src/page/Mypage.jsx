@@ -1,3 +1,4 @@
+//navbar의 마이페이지
 import { useContext } from "react";
 import AuthContext from "../components/context/AuthContext";
 import { useNavigate } from "react-router-dom";

@@ -37,7 +37,7 @@ const Nav = () => {
             window.removeEventListener('scroll', handleScrollham);
         };
     },[scrolled]);
-
+// nav hamburger button click
     const clickb = ()=>{
             if(!isOpen){
                 setOpen(true);
@@ -68,6 +68,7 @@ const Nav = () => {
     const goMypage = () => {
         navigate("/mypage");
     }
+    //로그아웃 함수 클릭시 comfirm으로 로그아웃 선택시  swal로 alert 표시
     const handleLogout = async () => {
         await SignOut();
         const swalButtons = Swal.mixin({
@@ -85,6 +86,7 @@ const Nav = () => {
         })
         navigate("/");
     };
+    //로그아웃 함수 클릭시 swal로 comfirm 표시
     const LogoutComfirm = () => {
         const swalButtons = Swal.mixin({
             customClass: {
@@ -109,12 +111,14 @@ const Nav = () => {
     }
     return (
         <div>
+            {/*스크롤 css 클래스명 true false 동작 */}
             <header className={scrolled ? 'fix-container scrolled' : 'fix-container'}>
                 <nav className="navbar">
                     <div className="navbar_logo" onClick={goHome}>
                         <span 
                         className={scrolled ? 'logo_text scrolled' : 'logo_text'}>: UPTOWN</span>
                     </div>
+                    {/*hamburger btn 클릭시 오픈되는 메뉴 (클래스명으로)*/}
                     <ul className={isOpen ? 'navbar_menu active' : 'navbar_menu'}>
                         <li onClick={goHome}>Home</li>
                         <li onClick={goContents}>About</li>
@@ -122,13 +126,14 @@ const Nav = () => {
                         <li onClick={goReview}>Review</li>
                         <li onClick={goDeal}>Market</li>
                     </ul>
+                    {/*hamburger btn 클릭시 오픈되는 메뉴 (클래스명으로)*/}
                     <ul className={isOpen ? 'navbar_property active' : 'navbar_property'}>
                         <li  onClick={goMypage}>
                             MyPage
                         </li>
                         <li onClick={LogoutComfirm}>Logout</li>
                     </ul>
-                    <div className="Hamburger">
+                    <div className="Hamburger">{/*버튼 클릭시 navbar on/off*/}
                         <Hamburger toggled={isOpen} toggle={clickb}/>
                     </div>
                     <div className="site_msg_bar">

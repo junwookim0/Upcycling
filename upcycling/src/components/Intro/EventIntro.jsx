@@ -1,6 +1,7 @@
 // 이벤트 소개 페이지
 import Nav from '../Nav/Nav';
 import SubMainBanner from '../banner/SubMainBannerEvent';
+//react-grid-gallery npm 사용
 import Gallery from 'react-grid-gallery';
 import "./EventIntro.css";
 

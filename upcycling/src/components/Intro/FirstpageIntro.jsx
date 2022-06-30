@@ -1,3 +1,4 @@
+//첫페이지 "/"  페이지 소개 내용  FirstMain 에서 사용
 import './FirstpageIntro.css';
 
 const FirstpageIntro = () => {

@@ -1,13 +1,15 @@
 import './App.css';
 import { Route, Routes, useNavigate } from "react-router-dom";
+/* navbar link*/
 import Home from './page/Home';
 import About from './components/Intro/IntroList';
-import Abup from './page/Abup';
 import FirstMain from './page/FirstMain/FirstMain';
 import EventIntro from './components/Intro/EventIntro';
 import SignIn from './components/login/SignIn';
 import Mypage from './page/Mypage';
+import Abup from './page/Abup';
 import SignUp from './components/login/SignUp';
+/* firebase api */
 import { useContext } from "react";
 import AuthContext from "./components/context/AuthContext";
 /*🍎 지은 import*/
@@ -24,14 +26,17 @@ import DealRevise from './components/Deal/DealRevise';
 /* 🥑 박선주 import 끝 */
 import NotFound from './page/NotFound';
 import {useState, useEffect} from 'react';
-
+/* app.js > firestore(db) */ 
 import { firestore } from './firebase';
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
+/*footer*/
 import Footer from './components/Intro/footer';
 
 function App({reviewRepository, commentRepository, imageUploader, likeRepository}) {
+  /*firebase api 에서 user값 불러오기*/
   const { user } = useContext(AuthContext);
   const userId = user ? user.uid : null
+  /*useNavigate로 컴포넌트간 이동 주소 사용*/
   const navigator = useNavigate();
 
 
@@ -103,7 +108,6 @@ const removeLike = (userId,review) => {
   return (
     <div className="App">
         <Routes>
-
           <Route path="/" element={!user?<FirstMain/> : <Home reviewRepository={reviewRepository}/>}></Route>
           <Route path="/home" element={user ? <Home reviewRepository={reviewRepository} /> :<SignIn/> }></Route>
           <Route path="/about" element={<About/>}></Route>

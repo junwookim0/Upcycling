@@ -1,3 +1,4 @@
+//마이페이지 tab 메뉴에 마켓 하위 내용
 import MyDeal from "./myDeal/MyDeal";
 import DCommentList from "./myDeal/dCommentList";
 

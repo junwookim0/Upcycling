@@ -1,3 +1,4 @@
+//home banner에 버튼 클릭시 이동되는 컴포넌트
 import Nav from '../components/Nav/Nav';
 import "./Abup.css";
 const Abup = () => {

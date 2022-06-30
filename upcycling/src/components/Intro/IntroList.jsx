@@ -1,4 +1,4 @@
-// 소개 페이지
+// 소개 페이지 about
 import './IntroList.css';
 import Nav from '../Nav/Nav';
 import SubMainBanner from "../banner/SubMainBannerContents";

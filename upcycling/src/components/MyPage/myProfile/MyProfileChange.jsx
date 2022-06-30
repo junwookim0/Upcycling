@@ -1,3 +1,4 @@
+//마이페이지에 프로필 표시 및 설정 컴포넌트
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 

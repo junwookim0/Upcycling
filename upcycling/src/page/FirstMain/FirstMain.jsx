@@ -1,3 +1,5 @@
+/*처음 주소로 들어왔을때 보이는 첫페이지 "/" 
+로그인 되어있으면 /home 으로 넘어감*/
 import Login from "../../components/login/Login";
 import FirstpageIntro from "../../components/Intro/FirstpageIntro";
 import "./firstMain.css"

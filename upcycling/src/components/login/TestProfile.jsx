@@ -1,3 +1,4 @@
+//프로필 변경 컴포넌트 마이페이지에서 모달창으로 표시
 import { useState } from "react";
 import { ProfileUpdate } from "../../firebase"
 import { useNavigate } from "react-router-dom";
