@@ -24,7 +24,7 @@ textarea:focus, input:focus{
 .comment_form {
     display: flex;
     justify-content: center;
-    width: 100% !important;
+    width: 98% !important;
     align-items:flex-end;
 }
 .textarea {
@@ -46,6 +46,7 @@ textarea:focus, input:focus{
 /*comments CSS*/
 .comments_container {
     margin: auto;
+    margin-bottom: 4rem;
     width: 80%;
     height: auto;
 }

@@ -1,4 +1,4 @@
-@value makerWhite,makerGrey,makerPink,makerLightGrey, makerDarkGreen, makerGreen from '../../Review/common/color.css';
+@value makerWhite, makerBeige, makerGrey, makerPink, makerLightGrey, makerDarkGreen, makerGreen from '../../Review/common/color.css';
 @value fontEn from '../../Review/common/font.css';
 
 .container {
@@ -102,6 +102,7 @@
 
 .date {
     color : makerGrey;
+    margin-right: 1.8rem;
 }
 
 .tags {
@@ -144,6 +145,30 @@
     margin-left: 2rem;
 }
 
+.icon_container_right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.icon_container_right > button {
+    margin-top: 0.8rem;
+    cursor: pointer;
+    margin-right: 1rem;
+    border: 1px solid makerGrey;
+    background-color: makerDarkGreen;
+    color: makerBeige;
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: none;
+    transition: all ease-in-out 0.2s;
+}
+
+.icon_container_right > button:hover {
+    background-color: #D6CE4B;
+    color: #004236;
+}
 
 .heart {
     margin-right: 1rem;

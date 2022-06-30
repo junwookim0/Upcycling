@@ -7,7 +7,7 @@ const Footer = () => {
             <div className={styles.info_container}>
                 <div className={styles.info}>
                     <p className={styles.logo}>UPTOWN</p>
-                    <p>김준우 / ekdlskalrx@google.com</p>
+                    <p>김준우 / ekdlskalrx@gmail.com</p>
                     <p>윤지은 / jjieunyun@naver.com</p>
                     <p>박선주 / sjdupre@naver.com</p>
                     <br/>
