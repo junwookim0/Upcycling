@@ -106,7 +106,9 @@ const DealWrite = () => {
             attachmentUrl: attachmentUrl,
             // 06-21 좋아요
             likeCount: 0,
-            likeUser: []
+            likeUser: [],
+            // 07-04 거래완료
+            completed: []
         };
     
         await addDoc(collection(firestore, "dbDeals"), dealObj);

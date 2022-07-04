@@ -28,9 +28,12 @@
     font-weight: bold;
 }
 
-.email {
-    margin: 0;
-    color: makerGrey;
+.hashtags {
+    margin-top: 0.5rem;
+    color: makerDarkGreen;
+}
+.hashtags span {
+    margin-right: 0.5rem;
 }
 
 .likeBox {

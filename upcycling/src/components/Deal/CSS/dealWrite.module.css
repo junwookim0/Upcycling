@@ -26,6 +26,7 @@ textarea:focus, input:focus{
     margin-top: 1rem;
     /* border: 1px solid red; */
 }
+
 .input_title {
     border: 1px solid makerGrey;
     width: 100%;

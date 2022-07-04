@@ -1,11 +1,10 @@
-@value makerWhite, makerBeige, makerGrey, makerPink, makerLightGrey, makerDarkGreen, makerGreen from '../../Review/common/color.css';
+@value makerWhite, makerLime, makerBeige, makerGrey, makerPink, makerLightGrey, makerDarkGreen, makerGreen from '../../Review/common/color.css';
 @value fontEn from '../../Review/common/font.css';
 
 .container {
     display: flex;
     position: relative;
     max-width: 1300px;
-    /* border: 1px slateblue solid; */
     margin: auto;
     padding: 1rem;
     flex-direction: column;
@@ -23,7 +22,6 @@
     justify-content: space-between;
     display: flex;
     align-items: center;
-    /* border: 1px solid red; */
 }
 
 .userInfo {
@@ -64,14 +62,13 @@
     justify-content: space-evenly;
     flex-direction: row;
     width: 100%;
-    /* border: 1px solid blue; */
 }
 
 .content > img {
-    width: 80%;
+    width: 35rem;
     height: 43rem;
-    /* border: 1px solid purple; */
     object-fit: cover;
+    margin-bottom: 2rem;
 }
 
 .content_container {
@@ -79,7 +76,6 @@
     flex-direction: column;
     width: 80%;
     margin-left: 1.5rem;
-    /* border: 1px solid pink; */
 }
 
 .container_title {
@@ -89,7 +85,6 @@
 }
 
 .title {
-    /* border: 1px solid yellowgreen; */
     height: 7rem;
     margin-bottom: 2rem;
 }
@@ -124,7 +119,6 @@
 
 .description {
     margin: 0;
-    /* border: 1px solid orange; */
     max-height: 34rem;
     overflow: auto;
     white-space: pre-line;
@@ -151,23 +145,36 @@
     align-items: center;
 }
 
-.icon_container_right > button {
+.icon_container_button {
     margin-top: 0.8rem;
     cursor: pointer;
     margin-right: 1rem;
     border: 1px solid makerGrey;
+    border-radius: 10px;
+    font-size: 1rem;
+    background-color: makerWhite;
+    color: makerDarkGreen;
+    padding: 0.7rem 1rem;
+    transition: all ease-in-out 0.2s;
+}
+
+.icon_container_button_ok {
+    margin-top: 0.8rem;
+    cursor: pointer;
+    margin-right: 0.8rem;
+    border: 1px solid makerDarkGreen;
+    border-radius: 10px;
     background-color: makerDarkGreen;
     color: makerBeige;
     padding: 0.7rem 1rem;
     font-size: 1rem;
-    border-radius: 10px;
-    border: none;
     transition: all ease-in-out 0.2s;
 }
 
-.icon_container_right > button:hover {
-    background-color: #D6CE4B;
-    color: #004236;
+.icon_container_button_ok:hover {
+    background-color: makerLime;
+    color: makerDarkGreen;
+    border: makerLime 1px solid;
 }
 
 .heart {

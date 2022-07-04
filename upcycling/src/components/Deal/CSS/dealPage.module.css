@@ -21,6 +21,7 @@
 /*deal list*/
 .list {
     margin: auto; /* 🥑 margin auto 추가 */
+    margin-bottom: 4rem;
     position: relative;
     display: flex;
     list-style: none;

@@ -1,9 +1,9 @@
 /* 🥑 거래글 자세히! */
 
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
-import { doc, deleteDoc, query, collection, where, onSnapshot } from "firebase/firestore";
+import { doc, deleteDoc } from "firebase/firestore";
 import { ref, deleteObject } from "@firebase/storage";
 import { firestore, storage } from "../../firebase";
 
@@ -13,6 +13,7 @@ import Nav from "../Nav/Nav";
 import SubMainBnnerDeal from "../banner/SubMainBannerDeal";
 import CommentWrite from "./CommentWrite";
 import DealLike from "./DealLike";
+import DealComplete from "./DealComplete";
 
 const DealDetail = () => {
     /* 사용자 정보 */
@@ -77,11 +78,16 @@ const DealDetail = () => {
                             {dealState.hashtagArray[1]&& <span className={styles.hashtags}># {dealState.hashtagArray[1]} </span>}
                             {dealState.hashtagArray[2]&& <span className={styles.hashtags}># {dealState.hashtagArray[2]} </span>}
                         </div>
+
                         {
-                            dealState.price == '' ? (
-                                <span className={styles.price}>나눔💚</span>
+                            dealState.completed.length == 1 ? (
+                                <span className={styles.price}>거래완료</span>
                             ) : (
-                                <span className={styles.price}>&#8361; {dealPrice}</span>
+                                dealState.price == '' && dealState.completed.length == 0 ? (
+                                    <span className={styles.price}>나눔💚</span>
+                                ) : (
+                                    <span className={styles.price}>&#8361; {dealPrice}</span>
+                                )
                             )
                         }
                     </div>
@@ -98,8 +104,19 @@ const DealDetail = () => {
                 {
                     dealState.creatorId == user.uid ? (
                         <div className={styles.icon_container_right}>
-                            <button onClick={() => onReviseClick(dealState)}>수정</button>
-                            <button onClick={onDeleteClick}>삭제</button>
+                            <DealComplete
+                            isCompleted={dealState.completed.includes(user.uid)}
+                            dealState={dealState} />
+                            <button 
+                            onClick={() => onReviseClick(dealState)}
+                            className={styles.icon_container_button_ok}>
+                                수정
+                            </button>
+                            <button 
+                            onClick={onDeleteClick}
+                            className={styles.icon_container_button}>
+                                삭제
+                            </button>
                         </div>    
                     ) : (
                         <>

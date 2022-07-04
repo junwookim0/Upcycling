@@ -143,6 +143,12 @@ const DealRevise = () => {
             <form
             onSubmit={onSubmit}
             className={styles.form}>
+                {/* 거래가 완료된 상품인가요? */}
+                <div className={styles.input_radio}>
+                    <label>거래가 완료된 상품인가요?</label> <br />
+                    <input type="radio" value="Y" name="market" /> 네
+                    <input type="radio" value="N" name="market" /> 아니오
+                </div>
                 {/* 제목 작성 */}
                 <input
                 name="title"
@@ -230,18 +236,19 @@ const DealRevise = () => {
                                     className={styles.hashtags} /> <br />
                                 </div>
                             </div>
-                            <div className={styles.submit_buttons}>
-                                <button 
-                                className={styles.button}
-                                onClick={toggleEditting}>취소</button>
-                                {/* 거래 업로드 */}
-                                <input 
-                                type="submit" 
-                                value="수정"
-                                className={styles.button} />
-                            </div>
+
                         </div>
-                    </div>              
+                    </div>
+                    <div className={styles.submit_buttons}>
+                        <button 
+                        className={styles.button}
+                        onClick={toggleEditting}>취소</button>
+                        {/* 거래 업로드 */}
+                        <input 
+                        type="submit" 
+                        value="수정"
+                        className={styles.button_ok} />
+                    </div>           
             </form>
         </div>
         </>
