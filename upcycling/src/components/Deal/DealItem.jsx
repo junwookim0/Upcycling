@@ -27,16 +27,24 @@ const DealItem = ({deal}) => {
             onClick={onClick}
             className={styles.dealImg} />
             <h3>{deal.title}</h3>
-            {/* 작성자가 가격 입력했으면 작성된 가격 뜸
-                작성자가 가격 입력 안 했으면 나눔💚 뜸 */}
             {
-                deal.price == '' ? (
-                    <h3>나눔 💚</h3>
+                deal.completed.length == 1 ? (
+                    <h3 className={styles.price}>거래완료</h3>
                 ) : (
-                    <h3>&#8361; {dealPrice}</h3>
+                    deal.price == '' && deal.completed.length == 0 ? (
+                        <h3 className={styles.price}>나눔💚</h3>
+                        ) : (
+                            <h3 className={styles.price}>&#8361; {dealPrice}</h3>
+                        )
                 )
             }
+
             <p className={styles.name}>{deal.creatorName}</p>
+            <div className={styles.hashtags}>
+                <span>#{deal.hashtagArray[0] && deal.hashtagArray[0]}</span>
+                <span>#{deal.hashtagArray[1] && deal.hashtagArray[1]}</span>
+                <span>#{deal.hashtagArray[2] && deal.hashtagArray[2]}</span>
+            </div>
             <div className={styles.likeBox}>
                 <div className={styles.icon}>
                     <i className="fa-solid fa-heart"></i>
